@@ -1,0 +1,34 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: kabanero-java-openliberty-task
+spec:
+  inputs:
+    resources:
+      - name: git-source
+        type: git
+    params:
+      - name: module
+        default: "no-module"
+  steps:
+    - name: maven
+      image: docker.io/kabanero/java-openliberty:0.2.3
+      env:
+        - name: gitsource
+          value: git-source
+      script: |
+        MODULE="$(params.module)"
+        echo "scanning $MODULE"
+
+       
+        mkdir -pv /workspace/repo
+        mvn install -q -f /project/appsody-boot2-pom.xml -Dmaven.repo.local=/workspace/repo
+
+        mkdir -pv $(workspaces.report.path)/sites/$(params.module)
+
+        cd /workspace/git-source
+        mvn clean install -Dmaven.repo.local=/workspace/repo
+        mvn site:site -Dmaven.repo.local=/workspace/repo -DstagingDirectory=$(workspaces.report.path)/sites/$(params.module)
+        mvn site:stage -Dmaven.repo.local=/workspace/repo -DstagingDirectory=$(workspaces.report.path)/sites/$(params.module)
+  workspaces:
+    - name: report

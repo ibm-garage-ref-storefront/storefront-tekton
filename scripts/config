@@ -1,0 +1,30 @@
+# note: the namespace is not completely scripted yet. Keep it full-bc for now.
+NAMESPACE=full-bc
+WORKSPACE=full-bc
+
+OCNEWAPP_OPTION='--as-deployment-config'
+
+QUAY_PWD=
+QUAY_USER=
+QUAY_EMAIL=
+QUAY_API_TOKEN=
+
+# Customer MS plus its CouchDB
+# https://github.com/ibm-garage-ref-storefront/customer-ms-spring#1-create-a-temporary-hs256-shared-secret
+HS256_KEY=E6526VJkKYhyTFRFMC0pTECpHcZ7TGcq8pKsVVgz9KtESVpheEO284qKzfzg8HpWNBPeHOxNGlyudUHi6i8tFQJXC8PiI48RUpMh23vPDLGD35pCM0417gf58z5xlmRNii56fwRCmIhhV7hDsm3KO2jRv4EBVz7HrYbzFeqI45CaStkMYNipzSm2duuer7zRdMjEKIdqsby0JfpQpykHmC5L6hxkX0BT7XWqztTr6xHCwqst26O0g8r7bXSYjp4a
+TEST_USER=foo
+CUSTOMER_HOST=customer
+CUSTOMER_PORT=8080
+COUCHDB_PROTOCOL=http
+COUCHDB_USER=admin
+COUCHDB_PASSWORD=passw0rd
+COUCHDB_HOST=127.0.0.1
+COUCHDB_PORT=5984
+COUCHDB_DATABASE=customers
+
+# Orders MS
+ORDER_SERVICE_NAME=ordersmysql
+ORDER_ROOT_PASSWORD=admin123
+ORDER_USER=dbuser
+ORDER_PASSWORD=password
+ORDER_DATABASE=ordersdb

@@ -1,0 +1,32 @@
+apiVersion: v1
+items:
+- apiVersion: tekton.dev/v1alpha1
+  kind: PipelineResource
+  metadata:
+    name: auth-ms-liberty-image-internal
+  spec:
+    params:
+    - name: url
+      value: image-registry.openshift-image-registry.svc:5000/full-bc/auth-ms-openliberty
+    type: image
+- apiVersion: tekton.dev/v1alpha1
+  kind: PipelineResource
+  metadata:
+    name: auth-ms-liberty-image-external
+  spec:
+    params:
+    - name: url
+      value: quay.io/kitty_catt/auth-ms-openliberty
+    type: image    
+- apiVersion: tekton.dev/v1alpha1
+  kind: PipelineResource
+  metadata:
+    name: auth-ms-liberty-source
+  spec:
+    params:
+    - name: revision
+      value: master
+    - name: url
+      value: https://github.com/kitty-catt/auth-ms-openliberty
+    type: git
+kind: List

@@ -1,0 +1,6 @@
+AuthUserFile /etc/httpd/conf/.htpasswd
+AuthName "Name of Secure Area"
+AuthType Basic
+<Limit GET POST>
+require valid-user
+</Limit>

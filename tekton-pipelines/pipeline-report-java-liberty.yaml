@@ -1,0 +1,27 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: report-pipeline-java-openliberty
+spec:
+  resources:
+    - name: git-source
+      type: git
+  params:
+  - name: module
+    default: "not-specified"      
+  tasks:
+    - name: site
+      taskRef:
+        name: kabanero-java-openliberty-task
+      resources:
+        inputs:
+        - name: git-source
+          resource: git-source
+      params:
+      - name: module
+        value: $(params.module)
+      workspaces:
+        - name: report
+          workspace: report        
+  workspaces:
+    - name: report

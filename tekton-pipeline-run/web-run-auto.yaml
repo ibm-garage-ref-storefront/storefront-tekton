@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: web-pipeline-internal-
+spec:
+  serviceAccountName: appsody-sa
+  timeout: "1h0m0s"  
+  pipelineRef:
+    name: build-pipeline
+  resources:
+    - name: git-source
+      resourceRef:
+        name: web-source
+    - name: docker-image
+      resourceRef:
+        name: web-image-internal

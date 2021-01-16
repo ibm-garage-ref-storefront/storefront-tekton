@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-user-job
+  description: "COULD NOT GET THIS TO WORK, CAN YOU?"
+spec:
+  template:
+    metadata:
+      name: create-user-job
+      labels:
+        app: AoT
+    spec:
+      restartPolicy: Never
+      containers:
+      - image: ibmgaragecloud/ibmcloud-dev:1.2.2
+        name: create-user-job
+        command: ["/usr/bin/curl"]
+        args:
+          - "-v"
+          - "-i"
+          - "-X POST" 
+          - "http://customer-ms-spring:8080/micro/customer/add"
+          - "-H \"Content-Type: application/json\""
+          - "-H \"Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJhZG1pbiJdLCJ1c2VyX25hbWUiOiJmb28ifQ.hZEmuywb637OrP_6AKDiyZ5_mZ1lVJlwzCOG4egLa1c\""
+          - "-d \'{\"username\": \"foo\", \"password\": \"bar\", \"firstName\": \"foo\", \"lastName\": \"bar\", \"email\": \"foo@bar.com\"}\'"
+        env:
+          - name: JOB_ADMIN_JWT_TOKEN
+            value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJhZG1pbiJdLCJ1c2VyX25hbWUiOiJmb28ifQ.hZEmuywb637OrP_6AKDiyZ5_mZ1lVJlwzCOG4egLa1c"
+          - name: JOB_USER
+            value: "foo"
+          - name: JOB_PASSWORD
+            value: "bar"

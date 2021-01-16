@@ -1,0 +1,20 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: auth-ms-liberty-pipeline-experimental-
+spec:
+  params:
+    - name: module
+      value: auth-ms-liberty
+  serviceAccountName: appsody-sa
+  timeout: "1h0m0s"  
+  pipelineRef:
+    name: report-pipeline-java-openliberty
+  resources:
+    - name: git-source
+      resourceRef:
+        name: auth-ms-liberty-source
+  workspaces:
+    - name: report
+      persistentvolumeclaim:
+        claimName: httpd-pvc

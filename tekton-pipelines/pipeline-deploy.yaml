@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: deploy-pipeline
+spec:
+  params:
+  - name: image
+    default: "kitty_catt/inventory"
+  tasks:
+    - name: quay-cve-check
+      taskRef:
+        name: ibm-quay-cve-check
+      params:
+      - name: image
+        value: $(params.image)
