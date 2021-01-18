@@ -35,7 +35,7 @@
         "service_name": "customer-ms-spring:8080",
         "base_path": "/micro",
         "paths": {
-          "customer": "/customer"
+          "customer": "/customer/search"
         },
         "require": [
             "oauth"
@@ -45,9 +45,9 @@
       "customer": {
         "protocol": "http",
         "service_name": "customer-ms-spring:8080",
-        "base_path": "/oidc/endpoint/OP",
+        "base_path": "/micro",
         "paths": {
-          "userinfo": "/userinfo"
+          "customer": "/customer/search"
         },
         "require": [
           "oauth"
