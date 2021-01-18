@@ -19,9 +19,18 @@ do
         "ibm-garage")
             export REPO=ibm-garage
 
+            echo "searching for route to auth-ms-spring service"
+            # Give it some time to manifest the route to the auth service
+            sleep 10
+            export ROUTE=$(oc get route | grep auth-ms-spring | awk  '{ print $2}')
+            echo "ROUTE=>$ROUTE<"
+            sleep 10            
+
             # move to new endpoints
             cp $HERE/scripts/web/production-ocp.json \
                $HERE/scripts/web/production.json
+
+            sed -i "s/auth-ms-spring:8080/$ROUTE/" $HERE/scripts/web/production.json  
             break
             ;;
         "old-kitty-catt-forks")
