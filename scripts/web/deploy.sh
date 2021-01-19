@@ -31,6 +31,13 @@ do
                $HERE/scripts/web/production.json
 
             sed -i "s/auth-ms-spring:8080/$ROUTE/" $HERE/scripts/web/production.json  
+
+            # do the same for customer-ms-spring
+            export ROUTE=$(oc get route | grep customer-ms-spring | awk  '{ print $2}')
+            echo "ROUTE=>$ROUTE<"
+
+            sed -i "s/customer-ms-spring:8080/$ROUTE/" $HERE/scripts/web/production.json  
+
             break
             ;;
         "old-kitty-catt-forks")

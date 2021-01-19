@@ -3,9 +3,9 @@
 echo "testing customers deployment"
 source ~/config
 
-read -p 'User to create: ' -e -i 'Luke' username
+read -p 'User to create: ' -e -i 'foo' username
 
-read -p 'Password: ' -e -i 'May-The-Force-Be-With-You' password
+read -p 'Password: ' -e -i 'bar' password
 
 echo "Creating user ${username} with password ${password}."
 
@@ -17,8 +17,8 @@ oc expose svc customer-ms-spring
 sleep 7
 
 jwt1=$(echo -n '{"alg":"HS256","typ":"JWT"}' | openssl enc -base64);
-#jwt2=$(echo -n "{\"scope\":[\"admin\", \"blue\"],\"user_name\":\"${username}\"}" | openssl enc -base64);
-jwt2=$(echo -n "{\"scope\":[\"blue\"],\"user_name\":\"${username}\"}" | openssl enc -base64);
+jwt2=$(echo -n "{\"scope\":[\"admin\"],\"user_name\":\"${username}\"}" | openssl enc -base64);
+#jwt2=$(echo -n "{\"scope\":[\"blue\"],\"user_name\":\"${username}\"}" | openssl enc -base64);
 jwt3=$(echo -n "${jwt1}.${jwt2}" | tr '+\/' '-_' | tr -d '=' | tr -d '\r\n');
 jwt4=$(echo -n "${jwt3}" | openssl dgst -binary -sha256 -hmac "${HS256_KEY}" | openssl enc -base64 | tr '+\/' '-_' | tr -d '=' | tr -d '\r\n');
 jwt=$(echo -n "${jwt3}.${jwt4}");
@@ -60,4 +60,4 @@ jwt_blue=$(echo -n "${jwt3}.${jwt4}");
 curl -s -X GET "http://$ROUTE/micro/customer/search?username=${username}" -H "Authorization: Bearer ${jwt_blue}" | jq .
 
 # CLOSE THE DOOR
-oc delete route customer-ms-spring
+#oc delete route customer-ms-spring

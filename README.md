@@ -191,3 +191,5 @@ Test:
 
    oc delete project full-bc
 
+# notes:
+(CouchDB)[http://customercouchdb-full-bc.apps-crc.testing/_utils/]
