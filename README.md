@@ -106,11 +106,24 @@ Build the container images via the
 
     bash scripts/build.sh
 
-Wait till the tekton pipeline runs go from state "Running" to state "Succeeded": 
+Wait till the tekton "pipelineruns" go from state "Running" to state "Succeeded": 
 
     watch "tkn pipelinerun list"
 
 Note: you can get the tekton CLI from the openshift web console.
+
+Note: when you pushed your builds out to quay, then you need to make them available to openshift:
+
+    oc import-image auth --from=quay.io/kitty_catt/auth --confirm
+    oc import-image catalog --from=quay.io/kitty_catt/catalog --confirm
+    oc import-image customer --from=quay.io/kitty_catt/customer --confirm
+    oc import-image inventory --from=quay.io/kitty_catt/inventory --confirm
+    oc import-image orders --from=quay.io/kitty_catt/orders --confirm
+    oc import-image web --from=quay.io/kitty_catt/web --confirm
+
+Check it:
+
+    oc get is
 
 ## b) Deploy the microservices
 
