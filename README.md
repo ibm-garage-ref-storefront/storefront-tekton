@@ -1,13 +1,15 @@
 # 1 Purpose
 
-This repository aims to deploy the full IBM Blue Compute shop with a single command into an Openshift Cluster with corresponding Tekton pipeline. The Tekton pipeline will build the repo's from source to container image. <br>
+This repository aims to deploy the full IBM Blue Compute shop with a single command into an Openshift Cluster. 
 
-The following repositories are deployed depending on whether you deploy the official IBM version or the forks: <br>
+Once the blue compute shop is up and running your can choose to explore various aspects:
 
-[IBM blue compute](https://github.com/ibm-garage-ref-storefront/?q=storefront-ui+OR+spring&type=&language=)
-
-[IBM blue compute - forks](https://github.com/kitty-catt?tab=repositories&q=spring+OR+storefront-ui&type=&language=)
-
+| Aspect | Description |
+| --- | --- |
+| `Security` | a Tekton Pipeline that builds and scans the microservice for vulnerabilities |
+| `Functionality` | a Tekton Pipeline that build, deploys and performs a functional test of a microservice |
+| `Performance` | a Tekton Pipeline that performs a load test on the blue compute shop |
+| `Availabilty` | TODO |
 
 # 2 Preparation
 
@@ -33,6 +35,8 @@ Login to the cluster:
 
 Note: you can get the oc CLI from the openshift web console.
 
+# 2 Up and Running in a Minute
+
 ## a) Configuration
 
     git clone https://github.com/ibm-garage-ref-storefront/storefront-tekton
@@ -40,6 +44,29 @@ Note: you can get the oc CLI from the openshift web console.
     cp scripts/config ~/config.bc-full
     ln -sf ~/config.bc-full ~/config
     vi ~/config
+
+## b) Deploy the shop using a template.
+
+Deploy the shop using pre-build images:
+
+    oc new-project full-bc
+    oc create -f template/blue-compute-template.yaml 
+    oc new-app --template blue-compute-shop
+
+Inspect the full-bc namespace console and see the shop come alive.
+
+    oc whoami --show-console
+
+Load the database:
+
+    bash scripts/inventory/load-database.sh 
+
+Make a user:
+
+    bash scripts/customers/make_user.sh 
+
+Login to the shop via the route on the web deployment.
+
 
 ### a.1) Preparation on CRC
 
