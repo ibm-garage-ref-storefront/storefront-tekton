@@ -1055,7 +1055,7 @@ objects:
       targetPort: 8778
     selector:
       app.kubernetes.io/part-of: order-subsystem
-      deploymentconfig: orders-ms-spring
+      deployment: orders-ms-spring
     sessionAffinity: None
     type: ClusterIP
 - apiVersion: v1
