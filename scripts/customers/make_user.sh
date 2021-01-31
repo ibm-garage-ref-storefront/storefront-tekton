@@ -12,7 +12,7 @@ echo "Creating user ${username} with password ${password}."
 #exit
 
 # OPEN THE DOOR
-oc expose svc customer-ms-spring
+#oc expose svc customer-ms-spring
 
 sleep 7
 

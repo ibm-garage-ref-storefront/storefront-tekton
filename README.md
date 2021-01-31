@@ -6,10 +6,10 @@ Once the blue compute shop is up and running your can choose to explore various 
 
 | Aspect | Description |
 | --- | --- |
-| `Security` | a Tekton Pipeline that builds and scans the microservice for vulnerabilities |
-| `Functionality` | a Tekton Pipeline that build, deploys and performs a functional test of a microservice |
-| `Performance` | a Tekton Pipeline that performs a load test on the blue compute shop |
-| `Availabilty` | TODO |
+| `[Security](security/README.MD)` | a Tekton Pipeline that builds and scans the microservice for vulnerabilities |
+| `[Functionality](functionality/README.MD)` | a Tekton Pipeline that build, deploys and performs a functional test of a microservice |
+| `[Performance](performance/README.MD)` | a Tekton Pipeline that performs a load test on the blue compute shop |
+| `[Availabilty](availability/README.MD)` | TODO |
 
 # 2 Preparation
 
@@ -66,6 +66,8 @@ Make a user:
     bash scripts/customers/make_user.sh 
 
 Login to the shop via the route on the web deployment.
+
+Note: it will take a minute or 2 before the inventory database content is reflected in the catalog.
 
 
 ### a.1) Preparation on CRC
