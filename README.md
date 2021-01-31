@@ -9,7 +9,9 @@ Once the blue compute shop is up and running your can choose to explore various 
 | [Security](aspects/security/README.MD) | a Tekton Pipeline that builds and scans the microservice for vulnerabilities |
 | [Functionality](aspects/functionality/README.MD) | a Tekton Pipeline that build, deploys and performs a functional test of a microservice |
 | [Performance](aspects/performance/README.MD) | a Tekton Pipeline that performs a load test on the blue compute shop |
-| [Availabilty](aspects/availability/README.MD) | TODO |
+| [Availabilty](aspects/availability/README.MD) | To be decided |
+| [Nuts and Bolts](aspects/nuts-and-bolts/README.MD) | For nuts and bolts lovers |
+
 
 # 2 Preparation
 
