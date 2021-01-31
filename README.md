@@ -95,7 +95,7 @@ Check what you can build with:
 
     tkn resource list | grep source
     tkn resource list | grep internal
-    kkn resource list | grep external
+    tkn resource list | grep external
 
 
 # 3 Lets GO!
