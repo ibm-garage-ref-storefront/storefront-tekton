@@ -56,7 +56,7 @@ Note: you can get the oc CLI from the openshift web console.
 
 Get the Application Load Balancer address:
 
-    APPLB=$(oc describe  deployment router-default -n openshift-ingress | grep ROUTER_CANONICAL_HOSTNAME |awk '{print $2}')
+    APPLB=$(oc describe deploy router-default -n openshift-ingress | grep ROUTER_CANONICAL_HOSTNAME |awk '{print $2}')
     echo $APPLB
 
 Deploy the shop using pre-build images (substitute the value for APPLB):
