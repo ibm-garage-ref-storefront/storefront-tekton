@@ -49,6 +49,10 @@ Note: you can get the oc CLI from the openshift web console.
 
 ## b) Deploy the shop using a template.
 
+<div class="text-white bg-red mb-2">
+  .Note: currently the template only works on CRC.
+</div>
+
 Deploy the shop using pre-build images:
 
     oc new-project full-bc
