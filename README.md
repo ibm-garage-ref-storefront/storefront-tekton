@@ -49,9 +49,8 @@ Note: you can get the oc CLI from the openshift web console.
 
 ## b) Deploy the shop using a template.
 
-<div class="text-white bg-red mb-2">
-  .Note: currently the template only works on CRC.
-</div>
+<span class="float-left text-red tooltipped tooltipped-n" aria-label="Does not meet accessibility standards"><%= octicon("alert") %></span>
+
 
 Deploy the shop using pre-build images:
 
