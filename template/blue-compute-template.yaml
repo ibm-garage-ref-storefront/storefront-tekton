@@ -1,0 +1,1199 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: blue-compute-shop
+objects:
+- apiVersion: v1
+  data:
+    database-name: aW52ZW50b3J5ZGI=
+    database-password: cGFzc3dvcmQ=
+    database-root-password: YWRtaW4xMjM=
+    database-user: ZGJ1c2Vy
+  kind: Secret
+  metadata:
+    annotations:
+      template.openshift.io/expose-database_name: '{.data[''database-name'']}'
+      template.openshift.io/expose-password: '{.data[''database-password'']}'
+      template.openshift.io/expose-root_password: '{.data[''database-root-password'']}'
+      template.openshift.io/expose-username: '{.data[''database-user'']}'
+    labels:
+      app: inventorymysql
+      app.kubernetes.io/component: inventorymysql
+      app.kubernetes.io/instance: inventorymysql
+      app.kubernetes.io/part-of: inventory-subsystem
+      template: mysql-persistent-template
+    name: inventorymysql
+  type: Opaque
+- apiVersion: v1
+  data:
+    MYSQL_PASSWORD: cGFzc3dvcmQ=
+    MYSQL_USER: ZGJ1c2Vy
+  kind: Secret
+  metadata:
+    name: order
+  type: Opaque
+- apiVersion: v1
+  data:
+    database-name: b3JkZXJzZGI=
+    database-password: cGFzc3dvcmQ=
+    database-root-password: YWRtaW4xMjM=
+    database-user: ZGJ1c2Vy
+  kind: Secret
+  metadata:
+    annotations:
+      template.openshift.io/expose-database_name: '{.data[''database-name'']}'
+      template.openshift.io/expose-password: '{.data[''database-password'']}'
+      template.openshift.io/expose-root_password: '{.data[''database-root-password'']}'
+      template.openshift.io/expose-username: '{.data[''database-user'']}'
+    labels:
+      app: ordersmysql
+      app.kubernetes.io/component: ordersmysql
+      app.kubernetes.io/instance: ordersmysql
+      app.kubernetes.io/part-of: order-subsystem
+      template: mariadb-persistent-template
+    name: ordersmysql
+  type: Opaque
+- apiVersion: v1
+  data:
+    checks: "# Check the main website, including text content\r\n/\tIBM Cloud Architecture\r\n\r\n#Check the Inventory page\r\n/catalog/ Dayton Meat Chopper\r\n\r\n# Check for stylesheets and for text content in stylesheets\r\n/stylesheets/font-awesome/font-awesome.css    @font-face\r\n\r\n\r\n# Check a sub-domain\r\n#//some-subdomain.some-site.com/reviews Review Data\r\n\r\n# Check HTTP access, and for text content\r\n# http://localhost:3000\tBlueCompute Store!\r\n# http://localhost:3000/inventory/\tDayton Meat Chopper\r\n"
+    default.json: "{\n    \"Application\": {\n      \"cluster_name\": \"\",\n      \"region\": \"\"\n    },\n    \"Auth-Server\": {\n      \"client_id\":\"bluecomputeweb\",\n      \"client_secret\":\"bluecomputewebs3cret\"\n    },\n    \"APIs\": {\n      \"catalog\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"catalog:8081\",\n        \"base_path\": \"/micro\",\n        \"require\": [\n        ]\n      },\n      \"orders\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"orders:8084\",\n        \"base_path\": \"/micro\",\n        \"require\": [\n          \"oauth\"\n        ]\n      },\n      \"review\": {\n        \"protocol\": \"http\",\n        \"base_path\": \"/api\",\n        \"require\": [\n          \"oauth\"\n        ]\n      },\n      \"customer\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"customer:8082\",\n        \"base_path\": \"/micro\",\n        \"require\": [\n          \"client_id\",\n          \"oauth\"\n  \n        ]\n      },\n      \"oauth20\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"localhost:8080\",\n        \"base_path\": \"/oauth\",\n        \"paths\": {\n          \"authz\": \"/authorize\",\n          \"token\": \"/token\"\n        },\n        \"grant_types\": [\n          \"password\"\n        ],\n        \"scopes\": [\n          \"bluecompute\"\n        ],\n        \"redirect_url\": \"http://localhost\"\n      }\n    }\n  }"
+    production.json: "{\n    \"Application\": {\n      \"cluster_name\": \"\",\n      \"region\": \"\"\n    },\n    \"Auth-Server\": {\n      \"client_id\":\"bluecomputeweb\",\n      \"client_secret\":\"bluecomputewebs3cret\"\n    },\n    \"APIs\": {\n      \"catalog\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"catalog-ms-spring:8080\",\n        \"base_path\": \"/micro\",\n        \"require\": [\n        ]\n      },\n      \"orders\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"orders-ms-spring:8080\",\n        \"base_path\": \"/micro\",\n        \"require\": [\n          \"oauth\"\n        ]\n      },\n      \"review\": {\n        \"protocol\": \"http\",\n        \"base_path\": \"/api\",\n        \"require\": [\n          \"oauth\"\n        ]\n      },\n      \"customerService\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"customer-ms-spring-full-bc.apps-crc.testing\",\n        \"base_path\": \"/micro\",\n        \"paths\": {\n          \"customer\": \"/customer/search\"\n        },\n        \"require\": [\n            \"oauth\"\n        ],\n        \"redirect_url\": \"http://localhost\"\n      },\n      \"customer\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"customer-ms-spring-full-bc.apps-crc.testing\",\n        \"base_path\": \"/micro\",\n        \"paths\": {\n          \"customer\": \"/customer/search\"\n        },\n        \"require\": [\n          \"oauth\"\n        ],\n        \"redirect_url\": \"http://localhost\"\n      },      \n      \"oauth20\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"auth-ms-spring-full-bc.apps-crc.testing\",\n        \"base_path\": \"/oauth\",\n        \"paths\": {\n          \"authz\": \"/authorize\",\n          \"token\": \"/token\"\n        },\n        \"grant_types\": [\n          \"password\"\n        ],\n        \"scopes\": [\n          \"bluecompute\"\n        ],\n        \"redirect_url\": \"http://localhost\"\n      }\n    }\n  }"
+  kind: ConfigMap
+  metadata:
+    name: config
+- apiVersion: v1
+  data:
+    MYSQL_DATABASE: inventorydb
+    MYSQL_HOST: inventorymysql
+    MYSQL_PASSWORD: password
+    MYSQL_PORT: "3306"
+    MYSQL_USER: dbuser
+  kind: ConfigMap
+  metadata:
+    name: inventory
+- apiVersion: v1
+  data:
+    MYSQL_DATABASE: ordersdb
+    MYSQL_HOST: ordermysql
+    MYSQL_PORT: "3306"
+  kind: ConfigMap
+  metadata:
+    name: order
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"auth:latest","namespace":"full-bc"},"fieldPath":"spec.template.spec.containers[?(@.name==\"auth-ms-spring\")].image"}]'
+    labels:
+      app: auth-ms-spring
+      app.kubernetes.io/component: auth-ms-spring
+      app.kubernetes.io/instance: auth-ms-spring
+      app.kubernetes.io/name: auth
+      app.kubernetes.io/part-of: auth-subsystem
+    name: auth-ms-spring
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/part-of: auth-subsystem
+        deployment: auth-ms-spring
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app.kubernetes.io/part-of: auth-subsystem
+          deployment: auth-ms-spring
+      spec:
+        containers:
+        - env:
+          - name: CUSTOMER_URL
+            value: http://customer-ms-spring:8080
+          - name: HS256_KEY
+            value: E6526VJkKYhyTFRFMC0pTECpHcZ7TGcq8pKsVVgz9KtESVpheEO284qKzfzg8HpWNBPeHOxNGlyudUHi6i8tFQJXC8PiI48RUpMh23vPDLGD35pCM0417gf58z5xlmRNii56fwRCmIhhV7hDsm3KO2jRv4EBVz7HrYbzFeqI45CaStkMYNipzSm2duuer7zRdMjEKIdqsby0JfpQpykHmC5L6hxkX0BT7XWqztTr6xHCwqst26O0g8r7bXSYjp4a
+          image: quay.io/kitty_catt/auth@sha256:3e2a3bc698bd350c8b52324632b59da4fe68c16d165c813f3141a0c0861390c2
+          imagePullPolicy: IfNotPresent
+          name: auth-ms-spring
+          ports:
+          - containerPort: 8778
+            protocol: TCP
+          - containerPort: 8080
+            protocol: TCP
+          - containerPort: 8443
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"catalog:latest","namespace":"full-bc"},"fieldPath":"spec.template.spec.containers[?(@.name==\"catalog-ms-spring\")].image"}]'
+    labels:
+      app: catalog-ms-spring
+      app.kubernetes.io/component: catalog-ms-spring
+      app.kubernetes.io/instance: catalog-ms-spring
+      app.kubernetes.io/name: catalog
+      app.kubernetes.io/part-of: catalog-subsystem
+    name: catalog-ms-spring
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/part-of: catalog-subsystem
+        deployment: catalog-ms-spring
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app.kubernetes.io/part-of: catalog-subsystem
+          deployment: catalog-ms-spring
+      spec:
+        containers:
+        - env:
+          - name: ELASTIC_CLUSTER_NAME
+            value: docker-cluster
+          - name: ELASTIC_NODE_URL
+            value: catalogelasticsearch:9300
+          - name: INVENTORY_URL
+            value: http://inventory-ms-spring:8080/micro/inventory
+          image: quay.io/kitty_catt/catalog@sha256:99efd62735820cd844a61e5d77c11d22fce7603663197e287c90b56928fe4c66
+          imagePullPolicy: IfNotPresent
+          name: catalog-ms-spring
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          - containerPort: 8443
+            protocol: TCP
+          - containerPort: 8778
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"catalogelasticsearch:6.3.2"},"fieldPath":"spec.template.spec.containers[?(@.name==\"catalogelasticsearch\")].image"}]'
+    labels:
+      app: catalogelasticsearch
+      app.kubernetes.io/component: catalogelasticsearch
+      app.kubernetes.io/instance: catalogelasticsearch
+      app.kubernetes.io/part-of: catalog-subsystem
+    name: catalogelasticsearch
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/part-of: catalog-subsystem
+        deployment: catalogelasticsearch
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app.kubernetes.io/part-of: catalog-subsystem
+          deployment: catalogelasticsearch
+      spec:
+        containers:
+        - env:
+          - name: discovery.type
+            value: single-node
+          image: docker.elastic.co/elasticsearch/elasticsearch@sha256:8f06aecf7227dbc67ee62d8d05db680f8a29d0296ecd74c60d21f1fe665e04b0
+          imagePullPolicy: IfNotPresent
+          name: catalogelasticsearch
+          ports:
+          - containerPort: 9200
+            protocol: TCP
+          - containerPort: 9300
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"customer:latest","namespace":"full-bc"},"fieldPath":"spec.template.spec.containers[?(@.name==\"customer-ms-spring\")].image"}]'
+    labels:
+      app: customer-ms-spring
+      app.kubernetes.io/component: customer-ms-spring
+      app.kubernetes.io/instance: customer-ms-spring
+      app.kubernetes.io/name: customer
+      app.kubernetes.io/part-of: customer-subsystem
+    name: customer-ms-spring
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/part-of: customer-subsystem
+        deployment: customer-ms-spring
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app.kubernetes.io/part-of: customer-subsystem
+          deployment: customer-ms-spring
+      spec:
+        containers:
+        - env:
+          - name: COUCHDB_DATABASE
+            value: customers
+          - name: COUCHDB_HOST
+            value: customercouchdb
+          - name: COUCHDB_PASSWORD
+            value: passw0rd
+          - name: COUCHDB_PORT
+            value: "5984"
+          - name: COUCHDB_PROTOCOL
+            value: http
+          - name: COUCHDB_USERNAME
+            value: admin
+          - name: HS256_KEY
+            value: E6526VJkKYhyTFRFMC0pTECpHcZ7TGcq8pKsVVgz9KtESVpheEO284qKzfzg8HpWNBPeHOxNGlyudUHi6i8tFQJXC8PiI48RUpMh23vPDLGD35pCM0417gf58z5xlmRNii56fwRCmIhhV7hDsm3KO2jRv4EBVz7HrYbzFeqI45CaStkMYNipzSm2duuer7zRdMjEKIdqsby0JfpQpykHmC5L6hxkX0BT7XWqztTr6xHCwqst26O0g8r7bXSYjp4a
+          image: quay.io/kitty_catt/customer@sha256:d667ca8796294b872eb6632c6d460cd5305c4ca968356ba058d43a93f01a1975
+          imagePullPolicy: IfNotPresent
+          name: customer-ms-spring
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          - containerPort: 8443
+            protocol: TCP
+          - containerPort: 8778
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"customercouchdb:3.1.1"},"fieldPath":"spec.template.spec.containers[?(@.name==\"customercouchdb\")].image"}]'
+    labels:
+      app: customercouchdb
+      app.kubernetes.io/component: customercouchdb
+      app.kubernetes.io/instance: customercouchdb
+      app.kubernetes.io/part-of: customer-subsystem
+    name: customercouchdb
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/part-of: customer-subsystem
+        deployment: customercouchdb
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app.kubernetes.io/part-of: customer-subsystem
+          deployment: customercouchdb
+      spec:
+        containers:
+        - env:
+          - name: COUCHDB_PASSWORD
+            value: passw0rd
+          - name: COUCHDB_USER
+            value: admin
+          image: couchdb@sha256:7e374287cfa1f7d4ce9bd70286f143f99aa2b67c4c762c28a1c09d2dbfc993ea
+          imagePullPolicy: IfNotPresent
+          name: customercouchdb
+          ports:
+          - containerPort: 4369
+            protocol: TCP
+          - containerPort: 5984
+            protocol: TCP
+          - containerPort: 9100
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /opt/couchdb/data
+            name: customercouchdb-volume-1
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - emptyDir: {}
+          name: customercouchdb-volume-1
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "3"
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"inventory:latest","namespace":"full-bc"},"fieldPath":"spec.template.spec.containers[?(@.name==\"inventory-ms-spring\")].image"}]'
+    labels:
+      app: inventory-ms-spring
+      app.kubernetes.io/component: inventory-ms-spring
+      app.kubernetes.io/instance: inventory-ms-spring
+      app.kubernetes.io/name: inventory
+      app.kubernetes.io/part-of: inventory-subsystem
+    name: inventory-ms-spring
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/part-of: inventory-subsystem
+        deployment: inventory-ms-spring
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app.kubernetes.io/part-of: inventory-subsystem
+          deployment: inventory-ms-spring
+      spec:
+        containers:
+        - env:
+          - name: MYSQL_PORT
+            valueFrom:
+              configMapKeyRef:
+                key: MYSQL_PORT
+                name: inventory
+          - name: MYSQL_USER
+            valueFrom:
+              configMapKeyRef:
+                key: MYSQL_USER
+                name: inventory
+          - name: MYSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                key: MYSQL_DATABASE
+                name: inventory
+          - name: MYSQL_HOST
+            valueFrom:
+              configMapKeyRef:
+                key: MYSQL_HOST
+                name: inventory
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                key: MYSQL_PASSWORD
+                name: inventory
+          image: quay.io/kitty_catt/inventory@sha256:2805b56320199a21c29cb1578a5d87ef45b7b9629783d45bbfbb5b263f54cf5d
+          imagePullPolicy: IfNotPresent
+          name: inventory-ms-spring
+          ports:
+          - containerPort: 8443
+            protocol: TCP
+          - containerPort: 8778
+            protocol: TCP
+          - containerPort: 8080
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "3"
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"web:latest","namespace":"full-bc"},"fieldPath":"spec.template.spec.containers[?(@.name==\"web\")].image"}]'
+    labels:
+      app: web
+      app.kubernetes.io/component: web
+      app.kubernetes.io/instance: web
+      app.kubernetes.io/name: web
+      app.kubernetes.io/part-of: web-subsystem
+    name: web
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/part-of: web-subsystem
+        deployment: web
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app.kubernetes.io/part-of: web-subsystem
+          deployment: web
+      spec:
+        containers:
+        - env:
+          - name: AUTH_HOST
+            value: customer-ms-spring-full-bc.apps-crc.testing
+          - name: CATALOG_HOST
+            value: catalog-ms-spring
+          - name: CATALOG_PORT
+            value: "8080"
+          - name: CUSTOMER_HOST
+            value: customer-ms-spring
+          - name: CUSTOMER_PORT
+            value: "8080"
+          - name: ORDERS_HOST
+            value: orders-ms-spring
+          - name: ORDERS_PORT
+            value: "8080"
+          - name: PORT
+            value: "3000"
+          image: quay.io/kitty_catt/web@sha256:835dba5072ad08e4580f669b8f82ba11ddfc30a28351f72727cf7e67a311314d
+          imagePullPolicy: IfNotPresent
+          name: web
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /project/user-app/config
+            name: production-config
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - configMap:
+            defaultMode: 420
+            name: config
+          name: production-config
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      template.alpha.openshift.io/wait-for-ready: "true"
+    labels:
+      app: inventorymysql
+      app.kubernetes.io/component: inventorymysql
+      app.kubernetes.io/instance: inventorymysql
+      app.kubernetes.io/part-of: inventory-subsystem
+      template: mysql-persistent-template
+    name: inventorymysql
+  spec:
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      name: inventorymysql
+    strategy:
+      activeDeadlineSeconds: 21600
+      recreateParams:
+        timeoutSeconds: 600
+      resources: {}
+      type: Recreate
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          name: inventorymysql
+      spec:
+        containers:
+        - env:
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                key: database-user
+                name: inventorymysql
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-password
+                name: inventorymysql
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-root-password
+                name: inventorymysql
+          - name: MYSQL_DATABASE
+            valueFrom:
+              secretKeyRef:
+                key: database-name
+                name: inventorymysql
+          image: image-registry.openshift-image-registry.svc:5000/openshift/mysql@sha256:9f352dda6828f9604e35c4cbb48f8488bf630865d132157b232f65c096c85d04
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            exec:
+              command:
+              - /bin/sh
+              - -i
+              - -c
+              - MYSQL_PWD="$MYSQL_PASSWORD" mysqladmin -u $MYSQL_USER ping
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: mysql
+          ports:
+          - containerPort: 3306
+            protocol: TCP
+          readinessProbe:
+            exec:
+              command:
+              - /bin/sh
+              - -i
+              - -c
+              - MYSQL_PWD="$MYSQL_PASSWORD" mysqladmin -u $MYSQL_USER ping
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              memory: 512Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/mysql/data
+            name: inventorymysql-data
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: inventorymysql-data
+          persistentVolumeClaim:
+            claimName: inventorymysql
+    test: false
+    triggers:
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - mysql
+        from:
+          kind: ImageStreamTag
+          name: mysql:8.0
+          namespace: openshift
+      type: ImageChange
+    - type: ConfigChange
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"orders:latest","namespace":"full-bc"},"fieldPath":"spec.template.spec.containers[?(@.name==\"orders-ms-spring\")].image"}]'
+    labels:
+      app: orders-ms-spring
+      app.kubernetes.io/component: orders-ms-spring
+      app.kubernetes.io/instance: orders-ms-spring
+      app.kubernetes.io/name: orders
+      app.kubernetes.io/part-of: order-subsystem
+    name: orders-ms-spring
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/part-of: order-subsystem
+        deployment: orders-ms-spring
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app.kubernetes.io/part-of: order-subsystem
+          deployment: orders-ms-spring
+      spec:
+        containers:
+        - env:
+          - name: HS256_KEY
+            value: E6526VJkKYhyTFRFMC0pTECpHcZ7TGcq8pKsVVgz9KtESVpheEO284qKzfzg8HpWNBPeHOxNGlyudUHi6i8tFQJXC8PiI48RUpMh23vPDLGD35pCM0417gf58z5xlmRNii56fwRCmIhhV7hDsm3KO2jRv4EBVz7HrYbzFeqI45CaStkMYNipzSm2duuer7zRdMjEKIdqsby0JfpQpykHmC5L6hxkX0BT7XWqztTr6xHCwqst26O0g8r7bXSYjp4a
+          - name: MYSQL_DATABASE
+            value: ordersdb
+          - name: MYSQL_HOST
+            value: ordersmysql
+          - name: MYSQL_PASSWORD
+            value: password
+          - name: MYSQL_PORT
+            value: "3306"
+          - name: MYSQL_USER
+            value: dbuser
+          image: quay.io/kitty_catt/orders@sha256:b4347123cf6690aaf56bc1a69633bc19dcb74d6544580c88d1dcc1983a6c7efa
+          imagePullPolicy: IfNotPresent
+          name: orders-ms-spring
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          - containerPort: 8443
+            protocol: TCP
+          - containerPort: 8778
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      template.alpha.openshift.io/wait-for-ready: "true"
+    labels:
+      app: ordersmysql
+      app.kubernetes.io/component: ordersmysql
+      app.kubernetes.io/instance: ordersmysql
+      app.kubernetes.io/part-of: order-subsystem
+      template: mariadb-persistent-template
+    name: ordersmysql
+  spec:
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      name: ordersmysql
+    strategy:
+      activeDeadlineSeconds: 21600
+      recreateParams:
+        timeoutSeconds: 600
+      resources: {}
+      type: Recreate
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          name: ordersmysql
+      spec:
+        containers:
+        - env:
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                key: database-user
+                name: ordersmysql
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-password
+                name: ordersmysql
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-root-password
+                name: ordersmysql
+          - name: MYSQL_DATABASE
+            valueFrom:
+              secretKeyRef:
+                key: database-name
+                name: ordersmysql
+          image: image-registry.openshift-image-registry.svc:5000/openshift/mariadb@sha256:513f7db527608c6c96b3659220ffc0397bdd30ff6617dad1790a90e14ac4f3b0
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            exec:
+              command:
+              - /bin/sh
+              - -i
+              - -c
+              - MYSQL_PWD="$MYSQL_PASSWORD" mysqladmin -u $MYSQL_USER ping
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: mariadb
+          ports:
+          - containerPort: 3306
+            protocol: TCP
+          readinessProbe:
+            exec:
+              command:
+              - /bin/sh
+              - -i
+              - -c
+              - MYSQL_PWD="$MYSQL_PASSWORD" mysqladmin -u $MYSQL_USER ping
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              memory: 512Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/mysql/data
+            name: ordersmysql-data
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: ordersmysql-data
+          persistentVolumeClaim:
+            claimName: ordersmysql
+    test: false
+    triggers:
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - mariadb
+        from:
+          kind: ImageStreamTag
+          name: mariadb:latest
+          namespace: openshift
+      type: ImageChange
+    - type: ConfigChange
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations: {}
+    labels:
+      app: auth-ms-spring
+      app.kubernetes.io/component: auth-ms-spring
+      app.kubernetes.io/instance: auth-ms-spring
+      app.kubernetes.io/name: auth
+      app.kubernetes.io/part-of: auth-subsystem
+    name: auth-ms-spring
+  spec:
+    ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: 8443-tcp
+      port: 8443
+      protocol: TCP
+      targetPort: 8443
+    - name: 8778-tcp
+      port: 8778
+      protocol: TCP
+      targetPort: 8778
+    selector:
+      app.kubernetes.io/part-of: auth-subsystem
+      deployment: auth-ms-spring
+    sessionAffinity: None
+    type: ClusterIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations: {}
+    labels:
+      app: catalog-ms-spring
+      app.kubernetes.io/component: catalog-ms-spring
+      app.kubernetes.io/instance: catalog-ms-spring
+      app.kubernetes.io/name: catalog
+      app.kubernetes.io/part-of: catalog-subsystem
+    name: catalog-ms-spring
+  spec:
+    ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: 8443-tcp
+      port: 8443
+      protocol: TCP
+      targetPort: 8443
+    - name: 8778-tcp
+      port: 8778
+      protocol: TCP
+      targetPort: 8778
+    selector:
+      app.kubernetes.io/part-of: catalog-subsystem
+      deployment: catalog-ms-spring
+    sessionAffinity: None
+    type: ClusterIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations: {}
+    labels:
+      app: catalogelasticsearch
+      app.kubernetes.io/component: catalogelasticsearch
+      app.kubernetes.io/instance: catalogelasticsearch
+      app.kubernetes.io/part-of: catalog-subsystem
+    name: catalogelasticsearch
+  spec:
+    ports:
+    - name: 9200-tcp
+      port: 9200
+      protocol: TCP
+      targetPort: 9200
+    - name: 9300-tcp
+      port: 9300
+      protocol: TCP
+      targetPort: 9300
+    selector:
+      app.kubernetes.io/part-of: catalog-subsystem
+      deployment: catalogelasticsearch
+    sessionAffinity: None
+    type: ClusterIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations: {}
+    labels:
+      app: customer-ms-spring
+      app.kubernetes.io/component: customer-ms-spring
+      app.kubernetes.io/instance: customer-ms-spring
+      app.kubernetes.io/name: customer
+      app.kubernetes.io/part-of: customer-subsystem
+    name: customer-ms-spring
+  spec:
+    ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: 8443-tcp
+      port: 8443
+      protocol: TCP
+      targetPort: 8443
+    - name: 8778-tcp
+      port: 8778
+      protocol: TCP
+      targetPort: 8778
+    selector:
+      app.kubernetes.io/part-of: customer-subsystem
+      deployment: customer-ms-spring
+    sessionAffinity: None
+    type: ClusterIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations: {}
+    labels:
+      app: customercouchdb
+      app.kubernetes.io/component: customercouchdb
+      app.kubernetes.io/instance: customercouchdb
+      app.kubernetes.io/part-of: customer-subsystem
+    name: customercouchdb
+  spec:
+    ports:
+    - name: 4369-tcp
+      port: 4369
+      protocol: TCP
+      targetPort: 4369
+    - name: 5984-tcp
+      port: 5984
+      protocol: TCP
+      targetPort: 5984
+    - name: 9100-tcp
+      port: 9100
+      protocol: TCP
+      targetPort: 9100
+    selector:
+      app.kubernetes.io/part-of: customer-subsystem
+      deployment: customercouchdb
+    sessionAffinity: None
+    type: ClusterIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations: {}
+    labels:
+      app: inventory-ms-spring
+      app.kubernetes.io/component: inventory-ms-spring
+      app.kubernetes.io/instance: inventory-ms-spring
+      app.kubernetes.io/name: inventory
+      app.kubernetes.io/part-of: inventory-subsystem
+    name: inventory-ms-spring
+  spec:
+    ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: 8443-tcp
+      port: 8443
+      protocol: TCP
+      targetPort: 8443
+    - name: 8778-tcp
+      port: 8778
+      protocol: TCP
+      targetPort: 8778
+    selector:
+      app.kubernetes.io/part-of: inventory-subsystem
+      deployment: inventory-ms-spring
+    sessionAffinity: None
+    type: ClusterIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      template.openshift.io/expose-uri: mysql://{.spec.clusterIP}:{.spec.ports[?(.name=="mysql")].port}
+    labels:
+      app: inventorymysql
+      app.kubernetes.io/component: inventorymysql
+      app.kubernetes.io/instance: inventorymysql
+      app.kubernetes.io/part-of: inventory-subsystem
+      template: mysql-persistent-template
+    name: inventorymysql
+  spec:
+    ports:
+    - name: mysql
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      name: inventorymysql
+    sessionAffinity: None
+    type: ClusterIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations: {}
+    labels:
+      app: orders-ms-spring
+      app.kubernetes.io/component: orders-ms-spring
+      app.kubernetes.io/instance: orders-ms-spring
+      app.kubernetes.io/name: orders
+      app.kubernetes.io/part-of: order-subsystem
+    name: orders-ms-spring
+  spec:
+    ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: 8443-tcp
+      port: 8443
+      protocol: TCP
+      targetPort: 8443
+    - name: 8778-tcp
+      port: 8778
+      protocol: TCP
+      targetPort: 8778
+    selector:
+      app.kubernetes.io/part-of: order-subsystem
+      deploymentconfig: orders-ms-spring
+    sessionAffinity: None
+    type: ClusterIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      template.openshift.io/expose-uri: mysql://{.spec.clusterIP}:{.spec.ports[?(.name=="mariadb")].port}
+    labels:
+      app: ordersmysql
+      app.kubernetes.io/component: ordersmysql
+      app.kubernetes.io/instance: ordersmysql
+      app.kubernetes.io/part-of: order-subsystem
+      template: mariadb-persistent-template
+    name: ordersmysql
+  spec:
+    ports:
+    - name: mariadb
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      name: ordersmysql
+    sessionAffinity: None
+    type: ClusterIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations: {}
+    labels:
+      app: web
+      app.kubernetes.io/component: web
+      app.kubernetes.io/instance: web
+      app.kubernetes.io/name: web
+      app.kubernetes.io/part-of: web-subsystem
+    name: web
+  spec:
+    externalTrafficPolicy: Cluster
+    ports:
+    - name: node
+      nodePort: 30918
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
+    - name: 8080-tcp
+      nodePort: 31188
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      app.kubernetes.io/part-of: web-subsystem
+      deployment: web
+    sessionAffinity: None
+    type: LoadBalancer
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    labels:
+      app.kubernetes.io/part-of: auth-subsystem
+    name: auth-ms-spring
+  spec:
+    host: auth-ms-spring-full-bc.apps-crc.testing
+    port:
+      targetPort: 8080
+    to:
+      kind: Service
+      name: auth-ms-spring
+      weight: 100
+    wildcardPolicy: None
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    labels:
+      app: customer-ms-spring
+      app.kubernetes.io/component: customer-ms-spring
+      app.kubernetes.io/instance: customer-ms-spring
+      app.kubernetes.io/name: customer
+      app.kubernetes.io/part-of: customer-subsystem
+    name: customer-ms-spring
+  spec:
+    host: customer-ms-spring-full-bc.apps-crc.testing
+    port:
+      targetPort: 8080-tcp
+    to:
+      kind: Service
+      name: customer-ms-spring
+      weight: 100
+    wildcardPolicy: None
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    labels:
+      app.kubernetes.io/part-of: web-subsystem
+    name: web
+  spec:
+    host: web-full-bc.apps-crc.testing
+    port:
+      targetPort: 3000
+    to:
+      kind: Service
+      name: web
+      weight: 100
+    wildcardPolicy: None
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    labels:
+      app: inventorymysql
+      app.kubernetes.io/component: inventorymysql
+      app.kubernetes.io/instance: inventorymysql
+      app.kubernetes.io/part-of: inventory-subsystem
+      template: mysql-persistent-template
+    name: inventorymysql
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    labels:
+      app: ordersmysql
+      app.kubernetes.io/component: ordersmysql
+      app.kubernetes.io/instance: ordersmysql
+      app.kubernetes.io/part-of: order-subsystem
+      template: mariadb-persistent-template
+    name: ordersmysql
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+

@@ -13,7 +13,6 @@ echo "deploy orders"
 
 oc new-app \
  --name=orders-ms-spring \
- ${OCNEWAPP_OPTION} \
  --image-stream=orders \
  -e MYSQL_HOST=ordersmysql \
  -e MYSQL_PORT=3306 \
