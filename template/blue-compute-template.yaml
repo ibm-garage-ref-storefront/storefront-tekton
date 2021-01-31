@@ -55,9 +55,159 @@ objects:
   type: Opaque
 - apiVersion: v1
   data:
-    checks: "# Check the main website, including text content\r\n/\tIBM Cloud Architecture\r\n\r\n#Check the Inventory page\r\n/catalog/ Dayton Meat Chopper\r\n\r\n# Check for stylesheets and for text content in stylesheets\r\n/stylesheets/font-awesome/font-awesome.css    @font-face\r\n\r\n\r\n# Check a sub-domain\r\n#//some-subdomain.some-site.com/reviews Review Data\r\n\r\n# Check HTTP access, and for text content\r\n# http://localhost:3000\tBlueCompute Store!\r\n# http://localhost:3000/inventory/\tDayton Meat Chopper\r\n"
-    default.json: "{\n    \"Application\": {\n      \"cluster_name\": \"\",\n      \"region\": \"\"\n    },\n    \"Auth-Server\": {\n      \"client_id\":\"bluecomputeweb\",\n      \"client_secret\":\"bluecomputewebs3cret\"\n    },\n    \"APIs\": {\n      \"catalog\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"catalog:8081\",\n        \"base_path\": \"/micro\",\n        \"require\": [\n        ]\n      },\n      \"orders\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"orders:8084\",\n        \"base_path\": \"/micro\",\n        \"require\": [\n          \"oauth\"\n        ]\n      },\n      \"review\": {\n        \"protocol\": \"http\",\n        \"base_path\": \"/api\",\n        \"require\": [\n          \"oauth\"\n        ]\n      },\n      \"customer\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"customer:8082\",\n        \"base_path\": \"/micro\",\n        \"require\": [\n          \"client_id\",\n          \"oauth\"\n  \n        ]\n      },\n      \"oauth20\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"localhost:8080\",\n        \"base_path\": \"/oauth\",\n        \"paths\": {\n          \"authz\": \"/authorize\",\n          \"token\": \"/token\"\n        },\n        \"grant_types\": [\n          \"password\"\n        ],\n        \"scopes\": [\n          \"bluecompute\"\n        ],\n        \"redirect_url\": \"http://localhost\"\n      }\n    }\n  }"
-    production.json: "{\n    \"Application\": {\n      \"cluster_name\": \"\",\n      \"region\": \"\"\n    },\n    \"Auth-Server\": {\n      \"client_id\":\"bluecomputeweb\",\n      \"client_secret\":\"bluecomputewebs3cret\"\n    },\n    \"APIs\": {\n      \"catalog\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"catalog-ms-spring:8080\",\n        \"base_path\": \"/micro\",\n        \"require\": [\n        ]\n      },\n      \"orders\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"orders-ms-spring:8080\",\n        \"base_path\": \"/micro\",\n        \"require\": [\n          \"oauth\"\n        ]\n      },\n      \"review\": {\n        \"protocol\": \"http\",\n        \"base_path\": \"/api\",\n        \"require\": [\n          \"oauth\"\n        ]\n      },\n      \"customerService\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"customer-ms-spring-full-bc.apps-crc.testing\",\n        \"base_path\": \"/micro\",\n        \"paths\": {\n          \"customer\": \"/customer/search\"\n        },\n        \"require\": [\n            \"oauth\"\n        ],\n        \"redirect_url\": \"http://localhost\"\n      },\n      \"customer\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"customer-ms-spring-full-bc.apps-crc.testing\",\n        \"base_path\": \"/micro\",\n        \"paths\": {\n          \"customer\": \"/customer/search\"\n        },\n        \"require\": [\n          \"oauth\"\n        ],\n        \"redirect_url\": \"http://localhost\"\n      },      \n      \"oauth20\": {\n        \"protocol\": \"http\",\n        \"service_name\": \"auth-ms-spring-full-bc.apps-crc.testing\",\n        \"base_path\": \"/oauth\",\n        \"paths\": {\n          \"authz\": \"/authorize\",\n          \"token\": \"/token\"\n        },\n        \"grant_types\": [\n          \"password\"\n        ],\n        \"scopes\": [\n          \"bluecompute\"\n        ],\n        \"redirect_url\": \"http://localhost\"\n      }\n    }\n  }"
+    checks: |
+      # Check the main website, including text content
+      /	IBM Cloud Architecture
+
+      #Check the Inventory page
+      /catalog/ Dayton Meat Chopper
+
+      # Check for stylesheets and for text content in stylesheets
+      /stylesheets/font-awesome/font-awesome.css    @font-face
+
+
+      # Check a sub-domain
+      #//some-subdomain.some-site.com/reviews Review Data
+
+      # Check HTTP access, and for text content
+      # http://localhost:3000	BlueCompute Store!
+      # http://localhost:3000/inventory/	Dayton Meat Chopper    
+    default.json: |
+      {
+          "Application": {
+            "cluster_name": "",
+            "region": ""
+          },
+          "Auth-Server": {
+            "client_id":"bluecomputeweb",
+            "client_secret":"bluecomputewebs3cret"
+          },
+          "APIs": {
+            "catalog": {
+              "protocol": "http",
+              "service_name": "catalog:8081",
+              "base_path": "/micro",
+              "require": [
+              ]
+            },
+            "orders": {
+              "protocol": "http",
+              "service_name": "orders:8084",
+              "base_path": "/micro",
+              "require": [
+                "oauth"
+              ]
+            },
+            "review": {
+              "protocol": "http",
+              "base_path": "/api",
+              "require": [
+                "oauth"
+              ]
+            },
+            "customer": {
+              "protocol": "http",
+              "service_name": "customer:8082",
+              "base_path": "/micro",
+              "require": [
+                "client_id",
+                "oauth"
+        
+              ]
+            },
+            "oauth20": {
+              "protocol": "http",
+              "service_name": "localhost:8080",
+              "base_path": "/oauth",
+              "paths": {
+                "authz": "/authorize",
+                "token": "/token"
+              },
+              "grant_types": [
+                "password"
+              ],
+              "scopes": [
+                "bluecompute"
+              ],
+              "redirect_url": "http://localhost"
+            }
+          }
+        }    
+    production.json: |
+      {
+          "Application": {
+            "cluster_name": "",
+            "region": ""
+          },
+          "Auth-Server": {
+            "client_id":"bluecomputeweb",
+            "client_secret":"bluecomputewebs3cret"
+          },
+          "APIs": {
+            "catalog": {
+              "protocol": "http",
+              "service_name": "catalog-ms-spring:8080",
+              "base_path": "/micro",
+              "require": [
+              ]
+            },
+            "orders": {
+              "protocol": "http",
+              "service_name": "orders-ms-spring:8080",
+              "base_path": "/micro",
+              "require": [
+                "oauth"
+              ]
+            },
+            "review": {
+              "protocol": "http",
+              "base_path": "/api",
+              "require": [
+                "oauth"
+              ]
+            },
+            "customerService": {
+              "protocol": "http",
+              "service_name": "customer-ms-spring-full-bc.apps-crc.testing",
+              "base_path": "/micro",
+              "paths": {
+                "customer": "/customer/search"
+              },
+              "require": [
+                  "oauth"
+              ],
+              "redirect_url": "http://localhost"
+            },
+            "customer": {
+              "protocol": "http",
+              "service_name": "customer-ms-spring-full-bc.apps-crc.testing",
+              "base_path": "/micro",
+              "paths": {
+                "customer": "/customer/search"
+              },
+              "require": [
+                "oauth"
+              ],
+              "redirect_url": "http://localhost"
+            },      
+            "oauth20": {
+              "protocol": "http",
+              "service_name": "auth-ms-spring-full-bc.apps-crc.testing",
+              "base_path": "/oauth",
+              "paths": {
+                "authz": "/authorize",
+                "token": "/token"
+              },
+              "grant_types": [
+                "password"
+              ],
+              "scopes": [
+                "bluecompute"
+              ],
+              "redirect_url": "http://localhost"
+            }
+          }
+        }    
   kind: ConfigMap
   metadata:
     name: config
