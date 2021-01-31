@@ -6,10 +6,10 @@ Once the blue compute shop is up and running your can choose to explore various 
 
 | Aspect | Description |
 | --- | --- |
-| `[Security](security/README.MD)` | a Tekton Pipeline that builds and scans the microservice for vulnerabilities |
-| `[Functionality](functionality/README.MD)` | a Tekton Pipeline that build, deploys and performs a functional test of a microservice |
-| `[Performance](performance/README.MD)` | a Tekton Pipeline that performs a load test on the blue compute shop |
-| `[Availabilty](availability/README.MD)` | TODO |
+| [Security](security/README.MD) | a Tekton Pipeline that builds and scans the microservice for vulnerabilities |
+| [Functionality](functionality/README.MD) | a Tekton Pipeline that build, deploys and performs a functional test of a microservice |
+| [Performance](performance/README.MD) | a Tekton Pipeline that performs a load test on the blue compute shop |
+| [Availabilty](availability/README.MD) | TODO |
 
 # 2 Preparation
 
