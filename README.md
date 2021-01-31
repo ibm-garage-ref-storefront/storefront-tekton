@@ -50,15 +50,15 @@ Note: you can get the oc CLI from the openshift web console.
 ## b) Deploy the shop using a template.
 
 ```diff
-- currently the template only works on Redhat CRC.
-+ no problem, ... it will be improved.
+- The template has been tested on Redhat CRC.
++ It should work on IBM cloud when you set the APPLB template parameter.
 ```
 
 Deploy the shop using pre-build images:
 
     oc new-project full-bc
     oc create -f template/blue-compute-template.yaml 
-    oc new-app --template blue-compute-shop
+    oc new-app --template blue-compute-shop -p APPLB=apps-crc.testing
 
 Inspect the full-bc namespace console and see the shop come alive.
 

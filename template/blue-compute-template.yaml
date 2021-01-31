@@ -168,7 +168,7 @@ objects:
             },
             "customerService": {
               "protocol": "http",
-              "service_name": "customer-ms-spring-full-bc.apps-crc.testing",
+              "service_name": "customer-ms-spring-full-bc.${APPLB}",
               "base_path": "/micro",
               "paths": {
                 "customer": "/customer/search"
@@ -180,7 +180,7 @@ objects:
             },
             "customer": {
               "protocol": "http",
-              "service_name": "customer-ms-spring-full-bc.apps-crc.testing",
+              "service_name": "customer-ms-spring-full-bc.${APPLB}",
               "base_path": "/micro",
               "paths": {
                 "customer": "/customer/search"
@@ -192,7 +192,7 @@ objects:
             },      
             "oauth20": {
               "protocol": "http",
-              "service_name": "auth-ms-spring-full-bc.apps-crc.testing",
+              "service_name": "auth-ms-spring-full-bc.${APPLB}",
               "base_path": "/oauth",
               "paths": {
                 "authz": "/authorize",
@@ -654,7 +654,7 @@ objects:
         containers:
         - env:
           - name: AUTH_HOST
-            value: customer-ms-spring-full-bc.apps-crc.testing
+            value: customer-ms-spring-full-bc.${APPLB}
           - name: CATALOG_HOST
             value: catalog-ms-spring
           - name: CATALOG_PORT
@@ -1268,7 +1268,7 @@ objects:
       app.kubernetes.io/part-of: auth-subsystem
     name: auth-ms-spring
   spec:
-    host: auth-ms-spring-full-bc.apps-crc.testing
+    host: auth-ms-spring-full-bc.${APPLB}
     port:
       targetPort: 8080
     to:
@@ -1289,7 +1289,7 @@ objects:
       app.kubernetes.io/part-of: customer-subsystem
     name: customer-ms-spring
   spec:
-    host: customer-ms-spring-full-bc.apps-crc.testing
+    host: customer-ms-spring-full-bc.${APPLB}
     port:
       targetPort: 8080-tcp
     to:
@@ -1306,7 +1306,7 @@ objects:
       app.kubernetes.io/part-of: web-subsystem
     name: web
   spec:
-    host: web-full-bc.apps-crc.testing
+    host: web-full-bc.${APPLB}
     port:
       targetPort: 3000
     to:
@@ -1346,4 +1346,9 @@ objects:
     resources:
       requests:
         storage: 1Gi
-
+parameters:
+- description: The address of the openshift application load balancer.
+  displayName: Application load balancer
+  name: APPLB
+  required: true
+  value: apps-crc.testing
