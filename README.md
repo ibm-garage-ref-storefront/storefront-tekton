@@ -54,10 +54,19 @@ Note: you can get the oc CLI from the openshift web console.
 + It should work on IBM cloud when you set the APPLB template parameter.
 ```
 
-Deploy the shop using pre-build images:
+Get the Application Load Balancer address:
+
+    APPLB=$(oc describe  deployment router-default -n openshift-ingress | grep ROUTER_CANONICAL_HOSTNAME |awk '{print $2}')
+    echo $APPLB
+
+Deploy the shop using pre-build images (substitute the value for APPLB):
 
     oc new-project full-bc
     oc create -f template/blue-compute-template.yaml 
+    oc new-app --template blue-compute-shop -p APPLB=$APPLB
+
+Example on CRC:    
+
     oc new-app --template blue-compute-shop -p APPLB=apps-crc.testing
 
 Inspect the full-bc namespace console and see the shop come alive.
