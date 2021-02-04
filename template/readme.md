@@ -3,7 +3,8 @@ This directory stores an openshift template which was:
 - cleaned up via the clean script
 - parameterized.
 
-Procedure
+Procedure:
+
     oc get -o json secret,cm,deployment,deploymentconfig,svc,route,pvc  > exported-resources.json
     bash clean_template.sh exported-resources.json > blue-compute-template.json
     create -f blue-compute-template.json 
