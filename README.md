@@ -14,7 +14,7 @@ Once the blue compute shop is up and running your can choose to explore various 
 | [Availabilty](aspects/availability/README.MD) | To be decided |
 | [Nuts and Bolts](aspects/nuts-and-bolts/README.MD) | For nuts and bolts lovers |
 
-Follow the mandatory [preparation](general/preparation/README.MD)
+Follow the mandatory [preparation](general/preparation.md)
 
 # 2 Up and Running in a Minute
 
