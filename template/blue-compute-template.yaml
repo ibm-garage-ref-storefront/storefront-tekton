@@ -168,7 +168,7 @@ objects:
             },
             "customerService": {
               "protocol": "http",
-              "service_name": "customer-ms-spring-full-bc.${APPLB}",
+              "service_name": "customer-ms-spring-${NAMESPACE}.${APPLB}",
               "base_path": "/micro",
               "paths": {
                 "customer": "/customer/search"
@@ -180,7 +180,7 @@ objects:
             },
             "customer": {
               "protocol": "http",
-              "service_name": "customer-ms-spring-full-bc.${APPLB}",
+              "service_name": "customer-ms-spring-${NAMESPACE}.${APPLB}",
               "base_path": "/micro",
               "paths": {
                 "customer": "/customer/search"
@@ -192,7 +192,7 @@ objects:
             },      
             "oauth20": {
               "protocol": "http",
-              "service_name": "auth-ms-spring-full-bc.${APPLB}",
+              "service_name": "auth-ms-spring-${NAMESPACE}.${APPLB}",
               "base_path": "/oauth",
               "paths": {
                 "authz": "/authorize",
@@ -234,7 +234,7 @@ objects:
   metadata:
     annotations:
       deployment.kubernetes.io/revision: "2"
-      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"auth:latest","namespace":"full-bc"},"fieldPath":"spec.template.spec.containers[?(@.name==\"auth-ms-spring\")].image"}]'
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"auth:latest","namespace":"${NAMESPACE}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"auth-ms-spring\")].image"}]'
     labels:
       app: auth-ms-spring
       app.kubernetes.io/component: auth-ms-spring
@@ -293,7 +293,7 @@ objects:
   metadata:
     annotations:
       deployment.kubernetes.io/revision: "2"
-      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"catalog:latest","namespace":"full-bc"},"fieldPath":"spec.template.spec.containers[?(@.name==\"catalog-ms-spring\")].image"}]'
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"catalog:latest","namespace":"${NAMESPACE}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"catalog-ms-spring\")].image"}]'
     labels:
       app: catalog-ms-spring
       app.kubernetes.io/component: catalog-ms-spring
@@ -408,7 +408,7 @@ objects:
   metadata:
     annotations:
       deployment.kubernetes.io/revision: "2"
-      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"customer:latest","namespace":"full-bc"},"fieldPath":"spec.template.spec.containers[?(@.name==\"customer-ms-spring\")].image"}]'
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"customer:latest","namespace":"${NAMESPACE}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"customer-ms-spring\")].image"}]'
     labels:
       app: customer-ms-spring
       app.kubernetes.io/component: customer-ms-spring
@@ -541,7 +541,7 @@ objects:
   metadata:
     annotations:
       deployment.kubernetes.io/revision: "3"
-      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"inventory:latest","namespace":"full-bc"},"fieldPath":"spec.template.spec.containers[?(@.name==\"inventory-ms-spring\")].image"}]'
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"inventory:latest","namespace":"${NAMESPACE}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"inventory-ms-spring\")].image"}]'
     labels:
       app: inventory-ms-spring
       app.kubernetes.io/component: inventory-ms-spring
@@ -621,7 +621,7 @@ objects:
   metadata:
     annotations:
       deployment.kubernetes.io/revision: "3"
-      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"web:latest","namespace":"full-bc"},"fieldPath":"spec.template.spec.containers[?(@.name==\"web\")].image"}]'
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"web:latest","namespace":"${NAMESPACE}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"web\")].image"}]'
     labels:
       app: web
       app.kubernetes.io/component: web
@@ -654,7 +654,7 @@ objects:
         containers:
         - env:
           - name: AUTH_HOST
-            value: customer-ms-spring-full-bc.${APPLB}
+            value: customer-ms-spring-${NAMESPACE}.${APPLB}
           - name: CATALOG_HOST
             value: catalog-ms-spring
           - name: CATALOG_PORT
@@ -808,7 +808,7 @@ objects:
   metadata:
     annotations:
       deployment.kubernetes.io/revision: "2"
-      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"orders:latest","namespace":"full-bc"},"fieldPath":"spec.template.spec.containers[?(@.name==\"orders-ms-spring\")].image"}]'
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"orders:latest","namespace":"${NAMESPACE}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"orders-ms-spring\")].image"}]'
     labels:
       app: orders-ms-spring
       app.kubernetes.io/component: orders-ms-spring
@@ -1268,7 +1268,7 @@ objects:
       app.kubernetes.io/part-of: auth-subsystem
     name: auth-ms-spring
   spec:
-    host: auth-ms-spring-full-bc.${APPLB}
+    host: auth-ms-spring-${NAMESPACE}.${APPLB}
     port:
       targetPort: 8080
     to:
@@ -1289,7 +1289,7 @@ objects:
       app.kubernetes.io/part-of: customer-subsystem
     name: customer-ms-spring
   spec:
-    host: customer-ms-spring-full-bc.${APPLB}
+    host: customer-ms-spring-${NAMESPACE}.${APPLB}
     port:
       targetPort: 8080-tcp
     to:
@@ -1306,7 +1306,7 @@ objects:
       app.kubernetes.io/part-of: web-subsystem
     name: web
   spec:
-    host: web-full-bc.${APPLB}
+    host: web-${NAMESPACE}.${APPLB}
     port:
       targetPort: 3000
     to:
@@ -1352,3 +1352,8 @@ parameters:
   name: APPLB
   required: true
   value: apps-crc.testing
+- description: The openshift project where IBM Blue Compute is deployed.
+  displayName: Blue Compute Project Namespace
+  name: NAMESPACE
+  required: true
+  value: full-bc

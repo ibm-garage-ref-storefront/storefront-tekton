@@ -60,19 +60,24 @@ Get the Application Load Balancer address:
     APPLB=$(echo $KVP|awk '{print $2}')
     echo $APPLB
 
-Deploy the shop using pre-build images (substitute the value for APPLB):
+Deploy the shop using pre-build images (notes: substitute the value for APPLB and NAMESPACE):
 
     oc new-project full-bc
+    NAMESPACE=$(oc project -q)
     oc create -f template/blue-compute-template.yaml 
-    oc new-app --template blue-compute-shop -p APPLB=$APPLB
+    oc new-app --template blue-compute-shop \
+    -p APPLB=$APPLB \
+    -p NAMESPACE=$NAMESPACE
 
 Example on CRC:    
 
-    oc new-app --template blue-compute-shop -p APPLB=apps-crc.testing
+    oc new-app --template blue-compute-shop \
+    -p APPLB=apps-crc.testing \
+    - p full-bc
 
 Inspect the full-bc namespace console and see the shop come alive.
 
-    oc whoami --show-console
+    xdg-open $(oc whoami --show-console) 2>/dev/null
 
 Load the database:
 
