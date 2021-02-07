@@ -19,8 +19,7 @@ Follow the mandatory [preparation](aspects/general/preparation.md)
 # 2 Up and Running in a Minute
 
 
-
-## b) Deploy the shop using a template.
+## a) Deploy the shop using a template.
 
 ```diff
 - The template has been tested on Redhat CRC.
@@ -56,6 +55,8 @@ Example on CRC:
 Inspect the full-bc namespace console and see the shop come alive.
 
     xdg-open $(oc whoami --show-console) 2>/dev/null
+
+## b) Configure the shop
 
 Load the database:
 
