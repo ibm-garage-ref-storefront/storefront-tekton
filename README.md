@@ -18,6 +18,7 @@ Follow the mandatory [preparation](aspects/general/preparation.md)
 
 # 2 Up and Running in a Minute
 
+![Deploy](images/deploy-in-a-minute.gif?raw=true "Title")
 
 ## a) Deploy the shop using a template.
 
