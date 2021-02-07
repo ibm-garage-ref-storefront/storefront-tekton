@@ -50,7 +50,7 @@ Example on CRC:
 
     oc new-app --template blue-compute-shop \
     -p APPLB=apps-crc.testing \
-    -p full-bc
+    -p NAMESPACE=full-bc
 
 Inspect the full-bc namespace console and see the shop come alive.
 
