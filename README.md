@@ -14,40 +14,11 @@ Once the blue compute shop is up and running your can choose to explore various 
 | [Availabilty](aspects/availability/README.MD) | To be decided |
 | [Nuts and Bolts](aspects/nuts-and-bolts/README.MD) | For nuts and bolts lovers |
 
-
-# 2 Preparation
-
-Get yourself a free Openshift 4 cluster for a couple of hours:
-
-[IBM Open Labs](https://developer.ibm.com/openlabs/openshift)
-
-Or ... go where the wild ducks fly and get CRC:
-
-[Redhat CRC](https://developers.redhat.com/products/codeready-containers/overview)
-
-Note on CRC:
-- CRC was installed on RHEL 7;
-- this repo was tested a 4-core i7 with hyperthreading and 32 GB RAM;
-- About 2 vCPU are used by CRC;
-- the memory was set to 16 GB and approximatly 12 GB of RAM is used by CRC.
-
-Get the login (right top side of the OCP console, IAM, copy login command).
-
-Login to the cluster:
-
-    oc login --token=... --server=...
-
-Note: you can get the oc CLI from the openshift web console.
+Follow the mandatory [preparation](general/preparation/README.MD)
 
 # 2 Up and Running in a Minute
 
-## a) Configuration
 
-    git clone https://github.com/ibm-garage-ref-storefront/storefront-tekton
-    cd storefront-tekton   
-    cp scripts/config ~/config.bc-full
-    ln -sf ~/config.bc-full ~/config
-    vi ~/config
 
 ## b) Deploy the shop using a template.
 
@@ -55,6 +26,11 @@ Note: you can get the oc CLI from the openshift web console.
 - The template has been tested on Redhat CRC.
 + It should work on IBM cloud when you set the APPLB template parameter.
 ```
+Login to the cluster:
+
+    oc login --token=... --server=...
+
+Note: you can get the oc CLI from the openshift web console.
 
 Get the Application Load Balancer address:
 
