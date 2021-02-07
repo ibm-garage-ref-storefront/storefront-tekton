@@ -270,7 +270,7 @@ objects:
             value: http://customer-ms-spring:8080
           - name: HS256_KEY
             value: E6526VJkKYhyTFRFMC0pTECpHcZ7TGcq8pKsVVgz9KtESVpheEO284qKzfzg8HpWNBPeHOxNGlyudUHi6i8tFQJXC8PiI48RUpMh23vPDLGD35pCM0417gf58z5xlmRNii56fwRCmIhhV7hDsm3KO2jRv4EBVz7HrYbzFeqI45CaStkMYNipzSm2duuer7zRdMjEKIdqsby0JfpQpykHmC5L6hxkX0BT7XWqztTr6xHCwqst26O0g8r7bXSYjp4a
-          image: quay.io/kitty_catt/auth@sha256:3e2a3bc698bd350c8b52324632b59da4fe68c16d165c813f3141a0c0861390c2
+          image: quay.io/kitty_catt/auth:latest
           imagePullPolicy: IfNotPresent
           name: auth-ms-spring
           ports:
@@ -331,7 +331,7 @@ objects:
             value: catalogelasticsearch:9300
           - name: INVENTORY_URL
             value: http://inventory-ms-spring:8080/micro/inventory
-          image: quay.io/kitty_catt/catalog@sha256:99efd62735820cd844a61e5d77c11d22fce7603663197e287c90b56928fe4c66
+          image: quay.io/kitty_catt/catalog:latest
           imagePullPolicy: IfNotPresent
           name: catalog-ms-spring
           ports:
@@ -387,7 +387,7 @@ objects:
         - env:
           - name: discovery.type
             value: single-node
-          image: docker.elastic.co/elasticsearch/elasticsearch@sha256:8f06aecf7227dbc67ee62d8d05db680f8a29d0296ecd74c60d21f1fe665e04b0
+          image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
           imagePullPolicy: IfNotPresent
           name: catalogelasticsearch
           ports:
@@ -454,7 +454,7 @@ objects:
             value: admin
           - name: HS256_KEY
             value: E6526VJkKYhyTFRFMC0pTECpHcZ7TGcq8pKsVVgz9KtESVpheEO284qKzfzg8HpWNBPeHOxNGlyudUHi6i8tFQJXC8PiI48RUpMh23vPDLGD35pCM0417gf58z5xlmRNii56fwRCmIhhV7hDsm3KO2jRv4EBVz7HrYbzFeqI45CaStkMYNipzSm2duuer7zRdMjEKIdqsby0JfpQpykHmC5L6hxkX0BT7XWqztTr6xHCwqst26O0g8r7bXSYjp4a
-          image: quay.io/kitty_catt/customer@sha256:d667ca8796294b872eb6632c6d460cd5305c4ca968356ba058d43a93f01a1975
+          image: quay.io/kitty_catt/customer:latest
           imagePullPolicy: IfNotPresent
           name: customer-ms-spring
           ports:
@@ -512,7 +512,7 @@ objects:
             value: passw0rd
           - name: COUCHDB_USER
             value: admin
-          image: couchdb@sha256:7e374287cfa1f7d4ce9bd70286f143f99aa2b67c4c762c28a1c09d2dbfc993ea
+          image: couchdb:latest
           imagePullPolicy: IfNotPresent
           name: customercouchdb
           ports:
@@ -598,7 +598,7 @@ objects:
               configMapKeyRef:
                 key: MYSQL_PASSWORD
                 name: inventory
-          image: quay.io/kitty_catt/inventory@sha256:2805b56320199a21c29cb1578a5d87ef45b7b9629783d45bbfbb5b263f54cf5d
+          image: quay.io/kitty_catt/inventory:latest
           imagePullPolicy: IfNotPresent
           name: inventory-ms-spring
           ports:
@@ -669,7 +669,7 @@ objects:
             value: "8080"
           - name: PORT
             value: "3000"
-          image: quay.io/kitty_catt/web@sha256:835dba5072ad08e4580f669b8f82ba11ddfc30a28351f72727cf7e67a311314d
+          image: quay.io/kitty_catt/web:latest
           imagePullPolicy: IfNotPresent
           name: web
           ports:
@@ -744,7 +744,7 @@ objects:
               secretKeyRef:
                 key: database-name
                 name: inventorymysql
-          image: image-registry.openshift-image-registry.svc:5000/openshift/mysql@sha256:9f352dda6828f9604e35c4cbb48f8488bf630865d132157b232f65c096c85d04
+          image: image-registry.openshift-image-registry.svc:5000/openshift/mysql:latest
           imagePullPolicy: IfNotPresent
           livenessProbe:
             exec:
@@ -852,7 +852,7 @@ objects:
             value: "3306"
           - name: MYSQL_USER
             value: dbuser
-          image: quay.io/kitty_catt/orders@sha256:b4347123cf6690aaf56bc1a69633bc19dcb74d6544580c88d1dcc1983a6c7efa
+          image: quay.io/kitty_catt/orders:latest
           imagePullPolicy: IfNotPresent
           name: orders-ms-spring
           ports:
@@ -923,7 +923,7 @@ objects:
               secretKeyRef:
                 key: database-name
                 name: ordersmysql
-          image: image-registry.openshift-image-registry.svc:5000/openshift/mariadb@sha256:513f7db527608c6c96b3659220ffc0397bdd30ff6617dad1790a90e14ac4f3b0
+          image: image-registry.openshift-image-registry.svc:5000/openshift/mariadb:latest
           imagePullPolicy: IfNotPresent
           livenessProbe:
             exec:
