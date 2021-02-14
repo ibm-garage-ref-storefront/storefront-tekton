@@ -1,16 +1,33 @@
-## b) Setup Tools
+# The Tools namespace
+
+With the [configuration preparation](CONFIG.MD) in place we can now initialize the tools namespace.
+
+When the script is run, then it will install:
+1. the openshift pipeline operator;
+2. sonarqube;
+3. create an apache httpd server called the silver platter where reports are stored of maven site scans, and jmeter runs.
+
+The example given is for CRC. The should work on any Openshift Cluster where you have access to the admin role.
+
+# a) Login with the admin role
+
+    crc console --credentials
+    oc login -u kubeadmin  https://api.crc.testing:6443
+
+# b) Setup Tools
 
     cd tools && \
     bash setup.sh && \
     cd .. 
 
-When the script is run, then it will install:
-1. the openshift pipeline operator
-2. sonarqube. 
-3. create an apache httpd server called the silver platter where reports are stored of maven site scans, and jmeter runs.
+### b.1) Change the sonarqube admin password.
+
+If you have chosen to expose the route to sonarqube on anything but a simple CRC installation, then change the sonarqube admin password.
+
+    oc get routes
 
 
-### b.1) Make a user 
+### b.2) Make a user to access the silver platter
 
     bash tools/httpd/provide_access.sh
 
