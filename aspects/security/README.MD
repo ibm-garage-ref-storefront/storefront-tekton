@@ -2,7 +2,7 @@
 
 ## Setup.
 
-Get a cluster as described in the "general section".[preparation](aspects/general/readme.md)
+Get a cluster as described in the ["general section"](../general/README.MD).
 Clone the repo and prepare the configuration.
 
 In short:
