@@ -9,7 +9,7 @@ When the script is run, then it will install:
 
 The example given is for CRC. The should work on any Openshift Cluster where you have access to the admin role.
 
-## a) edit the storage class
+# a) Edit the storage class
 
 Comment out the storageClassName on CRC and comment it in on IBM Cloud:
 
