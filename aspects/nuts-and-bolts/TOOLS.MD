@@ -10,6 +10,8 @@ When the script is run, then it will :
 
 The example given is for CRC. The should work on any Openshift Cluster where you have access to the admin role.
 
+Note: there will be a warning (Warning: Group 'system:serviceaccounts:full-bc' not found). This warning can be ignored as the full-bc will be created in the next step.
+
 # a) Edit the storage class
 
 Comment out the storageClassName on CRC and comment it in on IBM Cloud:
