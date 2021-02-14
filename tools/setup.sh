@@ -3,6 +3,9 @@ source ~/config
 
 oc new-project tools
 
+# Allow project full-bc to pull the jmeter image
+oc policy add-role-to-group system:image-puller system:serviceaccounts:${NAMESPACE}
+
 # Setup Openshift pipelines
 echo "###################################################################"
 cd pipelines

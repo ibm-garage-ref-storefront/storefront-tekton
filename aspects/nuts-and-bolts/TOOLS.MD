@@ -2,10 +2,11 @@
 
 With the [configuration preparation](CONFIG.MD) in place we can now initialize the tools namespace.
 
-When the script is run, then it will install:
-1. the openshift pipeline operator;
-2. sonarqube;
-3. create an apache httpd server called the silver platter where reports are stored of maven site scans, and jmeter runs.
+When the script is run, then it will :
+1. add a policy to allow access for the service accounts in the full-bc project to the JMeter image.
+2. install the openshift pipeline operator;
+3. install sonarqube;
+4. install an apache httpd server called the silver platter where reports are stored of maven site scans, and jmeter runs.
 
 The example given is for CRC. The should work on any Openshift Cluster where you have access to the admin role.
 
