@@ -16,6 +16,9 @@ ICR_API_KEY=
 ICR_EMAIL=
 ICR_REGISTRY_URL=
 
+# The sonarqube access token
+SONAR_QUBE_PAT=
+
 # Customer MS plus its CouchDB
 # https://github.com/ibm-garage-ref-storefront/customer-ms-spring#1-create-a-temporary-hs256-shared-secret
 HS256_KEY=E6526VJkKYhyTFRFMC0pTECpHcZ7TGcq8pKsVVgz9KtESVpheEO284qKzfzg8HpWNBPeHOxNGlyudUHi6i8tFQJXC8PiI48RUpMh23vPDLGD35pCM0417gf58z5xlmRNii56fwRCmIhhV7hDsm3KO2jRv4EBVz7HrYbzFeqI45CaStkMYNipzSm2duuer7zRdMjEKIdqsby0JfpQpykHmC5L6hxkX0BT7XWqztTr6xHCwqst26O0g8r7bXSYjp4a
