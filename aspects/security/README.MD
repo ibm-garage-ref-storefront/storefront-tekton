@@ -2,10 +2,10 @@
 
 ## Setup.
 
-1. Get a cluster as described in the ["general section"](../general/README.MD).
-2. Clone the repo and [prepare the configuration](../nuts-and-bolts/CONFIG.MD).
-3. Setup [the tools project](../nuts-and-bolts/TOOLS.MD);
-4. Setup [the blue compute namespace](../nuts-and-bolts/BLUE-COMPUTE.MD);
+1. Get a cluster ["link"](../general/README.MD).
+2. Prepate the configuration ["link"](../nuts-and-bolts/CONFIG.MD).
+3. Setup the tools namespace ["link"](../nuts-and-bolts/TOOLS.MD);
+4. Setup the blue compute namespace["link"]](../nuts-and-bolts/BLUE-COMPUTE.MD);
 
 
 # Levelling up
