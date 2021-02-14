@@ -42,11 +42,10 @@ Follow it:
 
     PL=$(tkn pr list | grep Running | awk '{ print $1 }') && tkn pr logs -f $PL
 
-The pipeline builds the customer image stream that is used by the customer-ms-spring microservice.
-
-    $ oc get is
-    NAME       IMAGE REPOSITORY                                                           TAGS     UPDATED
-    customer   default-route-openshift-image-registry.apps-crc.testing/full-bc/customer   latest   8 minutes ago
+Notes: 
+- copy to quay will fail the first time, because the image repo does not exist. Just re-run the pipeline.
+- the pipeline builds the customer image stream that is used by the customer-ms-spring microservice.
+- if you want to scan a different image then please run the pipeline with different parameters.
 
 # Check the image CVE status in IBM Container Registry 
 
