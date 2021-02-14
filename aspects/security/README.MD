@@ -2,7 +2,8 @@
 
 ## Setup.
 
-Setup the cluster as described in the "nuts and bolts section".
+Get a cluster as described in the "general section".[preparation](aspects/general/readme.md)
+Clone the repo and prepare the configuration.
 
 In short:
 - the tools are setup with the administrative role (think installing operators);
