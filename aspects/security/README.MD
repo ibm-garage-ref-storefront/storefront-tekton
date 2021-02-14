@@ -1,5 +1,9 @@
 # Security
 
+## Understanding the pipeline
+
+![Security Pipeline](../images/security-pipeline.png?raw=true "Title")
+
 ## Setup.
 
 1. Get a cluster ["click here"](../general/README.MD);
