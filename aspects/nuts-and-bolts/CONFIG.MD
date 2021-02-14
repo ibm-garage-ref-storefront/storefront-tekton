@@ -13,9 +13,5 @@ Create a Quay account and create a Quay API key for querying Quay. TODO: provide
 
 Create an IBM Container Registry account and create an ICR API key for a specific registry. TODO: provide more guidance.
 
-## b) edit the storage class
 
-Comment out the storageClassName on CRC and comment it in on IBM Cloud:
-
-    vi tools/httpd/httpd-pvc.yaml
 

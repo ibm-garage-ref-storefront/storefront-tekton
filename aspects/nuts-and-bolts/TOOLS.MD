@@ -9,25 +9,31 @@ When the script is run, then it will install:
 
 The example given is for CRC. The should work on any Openshift Cluster where you have access to the admin role.
 
-# a) Login with the admin role
+## a) edit the storage class
+
+Comment out the storageClassName on CRC and comment it in on IBM Cloud:
+
+    vi tools/httpd/httpd-pvc.yaml
+
+# b) Login with the admin role
 
     crc console --credentials
     oc login -u kubeadmin  https://api.crc.testing:6443
 
-# b) Setup Tools
+# c) Setup Tools
 
     cd tools && \
     bash setup.sh && \
     cd .. 
 
-### b.1) Change the sonarqube admin password.
+### c.1) Change the sonarqube admin password.
 
 If you have chosen to expose the route to sonarqube on anything but a simple CRC installation, then change the sonarqube admin password.
 
     oc get routes
 
 
-### b.2) Make a user to access the silver platter
+### c.2) Make a user to access the silver platter
 
     bash tools/httpd/provide_access.sh
 
