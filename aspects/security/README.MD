@@ -48,11 +48,11 @@ The pipeline builds the customer image stream that is used by the customer-ms-sp
 
 # Check the image CVE status in IBM Container Registry 
 
-![ICR VA](../../images/ICR?raw=true "Title")
+![ICR VA](../../images/ICR.png?raw=true "Title")
 
 # Check the image CVE status in Redhat Quay Container Registry 
 
-![Quay VA](../../images/QUAY?raw=true "Title")
+![Quay VA](../../images/QUAY.png?raw=true "Title")
 
 # Levelling up
 
