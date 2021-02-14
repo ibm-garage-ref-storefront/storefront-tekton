@@ -1,6 +1,13 @@
 # Security
 
-Note:  we want to setup the tekton pipeline as described in the "nuts and bolts section"/
+## Setup.
+
+Setup the cluster as described in the "nuts and bolts section".
+
+In short:
+- the tools are setup with the administrative role (think installing operators);
+- the blue compute namespace is setup with the developer role;
+
 
 # Levelling up
 

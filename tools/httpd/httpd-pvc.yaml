@@ -10,4 +10,4 @@ spec:
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: ibmc-file-gold-gid
+  #storageClassName: ibmc-file-gold-gid
