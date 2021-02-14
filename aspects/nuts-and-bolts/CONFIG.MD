@@ -23,6 +23,8 @@ TODO: provide more guidance.
 
 Create an IBM Container Registry account and create an ICR API key for a specific registry. 
 
+Edit:
+
     ICR_USERNAME=iamapikey
     ICR_API_KEY=
     ICR_EMAIL=
@@ -34,5 +36,9 @@ TODO: provide more guidance.
 ### a.3) Sonar Qube section
 
 Login to Sonar Qube and make an access token.
+
+Edit:
+
+    SONAR_QUBE_PAT=
 
 TODO: provide more guidance.
