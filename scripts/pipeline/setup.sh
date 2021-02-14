@@ -20,19 +20,19 @@ sleep 15
 oc policy add-role-to-user admin system:serviceaccount:$NAMESPACE:appsody-sa
 oc policy add-role-to-user admin system:serviceaccount:$NAMESPACE:pipeline
 
-oc create secret docker-registry quay-cred \
-    --docker-server=quay.io \
-    --docker-username=${QUAY_USERNAME} \
-    --docker-password=${QUAY_PASSWORD} \
-    --docker-email=${QUAY_EMAIL}
+#oc create secret docker-registry quay-cred \
+#    --docker-server=quay.io \
+#    --docker-username=${QUAY_USERNAME} \
+#    --docker-password=${QUAY_PASSWORD} \
+#    --docker-email=${QUAY_EMAIL}
 
 oc create secret generic quay-api-token \
     --from-literal API_TOKEN=${QUAY_API_TOKEN}
 
-oc secrets link appsody-sa quay-cred
+#oc secrets link appsody-sa quay-cred
 #oc describe sa appsody-sa
 
-oc secrets link default quay-cred  --for=pull
+#oc secrets link default quay-cred  --for=pull
 #oc describe sa default
 
 echo "Select a source repository"
@@ -92,4 +92,8 @@ oc apply -f  /tmp/$WORKSPACE/icr-secret.yaml
 sed -i "s/QUAY_USER/${QUAY_USERNAME}/g" /tmp/$WORKSPACE/quay-secret.yaml
 sed -i "s/QUAY_PASSWORD/${QUAY_PASSWORD}/g" /tmp/$WORKSPACE/quay-secret.yaml
 oc apply -f  /tmp/$WORKSPACE/quay-secret.yaml
+
+oc secret link appsody-sa crc-creds-skopeo
+oc secret link appsody-sa icr-creds-skopeo
+oc secret link appsody-sa quay-creds-skopeo
 
