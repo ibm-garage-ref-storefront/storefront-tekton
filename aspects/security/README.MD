@@ -2,10 +2,11 @@
 
 ## Setup.
 
-1. Get a cluster ["click here"](../general/README.MD).
-2. Prepare the configuration ["click here"](../nuts-and-bolts/CONFIG.MD).
+1. Get a cluster ["click here"](../general/README.MD);
+2. Clone the git repo ["click here"](../nuts-and-bolts/GIT.MD);
 3. Setup the tools namespace ["click here"](../nuts-and-bolts/TOOLS.MD);
-4. Setup the blue compute namespace ["click here"](../nuts-and-bolts/BLUE-COMPUTE.MD);
+4. Prepare the configuration ["click here"](../nuts-and-bolts/CONFIG.MD).
+5. Setup the blue compute namespace ["click here"](../nuts-and-bolts/BLUE-COMPUTE.MD);
 
 
 # Levelling up
