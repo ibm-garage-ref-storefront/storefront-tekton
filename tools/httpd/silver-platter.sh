@@ -1,8 +1,6 @@
 echo "###################################################################"
 source ~/config
 
-oc new-project $NAMESPACE
-
 oc apply -f httpd-pvc.yaml 
 PVC_STATE="unknown"
 
