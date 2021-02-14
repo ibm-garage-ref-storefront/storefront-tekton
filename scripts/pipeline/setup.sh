@@ -6,6 +6,7 @@ echo "Setting up generic openshift pipeline"
 # pipelines
 oc apply -f $HERE/tekton-pipelines/pipeline-build.yaml 
 oc apply -f $HERE/tekton-pipelines/pipeline-deploy.yaml 
+oc apply -f $HERE/tekton-pipelines/pipeline-security.yaml 
 
 # pipeline tasks
 oc apply -f $HERE/tekton-tasks/appsody-build-push.yaml 
