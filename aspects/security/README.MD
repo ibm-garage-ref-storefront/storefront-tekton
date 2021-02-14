@@ -3,7 +3,7 @@
 ## Setup.
 
 1. Get a cluster ["click here"](../general/README.MD).
-2. Prepate the configuration ["click here"](../nuts-and-bolts/CONFIG.MD).
+2. Prepare the configuration ["click here"](../nuts-and-bolts/CONFIG.MD).
 3. Setup the tools namespace ["click here"](../nuts-and-bolts/TOOLS.MD);
 4. Setup the blue compute namespace ["click here"](../nuts-and-bolts/BLUE-COMPUTE.MD);
 
