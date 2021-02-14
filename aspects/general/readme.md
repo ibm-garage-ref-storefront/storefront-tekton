@@ -18,10 +18,3 @@ Note on CRC:
 
 Get the login (right top side of the OCP console, IAM, copy login command).
 
-## b) Configuration
-
-    git clone https://github.com/ibm-garage-ref-storefront/storefront-tekton
-    cd storefront-tekton   
-    cp scripts/config ~/config.bc-full
-    ln -sf ~/config.bc-full ~/config
-    vi ~/config
