@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: customer-security-pipeline-
+spec:
+  serviceAccountName: appsody-sa
+  timeout: "1h0m0s"  
+  pipelineRef:
+    name: security-pipeline
+  resources:
+    - name: git-source
+      resourceRef:
+        name: customer-source
+    - name: docker-image
+      resourceRef:
+        name: customer-image-internal

@@ -8,6 +8,10 @@
 4. Prepare the configuration ["click here"](../nuts-and-bolts/CONFIG.MD).
 5. Setup the blue compute namespace ["click here"](../nuts-and-bolts/BLUE-COMPUTE.MD);
 
+# Run the security pipeline
+
+    oc create -f tekton-pipeline-run/customer-security-pipeline.yaml 
+
 
 # Levelling up
 
