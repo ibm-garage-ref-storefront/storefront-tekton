@@ -1,3 +1,16 @@
-## c) Pipeline Resources
+# Setting up the Blue Compute namespace.
 
-Configure the yaml files in tekton-resources when you want to push to your own quay account of build from your own forks. Otherwise use the defaults.
+# a) (Optional) Configure the Pipeline Resources
+
+When you want build your own forks ... then configure the yaml files in tekton-resources.
+
+# b) Login as developer
+
+    crc console --credentials
+    oc login -u developer -p developer https://api.crc.testing:6443
+
+# c) initialize the namespace
+
+    bash scripts/setup-pipelines.sh
+
+Choose forks when you want to build from your own forks.
