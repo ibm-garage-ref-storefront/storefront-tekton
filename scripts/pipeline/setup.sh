@@ -21,8 +21,8 @@ oc policy add-role-to-user admin system:serviceaccount:$NAMESPACE:pipeline
 
 oc create secret docker-registry quay-cred \
     --docker-server=quay.io \
-    --docker-username=${QUAY_USER} \
-    --docker-password=${QUAY_PWD} \
+    --docker-username=${QUAY_USERNAME} \
+    --docker-password=${QUAY_PASSWORD} \
     --docker-email=${QUAY_EMAIL}
 
 oc create secret generic quay-api-token \

@@ -4,10 +4,17 @@ WORKSPACE=full-bc
 
 OCNEWAPP_OPTION='--as-deployment-config'
 
-QUAY_PWD=
-QUAY_USER=
+# When you use Redhat Quay as an image registry
+QUAY_USERNAME=
+QUAY_PASSWORD=
 QUAY_EMAIL=
 QUAY_API_TOKEN=
+
+# When you use IBM Cloud as an image registry
+ICR_USERNAME=iamapikey
+ICR_API_KEY=
+ICR_EMAIL=
+ICR_REGISTRY_URL=
 
 # Customer MS plus its CouchDB
 # https://github.com/ibm-garage-ref-storefront/customer-ms-spring#1-create-a-temporary-hs256-shared-secret

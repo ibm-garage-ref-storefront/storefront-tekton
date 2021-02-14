@@ -1,16 +1,22 @@
 # Configure the installer
 
-## a) Configuration
+## a) Clone the Repo
 
     git clone https://github.com/ibm-garage-ref-storefront/storefront-tekton
     cd storefront-tekton   
     cp scripts/config ~/config.bc-full
     ln -sf ~/config.bc-full ~/config
+
+
+## b) Edit the configuration file for the setup
+
     vi ~/config
 
-### a.1) Preparation on CRC
+### b.1) 
 
-Comment out the storageClassName on CRC and commented in on IBM Cloud:
+## c) storage class
+
+Comment out the storageClassName on CRC and comment it in on IBM Cloud:
 
     vi tools/httpd/httpd-pvc.yaml
 
