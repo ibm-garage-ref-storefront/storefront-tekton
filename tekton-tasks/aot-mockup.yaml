@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: aot-mockup
+spec:
+  steps:
+    - name: place-holder 
+      image: 'registry.access.redhat.com/ubi8/ubi-minimal:latest'
+      resources: {}
+      script: |
+        #!/usr/bin/env bash
+        echo "mock-up"

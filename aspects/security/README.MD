@@ -10,8 +10,19 @@
 
 # Run the security pipeline
 
+Create a run:
+
     oc create -f tekton-pipeline-run/customer-security-pipeline.yaml 
 
+Follow it:
+
+    PL=$(tkn pr list | grep Running | awk '{ print $1 }') && tkn pr logs -f $PL
+
+The pipeline builds the customer image stream that is used by the customer-ms-spring microservice.
+
+    $ oc get is
+    NAME       IMAGE REPOSITORY                                                           TAGS     UPDATED
+    customer   default-route-openshift-image-registry.apps-crc.testing/full-bc/customer   latest   8 minutes ago
 
 # Levelling up
 
