@@ -2,7 +2,7 @@
 
 ## Understanding the pipeline
 
-![Security Pipeline](../images/security-pipeline.png?raw=true "Title")
+![Security Pipeline](../../images/security-pipeline.png?raw=true "Title")
 
 ## Setup.
 
