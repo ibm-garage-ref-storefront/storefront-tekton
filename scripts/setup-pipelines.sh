@@ -25,4 +25,6 @@ bash $HERE/scripts/pipeline/setup.sh
 echo ""
 
 
+# Setup permissions
 
+oc policy add-role-to-user system:image-puller developer

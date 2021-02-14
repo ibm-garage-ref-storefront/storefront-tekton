@@ -71,4 +71,25 @@ do
     esac
 done    
 
+# The scopeo secrets:
+cp skopeo/crc-secret.yaml /tmp/$WORKSPACE/crc-secret.yaml
+cp skopeo/icr-secret.yaml /tmp/$WORKSPACE/icr-secret.yaml
+cp skopeo/quay-secret.yaml /tmp/$WORKSPACE/quay-secret.yaml
+
+# Setup the CRC secret
+CRC_USER=$(oc whoami)
+CRC_PASSWORD=$(oc whoami -t)
+sed -i "s/CRC_USER/${CRC_USER}/g" /tmp/$WORKSPACE/crc-secret.yaml
+sed -i "s/CRC_PASSWORD/${CRC_PASSWORD}/g" /tmp/$WORKSPACE/crc-secret.yaml
+oc apply -f  /tmp/$WORKSPACE/crc-secret.yaml
+
+# Setup the ICR secret
+sed -i "s/IBM_USER/${ICR_USERNAME}/g" /tmp/$WORKSPACE/icr-secret.yaml
+sed -i "s/IBM_APIKEY/${ICR_API_KEY}/g" /tmp/$WORKSPACE/icr-secret.yaml
+oc apply -f  /tmp/$WORKSPACE/icr-secret.yaml
+
+# Setup the QUAY secret
+sed -i "s/QUAY_USER/${QUAY_USERNAME}/g" /tmp/$WORKSPACE/quay-secret.yaml
+sed -i "s/QUAY_PASSWORD/${QUAY_PASSWORD}/g" /tmp/$WORKSPACE/quay-secret.yaml
+oc apply -f  /tmp/$WORKSPACE/quay-secret.yaml
 

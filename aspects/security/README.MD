@@ -2,7 +2,17 @@
 
 ## Understanding the pipeline
 
+We will be building the customer image in this excercise.
+
 ![Security Pipeline](../../images/security-pipeline.png?raw=true "Title")
+
+In words:
+- the pipeline builds to an internal image stream (e.g. customer);
+- next it copies the image from the internal registry to both quay and IBM container registry;
+- Redhat and IBM container registries will start to analyse the images for vulnerabilities;
+- next the pipeline analyzes the source and dependencies for vulnerabilities using sonarqube and maven owasp dependency checker. 
+- The pipeline then queries icr, quay and trivy to get the vulnerabilities in the images.
+- If there are no vulnerabilities then the pipeline will roll-out the image.
 
 ## Setup.
 
@@ -11,6 +21,14 @@
 3. Setup the tools namespace ["click here"](../nuts-and-bolts/TOOLS.MD);
 4. Prepare the configuration ["click here"](../nuts-and-bolts/CONFIG.MD).
 5. Setup the blue compute namespace ["click here"](../nuts-and-bolts/BLUE-COMPUTE.MD);
+
+# Check logins
+
+Can developer login to the openshift internal registry?
+
+    sudo podman login -u developer -p $(oc whoami -t) default-route-openshift-image-registry.apps-crc.testing --tls-verify=false
+    oc describe rolebinding system:image-puller
+
 
 # Run the security pipeline
 
