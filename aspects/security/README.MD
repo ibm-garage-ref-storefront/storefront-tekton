@@ -46,6 +46,14 @@ The pipeline builds the customer image stream that is used by the customer-ms-sp
     NAME       IMAGE REPOSITORY                                                           TAGS     UPDATED
     customer   default-route-openshift-image-registry.apps-crc.testing/full-bc/customer   latest   8 minutes ago
 
+# Check the image CVE status in IBM Container Registry 
+
+![ICR VA](../../images/ICR?raw=true "Title")
+
+# Check the image CVE status in Redhat Quay Container Registry 
+
+![Quay VA](../../images/QUAY?raw=true "Title")
+
 # Levelling up
 
 ## a) Level up the routes from HTTP to HTTPS
