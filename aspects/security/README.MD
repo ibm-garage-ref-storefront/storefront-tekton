@@ -2,8 +2,8 @@
 
 ## Setup.
 
-Get a cluster as described in the ["general section"](../general/README.MD).
-Clone the repo and prepare the configuration.
+1. Get a cluster as described in the ["general section"](../general/README.MD).
+2. Clone the repo and prepare the configuration.
 
 In short:
 - the tools are setup with the administrative role (think installing operators);
