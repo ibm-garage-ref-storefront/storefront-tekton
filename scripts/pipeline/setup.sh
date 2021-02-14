@@ -11,6 +11,7 @@ oc apply -f $HERE/tekton-pipelines/pipeline-security.yaml
 # pipeline tasks
 oc apply -f $HERE/tekton-tasks/appsody-build-push.yaml 
 oc apply -f $HERE/tekton-tasks/ibm-quay-cve-check.yaml 
+oc apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/skopeo-copy/0.1/skopeo-copy.yaml
 
 # service account
 oc create sa appsody-sa
