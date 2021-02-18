@@ -13,8 +13,8 @@ QUAY_API_TOKEN=
 # When you use IBM Cloud as an image registry
 ICR_USERNAME=iamapikey
 ICR_API_KEY=
-ICR_EMAIL=
-ICR_REGISTRY_URL=
+ICR_EMAIL=kitty-catt@example.com
+ICR_REGISTRY_URL=de.icr.io
 
 # The sonarqube access token
 SONAR_QUBE_PAT=

@@ -23,12 +23,12 @@ TODO: provide more guidance.
 
 Create an IBM Container Registry account and create an ICR API key for a specific registry. 
 
-Edit:
+Edit (replace what is necessary):
 
     ICR_USERNAME=iamapikey
     ICR_API_KEY=
-    ICR_EMAIL=
-    ICR_REGISTRY_URL=
+    ICR_EMAIL=kitty-catt@example.com
+    ICR_REGISTRY_URL=de.icr.io
 
 When you login to the IBM Cloud via the web console you can open the [IBM cloud shell](https://cloud.ibm.com/shell).
 
