@@ -30,8 +30,9 @@ Edit:
     ICR_EMAIL=
     ICR_REGISTRY_URL=
 
-When you login to the IBM Cloud via the web console you can open the IBM cloud shell:
-["guidance"](https://cloud.ibm.com/docs/Registry?topic=Registry-registry_access). 
+When you login to the IBM Cloud via the web console you can open the [IBM cloud shell](https://cloud.ibm.com/shell).
+
+Guidance can be found ["here"](https://cloud.ibm.com/docs/Registry?topic=Registry-registry_access). 
 
 Target your region and create a key.
 
