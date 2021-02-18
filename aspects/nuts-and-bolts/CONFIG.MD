@@ -39,7 +39,7 @@ Target your region and create a key.
     You are targeting region 'eu-central', the registry is 'de.icr.io'.
 
     OK
-    $ ibmcloud iam api-key-create
+    $ ibmcloud iam api-key-create blue-compute
     ... details omitted.
 
 ### a.3) Sonar Qube section
