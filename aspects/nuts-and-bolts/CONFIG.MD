@@ -30,8 +30,17 @@ Edit:
     ICR_EMAIL=
     ICR_REGISTRY_URL=
 
-TODO: provide more guidance.
+When you login to the IBM Cloud via the web console you can open the IBM cloud shell:
+["guidance"](https://cloud.ibm.com/docs/Registry?topic=Registry-registry_access). 
 
+Target your region and create a key.
+
+    $ ibmcloud cr region
+    You are targeting region 'eu-central', the registry is 'de.icr.io'.
+
+    OK
+    $ ibmcloud iam api-key-create
+    ... details omitted.
 
 ### a.3) Sonar Qube section
 
