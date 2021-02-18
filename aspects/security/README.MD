@@ -31,6 +31,14 @@ Can developer login to the openshift internal registry?
      --tls-verify=false
     oc describe rolebinding system:image-puller
 
+Note: the openshift image registry wants the password in the form of a token .. which lasts a few hours.
+
+    oc get secret crc-creds-skopeo
+    oc extract secret/crc-creds-skopeo --to=-
+    oc whoami -t
+
+Regenerate the secret when it has expired.
+
 
 # Run the security pipeline
 
