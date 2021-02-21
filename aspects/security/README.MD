@@ -77,6 +77,11 @@ Click on the link "dependency-check:aggregate":
 
 Take some time to explore the vulnerabilties. Click on the links in the report to visit the NIST database that provides guidance on how to fix the vulnerabilities. 
 
+## d) Check the vulnerabilities  that were detected by the SonarQube scanner
+
+![Report](../../images/sonar-qube.png?raw=true "Title")
+
+
 # Levelling up
 
 ## a) Level up the routes from HTTP to HTTPS
