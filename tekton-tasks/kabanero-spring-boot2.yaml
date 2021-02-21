@@ -27,7 +27,7 @@ spec:
         mkdir -pv $(workspaces.report.path)/sites/$(params.module)
 
         cd /workspace/git-source
-        mvn clean install -Dmaven.repo.local=/workspace/repo
+        mvn clean install -Dmaven.repo.local=/workspace/repo  -DskipTests
         mvn site:site -Dmaven.repo.local=/workspace/repo -DstagingDirectory=$(workspaces.report.path)/sites/$(params.module)
         mvn site:stage -Dmaven.repo.local=/workspace/repo -DstagingDirectory=$(workspaces.report.path)/sites/$(params.module)
   workspaces:
