@@ -37,7 +37,9 @@ Note: the openshift image registry wants the password in the form of a token .. 
     oc extract secret/crc-creds-skopeo --to=-
     oc whoami -t
 
-Regenerate the secret when it has expired.
+Regenerate the secret when it has expired:
+
+    bash scripts/pipeline/recycle-crc-skopeo-secret.sh 
 
 
 # Run the security pipeline
