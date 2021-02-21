@@ -75,7 +75,7 @@ Click on the link "dependency-check:aggregate":
 
 ![OWASP](../../images/owasp-dependency-check-2.png?raw=true "Title")
 
-Take some time to explore the vulnerabilties.
+Take some time to explore the vulnerabilties. Click on the links in the report to visit the NIST database that provides guidance on how to fix the vulnerabilities. 
 
 # Levelling up
 
