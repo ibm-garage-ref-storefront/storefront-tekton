@@ -83,8 +83,15 @@ spec:
         - name: images-url
           workspace: images-url
     - name: sonar-scan
+      params:
+      - name: git-url
+        value: $(params.git-url)
+      - name: git-revision
+        value: $(params.git-revision)   
+      - name: app-name
+        value: $(params.app-name)              
       taskRef:
-        name: aot-mockup
+        name: ibm-kabanero-java-test
       runAfter: 
       - copy-2-quay
       - copy-2-icr
