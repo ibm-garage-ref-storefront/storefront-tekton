@@ -112,5 +112,5 @@ spec:
             -Dsonar.projectKey=${APP_NAME} \
             -Dsonar.java.binaries=${SONARQUBE_JAVA_BINARIES_PATH}
           else
-              echo "Skipping Sonar Qube step for now but include"
+              echo "Skipping Sonar Qube step for now because SONARQUBE_URL has not been configured"
           fi

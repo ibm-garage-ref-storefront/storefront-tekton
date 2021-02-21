@@ -104,3 +104,9 @@ oc secret link appsody-sa crc-creds-skopeo
 oc secret link appsody-sa icr-creds-skopeo
 oc secret link appsody-sa quay-creds-skopeo
 
+# Provide Access to SonarQube:
+echo "Setup Access to SonarQube"
+cp scripts/sonar_qube_config.sh /tmp/${WORKSPACE}/sonar_qube_config.sh
+sed -i "s/NAMESPACE/${NAMESPACE}/g" /tmp/${WORKSPACE}/sonar_qube_config.sh
+sed -i "s/SONAR_QUBE_PAT/${SONAR_QUBE_PAT}/g" /tmp/${WORKSPACE}/sonar_qube_config.sh
+bash /tmp/${WORKSPACE}/sonar_qube_config.sh
