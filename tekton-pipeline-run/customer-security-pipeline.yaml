@@ -17,3 +17,6 @@ spec:
   workspaces:
     - name: images-url
       emptyDir: {}
+    - name: report
+      persistentvolumeclaim:
+        claimName: httpd-pvc

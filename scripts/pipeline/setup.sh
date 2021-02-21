@@ -74,6 +74,9 @@ do
     esac
 done    
 
+# For the DevSecOps scan: this fork has the owasp dependency checker plugin
+oc apply -f tekton-resources/customer-ms/customer-ms-spring-fork.yaml 
+
 # The scopeo secrets:
 cp skopeo/crc-secret.yaml /tmp/$WORKSPACE/crc-secret.yaml
 cp skopeo/icr-secret.yaml /tmp/$WORKSPACE/icr-secret.yaml

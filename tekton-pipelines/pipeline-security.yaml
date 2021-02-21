@@ -21,6 +21,18 @@ spec:
       description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
       name: destination-url-quay
       type: string        
+    - default: 'https://github.com/ibm-garage-ref-storefront/customer-ms-spring'
+      description: A git repo that contains a java application that is build using maven.
+      name: git-url
+      type: string    
+    - default: 'master'
+      description: The revision to pull and build.
+      name: git-revision
+      type: string  
+    - default: 'customer-ms-spring'
+      description: The name of the service to pull and build.
+      name: app-name
+      type: string        
   tasks:
     - name: appsody-build
       taskRef:
@@ -78,7 +90,17 @@ spec:
       - copy-2-icr
     - name: owasp-scan
       taskRef:
-        name: aot-mockup
+        name: kabanero-spring-boot2-task
+      resources:
+        inputs:
+        - name: git-source
+          resource: git-source
+      params:
+      - name: module
+        value: $(params.app-name)
+      workspaces:
+        - name: report
+          workspace: report  
       runAfter: 
       - copy-2-quay
       - copy-2-icr
@@ -109,3 +131,4 @@ spec:
       - trivy-va-scan      
   workspaces:
     - name: images-url        
+    - name: report

@@ -57,13 +57,25 @@ Notes:
 - the pipeline builds the customer image stream that is used by the customer-ms-spring microservice.
 - if you want to scan a different image then please run the pipeline with different parameters.
 
-# Check the image CVE status in IBM Container Registry 
+# Checks
+
+## a) Check the image CVE status in IBM Container Registry 
 
 ![ICR VA](../../images/ICR.png?raw=true "Title")
 
-# Check the image CVE status in Redhat Quay Container Registry 
+## b) Check the image CVE status in Redhat Quay Container Registry 
 
 ![Quay VA](../../images/QUAY.png?raw=true "Title")
+
+## c) Check the vulnerabilities  that were detected by the OWASP dependency checker
+
+![Report](../../images/owasp-dependency-check-1.png?raw=true "Title")
+
+Click on the link "dependency-check:aggregate":
+
+![OWASP](../../images/owasp-dependency-check-2.png?raw=true "Title")
+
+Take some time to explore the vulnerabilties.
 
 # Levelling up
 
