@@ -100,9 +100,6 @@ spec:
         value: $(params.app-name)              
       taskRef:
         name: ibm-kabanero-java-test
-      runAfter: 
-      - copy-2-quay
-      - copy-2-icr
     - name: owasp-scan
       taskRef:
         name: kabanero-spring-boot2-task
@@ -116,15 +113,11 @@ spec:
       workspaces:
         - name: report
           workspace: report  
-      runAfter: 
-      - copy-2-quay
-      - copy-2-icr
     - name: quay-va-scan
       taskRef:
         name: aot-mockup
       runAfter: 
-      - sonar-scan
-      - owasp-scan
+      - copy-2-quay
     - name: icr-va-scan
       taskRef:
         name: ibm-img-scan-ibm
@@ -134,21 +127,21 @@ spec:
       - name: scan-image
         value: $(params.scan-image-by-icr)     
       runAfter: 
-      - sonar-scan
-      - owasp-scan
+      - copy-2-icr
     - name: trivy-va-scan
       taskRef:
         name: aot-mockup
       runAfter: 
-      - sonar-scan
-      - owasp-scan
+      - appsody-build
     - name: roll-out
       taskRef:
         name: aot-mockup
       runAfter: 
       - icr-va-scan
       - quay-va-scan
-      - trivy-va-scan      
+      - trivy-va-scan   
+      - owasp-scan
+      - sonar-scan          
   workspaces:
     - name: images-url        
     - name: report
