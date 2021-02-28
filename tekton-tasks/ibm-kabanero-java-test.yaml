@@ -84,17 +84,11 @@ spec:
               name: sonarqube-access
               key: SONARQUBE_URL
               optional: true
-        - name: SONARQUBE_USER
+        - name: SONARQUBE_LOGIN
           valueFrom:
             secretKeyRef:
               name: sonarqube-access
-              key: SONARQUBE_USER
-              optional: true
-        - name: SONARQUBE_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: sonarqube-access
-              key: SONARQUBE_PASSWORD
+              key: SONARQUBE_LOGIN
               optional: true
       script: |
           APP_NAME=$(params.app-name)
@@ -106,8 +100,7 @@ spec:
           fi
           if [ -n "${SONARQUBE_URL}" ]; then
             sonar-scanner \
-            -Dsonar.login=${SONARQUBE_USER} \
-            -Dsonar.password=${SONARQUBE_PASSWORD} \
+            -Dsonar.login=${SONARQUBE_LOGIN} \
             -Dsonar.host.url=${SONARQUBE_URL} \
             -Dsonar.projectKey=${APP_NAME} \
             -Dsonar.java.binaries=${SONARQUBE_JAVA_BINARIES_PATH}
