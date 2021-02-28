@@ -92,7 +92,7 @@ Download and Install Maven:
     mv Downloads/apache-maven-3.6.3-bin.tar.gz .
     tar xvf apache-maven-3.6.3-bin.tar.gz 
     cd bin
-    ln -sf /home/ronald/apache-maven-3.6.3/bin/mvn mvn
+    ln -sf /home/kitty-catt/apache-maven-3.6.3/bin/mvn mvn
     mvn -version
     mvn install -q -f aspects/security/appsody-boot2-pom.xml 
 
