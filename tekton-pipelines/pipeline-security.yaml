@@ -28,7 +28,11 @@ spec:
     - default: "true"
       description: Scan the image for vulnerabilities
       name: scan-image-by-icr
-      type: string         
+      type: string   
+    - default: 'kitty_catt/customer-build'
+      description: The URL that is scanned by quay.io
+      name: image-url-quay
+      type: string             
     - default: 'https://github.com/ibm-garage-ref-storefront/customer-ms-spring'
       description: A git repo that contains a java application that is build using maven.
       name: git-url
@@ -115,7 +119,10 @@ spec:
           workspace: report  
     - name: quay-va-scan
       taskRef:
-        name: aot-mockup
+        name: ibm-quay-cve-check
+      params:
+      - name: image
+        value: $(params.image-url-quay)
       runAfter: 
       - copy-2-quay
     - name: icr-va-scan
