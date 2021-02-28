@@ -84,7 +84,32 @@ Take some time to explore the vulnerabilties. Click on the links in the report t
 
 # Levelling up
 
-## a) Level up the routes from HTTP to HTTPS
+## a) install Snyk
+
+Download and Install Maven:
+
+    cd ~
+    mv Downloads/apache-maven-3.6.3-bin.tar.gz .
+    tar xvf apache-maven-3.6.3-bin.tar.gz 
+    cd bin
+    ln -sf /home/ronald/apache-maven-3.6.3/bin/mvn mvn
+    mvn -version
+    mvn install -q -f aspects/security/appsody-boot2-pom.xml 
+
+Install the Redhat Dependency Analytics [plugin](https://marketplace.visualstudio.com/items?itemName=redhat.fabric8-analytics) in vs code.
+
+Clone the customer-ms-spring microservice [repo](https://github.com/kitty-catt/customer-ms-spring) and inspect it with Snyk.
+
+Create a free Snyk account and get your token.
+
+Inspect the report.
+
+![Report](../../images/snyk.png?raw=true "Title")
+
+Create a clone of the repo. See if you can improve the security of the image via the snyk & owasp report suggestions. Update the tekton resource to build your clone. 
+
+
+## b) Level up the routes from HTTP to HTTPS
 
 The default routes is are plain text http over tcp, ... so vulnerable to eavesdropping. Lets level them up to encrypted routes. 
 
