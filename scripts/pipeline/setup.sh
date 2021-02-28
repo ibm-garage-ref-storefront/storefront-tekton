@@ -116,3 +116,10 @@ cp scripts/sonar_qube_config.sh /tmp/${WORKSPACE}/sonar_qube_config.sh
 sed -i "s/NAMESPACE/${NAMESPACE}/g" /tmp/${WORKSPACE}/sonar_qube_config.sh
 sed -i "s/SONAR_QUBE_PAT/${SONAR_QUBE_PAT}/g" /tmp/${WORKSPACE}/sonar_qube_config.sh
 bash /tmp/${WORKSPACE}/sonar_qube_config.sh
+
+oc create secret generic ibmcloud-apikey --from-literal APIKEY=${ICR_API_KEY}
+
+oc delete configmap ibmcloud-config 2>/dev/null
+oc create configmap ibmcloud-config \
+    --from-literal RESOURCE_GROUP=default \
+    --from-literal REGION=eu-de
