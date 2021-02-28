@@ -16,6 +16,12 @@ oc apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/skope
 oc apply -f tekton-tasks/ibm-kabanero-java-test.yaml 
 oc create -f tekton-tasks/kabanero-spring-boot2.yaml
 
+# the official one:
+oc create -f https://raw.githubusercontent.com/IBM/ibm-garage-tekton-tasks/main/tasks/3-img-scan-ibm.yaml
+
+# slack-channel enabled:
+#oc create -f https://raw.githubusercontent.com/kitty-catt/ibm-garage-tekton-tasks/main/tasks/3-img-scan-ibm.yaml
+
 # service account
 oc create sa appsody-sa
 
