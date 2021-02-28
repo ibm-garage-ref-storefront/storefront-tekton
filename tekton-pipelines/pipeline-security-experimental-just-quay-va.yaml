@@ -21,7 +21,7 @@ spec:
       description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
       name: destination-url-quay
       type: string    
-    - default: 'quay.io/kitty_catt/customer-build:latest'
+    - default: 'kitty_catt/customer-build'
       description: The URL that is scanned by quay.io
       name: image-url-quay
       type: string       
