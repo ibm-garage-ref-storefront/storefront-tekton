@@ -124,3 +124,8 @@ oc delete configmap ibmcloud-config 2>/dev/null
 oc create configmap ibmcloud-config \
     --from-literal RESOURCE_GROUP=default \
     --from-literal REGION=eu-de
+
+echo "Create access key to slack at ibm"
+oc create secret generic slack-access \
+ --from-literal=slack-url=${SLACK_URL} \
+ --from-literal=slack-channel=${SLACK_CHANNEL}

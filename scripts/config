@@ -16,6 +16,10 @@ ICR_API_KEY=
 ICR_EMAIL=kitty-catt@example.com
 ICR_REGISTRY_URL=de.icr.io
 
+#For accessing Slack 
+SLACK_URL=
+SLACK_CHANNEL=#channel-name-here
+
 # The sonarqube access token
 SONAR_QUBE_PAT=
 
