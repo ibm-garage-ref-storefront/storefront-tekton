@@ -42,10 +42,23 @@ spec:
       taskRef:
         name: aot-mockup
     - name: copy-2-icr
+      params:
+      - name: srcImageURL
+        value: $(params.source-url)
+      - name: destImageURL
+        value: $(params.destination-url-icr)
+      - name: srcTLSverify
+        value: 'false'
+      - name: destTLSverify
+        value: 'true'
       taskRef:
-        name: aot-mockup
+        kind: Task
+        name: skopeo-copy
       runAfter: 
-      - appsody-build      
+      - appsody-build   
+      workspaces:
+        - name: images-url
+          workspace: images-url         
     - name: copy-2-quay
       taskRef:
         name: aot-mockup
