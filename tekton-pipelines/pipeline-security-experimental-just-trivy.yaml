@@ -24,7 +24,11 @@ spec:
     - default: 'de.icr.io/kitty-catt/customer-build:latest'
       description: the url of the image that will be scanned by ICR VA
       name: image-url-icr
-      type: string        
+      type: string  
+    - default: 'image-registry.openshift-image-registry.svc:5000/full-bc/customer:latest'
+      description: the url of the image that will be scanned by ICR VA
+      name: image-url-trivy
+      type: string                 
     - default: 'https://github.com/ibm-garage-ref-storefront/customer-ms-spring'
       description: A git repo that contains a java application that is build using maven.
       name: git-url
@@ -42,23 +46,10 @@ spec:
       taskRef:
         name: aot-mockup
     - name: copy-2-icr
-      params:
-      - name: srcImageURL
-        value: $(params.source-url)
-      - name: destImageURL
-        value: $(params.destination-url-icr)
-      - name: srcTLSverify
-        value: 'false'
-      - name: destTLSverify
-        value: 'true'
       taskRef:
-        kind: Task
-        name: skopeo-copy
+        name: aot-mockup
       runAfter: 
       - appsody-build   
-      workspaces:
-        - name: images-url
-          workspace: images-url         
     - name: copy-2-quay
       taskRef:
         name: aot-mockup
@@ -85,11 +76,11 @@ spec:
         name: ibm-img-scan-trivy
       params:
       - name: image-url
-        value: $(params.image-url-icr)
+        value: $(params.image-url-trivy)
       - name: scan-image
         value: "true"
       runAfter: 
-      - copy-2-icr
+      - appsody-build
     - name: roll-out
       taskRef:
         name: aot-mockup

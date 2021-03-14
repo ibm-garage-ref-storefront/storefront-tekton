@@ -16,6 +16,7 @@ oc apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/skope
 oc apply -f tekton-tasks/ibm-kabanero-java-test.yaml 
 oc create -f tekton-tasks/kabanero-spring-boot2.yaml
 oc create -f https://raw.githubusercontent.com/IBM/ibm-garage-tekton-tasks/main/tasks/3-img-scan-trivy.yaml
+oc apply -f tekton-tasks/aot-mockup.yaml 
 
 # the official one does not work on Feb 28.
 # https://github.com/IBM/ibm-garage-tekton-tasks/issues/98
