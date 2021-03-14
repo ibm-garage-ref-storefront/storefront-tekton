@@ -20,7 +20,7 @@ spec:
       command: ['/bin/bash']
       args:
         - -c
-        - "cd /workspace/$gitsource && appsody build -v --buildah --buildah-options='--format=docker' -t $(inputs.resources.docker-image.url) -f $(inputs.params.app-deploy-file-name)"
+        - "cd /workspace/$gitsource && appsody build -v --buildah --buildah-options='--format=oci --storage-driver=vfs --layers' -t $(inputs.resources.docker-image.url) -f $(inputs.params.app-deploy-file-name)"
       env:
         - name: gitsource
           value: git-source
