@@ -9,7 +9,8 @@ oc apply -f $HERE/tekton-pipelines/pipeline-deploy.yaml
 oc apply -f $HERE/tekton-pipelines/pipeline-security.yaml 
 
 # pipeline tasks
-oc apply -f $HERE/tekton-tasks/appsody-build-push.yaml 
+#oc apply -f $HERE/tekton-tasks/appsody-build-push.yaml 
+oc apply -f $HERE/tekton-tasks/appsody-build-push-v2.yaml 
 oc apply -f $HERE/tekton-tasks/ibm-quay-cve-check.yaml 
 oc apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/skopeo-copy/0.1/skopeo-copy.yaml
 #oc apply -f https://raw.githubusercontent.com/IBM/ibm-garage-tekton-tasks/main/tasks/1-java-maven-test.yaml
