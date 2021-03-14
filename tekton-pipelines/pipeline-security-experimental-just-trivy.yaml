@@ -9,7 +9,7 @@ spec:
     - name: docker-image
       type: image
   params:
-    - default: 'docker://default-route-openshift-image-registry.apps-crc.testing/full-bc/customer:latest'
+    - default: 'docker://image-registry.openshift-image-registry.svc:5000/pipelines/customer:latest'
       description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
       name: source-url
       type: string
@@ -25,7 +25,7 @@ spec:
       description: the url of the image that will be scanned by ICR VA
       name: image-url-icr
       type: string  
-    - default: 'image-registry.openshift-image-registry.svc:5000/full-bc/customer:latest'
+    - default: 'image-registry.openshift-image-registry.svc:5000/pipelines/customer:latest'
       description: the url of the image that will be scanned by ICR VA
       name: image-url-trivy
       type: string                 
