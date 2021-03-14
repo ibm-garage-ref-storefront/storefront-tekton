@@ -20,7 +20,7 @@ spec:
       command: ['/bin/bash']
       args:
         - -c
-        - "cd /workspace/$gitsource && appsody build -v --buildah --buildah-options='--format=oci --disable-compression' -t $(inputs.resources.docker-image.url) -f $(inputs.params.app-deploy-file-name)"
+        - "cd /workspace/$gitsource && appsody build -v --buildah --buildah-options='--format=oci --disable-compression=false' -t $(inputs.resources.docker-image.url) -f $(inputs.params.app-deploy-file-name)"
       env:
         - name: gitsource
           value: git-source
@@ -31,7 +31,7 @@ spec:
       securityContext:
         privileged: true
       image: appsody/appsody-buildah:0.6.5-buildah1.9.0
-      command: ['buildah', 'push', '--tls-verify=false', '--disable-compression', '$(inputs.resources.docker-image.url)', 'docker://$(inputs.resources.docker-image.url)']
+      command: ['buildah', 'push', '--tls-verify=false', '--disable-compression=false', '$(inputs.resources.docker-image.url)', 'docker://$(inputs.resources.docker-image.url)']
       volumeMounts:
          - mountPath: /var/lib/containers
            name: varlibcontainers
