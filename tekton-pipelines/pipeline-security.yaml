@@ -9,7 +9,7 @@ spec:
     - name: docker-image
       type: image
   params:
-    - default: 'docker://default-route-openshift-image-registry.apps-crc.testing/full-bc/customer:latest'
+    - default: 'docker://image-registry.openshift-image-registry.svc:5000/full-bc/customer:latest'
       description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
       name: source-url
       type: string
