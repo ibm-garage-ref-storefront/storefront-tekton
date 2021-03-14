@@ -23,7 +23,7 @@ oc create -f https://raw.githubusercontent.com/IBM/ibm-garage-tekton-tasks/main/
 
 # slack-channel enabled:
 # oc create -f https://raw.githubusercontent.com/kitty-catt/ibm-garage-tekton-tasks/main/tasks/3-img-scan-ibm.yaml
-oc apply -f tasks/ibm-img-scan-ibm.yaml 
+oc apply -f tekton-tasks/ibm-img-scan-ibm.yaml
 # service account
 oc create sa appsody-sa
 
