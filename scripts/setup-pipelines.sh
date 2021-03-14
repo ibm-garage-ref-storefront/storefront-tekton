@@ -43,3 +43,6 @@ oc create is customer -n full-bc
 oc policy add-role-to-user system:image-puller developer
 
 oc project pipelines
+oc policy add-role-to-user edit system:serviceaccount:pipelines:appsody-sa
+oc policy add-role-to-user admin system:serviceaccount:pipelines:appsody-sa
+oc policy add-role-to-user admin system:serviceaccount:pipelines:pipeline
