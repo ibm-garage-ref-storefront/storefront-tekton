@@ -64,7 +64,11 @@ Notes:
 - the pipeline builds the customer image stream that is used by the customer-ms-spring microservice.
 - if you want to scan a different image then please run the pipeline with different parameters.
 
-You will find it will fail quickly on the first step. That is because the base image was not secure.
+You will find it will fail quickly on the first step. 
+
+![Fail](../../images/quick-fail.png?raw=true "Title")
+
+That is because the base image was not secure.
 
 Give it a new go:
 
