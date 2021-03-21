@@ -45,7 +45,7 @@ spec:
       description: The name of the service to pull and build.
       name: app-name
       type: string   
-    - default: 'default-route-openshift-image-registry.apps-crc.testing/tools-images/openjdk18-openshift:1.8'
+    - default: 'registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:1.8'
       description: The URL of the openjdk18-openshift builder image.
       name: image-url-openjdk18-openshift
       type: string     
