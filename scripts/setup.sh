@@ -25,6 +25,10 @@ bash $HERE/scripts/pipeline/setup.sh
 echo ""
 
 echo "-----------------------------------------------------------------------------"
+bash $HERE/scripts/tools-images/setup.sh
+echo ""
+
+echo "-----------------------------------------------------------------------------"
 bash $HERE/scripts/catalog/setup.sh
 echo ""
 
