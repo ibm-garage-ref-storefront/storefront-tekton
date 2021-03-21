@@ -45,6 +45,10 @@ spec:
       description: The URL of the openjdk18-openshift builder image.
       name: image-url-openjdk18-openshift
       type: string        
+    - default: "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
+      description: The threshold where the trivy scan fill fail the pipeline.
+      name: trivy-severity
+      type: string        
   tasks:
     - name: scan-openjdk18-openshift-image
       taskRef:
@@ -53,22 +57,13 @@ spec:
       - name: image-url
         value: $(params.image-url-openjdk18-openshift)
       - name: scan-image
-        value: "true"          
+        value: "true"  
+      - name: TRIVY_SEVERITY
+        value: $(params.trivy-severity)
     - name: appsody-build
       taskRef:
-        name: appsody-build-push-deploy-task
-      resources:
-        inputs:
-        - name: git-source
-          resource: git-source
-        - name: docker-image
-          resource: docker-image
-      params:
-      - name: app-deploy-file-name
-        value: app-deploy.yaml
+        name: aot-mockup
       runAfter:
-        - scan-appsody-image
-        - scan-kabanero-spring-boot-image
         - scan-openjdk18-openshift-image
     - name: copy-2-icr
       taskRef:

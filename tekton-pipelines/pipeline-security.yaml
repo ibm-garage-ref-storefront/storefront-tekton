@@ -48,7 +48,11 @@ spec:
     - default: 'default-route-openshift-image-registry.apps-crc.testing/tools-images/openjdk18-openshift:1.8'
       description: The URL of the openjdk18-openshift builder image.
       name: image-url-openjdk18-openshift
-      type: string             
+      type: string     
+    - default: "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
+      description: The threshold where the trivy scan fill fail the pipeline.
+      name: trivy-severity
+      type: string                
   tasks:
     - name: scan-openjdk18-openshift-image
       taskRef:
@@ -57,7 +61,9 @@ spec:
       - name: image-url
         value: $(params.image-url-openjdk18-openshift)
       - name: scan-image
-        value: "true"    
+        value: "true"  
+      - name: TRIVY_SEVERITY
+        value: $(params.trivy-severity)
     - name: appsody-build
       taskRef:
         name: appsody-build-push-deploy-task
