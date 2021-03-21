@@ -44,8 +44,20 @@ spec:
     - default: 'customer-ms-spring'
       description: The name of the service to pull and build.
       name: app-name
-      type: string        
+      type: string   
+    - default: 'default-route-openshift-image-registry.apps-crc.testing/tools-images/openjdk18-openshift:1.8'
+      description: The URL of the openjdk18-openshift builder image.
+      name: image-url-openjdk18-openshift
+      type: string             
   tasks:
+    - name: scan-openjdk18-openshift-image
+      taskRef:
+        name: ibm-img-scan-trivy
+      params:
+      - name: image-url
+        value: $(params.image-url-openjdk18-openshift)
+      - name: scan-image
+        value: "true"    
     - name: appsody-build
       taskRef:
         name: appsody-build-push-deploy-task
@@ -58,6 +70,8 @@ spec:
       params:
       - name: app-deploy-file-name
         value: app-deploy.yaml
+      runAfter: 
+      - scan-openjdk18-openshift-image
     - name: copy-2-icr
       params:
       - name: srcImageURL
