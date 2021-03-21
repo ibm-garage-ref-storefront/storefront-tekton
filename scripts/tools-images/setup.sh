@@ -18,3 +18,5 @@ oc import-image openjdk18-openshift:1.8 \
 --confirm
 
 oc get is
+
+oc policy add-role-to-group system:image-puller system:serviceaccounts:pipelines

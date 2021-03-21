@@ -41,7 +41,7 @@ spec:
       description: The URL of the appsody builder image.
       name: image-url-kabanero-spring-boot-image
       type: string  
-    - default: 'default-route-openshift-image-registry.apps-crc.testing/tools-images/openjdk18-openshift:1.8'
+    - default: 'image-registry.openshift-image-registry.svc.cluster.local:5000/tools-images/openjdk18-openshift:1.8'
       description: The URL of the openjdk18-openshift builder image.
       name: image-url-openjdk18-openshift
       type: string        
