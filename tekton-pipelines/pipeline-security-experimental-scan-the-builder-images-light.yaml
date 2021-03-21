@@ -46,22 +46,6 @@ spec:
       name: image-url-openjdk18-openshift
       type: string        
   tasks:
-    - name: scan-appsody-image
-      taskRef:
-        name: ibm-img-scan-trivy
-      params:
-      - name: image-url
-        value: $(params.image-url-appsody-image)
-      - name: scan-image
-        value: "true" 
-    - name: scan-kabanero-spring-boot-image
-      taskRef:
-        name: ibm-img-scan-trivy
-      params:
-      - name: image-url
-        value: $(params.image-url-kabanero-spring-boot-image)
-      - name: scan-image
-        value: "true"     
     - name: scan-openjdk18-openshift-image
       taskRef:
         name: ibm-img-scan-trivy

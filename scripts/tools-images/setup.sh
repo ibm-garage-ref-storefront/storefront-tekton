@@ -10,4 +10,8 @@ oc import-image appsody-buildah:0.6.5-buildah1.9.0 \
 --from=appsody/appsody-buildah:0.6.5-buildah1.9.0 \
 --confirm
 
+oc import-image openjdk18-openshift:1.8 \
+--from=registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:1.8 \
+--confirm
+
 oc get is

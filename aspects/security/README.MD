@@ -6,7 +6,14 @@ We will be building the customer image in this excercise.
 
 ![Security Pipeline](../../images/security-pipeline.png?raw=true "Title")
 
+The tekton appsody build log reveals a chained build reveals where openjdk18-openshift:1.8 is used as the parent for the application image that is build:
+
+    grep FROM ~/Downloads/appsody-build.log 
+    [Buildah] STEP 1: FROM kabanero/ubi8-maven:0.10.2 AS compile
+    [Buildah] STEP 16: FROM registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:1.8
+
 In words:
+- the pipeline scans the base image that is used to build the application image (openjdk18-openshift:1.8)
 - the pipeline builds to an internal image stream (e.g. customer);
 - next it copies the image from the internal registry to both quay and IBM container registry;
 - Redhat and IBM container registries will start to analyse the images for vulnerabilities;
