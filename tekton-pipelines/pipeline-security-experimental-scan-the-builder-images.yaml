@@ -1,0 +1,118 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: security-pipeline
+spec:
+  resources:
+    - name: git-source
+      type: git
+    - name: docker-image
+      type: image
+  params:
+    - default: 'docker://default-route-openshift-image-registry.apps-crc.testing/full-bc/customer:latest'
+      description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
+      name: source-url
+      type: string
+    - default: 'docker://de.icr.io/kitty-catt/customer-build:latest'
+      description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
+      name: destination-url-icr
+      type: string       
+    - default: 'docker://quay.io/kitty_catt/customer-build:latest'
+      description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
+      name: destination-url-quay
+      type: string    
+    - default: 'https://github.com/ibm-garage-ref-storefront/customer-ms-spring'
+      description: A git repo that contains a java application that is build using maven.
+      name: git-url
+      type: string    
+    - default: 'master'
+      description: The revision to pull and build.
+      name: git-revision
+      type: string  
+    - default: 'customer-ms-spring'
+      description: The name of the service to pull and build.
+      name: app-name
+      type: string    
+    - default: 'default-route-openshift-image-registry.apps-crc.testing/tools-images/appsody-buildah:0.6.5-buildah1.9.0'
+      description: The URL of the appsody builder image.
+      name: image-url-appsody-image
+      type: string   
+    - default: 'default-route-openshift-image-registry.apps-crc.testing/tools-images/kabanero-java-spring-boot2:0.3'
+      description: The URL of the appsody builder image.
+      name: image-url-kabanero-spring-boot-image
+      type: string  
+  tasks:
+    - name: scan-appsody-image
+      taskRef:
+        name: ibm-img-scan-trivy
+      params:
+      - name: image-url
+        value: $(params.image-url-appsody-image)
+      - name: scan-image
+        value: "true" 
+    - name: scan-kabanero-spring-boot-image
+      taskRef:
+        name: ibm-img-scan-trivy
+      params:
+      - name: image-url
+        value: $(params.image-url-kabanero-spring-boot-image)
+      - name: scan-image
+        value: "true"      
+    - name: appsody-build
+      taskRef:
+        name: appsody-build-push-deploy-task
+      resources:
+        inputs:
+        - name: git-source
+          resource: git-source
+        - name: docker-image
+          resource: docker-image
+      params:
+      - name: app-deploy-file-name
+        value: app-deploy.yaml
+      runAfter:
+        - scan-appsody-image
+        - scan-kabanero-spring-boot-image
+    - name: copy-2-icr
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - appsody-build      
+    - name: copy-2-quay
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - appsody-build      
+    - name: sonar-scan
+      taskRef:
+        name: aot-mockup
+    - name: owasp-scan
+      taskRef:
+        name: aot-mockup 
+    - name: quay-va-scan
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - copy-2-quay
+    - name: icr-va-scan
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - copy-2-icr
+    - name: trivy-va-scan
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - appsody-build
+    - name: roll-out
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - icr-va-scan
+      - quay-va-scan
+      - trivy-va-scan 
+      - owasp-scan
+      - sonar-scan     
+  workspaces:
+    - name: images-url
+    - name: report
