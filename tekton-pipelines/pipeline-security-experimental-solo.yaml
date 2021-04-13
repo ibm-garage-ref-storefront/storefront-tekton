@@ -1,0 +1,56 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: security-pipeline-prevail-2021
+spec:
+  resources:
+    - name: git-source
+      type: git
+    - name: docker-image
+      type: image
+  params:
+    - default: 'docker://default-route-openshift-image-registry.apps-crc.testing/full-bc/customer:latest'
+      description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
+      name: source-url
+      type: string
+    - default: 'docker://de.icr.io/kitty-catt/customer-build:latest'
+      description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
+      name: destination-url-icr
+      type: string       
+    - default: 'docker://quay.io/kitty_catt/customer-build:latest'
+      description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
+      name: destination-url-quay
+      type: string    
+    - default: 'https://github.com/ibm-garage-ref-storefront/customer-ms-spring'
+      description: A git repo that contains a java application that is build using maven.
+      name: git-url
+      type: string    
+    - default: 'master'
+      description: The revision to pull and build.
+      name: git-revision
+      type: string  
+    - default: 'customer-ms-spring'
+      description: The name of the service to pull and build.
+      name: app-name
+      type: string         
+  tasks:
+    - name: jar-build
+      taskRef:
+        name: aot-mockup
+    - name: img-build
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - jar-build      
+    - name: sonar-scan
+      taskRef:
+        name: aot-mockup
+    - name: roll-out
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - img-build
+      - sonar-scan
+  workspaces:
+    - name: images-url
+    - name: report

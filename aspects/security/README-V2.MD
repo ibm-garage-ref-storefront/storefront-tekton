@@ -2,3 +2,5 @@
 
     oc project full-bc
     oc apply -f tekton-resources/customer-ms/customer-ms-spring-solo.yaml
+    oc apply -f tekton-pipelines/pipeline-security-experimental-solo.yaml 
+    oc apply -f tekton-tasks/aot-mockup.yaml 
