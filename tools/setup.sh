@@ -26,3 +26,11 @@ cd httpd
 ./silver-platter.sh 
 cd ..
 echo ""
+
+# Setup nexus
+echo "###################################################################"
+cd nexus
+./install_nexus3-v2.sh
+cd ..
+echo ""
+
