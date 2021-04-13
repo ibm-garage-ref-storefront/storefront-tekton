@@ -25,7 +25,7 @@ spec:
       description: A git repo that contains a java application that is build using maven.
       name: git-url
       type: string    
-    - default: 'master'
+    - default: 'solo'
       description: The revision to pull and build.
       name: git-revision
       type: string  
