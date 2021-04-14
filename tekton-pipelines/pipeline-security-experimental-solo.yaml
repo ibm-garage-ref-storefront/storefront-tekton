@@ -106,17 +106,23 @@ spec:
       taskRef:
         name: aot-mockup
       runAfter: 
-      - artifact-build      
+      - artifact-build     
+    - name: owasp-scan
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+        - mvn-settings        
     - name: sonar-scan
       taskRef:
         name: aot-mockup
       runAfter: 
-        - scan-base-img        
+        - mvn-settings        
     - name: roll-out
       taskRef:
         name: aot-mockup
       runAfter: 
       - img-build
+      - owasp-scan
       - sonar-scan
   workspaces:
     - name: src-workspace
