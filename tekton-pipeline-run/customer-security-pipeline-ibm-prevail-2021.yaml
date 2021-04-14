@@ -28,7 +28,7 @@ spec:
         claimName: maven-repo-pvc
     - name: local-maven-repo
       persistentVolumeClaim:
-        claimName: emu-maven-repo-pvc      
+        claimName: maven-repo-pvc      
     - name: report
       persistentvolumeclaim:
         claimName: httpd-pvc
