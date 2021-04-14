@@ -21,7 +21,7 @@ spec:
       description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
       name: destination-url-quay
       type: string    
-    - default: 'https://github.com/ibm-garage-ref-storefront/customer-ms-spring'
+    - default: 'https://github.com/kitty-catt/customer-ms-spring'
       description: A git repo that contains a java application that is build using maven.
       name: git-url
       type: string    

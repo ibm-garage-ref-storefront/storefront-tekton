@@ -1,0 +1,34 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: customer-security-pipeline-ibm-prevail-2021-
+spec:
+  serviceAccountName: pipeline
+  timeout: "1h0m0s"  
+  pipelineRef:
+    name: security-pipeline-prevail-2021
+  resources:
+    - name: git-source
+      resourceRef:
+        name: customer-source-solo
+    - name: docker-image
+      resourceRef:
+        name: customer-image-internal
+  params:
+    - name: trivy-severity
+      value: "CRITICAL"
+  workspaces:
+    - name: images-url
+      emptyDir: {}
+    - name: maven-settings
+      persistentvolumeclaim:
+        claimName: maven-settings-pvc
+    - name: src-workspace
+      persistentvolumeclaim:
+        claimName: maven-repo-pvc
+    - name: local-maven-repo
+      persistentVolumeClaim:
+        claimName: emu-maven-repo-pvc      
+    - name: report
+      persistentvolumeclaim:
+        claimName: httpd-pvc
