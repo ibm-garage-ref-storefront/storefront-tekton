@@ -78,7 +78,7 @@ spec:
         - $(params.GOALS)
       command:
         - /usr/bin/mvn
-      image: gcr.io/cloud-builders/mvn
+      image: gcr.io/cloud-builders/mvn:3.5.0-jdk-8
       resources: {}
       workingDir: $(workspaces.source.path)/$(params.git-repo-checkout-dir)/$(params.pom-dir)  
   workspaces:
