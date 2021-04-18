@@ -19,7 +19,8 @@ oc apply -f $HERE/tekton-tasks/kabanero-spring-boot2.yaml
 #oc create -f https://raw.githubusercontent.com/IBM/ibm-garage-tekton-tasks/main/tasks/3-img-scan-trivy.yaml
 oc apply -f $HERE/tekton-tasks/ibm-img-scan-trivy.yaml
 oc apply -f $HERE/tekton-tasks/aot-mockup.yaml 
-oc apply -f $HERE/tekton-tasks/ibm-build-tag-push.yaml
+#oc apply -f $HERE/tekton-tasks/ibm-build-tag-push.yaml
+oc apply -f $HERE/tekton-tasks/aot-buildah-task.yaml 
 
 # the official one does not work on Feb 28.
 # https://github.com/IBM/ibm-garage-tekton-tasks/issues/98
