@@ -104,7 +104,20 @@ spec:
           workspace: local-maven-repo
     - name: img-build
       taskRef:
-        name: aot-mockup
+        name: aas-buildah
+        kind: Task
+      resources:
+        inputs:
+        - name: source
+          resource: git-source
+        outputs:
+        - name: image
+          resource: docker-image
+      params:
+      - name: TLSVERIFY
+        value: "false"
+      - name: CONTEXT
+        value: $(params.pom-dir)        
       runAfter: 
       - artifact-build     
     - name: owasp-scan
