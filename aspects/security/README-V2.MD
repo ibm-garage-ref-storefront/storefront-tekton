@@ -17,6 +17,7 @@ It is assumed that you have allready setup the pipelines and the tools-images pr
     oc apply -f tekton-tasks/aot-buildah-task.yaml
     oc apply -f pvc --recursive
     oc secret link pipeline crc-creds-skopeo
+    oc policy add-role-to-user system:image-pusher system:serviceaccount:full-bc:pipeline
 
 ## Run it
 
