@@ -2,8 +2,10 @@
 
 ## Setup the security pipeline
 
+It is assumed that you have allready setup the pipelines project.
+
     oc login -u developer
-    oc new-project full-bc
+    oc project pipelines
 
     oc apply -f tekton-resources/customer-ms/customer-ms-spring-solo.yaml
     oc apply -f tekton-pipelines/pipeline-security-experimental-solo.yaml 
