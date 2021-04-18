@@ -104,7 +104,7 @@ spec:
           workspace: local-maven-repo
     - name: img-build
       taskRef:
-        name: aas-buildah
+        name: aot-buildah
         kind: Task
       resources:
         inputs:
