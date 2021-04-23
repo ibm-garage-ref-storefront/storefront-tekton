@@ -11,10 +11,10 @@ metadata:
   name: openshift-pipelines-operator
   namespace: openshift-operators
 spec:
-  channel: ocp-4.6
+  channel: preview
   name: openshift-pipelines-operator-rh
   source: redhat-operators
   sourceNamespace: openshift-marketplace
 EOF
 
-echo "note: we are living in December 2020 now, please update the channel version as things unfold."
+echo "this channel was configured in April 2021, update when things unfold."
