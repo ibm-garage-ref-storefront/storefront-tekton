@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineRun
 metadata:
-  generateName: intake-
+  generateName: intake-ubi8-
 spec:
   params:
     - name: image-url
