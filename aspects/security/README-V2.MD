@@ -10,19 +10,7 @@ It is assumed that you have allready setup the pipelines project.
 
     bash scripts/tools-images/setup.sh 
 
-    oc project pipelines
 
-    oc apply -f tekton-resources/customer-ms/customer-ms-spring-solo.yaml
-    oc apply -f tekton-pipelines/security-pipeline-prevail-2021.yaml 
-    oc apply -f tekton-pipelines/image-intake-pipeline-prevail-2021.yaml 
-    oc apply -f tekton-tasks/aot-mockup.yaml 
-    oc apply -f tekton-tasks/aot-maven-settings.yaml 
-    oc apply -f tekton-tasks/aot-maven-task.yaml 
-    oc apply -f tekton-tasks/aot-buildah-task.yaml
-    oc apply -f tekton-tasks/ibm-img-scan-trivy.yaml
-    oc apply -f pvc --recursive
-    oc secret link pipeline crc-creds-skopeo
-    oc policy add-role-to-user system:image-pusher system:serviceaccount:full-bc:pipeline
 
 ## Run the image-intake-pipeline-prevail-2021 pipeline
 
