@@ -16,7 +16,7 @@ It is assumed that you have allready setup the pipelines project.
 
 ![Fail](../../images/image-intake-pipeline-prevail-2021.png?raw=true "Title")
 
-The images that are used to build the application image are scanned and if they are clean then they are imported into the tools-
+The images that are used to build the application image are scanned and if they are clean then they are imported into the tools-images project.
 
 Create a pipeline run that will fail when vulnerabilities of level  'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL' are detected and follow it:
 
