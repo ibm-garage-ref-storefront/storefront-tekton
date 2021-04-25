@@ -24,8 +24,9 @@ oc new-project tools-images
 
 #oc get is
 
-oc policy add-role-to-group system:image-puller system:serviceaccounts:pipelines
-oc policy add-role-to-group system:image-pusher system:serviceaccounts:pipelines
+#oc policy add-role-to-user system:image-puller system:serviceaccount:pipelines:pipeline -n tools-images
+#oc policy add-role-to-user system:image-pusher system:serviceaccount:pipelines:pipeline -n tools-images
+oc policy add-role-to-user edit system:serviceaccount:pipelines:pipeline -n tools-images
 
 # I want to give the developer view access on this namespace
 oc policy add-role-to-user view developer -n tools-images

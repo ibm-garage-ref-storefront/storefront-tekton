@@ -32,8 +32,38 @@ spec:
       - name: TRIVY_SEVERITY
         value: $(params.trivy-severity)
     - name: import-image
-      taskRef:
-        name: aot-mockup
+      params:
+        - name: SCRIPT
+          value: |
+            #!/bin/bash -e
+
+            set -xv
+
+            oc whoami
+
+            echo "importing image-url: $(params.image-url)"
+            echo "image-name: $(params.image-name)"
+            echo "image-tag: $(params.image-tag)"
+
+            oc import-image $(params.image-name):$(params.image-tag) \
+             --from=$(params.image-url) \
+             --reference-policy=local \
+             --confirm
+
+            # The Golden Guidance:
+            source=pipelines/$(params.image-name):$(params.image-tag)
+            target=tools-images/$(params.image-name):for-use
+            oc tag ${source} ${target} 
+
+            # note to author: the visual tekton task has an option to supply a git repo to clone. 
+            # I have removed that repo in this manifestation of the openshift-client resource.
+
+        - name: ARGS
+          value:
+            - ""
       runAfter:
-        -  scan-image
+        - scan-image
+      taskRef:
+        kind: ClusterTask
+        name: openshift-client  
 
