@@ -1,0 +1,31 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: image-intake-pipeline-prevail-2021
+spec:
+  params:
+    - default: 'image-registry.openshift-image-registry.svc.cluster.local:5000/tools-images/openjdk18-openshift:1.8'
+      description: The URL of the openjdk18-openshift builder image.
+      name: image-url-openjdk18-openshift
+      type: string        
+    - default: "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
+      description: The threshold where the trivy scan fill fail the pipeline.
+      name: trivy-severity
+      type: string        
+  tasks:
+    - name: scan-image
+      taskRef:
+        name: ibm-img-scan-trivy
+      params:
+      - name: image-url
+        value: $(params.image-url-openjdk18-openshift)
+      - name: scan-image
+        value: "true"  
+      - name: TRIVY_SEVERITY
+        value: $(params.trivy-severity)
+    - name: import-image
+      taskRef:
+        name: aot-mockup
+      runAfter:
+        -  scan-image
+

@@ -12,16 +12,20 @@ oc new-project tools-images
 #--reference-policy='local' \
 #--confirm
 
-oc import-image openjdk18-openshift:1.8 \
---from=registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:1.8 \
---reference-policy='local' \
---confirm
+#oc import-image openjdk18-openshift:1.8 \
+#--from=registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:1.8 \
+#--reference-policy='local' \
+#--confirm
 
-oc import-image ubi:8.0 \
---from=registry.access.redhat.com/ubi8/ubi:8.0 \
---reference-policy='local' \
---confirm
+#oc import-image ubi:8.0 \
+#--from=registry.access.redhat.com/ubi8/ubi:8.0 \
+#--reference-policy='local' \
+#--confirm
 
-oc get is
+#oc get is
 
 oc policy add-role-to-group system:image-puller system:serviceaccounts:pipelines
+oc policy add-role-to-group system:image-pusher system:serviceaccounts:pipelines
+
+# I want to give the developer view access on this namespace
+oc policy add-role-to-user view developer -n tools-images
