@@ -27,7 +27,7 @@ Notice that it fails to complete because the scanner detected vulnerabilities.
 
 Create a pipeline run that will fail when vulnerabilities of level  'CRITICAL' are detected and follow it:
 
-    oc create -f scripts/tools-images/scan-ubi-8.0.yaml 
+    oc create -f scripts/tools-images/scan-ubi-8.0-fail-on-criticals-only.yaml 
     scripts/watch-the-pipeline-run.sh
 
 
