@@ -37,13 +37,16 @@ spec:
           value: |
             #!/bin/bash -e
 
-            set -xv
+            #set -xv
 
             oc whoami
+            oc projects
 
             echo "importing image-url: $(params.image-url)"
             echo "image-name: $(params.image-name)"
             echo "image-tag: $(params.image-tag)"
+
+            oc project tools-images
 
             oc import-image $(params.image-name):$(params.image-tag) \
              --from=$(params.image-url) \
@@ -51,7 +54,8 @@ spec:
              --confirm
 
             # The Golden Guidance:
-            source=pipelines/$(params.image-name):$(params.image-tag)
+            #source=pipelines/$(params.image-name):$(params.image-tag)
+            source=tools-images/$(params.image-name):$(params.image-tag)
             target=tools-images/$(params.image-name):for-use
             oc tag ${source} ${target} 
 
