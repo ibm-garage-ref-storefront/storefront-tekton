@@ -1,10 +1,10 @@
-# We will build the customer-ms-spring solo branch
+# Welcome to IBM Prevail 2021
 
-
+We will build the customer-ms-spring solo branch.
 
 ## Setup the security pipelines
 
-It is assumed that you have allready setup the pipelines and the tools-images project.
+It is assumed that you have allready setup the pipelines project.
 
     oc login -u developer
 
@@ -30,9 +30,18 @@ It is assumed that you have allready setup the pipelines and the tools-images pr
 
 The images that are used to build the application image are scanned and if they are clean then they are imported into the tools-
 
-Run the pipeline:
+Create a pipeline run that will fail when vulnerabilities of level  'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL' are detected and follow it:
 
-    PL=$(tkn pr list | grep Running | awk '{ print $1 }') && tkn pr logs -f $PL
+    oc create -f scripts/tools-images/scan-ubi-8.0.yaml 
+    scripts/watch-the-pipeline-run.sh
+
+Notice that it fails to complete because the scanner detected vulnerabilities. 
+
+Create a pipeline run that will fail when vulnerabilities of level  'CRITICAL' are detected and follow it:
+
+    oc create -f scripts/tools-images/scan-ubi-8.0.yaml 
+    scripts/watch-the-pipeline-run.sh
+
 
 ## Run the security-pipeline-prevail-2021 pipeline
 
@@ -42,5 +51,7 @@ The pipeline uses a chained build where:
 
 The FROM image in the Dockerfile is under control of the pipeline run.
 
+Create a pipeline run and follow it:
+
     oc create -f tekton-pipeline-run/customer-security-pipeline-ibm-prevail-2021.yaml
-    PL=$(tkn pr list | grep Running | awk '{ print $1 }') && tkn pr logs -f $PL
+    scripts/watch-the-pipeline-run.sh
