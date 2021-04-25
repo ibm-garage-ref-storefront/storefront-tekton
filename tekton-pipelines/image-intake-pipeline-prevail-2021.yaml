@@ -4,10 +4,14 @@ metadata:
   name: image-intake-pipeline-prevail-2021
 spec:
   params:
-    - default: 'image-registry.openshift-image-registry.svc.cluster.local:5000/tools-images/openjdk18-openshift:1.8'
-      description: The URL of the openjdk18-openshift builder image.
-      name: image-url-openjdk18-openshift
-      type: string        
+    - default: 'registry.access.redhat.com/ubi8/ubi:8.0'
+      description: The URL of the image that we want to scan and import into the tools-images project.
+      name: image-url
+      type: string
+    - default: "ubi:8.0"
+      description: The name of image stream where the image will be imported.
+      name: image-name
+      type: string         
     - default: "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
       description: The threshold where the trivy scan fill fail the pipeline.
       name: trivy-severity
@@ -18,7 +22,7 @@ spec:
         name: ibm-img-scan-trivy
       params:
       - name: image-url
-        value: $(params.image-url-openjdk18-openshift)
+        value: $(params.image-url)
       - name: scan-image
         value: "true"  
       - name: TRIVY_SEVERITY

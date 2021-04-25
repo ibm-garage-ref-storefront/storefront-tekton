@@ -19,6 +19,7 @@ It is assumed that you have allready setup the pipelines and the tools-images pr
     oc apply -f tekton-tasks/aot-maven-settings.yaml 
     oc apply -f tekton-tasks/aot-maven-task.yaml 
     oc apply -f tekton-tasks/aot-buildah-task.yaml
+    oc apply -f tekton-tasks/ibm-img-scan-trivy.yaml
     oc apply -f pvc --recursive
     oc secret link pipeline crc-creds-skopeo
     oc policy add-role-to-user system:image-pusher system:serviceaccount:full-bc:pipeline
@@ -28,6 +29,10 @@ It is assumed that you have allready setup the pipelines and the tools-images pr
 ![Fail](../../images/image-intake-pipeline-prevail-2021.png?raw=true "Title")
 
 The images that are used to build the application image are scanned and if they are clean then they are imported into the tools-
+
+Run the pipeline:
+
+    PL=$(tkn pr list | grep Running | awk '{ print $1 }') && tkn pr logs -f $PL
 
 ## Run the security-pipeline-prevail-2021 pipeline
 
