@@ -42,9 +42,6 @@ spec:
       name: app-name
       type: string         
   tasks:
-    - name: scan-base-img
-      taskRef:
-        name: aot-mockup  
     - name: clone-app-repo
       params:
         - name: url
@@ -58,8 +55,6 @@ spec:
       taskRef:
         kind: ClusterTask
         name: git-clone
-      runAfter: 
-        - scan-base-img
       workspaces:
         - name: output
           workspace: src-workspace

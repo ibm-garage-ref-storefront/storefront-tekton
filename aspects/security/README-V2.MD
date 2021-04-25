@@ -41,6 +41,8 @@ The ubi:for-use image passed the security scan. It will be used for building the
 
 ## Run the security-pipeline-prevail-2021 pipeline
 
+![Fail](../../images/security-pipeline-prevail-2021.png?raw=true "Title")
+
 The pipeline uses a chained build where:
 1. first the artifact is build 
 2. next the Dockerfile is build.
