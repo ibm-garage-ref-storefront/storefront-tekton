@@ -9,7 +9,7 @@ It is assumed that you have allready setup the pipelines project.
     oc login -u developer
 
     bash scripts/tools-images/setup.sh 
-
+    bash scripts/pipeline/mini-setup.sh
 
 
 ## Run the image-intake-pipeline-prevail-2021 pipeline
