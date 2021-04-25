@@ -8,10 +8,14 @@ spec:
       description: The URL of the image that we want to scan and import into the tools-images project.
       name: image-url
       type: string
-    - default: "ubi:8.0"
+    - default: "ubi"
       description: The name of image stream where the image will be imported.
       name: image-name
-      type: string         
+      type: string 
+    - default: "8.0"
+      description: The tag of image stream where the image will be imported.
+      name: image-tag
+      type: string             
     - default: "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
       description: The threshold where the trivy scan fill fail the pipeline.
       name: trivy-severity
