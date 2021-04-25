@@ -30,6 +30,14 @@ Create a pipeline run that will fail when vulnerabilities of level  'CRITICAL' a
     oc create -f scripts/tools-images/scan-ubi-8.0-fail-on-criticals-only.yaml 
     scripts/watch-the-pipeline-run.sh
 
+Explore the images in the tools-images project:
+
+    $ oc get is -n tools-images
+    NAME   IMAGE REPOSITORY                                                           TAGS          UPDATED
+    ubi    default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi   8.0,for-use   12 seconds ago
+
+The ubi:for-use image passed the security scan. It will be used for building the customer-ms-spring microservice. 
+
 
 ## Run the security-pipeline-prevail-2021 pipeline
 
