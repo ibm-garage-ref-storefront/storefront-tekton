@@ -20,6 +20,8 @@ oc secret link pipeline crc-creds-skopeo
 oc policy add-role-to-user system:image-pusher system:serviceaccount:full-bc:pipeline
 oc adm policy add-scc-to-user privileged system:serviceaccount:pipelines:pipeline
 
+oc policy add-role-to-user edit developer
+
 echo "___ ___ __  __   ___                  _ _   ___ __ ___ _ "
 echo "|_ _| _ )  \/  | | _ \_ _ _____ ____ _(_) | |_  )  \_  ) |"
 echo "|  || _ \ |\/| | |  _/  _/ -_) V / _  | | |  / / () / /| |"
