@@ -34,3 +34,4 @@ cd nexus
 cd ..
 echo ""
 
+oc policy add-role-to-user view developer
