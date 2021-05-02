@@ -122,16 +122,15 @@ spec:
         - mvn-settings        
     - name: sonar-scan
       params:
-      - name: git-url
-        value: $(params.git-url)
-      - name: git-revision
-        value: $(params.git-revision)   
       - name: app-name
         value: $(params.app-name)              
       taskRef:
-        name: ibm-kabanero-java-test
+        name: aot-sonar-java
       runAfter: 
-        - mvn-settings        
+        - artifact-build   
+      workspaces:
+        - name: source
+          workspace: src-workspace
     - name: roll-out
       taskRef:
         name: aot-mockup

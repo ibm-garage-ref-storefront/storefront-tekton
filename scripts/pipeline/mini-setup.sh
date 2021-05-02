@@ -15,6 +15,7 @@ oc apply -f tekton-tasks/aot-mockup.yaml
 oc apply -f tekton-tasks/aot-maven-settings.yaml 
 oc apply -f tekton-tasks/aot-maven-task.yaml 
 oc apply -f tekton-tasks/aot-buildah-task.yaml
+oc apply -f tekton-tasks/aot-sonar-java.yaml 
 oc apply -f tekton-tasks/ibm-img-scan-trivy.yaml
 
 oc apply -f pvc --recursive

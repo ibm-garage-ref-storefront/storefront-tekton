@@ -1,0 +1,66 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: aot-sonar-java
+  annotations:
+    description: Executes build, test, and sonarscan logic for a Java maven application
+    app.openshift.io/description: Executes build, test, and sonarscan logic for a Java maven application
+    app.openshift.io/vcs-uri: https://github.com/IBM/ibm-garage-tekton-tasks
+    app.openshift.io/vcs-ref: master
+  labels:
+    version: 0.0.0
+spec:
+  params:
+    - name: app-name
+      default: "my-java-maven-app"
+    - name: sonarqube-java-bin-path
+      default: target
+    - name: sonarqube-cli
+      default: quay.io/ibmgaragecloud/sonarsource-sonar-scanner-cli
+  steps:
+    - name: sonar-scan
+      image: $(params.sonarqube-cli)
+      workingdir: $(workspaces.source.path)
+      env:
+        - name: SONAR_USER_HOME
+          value: $(workspaces.source.path)
+        - name: SONARQUBE_URL
+          valueFrom:
+            secretKeyRef:
+              name: sonarqube-access
+              key: SONARQUBE_URL
+              optional: true
+        - name: SONARQUBE_LOGIN
+          valueFrom:
+            secretKeyRef:
+              name: sonarqube-access
+              key: SONARQUBE_LOGIN
+              optional: true
+      script: |
+          set -xv
+          pwd
+
+          # hardcode on /workspace/source/app-repo-dir/target for now, TODO: override with parameter in run.
+          ls $(workspaces.source.path)/app-repo-dir
+          ls $(workspaces.source.path)/app-repo-dir/$(params.sonarqube-java-bin-path)
+          cd $(workspaces.source.path)/app-repo-dir
+
+          APP_NAME=$(params.app-name)
+          SONARQUBE_JAVA_BINARIES_PATH="$(params.sonarqube-java-bin-path)"
+          if ! command -v sonar-scanner &> /dev/null
+          then
+              echo "Skipping SonarQube step, no task defined"
+              exit 0
+          fi
+          if [ -n "${SONARQUBE_URL}" ]; then
+            sonar-scanner \
+            -Dsonar.login=${SONARQUBE_LOGIN} \
+            -Dsonar.host.url=${SONARQUBE_URL} \
+            -Dsonar.projectKey=${APP_NAME} \
+            -Dsonar.java.binaries=${SONARQUBE_JAVA_BINARIES_PATH}
+          else
+              echo "Skipping Sonar Qube step for now because SONARQUBE_URL has not been configured"
+          fi
+  workspaces:
+    - name: source
+        
