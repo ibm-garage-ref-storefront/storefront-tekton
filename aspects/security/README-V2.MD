@@ -20,9 +20,13 @@ Edit the congiguration file, and modify OCP_USER and OCP_ADMIN unless you are ru
 
 ### B) Setup the OCP cluster tools-images namespace
 
-    oc login -u developer -p developer https://api.crc.testing:6443
-
+    oc login -u kubeadmin -p <password> https://api.crc.testing:6443
     bash scripts/tools-images/setup.sh 
+
+
+### C) Setup the OCP cluster tools-images namespace
+
+    oc login -u developer -p developer https://api.crc.testing:6443
     bash scripts/pipeline/mini-setup.sh
 
 

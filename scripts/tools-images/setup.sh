@@ -1,4 +1,4 @@
-source ~/config
+source  ~/config.bc-full 
 
 oc new-project tools-images
 
@@ -29,4 +29,4 @@ oc new-project tools-images
 oc policy add-role-to-user edit system:serviceaccount:pipelines:pipeline -n tools-images
 
 # I want to give the developer view access on this namespace
-oc policy add-role-to-user view developer -n tools-images
+oc policy add-role-to-user view ${OCP_USER} -n tools-images
