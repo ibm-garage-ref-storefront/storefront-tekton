@@ -1,12 +1,26 @@
 # Welcome to IBM Prevail 2021
 
-We will build the customer-ms-spring solo branch.
+We will build, deploy and test the customer-ms-spring solo branch.
 
-## Setup the security pipelines
+## Setup
 
-It is assumed that you have allready setup the pipelines project.
+### A) Setup the OCP cluster tools namespace
 
-    oc login -u developer
+In the current version of this repo we are working on Redhat CRC. It should work on a regular OCP cluster with some care. 
+
+    oc login -u kubeadmin -p <password> https://api.crc.testing:6443
+    git clone https://github.com/ibm-garage-ref-storefront/storefront-tekton
+    cd storefront-tekton   
+    cp scripts/config ~/config.bc-full
+
+Edit the congiguration file, and modify OCP_USER and OCP_ADMIN unless you are running on CRC:
+
+    vi ~/config.bc-full
+
+
+### B) Setup the OCP cluster tools-images namespace
+
+    oc login -u developer -p developer https://api.crc.testing:6443
 
     bash scripts/tools-images/setup.sh 
     bash scripts/pipeline/mini-setup.sh

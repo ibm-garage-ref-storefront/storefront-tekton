@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+source ~/config.bc-full
+
 oc new-project pipelines
 
 oc apply -f tekton-resources/customer-ms/customer-ms-spring-solo.yaml

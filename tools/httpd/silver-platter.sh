@@ -29,6 +29,9 @@ oc rsh $SP bash -c "mkdir -pv /var/www/html/jmeter"
 oc cp index.html $SP:/var/www/html/index.html -c silver-platter
 oc cp .htaccess $SP:/var/www/html/.htaccess -c silver-platter
 
-oc create route edge silver-platter --service=silver-platter --hostname=silver-platter-tools.apps-crc.testing
-oc annotate route silver-platter --overwrite haproxy.router.openshift.io/hsts_header="max-age=31536000;includeSubDomains;preload"
+#oc create route edge silver-platter --service=silver-platter --hostname=silver-platter-tools.apps-crc.testing
+#oc annotate route silver-platter --overwrite haproxy.router.openshift.io/hsts_header="max-age=31536000;includeSubDomains;preload"
 
+SQ=$(oc get po -n tools | grep silver-platter | cut -f1 -d" ")
+echo "Use the following command to setup port-forwarding to the httpd silver-platter:"
+echo "oc port-forward $SQ -n tools 8080:8080&"

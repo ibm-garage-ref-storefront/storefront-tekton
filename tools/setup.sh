@@ -1,5 +1,10 @@
 #!/bin/bash
-source ~/config
+source ~/config.bc-full 
+
+clear
+
+HERE=$(pwd)
+echo "working from ${HERE}"
 
 oc new-project tools
 
@@ -8,30 +13,27 @@ oc policy add-role-to-group system:image-puller system:serviceaccounts:${NAMESPA
 
 # Setup Openshift pipelines
 echo "###################################################################"
-cd pipelines
+cd ${HERE}/tools/pipelines
 ./install_pipelines.sh
-cd ..
 echo ""
 
 # Setup sonarqube
 echo "###################################################################"
-cd sonarqube
+cd ${HERE}/tools/sonarqube
 ./install_sonarqube.sh
-cd ..
 echo ""
 
 # Setup httpd
 echo "###################################################################"
-cd httpd
+cd ${HERE}/tools/httpd
 ./silver-platter.sh 
-cd ..
 echo ""
+
 
 # Setup nexus
 echo "###################################################################"
-cd nexus
+cd ${HERE}/tools/nexus
 ./install_nexus3-v2.sh
-cd ..
 echo ""
 
-oc policy add-role-to-user view developer
+oc policy add-role-to-user view ${OCP_USER}

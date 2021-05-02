@@ -46,15 +46,15 @@ oc adm policy add-scc-to-user privileged system:serviceaccount:tools:sonarqube
 # note: version 6.6.0 reveals detailed vulnerabilities
 #~/bin/helm install sonarqube oteemo/sonarqube --version 6.6.0
 
-helm search repo oteemo/sonarqube --versions
+# helm search repo oteemo/sonarqube --versions
 
 #helm show values oteemo/sonarqube --version 6.6.0
 
 # version 6.6.0 shows the detailed vulnerabilities
 ~/bin/helm install sonarqube oteemo/sonarqube --version 6.6.0 -f values.yaml
 
-#oc expose svc sonarqube-sonarqube --hostname=sonar-tools.apps-crc.testing
-oc create route edge sonarqube --service=sonarqube-sonarqube --hostname=sonar-tools.apps-crc.testing
+# oc expose svc sonarqube-sonarqube --hostname=sonar-tools.apps-crc.testing
+# oc create route edge sonarqube --service=sonarqube-sonarqube --hostname=sonar-tools.apps-crc.testing
 
 #~/bin/helm install sonarqube oteemo/sonarqube \
 #  --set ingress.enabled=true \
@@ -75,10 +75,10 @@ oc patch deployment/sonarqube-sonarqube --patch '{"spec":{"template":{"spec":{"s
 # https://www.zdnet.com/article/fbi-hackers-stole-source-code-from-us-government-agencies-and-private-companies/
 
 SQ=$(oc get po -n tools | grep sonarqube-sonarqube | cut -f1 -d" ")
-echo "Use the following command to setup portforwarding to sonarqube:"
+echo "Use the following command to setup port-forwarding to sonarqube:"
 echo "oc port-forward $SQ -n tools 9000:9000&"
 
-echo "The internal SONARQUBE_URL in boot.sh should look like:" 
-export SONARQUBE_URL='http://sonarqube-sonarqube.tools.svc.cluster.local:9000'
+#echo "The internal SONARQUBE_URL in boot.sh should look like:" 
+#export SONARQUBE_URL='http://sonarqube-sonarqube.tools.svc.cluster.local:9000'
 
 

@@ -2,6 +2,10 @@
 NAMESPACE=full-bc
 WORKSPACE=full-bc
 
+# Logins for OCP
+OCP_USER=developer
+OCP_ADMIN=kubeadmin
+
 OCNEWAPP_OPTION='--as-deployment-config'
 
 # When you use Redhat Quay as an image registry
