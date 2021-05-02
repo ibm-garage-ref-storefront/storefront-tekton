@@ -36,4 +36,5 @@ cd ${HERE}/tools/nexus
 ./install_nexus3-v2.sh
 echo ""
 
-oc policy add-role-to-user view ${OCP_USER}
+# view cannot create pods/portforward
+oc policy add-role-to-user admin ${OCP_USER}

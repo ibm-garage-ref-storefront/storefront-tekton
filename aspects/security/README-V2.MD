@@ -26,6 +26,16 @@ Edit the configuration file, and modify OCP_USER and OCP_ADMIN unless you are ru
 
 ### C) Setup the OCP cluster tools-images namespace
 
+Login to sonarqube and make a SONAR_QUBE_PAT:
+
+    bash tools/sonarqube/port-forward.sh
+
+Edit the configuration file, and modify SONAR_QUBE_PAT:
+
+    vi ~/config.bc-full
+
+Initialize the pipeline project / namespace:
+
     oc login -u developer -p developer https://api.crc.testing:6443
     bash scripts/pipeline/mini-setup.sh
 
