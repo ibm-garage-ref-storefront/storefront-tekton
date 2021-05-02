@@ -13,7 +13,7 @@ In the current version of this repo we are working on Redhat CRC. It should work
     cd storefront-tekton   
     cp scripts/config ~/config.bc-full
 
-Edit the congiguration file, and modify OCP_USER and OCP_ADMIN unless you are running on CRC:
+Edit the configuration file, and modify OCP_USER and OCP_ADMIN unless you are running on CRC:
 
     vi ~/config.bc-full
 
