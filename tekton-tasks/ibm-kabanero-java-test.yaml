@@ -83,13 +83,13 @@ spec:
             secretKeyRef:
               name: sonarqube-access
               key: SONARQUBE_URL
-              optional: true
+              optional: false
         - name: SONARQUBE_LOGIN
           valueFrom:
             secretKeyRef:
               name: sonarqube-access
               key: SONARQUBE_LOGIN
-              optional: true
+              optional: false
       script: |
           APP_NAME=$(params.app-name)
           SONARQUBE_JAVA_BINARIES_PATH="$(params.sonarqube-java-bin-path)"

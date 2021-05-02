@@ -121,8 +121,15 @@ spec:
       runAfter: 
         - mvn-settings        
     - name: sonar-scan
+      params:
+      - name: git-url
+        value: $(params.git-url)
+      - name: git-revision
+        value: $(params.git-revision)   
+      - name: app-name
+        value: $(params.app-name)              
       taskRef:
-        name: aot-mockup
+        name: ibm-kabanero-java-test
       runAfter: 
         - mvn-settings        
     - name: roll-out
