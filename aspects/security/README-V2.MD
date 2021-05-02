@@ -60,6 +60,10 @@ Create a pipeline run that will fail when vulnerabilities of level  'CRITICAL' a
     oc create -f scripts/tools-images/scan-ubi-8.0-fail-on-criticals-only.yaml 
     scripts/watch-the-pipeline-run.sh
 
+Notice that it is possible to visually inspect the pipeline run via the web console as well:
+
+![Fail](../../images/watch-the-intake.png?raw=true "Title")
+
 Explore the images in the tools-images project:
 
     $ oc get is -n tools-images
