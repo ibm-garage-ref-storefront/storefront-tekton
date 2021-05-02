@@ -4,7 +4,7 @@ We will build, deploy and test the customer-ms-spring solo branch.
 
 ## Setup
 
-### A) Setup the OCP cluster tools namespace
+### A) Setup the tools namespace
 
 In the current version of this repo we are working on Redhat CRC. It should work on a regular OCP cluster with some care. 
 
@@ -18,13 +18,13 @@ Edit the configuration file, and modify OCP_USER and OCP_ADMIN unless you are ru
     vi ~/config.bc-full
 
 
-### B) Setup the OCP cluster tools-images namespace
+### B) Setup the tools-images namespace
 
     oc login -u kubeadmin -p <password> https://api.crc.testing:6443
     bash scripts/tools-images/setup.sh 
 
 
-### C) Setup the OCP cluster tools-images namespace
+### C) Setup the pipelines namespace
 
 Login to sonarqube and make a SONAR_QUBE_PAT:
 
@@ -36,7 +36,7 @@ Edit the configuration file, and modify SONAR_QUBE_PAT:
 
 Initialize the pipeline project / namespace:
 
-    oc login -u developer -p developer https://api.crc.testing:6443
+    oc login -u kubeadmin -p <password> https://api.crc.testing:6443
     bash scripts/pipeline/mini-setup.sh
 
 
@@ -48,6 +48,7 @@ The images that are used to build the application image are scanned and if they 
 
 Create a pipeline run that will fail when vulnerabilities of level  'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL' are detected and follow it:
 
+    oc login -u developer -p developer https://api.crc.testing:6443
     oc create -f scripts/tools-images/scan-ubi-8.0.yaml 
     scripts/watch-the-pipeline-run.sh
 

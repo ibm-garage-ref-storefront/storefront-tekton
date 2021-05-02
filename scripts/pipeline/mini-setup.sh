@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+clear
+
 source ~/config.bc-full
 
 oc new-project pipelines
@@ -17,7 +19,7 @@ oc apply -f tekton-tasks/ibm-img-scan-trivy.yaml
 
 oc apply -f pvc --recursive
 
-oc secret link pipeline crc-creds-skopeo
+#oc secret link pipeline crc-creds-skopeo
 
 oc policy add-role-to-user system:image-pusher system:serviceaccount:full-bc:pipeline
 oc adm policy add-scc-to-user privileged system:serviceaccount:pipelines:pipeline
