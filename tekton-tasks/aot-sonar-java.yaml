@@ -16,7 +16,7 @@ spec:
     - name: sonarqube-java-bin-path
       default: target
     - name: sonarqube-cli
-      default: quay.io/ibmgaragecloud/sonarsource-sonar-scanner-cli
+      default: image-registry.openshift-image-registry.svc.cluster.local:5000/tools-images/sonarsource-sonar-scanner-cli:for-use
   steps:
     - name: sonar-scan
       image: $(params.sonarqube-cli)
