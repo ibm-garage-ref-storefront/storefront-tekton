@@ -39,8 +39,9 @@ Initialize the pipeline project / namespace:
     oc login -u kubeadmin -p <password> https://api.crc.testing:6443
     bash scripts/pipeline/mini-setup.sh
 
+## Import the images
 
-## Run the image-intake-pipeline-prevail-2021 pipeline
+### A) Scan and Import UBI:8
 
 The images that are used to build the application image are scanned and if they are clean then they are imported into the tools-images project by the image-intake-pipeline. This pipeline can be inspected via the console:
 
@@ -72,8 +73,23 @@ Explore the images in the tools-images project:
 
 The ubi:for-use image passed the security scan. It will be used for building the customer-ms-spring microservice. 
 
+### A) Scan and Import the tools images
+
+A Tekton Task is executed via a pod that loads an image to perform the task. We will scan these images.
+
+    oc create -f scripts/tools-images/scan-sonarsource-sonar-scanner-cli-latest-fail-on-high-or-critical.yaml
+
+Explore the images in the tools-images project:
+
+    $ oc get is -n tools-images
+    NAME                            IMAGE REPOSITORY                                                                                     TAGS             UPDATED
+    sonarsource-sonar-scanner-cli   default-route-openshift-image-registry.apps-crc.testing/tools-images/sonarsource-sonar-scanner-cli   for-use,latest   4 minutes ago
+    ubi                             default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi                             for-use,8.0      18 hours ago
+
 
 ## Run the security-pipeline-prevail-2021 pipeline
+
+The security pipeline will run Tekton Tasks which are based on the screened images.
 
 ![Fail](../../images/security-pipeline-prevail-2021.png?raw=true "Title")
 
@@ -81,7 +97,7 @@ The pipeline uses a chained build where:
 1. first the artifact is build 
 2. next the Dockerfile is build.
 
-The FROM image in the Dockerfile is under control of the pipeline run.
+The FROM image in the Dockerfile is under control of the pipeline run. In other words, the customer image is based on a parent image that passed the security scan!
 
 Create a pipeline run and follow it:
 
