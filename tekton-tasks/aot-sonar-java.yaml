@@ -17,6 +17,8 @@ spec:
       default: target
     - name: sonarqube-cli
       default: image-registry.openshift-image-registry.svc.cluster.local:5000/tools-images/sonarsource-sonar-scanner-cli:for-use
+    - default: 'kitchensink'
+      name: git-repo-checkout-dir      
   steps:
     - name: sonar-scan
       image: $(params.sonarqube-cli)
@@ -40,10 +42,10 @@ spec:
           set -xv
           pwd
 
-          # hardcode on /workspace/source/app-repo-dir/target for now, TODO: override with parameter in run.
-          ls $(workspaces.source.path)/app-repo-dir
-          ls $(workspaces.source.path)/app-repo-dir/$(params.sonarqube-java-bin-path)
-          cd $(workspaces.source.path)/app-repo-dir
+          
+          ls $(workspaces.source.path)/$(params.git-repo-checkout-dir)
+          ls $(workspaces.source.path)/$(params.git-repo-checkout-dir)/$(params.sonarqube-java-bin-path)
+          cd $(workspaces.source.path)/$(params.git-repo-checkout-dir)
 
           APP_NAME=$(params.app-name)
           SONARQUBE_JAVA_BINARIES_PATH="$(params.sonarqube-java-bin-path)"

@@ -17,6 +17,8 @@ spec:
   params:
     - name: trivy-severity
       value: "CRITICAL"
+    - name: git-repo-checkout-dir
+      value: "customer-ms-spring"
   workspaces:
     - name: images-url
       emptyDir: {}

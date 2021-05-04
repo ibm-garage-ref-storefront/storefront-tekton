@@ -123,7 +123,9 @@ spec:
     - name: sonar-scan
       params:
       - name: app-name
-        value: $(params.app-name)              
+        value: $(params.app-name)   
+      - name: git-repo-checkout-dir
+        value: $(params.git-repo-checkout-dir)                    
       taskRef:
         name: aot-sonar-java
       runAfter: 
