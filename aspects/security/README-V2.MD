@@ -78,13 +78,14 @@ The ubi:for-use image passed the security scan. It will be used for building the
 A Tekton Task is executed via a pod that loads an image to perform the task. We will scan these images.
 
     oc create -f scripts/tools-images/scan-sonarsource-sonar-scanner-cli-latest-fail-on-high-or-critical.yaml
+    oc create -f scripts/tools-images/scan-ubi-minimal-fail-on-criticals.yaml 
 
 Explore the images in the tools-images project:
 
-    $ oc get is -n tools-images
     NAME                            IMAGE REPOSITORY                                                                                     TAGS             UPDATED
-    sonarsource-sonar-scanner-cli   default-route-openshift-image-registry.apps-crc.testing/tools-images/sonarsource-sonar-scanner-cli   for-use,latest   4 minutes ago
-    ubi                             default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi                             for-use,8.0      18 hours ago
+    sonarsource-sonar-scanner-cli   default-route-openshift-image-registry.apps-crc.testing/tools-images/sonarsource-sonar-scanner-cli   for-use,latest   2 days ago
+    ubi                             default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi                             for-use,8.0      2 days ago
+    ubi-minimal                     default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi-minimal                     for-use,latest   28 seconds ago
 
 
 ## Run the security-pipeline-prevail-2021 pipeline

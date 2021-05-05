@@ -47,7 +47,7 @@ spec:
       default: '.'      
   steps:
     - name: mvn-settings 
-      image: 'registry.access.redhat.com/ubi8/ubi-minimal:latest'
+      image: image-registry.openshift-image-registry.svc.cluster.local:5000/tools-images/ubi-minimal:for-use
       resources: {}
       script: |
         #!/usr/bin/env bash

@@ -33,7 +33,7 @@ spec:
       name: PROXY_PROTOCOL
       type: string
   steps:
-    - image: 'registry.access.redhat.com/ubi8/ubi-minimal:latest'
+    - image: image-registry.openshift-image-registry.svc.cluster.local:5000/tools-images/ubi-minimal:for-use
       name: mvn-settings
       resources: {}
       script: >
