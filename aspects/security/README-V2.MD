@@ -2,6 +2,10 @@
 
 We will build, deploy and test the customer-ms-spring solo branch.
 
+Note on CRC, when pods do not get scheduled because the node has disk pressure. Delete completed pods and pipeline runs, and restart CRC.
+
+https://github.com/code-ready/crc/issues/127
+
 ## Setup
 
 ### A) Setup the tools namespace
