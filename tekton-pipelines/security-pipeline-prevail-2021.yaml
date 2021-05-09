@@ -99,8 +99,8 @@ spec:
           workspace: local-maven-repo
     - name: img-build
       taskRef:
-        name: aot-buildah
         kind: Task
+        name: aot-buildah
       resources:
         inputs:
         - name: source
@@ -117,6 +117,7 @@ spec:
       - artifact-build     
     - name: owasp-scan
       taskRef:
+        kind: Task      
         name: aot-mockup
       runAfter: 
         - mvn-settings        
@@ -127,6 +128,7 @@ spec:
       - name: git-repo-checkout-dir
         value: $(params.git-repo-checkout-dir)                    
       taskRef:
+        kind: Task      
         name: aot-sonar-java
       runAfter: 
         - artifact-build   
