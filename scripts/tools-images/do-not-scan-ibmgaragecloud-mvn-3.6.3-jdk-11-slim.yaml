@@ -1,0 +1,20 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: intake-mvn-
+spec:
+  params:
+    - name: image-url
+      value: 'quay.io/ibmgaragecloud/maven:3.6.3-jdk-11-slim'
+    - name: image-name
+      value: mvn
+    - name: image-tag
+      value: '3.6.3-jdk-11-slim'
+    - name: trivy-severity
+      value: 'CRITICAL'
+    - name: scan-image
+      value: 'false'
+  pipelineRef:
+    name: image-intake-pipeline-prevail-2021
+  serviceAccountName: pipeline
+  timeout: 1h0m0s

@@ -19,7 +19,11 @@ spec:
     - default: "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
       description: The threshold where the trivy scan fill fail the pipeline.
       name: trivy-severity
-      type: string        
+      type: string    
+    - default: "true"
+      description: Whether or not to scan the image.
+      name: scan-image
+      type: string    
   tasks:
     - name: scan-image
       taskRef:
@@ -28,7 +32,7 @@ spec:
       - name: image-url
         value: $(params.image-url)
       - name: scan-image
-        value: "true"  
+        value: $(params.scan-image)  
       - name: TRIVY_SEVERITY
         value: $(params.trivy-severity)
     - name: import-image

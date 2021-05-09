@@ -96,8 +96,18 @@ Explore the images in the tools-images project:
     ubi                             default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi                             for-use,8.0      2 days ago
     ubi-minimal                     default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi-minimal                     for-use,latest   28 seconds ago
 
-Note that the mvn image did not pass the scan.
+Note that the mvn image did not pass the scan. Let's make a decision to go with the IBM image (https://quay.io/repository/ibmgaragecloud/maven?tab=tags):
 
+    oc create -f scripts/tools-images/do-not-scan-ibmgaragecloud-mvn-3.6.3-jdk-11-slim.yaml 
+
+Inspect the images:
+
+    $ oc get is -n tools-images
+    NAME                            IMAGE REPOSITORY                                                                                     TAGS                        UPDATED
+    mvn                             default-route-openshift-image-registry.apps-crc.testing/tools-images/mvn                             3.6.3-jdk-11-slim,for-use   13 seconds ago
+    sonarsource-sonar-scanner-cli   default-route-openshift-image-registry.apps-crc.testing/tools-images/sonarsource-sonar-scanner-cli   for-use,latest              3 days ago
+    ubi                             default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi                             for-use,8.0                 6 days ago
+    ubi-minimal                     default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi-minimal                     for-use,latest              4 days ago
 
 ## Run the security-pipeline-prevail-2021 pipeline
 
