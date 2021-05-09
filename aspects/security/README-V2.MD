@@ -83,6 +83,7 @@ A Tekton Task is executed via a pod that loads an image to perform the task. We 
 
     oc create -f scripts/tools-images/scan-sonarsource-sonar-scanner-cli-latest-fail-on-high-or-critical.yaml
     oc create -f scripts/tools-images/scan-ubi-minimal-fail-on-criticals.yaml 
+    oc create -f scripts/tools-images/scan-quayio-buildah-stable.yaml
 
 Specials:
 
@@ -92,6 +93,7 @@ Specials:
 Explore the images in the tools-images project:
 
     NAME                            IMAGE REPOSITORY                                                                                     TAGS             UPDATED
+    buildah                         default-route-openshift-image-registry.apps-crc.testing/tools-images/buildah                         for-use,stable   34 seconds ago    
     sonarsource-sonar-scanner-cli   default-route-openshift-image-registry.apps-crc.testing/tools-images/sonarsource-sonar-scanner-cli   for-use,latest   2 days ago
     ubi                             default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi                             for-use,8.0      2 days ago
     ubi-minimal                     default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi-minimal                     for-use,latest   28 seconds ago

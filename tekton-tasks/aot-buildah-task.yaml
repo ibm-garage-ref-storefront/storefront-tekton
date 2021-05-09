@@ -5,7 +5,7 @@ metadata:
   description: this is a copy of the buildah cluster task, with a mod to use a vfs storage driver.
 spec:
   params:
-  - default: quay.io/buildah/stable
+  - default: image-registry.openshift-image-registry.svc.cluster.local:5000/tools-images/buildah:for-use
     description: The location of the buildah builder image (see https://github.com/containers/buildah/pull/2823).
     name: BUILDER_IMAGE
     type: string
