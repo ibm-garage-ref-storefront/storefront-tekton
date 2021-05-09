@@ -84,12 +84,19 @@ A Tekton Task is executed via a pod that loads an image to perform the task. We 
     oc create -f scripts/tools-images/scan-sonarsource-sonar-scanner-cli-latest-fail-on-high-or-critical.yaml
     oc create -f scripts/tools-images/scan-ubi-minimal-fail-on-criticals.yaml 
 
+Specials:
+
+    oc create -f scripts/tools-images/scan-gcr-cloud-builders-mvn-3.5.0.yaml 
+    oc create -f scripts/tools-images/scan-ibmgaragecloud-mvn-3.6.3-jdk-11-slim.yaml 
+
 Explore the images in the tools-images project:
 
     NAME                            IMAGE REPOSITORY                                                                                     TAGS             UPDATED
     sonarsource-sonar-scanner-cli   default-route-openshift-image-registry.apps-crc.testing/tools-images/sonarsource-sonar-scanner-cli   for-use,latest   2 days ago
     ubi                             default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi                             for-use,8.0      2 days ago
     ubi-minimal                     default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi-minimal                     for-use,latest   28 seconds ago
+
+Note that the mvn image did not pass the scan.
 
 
 ## Run the security-pipeline-prevail-2021 pipeline

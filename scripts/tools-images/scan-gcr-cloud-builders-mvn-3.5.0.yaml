@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: intake-mvn-
+spec:
+  params:
+    - name: image-url
+      value: 'gcr.io/cloud-builders/mvn:3.5.0-jdk-8'
+    - name: image-name
+      value: mvn
+    - name: image-tag
+      value: '3.5.0-jdk-8'
+    - name: trivy-severity
+      value: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
+  pipelineRef:
+    name: image-intake-pipeline-prevail-2021
+  serviceAccountName: pipeline
+  timeout: 1h0m0s
