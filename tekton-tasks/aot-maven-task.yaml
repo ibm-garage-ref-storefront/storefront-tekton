@@ -66,7 +66,7 @@ spec:
         - '-v'
       command:
         - /usr/bin/mvn
-      image: gcr.io/cloud-builders/mvn:3.5.0-jdk-8
+      image: image-registry.openshift-image-registry.svc.cluster.local:5000/tools-images/mvn:for-use
       resources: {}
       workingDir: $(workspaces.source.path)/$(params.git-repo-checkout-dir)/$(params.pom-dir)
     - name: mvn-goals
@@ -78,7 +78,7 @@ spec:
         - $(params.GOALS)
       command:
         - /usr/bin/mvn
-      image: gcr.io/cloud-builders/mvn:3.5.0-jdk-8
+      image: image-registry.openshift-image-registry.svc.cluster.local:5000/tools-images/mvn:for-use
       resources: {}
       workingDir: $(workspaces.source.path)/$(params.git-repo-checkout-dir)/$(params.pom-dir)  
   workspaces:
