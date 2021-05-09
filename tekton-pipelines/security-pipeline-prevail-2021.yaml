@@ -62,11 +62,11 @@ spec:
       params:
         - name: PROXY_PROTOCOL
           value: http
-      runAfter:
-        - clone-app-repo
       taskRef:
         kind: Task
         name: aot-maven-settings
+      runAfter:
+        - clone-app-repo        
       workspaces:
         - name: maven-settings
           workspace: maven-settings   
@@ -85,11 +85,11 @@ spec:
           value: $(params.pom-dir) 
         - name: git-repo-checkout-dir
           value: $(params.git-repo-checkout-dir)                  
-      runAfter:
-        - mvn-settings
       taskRef:
         kind: Task
         name: aot-maven
+      runAfter:
+        - mvn-settings        
       workspaces:
         - name: maven-settings
           workspace: maven-settings
@@ -116,11 +116,30 @@ spec:
       runAfter: 
       - artifact-build     
     - name: owasp-scan
+      params:
+        - name: GOALS
+          value:
+            - site:site
+        - name: PROXY_PROTOCOL
+          value: http
+        - name: module
+          value: $(params.app-name)
+        - name: pom-dir
+          value: $(params.pom-dir) 
+        - name: git-repo-checkout-dir
+          value: $(params.git-repo-checkout-dir)     
       taskRef:
-        kind: Task      
-        name: aot-mockup
+        kind: Task
+        name: aot-maven
       runAfter: 
-        - mvn-settings        
+        - mvn-settings         
+      workspaces:
+        - name: maven-settings
+          workspace: maven-settings
+        - name: source
+          workspace: src-workspace
+        - name: maven-repo
+          workspace: local-maven-repo
     - name: sonar-scan
       params:
       - name: app-name
