@@ -119,7 +119,8 @@ spec:
       params:
         - name: GOALS
           value:
-            - site:site
+            - site
+            - site-deploy
         - name: PROXY_PROTOCOL
           value: http
         - name: module
