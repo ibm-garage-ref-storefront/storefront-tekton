@@ -26,7 +26,7 @@ echo ""
 # Setup httpd
 echo "###################################################################"
 cd ${HERE}/tools/httpd
-./silver-platter.sh 
+./silver-platter-webdav.sh  
 echo ""
 
 

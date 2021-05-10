@@ -1,4 +1,4 @@
-AuthUserFile /etc/httpd/conf/.htpasswd
+AuthUserFile /etc/www/iam/.htpasswd
 AuthName "Name of Secure Area"
 AuthType Basic
 <Limit GET POST>
