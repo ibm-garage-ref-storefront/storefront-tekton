@@ -162,6 +162,16 @@ spec:
       - img-build
       - owasp-scan
       - sonar-scan
+    - name: functional-test
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - roll-out
+    - name: performance-test
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - functional-test
   workspaces:
     - name: src-workspace
     - name: maven-settings
