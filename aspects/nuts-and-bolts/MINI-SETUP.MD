@@ -21,6 +21,7 @@ Inspect the tools namespace:
 
 ![Deploy](../../images/tools-namespace.png?raw=true "Title")
 
+### Inspect the tools and see if you can login
 
 | Aspect | Description | Default Credentials |
 | --- | --- | --- |
