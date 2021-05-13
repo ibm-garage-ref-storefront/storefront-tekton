@@ -28,7 +28,7 @@ Inspect the tools and see if you can login
 | sonarqube| source vulnerability scanner | admin / admin
 | nexus3 | maven artifact repository | admin / admin123
 | silver-platter | maven site reports | aot-user / ibm-prevail-2021
-| grafana | jmeter performance dashboard | no login required
+| grafana | jmeter performance dashboard | no login required, go to dashboard, manage, tools
 
 
 ### B) Setup the tools-images namespace
