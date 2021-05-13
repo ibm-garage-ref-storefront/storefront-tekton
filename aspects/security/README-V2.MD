@@ -8,6 +8,8 @@ https://github.com/code-ready/crc/issues/127
 
 ## Setup
 
+Do the miniature setup ["click here"](../nuts-and-bolts/MINI-SETUP.MD);
+
 ### A) Setup the tools namespace
 
 In the current version of this repo we are working on Redhat CRC. It should work on a regular OCP cluster with some care. 
