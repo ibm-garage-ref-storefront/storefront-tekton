@@ -8,7 +8,7 @@ https://github.com/code-ready/crc/issues/127
 
 ## Setup
 
-Do the setup ["click here"](../nuts-and-bolts/MINI-SETUP.MD).
+Do the  ["setup"](../nuts-and-bolts/MINI-SETUP.MD) of the tooling.
 
 
 ## Import the images
