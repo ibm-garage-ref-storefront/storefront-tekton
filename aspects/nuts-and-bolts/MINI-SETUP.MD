@@ -26,8 +26,8 @@ Inspect the tools and see if you can login
 | Aspect | Description | Default Credentials |
 | --- | --- | --- |
 | sonarqube| source vulnerability scanner | admin / admin
-| nexus3 | maven artifact repository | admin / admin123
-| silver-platter | maven site reports | aot-user / ibm-prevail-2021
+| nexus3 | maven artifact repository for builds| admin / admin123
+| silver-platter | maven site reports for dependency vulnerability scanning | aot-user / ibm-prevail-2021
 | grafana | jmeter performance dashboard | no login required, go to dashboard, manage, tools
 
 
