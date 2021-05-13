@@ -1,1 +1,0 @@
-JMeter plans can be stored here.
