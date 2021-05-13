@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: intake-meter-prevail-2021-
+spec:
+  params:
+    - name: image-url
+      value: 'default-route-openshift-image-registry.apps-crc.testing/tools/jmeter-prevail-2021:latest'
+    - name: image-name
+      value: jmeter-prevail-2021
+    - name: image-tag
+      value: 'latest'
+    - name: trivy-severity
+      value: 'CRITICAL'
+  pipelineRef:
+    name: image-intake-pipeline-prevail-2021
+  serviceAccountName: pipeline
+  timeout: 1h0m0s
