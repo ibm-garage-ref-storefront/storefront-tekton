@@ -1,4 +1,4 @@
-The Prevail 2021 setup
+# The Prevail 2021 setup
 
 ### A) Setup the tools namespace
 
@@ -16,7 +16,7 @@ Edit the configuration file, and modify OCP_USER and OCP_ADMIN unless you are ru
 Install the tools:
 
     bash tools/setup.sh 
-    
+
 
 ### B) Setup the tools-images namespace
 
