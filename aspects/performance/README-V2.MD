@@ -1,8 +1,12 @@
 # Welcome to IBM Prevail 2021
 
+## Deploy the IBM Blue Compute shop
+
+[Deploy](../functionality/DEPLOY-FULL-BC.MD) the IBM Blue Compute shop 
+
 ## Setup
 
-Do the  ["setup"](../nuts-and-bolts/MINI-SETUP.MD) of the tooling.
+["Install"](../nuts-and-bolts/MINI-SETUP.MD) the tooling.
 
 ## Scan the JMeter image for vulnerabilities
 

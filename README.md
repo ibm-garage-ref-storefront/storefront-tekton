@@ -10,7 +10,7 @@ Once the blue compute shop is up and running your can choose to explore various 
 
 | Aspect | Description |
 | --- | --- |
-| [Up in a Minute](aspects/functionality/DEPLOY-FULL-BC.MD) | Deploy the IBM Blue Compute shop |
+| [Deploy](aspects/functionality/DEPLOY-FULL-BC.MD) | Deploy the IBM Blue Compute shop |
 | [Tools Setup](aspects/nuts-and-bolts/MINI-SETUP.MD) | Setting up the tools |
 | [Security](aspects/security/README-V2.MD) | the IBM Prevail 2021 experimental version |
 | [Performance](aspects/performance/README-V2.MD) | the IBM Prevail 2021 experimental version |
