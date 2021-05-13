@@ -39,9 +39,11 @@ echo ""
 # Setup jmeter-performance-test
 echo "###################################################################"
 cd ${HERE}/tools/jmeter-performance-test
-./jmeter-performance-test/build_jmeter_image.sh  
-./jmeter-performance-test/install_jmeter_framework.sh
+./build_jmeter_image.sh  
+./install_jmeter_framework.sh
 echo ""
 
 # view cannot create pods/portforward
 oc policy add-role-to-user admin ${OCP_USER}
+
+cd ${HERE}

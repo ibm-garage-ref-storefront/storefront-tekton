@@ -17,6 +17,10 @@ Install the tools:
 
     bash tools/setup.sh 
 
+Inspect the tools namespace: 
+
+![Deploy](../../images/tools-namespace.png?raw=true "Title")
+
 
 ### B) Setup the tools-images namespace
 
