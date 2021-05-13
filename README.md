@@ -6,6 +6,17 @@ This repository aims to:
 
 Once the blue compute shop is up and running your can choose to explore various aspects:
 
+## a) Prevail 2021
+
+| Aspect | Description |
+| --- | --- |
+| [Tools Setup](aspects/nuts-and-bolts/MINI-SETUP.MD) | Setting up the tools |
+| [Security](aspects/security/README-V2.MD) | the IBM Prevail 2021 experimental version |
+| [Performance](aspects/performance/README-V2.MD) | a Tekton Pipeline that performs a load test on the blue compute shop |
+
+
+## b) For lovers
+
 | Aspect | Description |
 | --- | --- |
 | [Security](aspects/security/README.MD) | a Tekton Pipeline that builds and scans the microservice for vulnerabilities |
