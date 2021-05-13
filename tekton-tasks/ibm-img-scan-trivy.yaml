@@ -49,26 +49,28 @@ spec:
       securityContext:
         privileged: true
       script: |
+        #!/bin/bash -e
+        set -xv 
+        
         PERFORM_SCAN="$(params.scan-image)"
         if [[ "${PERFORM_SCAN}" == "false" ]] || [[ -z "${PERFORM_SCAN}" ]]; then
           echo "User selected to skip scanning. Skipping Trivy scan."
           exit 0
         fi
         IMAGE_FROM=$(params.image-url)
-        REGISTRY_SERVER_FROM=$(echo "${IMAGE_FROM}" | awk -F / '{print $1}')
+        
         IMAGE_TO="oci:/var/oci/image"
         IMAGE_FROM_TLS_VERIFY=$(params.IMAGE_FROM_TLS_VERIFY)
         echo "Tagging ${IMAGE_FROM} as ${IMAGE_TO}"
-        set +x
-        if [[ -n "${REGISTRY_USER}" ]] && [[ -n "${REGISTRY_PASSWORD}" ]] && [[ "${REGISTRY_SERVER_FROM}" != "image-registry.openshift-image-registry.svc:5000" ]]; then
+
+        if [[ -n "${REGISTRY_USER}" ]] && [[ -n "${REGISTRY_PASSWORD}" ]] ; then
           IMAGE_FROM_CREDS="--src-creds ${REGISTRY_USER}:${REGISTRY_PASSWORD}"
         fi
-        set -x
+
         if [ "${REGISTRY_SERVER_FROM}" =~ ":" ]; then
           IMAGE_FROM_TLS_VERIFY="false"
         fi
         echo "skopeo copy --src-creds=xxxx --src-tls-verify=${IMAGE_FROM_TLS_VERIFY} docker://${IMAGE_FROM} ${IMAGE_TO}"
-        set +x
         skopeo copy ${IMAGE_FROM_CREDS} --src-tls-verify=${IMAGE_FROM_TLS_VERIFY} docker://${IMAGE_FROM} ${IMAGE_TO}
     - name: scan-image
       image: aquasec/trivy
