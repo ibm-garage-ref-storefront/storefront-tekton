@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: intake-verdaccio-
+spec:
+  params:
+    - name: image-url
+      value: 'verdaccio/verdaccio'
+    - name: image-name
+      value: verdaccio
+    - name: image-tag
+      value: 'latest'
+    - name: trivy-severity
+      value: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
+  pipelineRef:
+    name: image-intake-pipeline-prevail-2021
+  serviceAccountName: pipeline
+  timeout: 1h0m0s
