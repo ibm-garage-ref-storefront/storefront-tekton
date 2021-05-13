@@ -6,14 +6,13 @@
 
 ## Install the tooling
 
+[Install](../nuts-and-bolts/MINI-SETUP.MD) the tooling.
+
 The tools setup build a JMeter image in the tools namespace:
 
-$ oc get is -n tools | grep jmeter
-NAME                  IMAGE REPOSITORY                                                                    TAGS     UPDATED
-jmeter-prevail-2021   default-route-openshift-image-registry.apps-crc.testing/tools/jmeter-prevail-2021   latest   About an hour ago
-
-
-[Install](../nuts-and-bolts/MINI-SETUP.MD) the tooling.
+    $ oc get is -n tools | grep jmeter
+    NAME                  IMAGE REPOSITORY                                                                    TAGS     UPDATED
+    jmeter-prevail-2021   default-route-openshift-image-registry.apps-crc.testing/tools/jmeter-prevail-2021   latest   About an hour ago
 
 ## Scan the JMeter image for vulnerabilities
 
