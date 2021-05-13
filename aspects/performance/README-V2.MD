@@ -29,12 +29,18 @@ Let's close an eye ..
     oc create -f scripts/tools-images/do-not-scan-jmeter-prevail-2021.yaml
     scripts/watch-the-pipeline-run.sh    
 
-Inspect the result:
+Inspect the result of the import:
 
     $ oc get is -n tools-images
     NAME                  IMAGE REPOSITORY                                                                           TAGS     UPDATED
     jmeter-prevail-2021   default-route-openshift-image-registry.apps-crc.testing/tools-images/jmeter-prevail-2021   latest   
 
-The pipeline have now imported the jmeter-prevail-2021 image from the tools namespace into the tools-images namespace.
- 
-The Tekton Tasks in the Tekton pipeline have been written to use images only from the trusted tools-images namespace
+## The performance pipeline
+
+The peformance pipeline looks similar to the security pipeline. 
+
+![Fail](../../images/performance-pipeline.png?raw=true "Title")
+
+There is one difference: all tasks except for the performance test have been stubbed.
+
+

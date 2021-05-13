@@ -1,0 +1,95 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: performance-pipeline-prevail-2021
+spec:
+  resources:
+    - name: git-source
+      type: git
+    - name: docker-image
+      type: image
+  params:
+    - default: 'docker://default-route-openshift-image-registry.apps-crc.testing/full-bc/customer:latest'
+      description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
+      name: source-url
+      type: string
+    - default: 'docker://de.icr.io/kitty-catt/customer-build:latest'
+      description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
+      name: destination-url-icr
+      type: string       
+    - default: 'docker://quay.io/kitty_catt/customer-build:latest'
+      description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
+      name: destination-url-quay
+      type: string    
+    - default: 'https://github.com/kitty-catt/customer-ms-spring'
+      description: A git repo that contains a java application that is build using maven.
+      name: git-url
+      type: string    
+    - default: 'solo'
+      description: The revision to pull and build.
+      name: git-revision
+      type: string
+    - default: 'app-repo-dir'
+      description: the folder where the application repo will be checked out
+      name: git-repo-checkout-dir
+      type: string   
+    - default: '.'
+      description: the directory containing the pom
+      name: pom-dir
+      type: string               
+    - default: 'customer-ms-spring'
+      description: The name of the service to pull and build.
+      name: app-name
+      type: string         
+  tasks:
+    - name: clone-app-repo
+      taskRef:
+        name: aot-mockup
+    - name: mvn-settings
+      taskRef:
+        name: aot-mockup
+      runAfter:
+        - clone-app-repo        
+    - name: artifact-build
+      taskRef:
+        name: aot-mockup
+      runAfter:
+        - mvn-settings        
+    - name: img-build
+      taskRef:
+        name: aot-mockup       
+      runAfter: 
+      - artifact-build     
+    - name: owasp-scan
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+        - mvn-settings         
+    - name: sonar-scan
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+        - artifact-build   
+    - name: roll-out
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - img-build
+      - owasp-scan
+      - sonar-scan
+    - name: functional-test
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - roll-out
+    - name: performance-test
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - functional-test
+  workspaces:
+    - name: src-workspace
+    - name: maven-settings
+    - name: local-maven-repo    
+    - name: images-url
+    - name: report
