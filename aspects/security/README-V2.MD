@@ -79,11 +79,19 @@ Inspect the images:
     ubi                             default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi                             for-use,8.0                 6 days ago
     ubi-minimal                     default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi-minimal                     for-use,latest              4 days ago
 
+## The Security pipeline
+
+The peformance pipeline looks similar to the performance pipeline. 
+
+![Fail](../../images/secure-pipeline-prevail-2021.png?raw=true "Title")
+
+There is one difference: all tasks except for the security test have been stubbed.
+
 ## Run the security-pipeline-prevail-2021 pipeline
 
 The security pipeline will run Tekton Tasks which are based on the screened images.
 
-![Fail](../../images/security-pipeline-prevail-2021.png?raw=true "Title")
+![Fail](../../images/security-pipeline-run-prevail-2021.png?raw=true "Title")
 
 The pipeline uses a chained build where:
 1. first the artifact is build 
