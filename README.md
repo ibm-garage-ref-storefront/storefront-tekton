@@ -12,7 +12,7 @@ Once the blue compute shop is up and running your can choose to explore various 
 | --- | --- |
 | [Tools Setup](aspects/nuts-and-bolts/MINI-SETUP.MD) | Setting up the tools |
 | [Security](aspects/security/README-V2.MD) | the IBM Prevail 2021 experimental version |
-| [Performance](aspects/performance/README-V2.MD) | a Tekton Pipeline that performs a load test on the blue compute shop |
+| [Performance](aspects/performance/README-V2.MD) | the IBM Prevail 2021 experimental version |
 
 
 ## b) For lovers
