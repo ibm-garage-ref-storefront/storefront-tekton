@@ -22,6 +22,14 @@ Inspect the tools namespace:
 ![Deploy](../../images/tools-namespace.png?raw=true "Title")
 
 
+| Aspect | Description | Default Credentials |
+| --- | --- | --- |
+| sonarqube| source vulnerability scanner | admin / admin
+| nexus3 | maven artifact repository | admin / admin123
+| silver-platter | maven site reports | aot-user / ibm-prevail-2021
+| grafana | jmeter performance dashboard | no login required
+
+
 ### B) Setup the tools-images namespace
 
     oc login -u kubeadmin -p <password> https://api.crc.testing:6443
