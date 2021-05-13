@@ -13,6 +13,10 @@ Edit the configuration file, and modify OCP_USER and OCP_ADMIN unless you are ru
 
     vi ~/config.bc-full
 
+Install the tools:
+
+    bash tools/setup.sh 
+    
 
 ### B) Setup the tools-images namespace
 
