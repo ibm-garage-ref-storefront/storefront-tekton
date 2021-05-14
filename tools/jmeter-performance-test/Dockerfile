@@ -1,24 +1,27 @@
-FROM fabric8/java-centos-openjdk8-jdk:latest
+FROM registry.access.redhat.com/ubi8/ubi:8.0
 MAINTAINER kitty-catt kitty-catt@example.com
-LABEL jmeter.version="5.2.1"
+LABEL jmeter.version="5.4.1"
 
 # Set JMeter base
 ENV JMETER_BASE /opt/jmeter
 
-USER root
+# Install the Java runtime, create a user for running the app, and set permissions
+RUN   yum install -y --disableplugin=subscription-manager java-1.8.0-openjdk-headless && \
+      yum clean all --disableplugin=subscription-manager -y 
 
+# Make a user.
 RUN groupadd -r jmeter -f -g 1001 && \
     useradd -u 1001 -r -g jmeter -m -d /opt/jmeter -s /usr/sbin/nologin -c "jmeter container user" jmeter
 
 # Create jmeter directory with tests and results folder and install JMeter
 RUN mkdir -p $JMETER_BASE/{tests,results} && \
-    curl -SL https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.2.1.tgz | tar -xzC $JMETER_BASE && \
-    rm -rf apache-jmeter-5.2.1.tgz
+    curl -SL https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.4.1.tgz | tar -xzC $JMETER_BASE && \
+    rm -rf apache-jmeter-5.4.1.tgz
 
 VOLUME ["/opt/jmeter/tests", "/opt/jmeter/results"]
 
 # Set JMeter home
-ENV JMETER_HOME $JMETER_BASE/apache-jmeter-5.2.1
+ENV JMETER_HOME $JMETER_BASE/apache-jmeter-5.4.1
 
 # Add JMeter to the Path
 ENV PATH $JMETER_HOME/bin:$PATH
@@ -47,7 +50,7 @@ USER 1001
 
 # This will be executed in the Tekton step.
 #$JMETER_HOME/bin/jmeter.sh -n -t $WORKSPACE/bin/target.jmx -l $WORKSPACE/bin/report.jtl
-# which defaults to /opt/jmeter/apache-jmeter-5.2.1/bin
+# which defaults to /opt/jmeter/apache-jmeter-5.4.1/bin
 
 #ENTRYPOINT $JMETER_BASE/run.sh
 ENTRYPOINT ["sleep", "30"]
