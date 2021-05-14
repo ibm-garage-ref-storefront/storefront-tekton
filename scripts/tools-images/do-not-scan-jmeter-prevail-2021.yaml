@@ -15,7 +15,9 @@ spec:
     - name: scan-image
       value: 'false'   
     - name: insecure
-      value: 'true'           
+      value: 'true'  
+    - name: registry-is-internal
+      value: 'true'    
   pipelineRef:
     name: image-intake-pipeline-prevail-2021
   serviceAccountName: pipeline

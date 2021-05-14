@@ -25,7 +25,13 @@ spec:
       name: scan-image
       type: string
     - name: insecure
-      default: "false"          
+      default: "false"   
+      description: "whether or not we accept self-signed certs as on CRC"
+      type: string
+    - name: registry-is-internal
+      default: "false"   
+      description: "whether or not we are using the openshift internal registry"
+      type: string
   tasks:
     - name: scan-image
       taskRef:
@@ -43,7 +49,7 @@ spec:
           value: |
             #!/bin/bash -e
 
-            set -xv
+            #set -xv
 
             oc whoami
             oc projects
@@ -52,14 +58,29 @@ spec:
             echo "image-name: $(params.image-name)"
             echo "image-tag: $(params.image-tag)"
             echo "insecure: $(params.insecure)"
+            echo "registry-is-internal: $(params.registry-is-internal)"
 
             oc project tools-images
 
-            oc import-image $(params.image-name):$(params.image-tag) \
-             --from=$(params.image-url) \
-             --reference-policy=local \
-             --insecure=$(params.insecure) \
-             --confirm
+            if [[ "$(params.registry-is-internal)" == "true" ]] ; then
+
+              echo "TODO: tag from internal registry"
+
+              source=tools/$(params.image-name):$(params.image-tag)
+              target=tools-images/$(params.image-name):$(params.image-tag)
+              oc tag ${source} ${target}               
+
+            else
+
+              echo "import from external registry"
+
+              oc import-image $(params.image-name):$(params.image-tag) \
+              --from=$(params.image-url) \
+              --reference-policy=local \
+              --insecure=$(params.insecure) \
+              --confirm
+
+            fi
 
             # The Golden Guidance:
             #source=pipelines/$(params.image-name):$(params.image-tag)
