@@ -23,7 +23,9 @@ spec:
     - default: "true"
       description: Whether or not to scan the image.
       name: scan-image
-      type: string    
+      type: string
+    - name: insecure
+      default: "false"          
   tasks:
     - name: scan-image
       taskRef:
@@ -41,7 +43,7 @@ spec:
           value: |
             #!/bin/bash -e
 
-            #set -xv
+            set -xv
 
             oc whoami
             oc projects
@@ -49,12 +51,14 @@ spec:
             echo "importing image-url: $(params.image-url)"
             echo "image-name: $(params.image-name)"
             echo "image-tag: $(params.image-tag)"
+            echo "insecure: $(params.insecure)"
 
             oc project tools-images
 
             oc import-image $(params.image-name):$(params.image-tag) \
              --from=$(params.image-url) \
              --reference-policy=local \
+             --insecure=$(params.insecure) \
              --confirm
 
             # The Golden Guidance:

@@ -13,7 +13,9 @@ spec:
     - name: trivy-severity
       value: 'CRITICAL'
     - name: scan-image
-      value: 'false'      
+      value: 'false'   
+    - name: insecure
+      value: 'true'           
   pipelineRef:
     name: image-intake-pipeline-prevail-2021
   serviceAccountName: pipeline

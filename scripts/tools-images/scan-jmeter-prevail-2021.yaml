@@ -12,6 +12,8 @@ spec:
       value: 'latest'
     - name: trivy-severity
       value: 'CRITICAL'
+    - name: insecure
+      value: 'true'  
   pipelineRef:
     name: image-intake-pipeline-prevail-2021
   serviceAccountName: pipeline

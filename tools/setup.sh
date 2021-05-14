@@ -45,5 +45,6 @@ echo ""
 
 # view cannot create pods/portforward
 oc policy add-role-to-user admin ${OCP_USER}
+oc policy add-role-to-user system:image-puller system:serviceaccount:pipelines:pipeline 
 
 cd ${HERE}
