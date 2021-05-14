@@ -31,8 +31,9 @@ Let's close an eye ..
 Inspect the result of the import:
 
     $ oc get is -n tools-images
-    NAME                  IMAGE REPOSITORY                                                                           TAGS     UPDATED
-    jmeter-prevail-2021   default-route-openshift-image-registry.apps-crc.testing/tools-images/jmeter-prevail-2021   latest   
+    NAME                  IMAGE REPOSITORY                                                                           TAGS             UPDATED
+    jmeter-prevail-2021   default-route-openshift-image-registry.apps-crc.testing/tools-images/jmeter-prevail-2021   for-use,latest   13 seconds ago
+
 
 ## The performance pipeline
 
