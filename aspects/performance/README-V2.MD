@@ -68,3 +68,7 @@ The peformance pipeline looks similar to the security pipeline.
 There is one difference: all tasks except for the performance test have been stubbed.
 
 
+## Lets run the performance pipeline
+
+    oc create -f tekton-pipeline-run/customer-performance-pipeline-ibm-prevail-2021.yaml 
+    scripts/watch-the-pipeline-run.sh  
