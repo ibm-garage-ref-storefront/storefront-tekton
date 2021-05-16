@@ -76,3 +76,8 @@ There is one difference: all tasks except for the performance test have been stu
 It is possible to watch the pipeline run via the graphical console as well.
 
 ![Fail](../../images/performance-test-run.png?raw=true "Title")
+
+
+## Inspect the performance dashboard.
+
+![Fail](../../images/performance-test.png?raw=true "Title")
