@@ -1,5 +1,7 @@
 # Welcome to IBM Prevail 2021
 
+The IBM Blue Compute shop will be performance tested. The pipeline is stubbed except for the performance test.
+
 ## Deploy the IBM Blue Compute shop
 
 [Deploy](../functionality/DEPLOY-FULL-BC.MD) the IBM Blue Compute shop 
@@ -18,6 +20,10 @@ The tools setup build a JMeter image in the tools namespace:
 
 We will scan the JMeter image for vulnerabilities before we use it in the Tekton pipeline. 
 
+    oc create secret generic registry-access \
+        --from-literal REGISTRY_USER=$(oc whoami) \
+        --from-literal REGISTRY_PASSWORD=$(oc whoami -t)
+
     oc create -f scripts/tools-images/scan-jmeter-prevail-2021.yaml 
     scripts/watch-the-pipeline-run.sh
 
@@ -33,6 +39,24 @@ Inspect the result of the import:
     $ oc get is -n tools-images
     NAME                  IMAGE REPOSITORY                                                                           TAGS             UPDATED
     jmeter-prevail-2021   default-route-openshift-image-registry.apps-crc.testing/tools-images/jmeter-prevail-2021   for-use,latest   13 seconds ago
+
+Delete the access key:
+
+        oc delete secret registry-access 2>/dev/null
+
+## Scan the necessary images for vulnerabilities and import it
+
+    oc create -f scripts/tools-images/scan-alpine-git.yaml
+    oc create -f scripts/tools-images/scan-ubi-minimal-fail-on-criticals.yaml 
+
+
+## Check the result
+
+    $ oc get is -n tools-images
+    NAME                  IMAGE REPOSITORY                                                                           TAGS             UPDATED
+    alpine-git            default-route-openshift-image-registry.apps-crc.testing/tools-images/alpine-git            for-use,latest   6 minutes ago
+    jmeter-prevail-2021   default-route-openshift-image-registry.apps-crc.testing/tools-images/jmeter-prevail-2021   for-use,latest   13 minutes ago
+    ubi-minimal           default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi-minimal           for-use,latest   25 seconds ago
 
 
 ## The performance pipeline

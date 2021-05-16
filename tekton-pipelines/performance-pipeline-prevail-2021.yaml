@@ -40,7 +40,19 @@ spec:
     - default: 'customer-ms-spring'
       description: The name of the service to pull and build.
       name: app-name
-      type: string         
+      type: string       
+    - default: 'jmeter-testplan/blue-compute-shop.jmx'
+      description: the path to the jmeter test plan in the repo
+      name: test-plan
+      type: string
+    - default: '3'
+      description: the number of jmeter threads that will execute the testplan
+      name: jmeter-users
+      type: string
+    - default: '50'
+      description: the number of times that an individual thread will execute the testplan
+      name: jmeter-loop-count
+      type: string        
   tasks:
     - name: clone-app-repo
       taskRef:
@@ -83,8 +95,20 @@ spec:
       runAfter: 
       - roll-out
     - name: performance-test
+      params:
+        - name: git-url
+          value: $(params.git-repo)
+        - name: git-revision
+          value: $(params.git-revision)
+        - name: test-plan
+          value: $(params.test-plan)
+        - name: jmeter-users
+          value: $(params.jmeter-users)
+        - name: jmeter-loop-count
+          value: $(params.jmeter-loop-count)         
       taskRef:
-        name: aot-mockup
+        kind: Task
+        name: aot-jmeter-performance-test
       runAfter: 
       - functional-test
   workspaces:

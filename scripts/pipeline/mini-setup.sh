@@ -16,6 +16,7 @@ oc apply -f tekton-tasks/aot-maven-settings.yaml
 oc apply -f tekton-tasks/aot-maven-task.yaml 
 oc apply -f tekton-tasks/aot-buildah-task.yaml
 oc apply -f tekton-tasks/aot-sonar-java.yaml 
+oc apply -f tekton-tasks/aot-jmeter-performance-test.yaml
 oc apply -f tekton-tasks/ibm-img-scan-trivy.yaml
 
 oc apply -f pvc --recursive
@@ -28,12 +29,6 @@ oc create secret generic sonarqube-access \
     --from-literal SONARQUBE_URL='http://sonarqube-sonarqube.tools.svc.cluster.local:9000' \
     --from-literal SONARQUBE_LOGIN=${SONAR_QUBE_PAT}
 oc extract secret/sonarqube-access --to=-
-
-oc delete secret registry-access 2>/dev/null
-oc create secret generic registry-access \
-    --from-literal REGISTRY_USER=$(oc whoami) \
-    --from-literal REGISTRY_PASSWORD=$(oc whoami -t)
-oc extract secret/registry-access --to=-
 
 oc policy add-role-to-user system:image-pusher system:serviceaccount:full-bc:pipeline
 oc adm policy add-scc-to-user privileged system:serviceaccount:pipelines:pipeline
