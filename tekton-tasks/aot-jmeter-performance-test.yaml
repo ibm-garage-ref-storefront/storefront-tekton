@@ -47,29 +47,31 @@ spec:
               key: username
               optional: true
       script: |
-        set +x
+        set -xv
+
         if [[ -n "${GIT_USERNAME}" ]] && [[ -n "${GIT_PASSWORD}" ]]; then
             git clone "https://${GIT_USERNAME}:${GIT_PASSWORD}@$(echo $(params.git-url) | awk -F 'https://' '{print $2}')" $(params.source-dir)
         else
-            set -x
             git clone $(params.git-url) $(params.source-dir)
         fi
-        set -x
+
         cd $(params.source-dir)
         git checkout $(params.git-revision)
-        ls -l facilitate/tools/jmeter/testplan/target.jmx     
+        ls -l jmeter-testplan    
     - name: jmeter-it
       image: image-registry.openshift-image-registry.svc:5000/tools-images/jmeter-prevail-2021:for-use
       script: |
-        set +x
+        #!/usr/bin/env bash
+
+        set -xv
+
         ls $(params.source-dir)/$(params.test-plan)
 
         # note: the export does not like the - sign
         echo "export jmeter_users=$(echo $(params.jmeter-users))" > /tmp/jmeter.env
         echo "export jmeter_loop_count=$(echo $(params.jmeter-loop-count))" >> /tmp/jmeter.env
-        #ls -lrt /tmp
-        #cat /tmp/jmeter.env
         source /tmp/jmeter.env
-        env | grep jmeter_
 
-        /opt/jmeter/apache-jmeter-5.2.1/bin/jmeter.sh -n -t $(params.source-dir)/$(params.test-plan) -Jjmeter_users=$jmeter_users -Jjmeter_loop_count=$jmeter_loop_count -l /tmp/report.jtl
+        ls -lrt /opt/jmeter
+
+        /opt/jmeter/apache-jmeter-5.4.1/bin/jmeter.sh -n -t $(params.source-dir)/$(params.test-plan) -Jjmeter_users=$jmeter_users -Jjmeter_loop_count=$jmeter_loop_count -l /tmp/report.jtl

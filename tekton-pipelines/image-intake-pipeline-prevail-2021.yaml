@@ -64,7 +64,7 @@ spec:
 
             if [[ "$(params.registry-is-internal)" == "true" ]] ; then
 
-              echo "TODO: tag from internal registry"
+              echo "tag from internal registry"
 
               source=tools/$(params.image-name):$(params.image-tag)
               target=tools-images/$(params.image-name):$(params.image-tag)
