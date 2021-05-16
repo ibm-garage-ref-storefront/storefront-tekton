@@ -97,7 +97,7 @@ spec:
     - name: performance-test
       params:
         - name: git-url
-          value: $(params.git-repo)
+          value: $(params.git-url)
         - name: git-revision
           value: $(params.git-revision)
         - name: test-plan

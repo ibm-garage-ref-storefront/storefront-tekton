@@ -10,6 +10,7 @@ oc apply -f tekton-resources/customer-ms/customer-ms-spring-solo.yaml
 
 oc apply -f tekton-pipelines/security-pipeline-prevail-2021.yaml 
 oc apply -f tekton-pipelines/image-intake-pipeline-prevail-2021.yaml 
+oc apply -f tekton-pipelines/performance-pipeline-prevail-2021.yaml
 
 oc apply -f tekton-tasks/aot-mockup.yaml 
 oc apply -f tekton-tasks/aot-maven-settings.yaml 
