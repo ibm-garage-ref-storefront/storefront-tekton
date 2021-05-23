@@ -12,17 +12,18 @@ The IBM Blue Compute shop will be performance tested. The pipeline is stubbed ex
 
 [Install](../nuts-and-bolts/MINI-SETUP.MD) the tooling if you have not allready done so.
 
-The tools setup build a JMeter image in the tools namespace:
-
-    $ oc get is -n tools | grep jmeter
-    NAME                  IMAGE REPOSITORY                                                                    TAGS     UPDATED
-    jmeter-prevail-2021   default-route-openshift-image-registry.apps-crc.testing/tools/jmeter-prevail-2021   latest   About an hour ago
-
 
 ## Import the images for the performance pipeline
 
-The pipeline runs on images in the tools-images namespace. An image only gets into this namespace when it passes a security check.
+The tools setup build a JMeter image in the tools namespace:
 
+    oc get is -n tools | grep jmeter
+
+The pipeline runs on images in the tools-images namespace. 
+
+An image only gets into this namespace when it passes a security check.
+
+Therefore, we will first inspect the JMeter image.
 
 ### a) Scan the JMeter image for vulnerabilities
 
