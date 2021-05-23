@@ -55,11 +55,6 @@ A Tekton Task is executed via a pod that loads an image to perform the task. We 
     oc create -f scripts/tools-images/scan-ubi-minimal-fail-on-criticals.yaml 
     oc create -f scripts/tools-images/scan-quayio-buildah-stable.yaml
 
-Specials:
-
-    oc create -f scripts/tools-images/scan-gcr-cloud-builders-mvn-3.5.0.yaml 
-    oc create -f scripts/tools-images/scan-ibmgaragecloud-mvn-3.6.3-jdk-11-slim.yaml 
-
 Explore the images in the tools-images project:
 
     NAME                            IMAGE REPOSITORY                                                                                     TAGS             UPDATED
@@ -68,18 +63,31 @@ Explore the images in the tools-images project:
     ubi                             default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi                             for-use,8.0      2 days ago
     ubi-minimal                     default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi-minimal                     for-use,latest   28 seconds ago
 
-Note that the mvn image did not pass the scan. Let's make a decision to go with the IBM image (https://quay.io/repository/ibmgaragecloud/maven?tab=tags):
+
+Security specials (select one):
+
+    oc create -f scripts/tools-images/scan-gcr-cloud-builders-mvn-3.5.0.yaml 
+    oc create -f scripts/tools-images/scan-ibmgaragecloud-mvn-3.6.3-jdk-11-slim.yaml 
+
+Note that the mvn image did not pass the scan. Let's make a decision to go with the [IBM image](https://quay.io/repository/ibmgaragecloud/maven?tab=tags):
 
     oc create -f scripts/tools-images/do-not-scan-ibmgaragecloud-mvn-3.6.3-jdk-11-slim.yaml 
 
 Inspect the images:
 
     $ oc get is -n tools-images
-    NAME                            IMAGE REPOSITORY                                                                                     TAGS                        UPDATED
-    mvn                             default-route-openshift-image-registry.apps-crc.testing/tools-images/mvn                             3.6.3-jdk-11-slim,for-use   13 seconds ago
-    sonarsource-sonar-scanner-cli   default-route-openshift-image-registry.apps-crc.testing/tools-images/sonarsource-sonar-scanner-cli   for-use,latest              3 days ago
-    ubi                             default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi                             for-use,8.0                 6 days ago
-    ubi-minimal                     default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi-minimal                     for-use,latest              4 days ago
+    NAME                            IMAGE REPOSITORY                                                                              TAGS                        UPDATED
+    alpine-git                      image-registry.openshift-image-registry.svc:5000/tools-images/alpine-git                      for-use,latest              48 minutes ago
+    buildah                         image-registry.openshift-image-registry.svc:5000/tools-images/buildah                         for-use,stable              3 minutes ago
+    jmeter-prevail-2021             image-registry.openshift-image-registry.svc:5000/tools-images/jmeter-prevail-2021             for-use,latest              49 minutes ago
+    mvn                             image-registry.openshift-image-registry.svc:5000/tools-images/mvn                             for-use,3.6.3-jdk-11-slim   12 seconds ago
+    sonarsource-sonar-scanner-cli   image-registry.openshift-image-registry.svc:5000/tools-images/sonarsource-sonar-scanner-cli   for-use,latest              3 minutes ago
+    ubi                             image-registry.openshift-image-registry.svc:5000/tools-images/ubi                             8.0,for-use                 5 minutes ago
+    ubi-minimal                     image-registry.openshift-image-registry.svc:5000/tools-images/ubi-minimal                     for-use,latest              48 minutes ago
+
+Note: the performance section of the workshop will scan and import several additional images which are listed here.
+
+
 
 ## The Security pipeline
 
