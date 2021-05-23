@@ -19,7 +19,7 @@ The tools setup build a JMeter image in the tools namespace:
 
     oc get is -n tools | grep jmeter
 
-The pipeline runs on images in the tools-images namespace. 
+The workshop pipelines have been edited to run exclusively on images in the tools-images namespace. 
 
 An image only gets into this namespace when it passes a security check.
 
