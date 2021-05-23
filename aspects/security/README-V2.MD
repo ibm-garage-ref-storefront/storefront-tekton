@@ -2,13 +2,16 @@
 
 We will build, deploy and test the customer-ms-spring solo branch.
 
-Note on CRC, when pods do not get scheduled because the node has disk pressure. Delete completed pods and pipeline runs, and restart CRC.
 
-https://github.com/code-ready/crc/issues/127
+## Pre-requisites
 
-## Setup
+### a) Deploy the IBM Blue Compute shop
 
-Do the  ["setup"](../nuts-and-bolts/MINI-SETUP.MD) of the tooling.
+[Deploy](../functionality/DEPLOY-FULL-BC.MD) the IBM Blue Compute shop if you have not allready done so.
+
+### b) Install the tooling and pipelines
+
+[Install](../nuts-and-bolts/MINI-SETUP.MD) the tooling if you have not allready done so.
 
 
 ## Import the images
@@ -103,3 +106,9 @@ Create a pipeline run and follow it:
 
     oc create -f tekton-pipeline-run/customer-security-pipeline-ibm-prevail-2021.yaml
     scripts/watch-the-pipeline-run.sh
+
+# Trivia
+
+Note on CRC, when pods do not get scheduled because the node has disk pressure. Delete completed pods and pipeline runs, and restart CRC.
+
+https://github.com/code-ready/crc/issues/127
