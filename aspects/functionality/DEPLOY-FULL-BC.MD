@@ -21,7 +21,7 @@ Get the Application Load Balancer address:
 
 Example output for the prevail workshop environment:
 
-    $     echo $APPLB
+    $ echo $APPLB
     prevail-wrkshp-new-roks-915b3b336cabec458a7c7ec2aa7c625f-0000.ams03.containers.appdomain.cloud
 
 Deploy the shop using pre-build images (notes: substitute the value for APPLB and NAMESPACE):
@@ -34,11 +34,25 @@ Deploy the shop using pre-build images (notes: substitute the value for APPLB an
     -p NAMESPACE=$NAMESPACE
 
 
-Inspect the full-bc namespace console and see the shop come alive.
+## b) Check the Deployment
 
-    xdg-open $(oc whoami --show-console) 2>/dev/null
+Inspect the full-bc namespace via the web console and see the shop come alive.
 
-## b) Configure the shop
+You can find the ULR of the openshift cluster, via:
+
+    oc whoami --show-console
+
+Alternatively, check the deployment state via the console:
+
+    watch oc get po
+
+It will take about 5 minutes before the pods all get into the running state. 
+They are is waiting until storage gets assigned. 
+Once that completes, the mysql and mariadb pods will be able to start. 
+And next the inventory and order micros can connect to it, and will come alive.
+
+
+## c) Configure the shop
 
 Load the database:
 
@@ -52,7 +66,7 @@ Login to the shop via the route on the web deployment.
 
 Note: it will take a minute or 2 before the inventory database content is reflected in the catalog.
 
-## c) Enjoy
+## d) Enjoy
 
 Login to the shop and enjoy:
 
