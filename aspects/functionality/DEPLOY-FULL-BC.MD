@@ -7,10 +7,6 @@ The following animation shows the installation and configuration of the full IBM
 
 ## a) Deploy the shop using a template.
 
-```diff
-- The template has been tested on Redhat CRC.
-+ It should work on IBM cloud when you set the APPLB template parameter.
-```
 Login to the cluster:
 
     oc login --token=... --server=...
@@ -23,6 +19,11 @@ Get the Application Load Balancer address:
     APPLB=$(echo $KVP|awk '{print $2}')
     echo $APPLB
 
+Example output for the prevail workshop environment:
+
+    $     echo $APPLB
+    prevail-wrkshp-new-roks-915b3b336cabec458a7c7ec2aa7c625f-0000.ams03.containers.appdomain.cloud
+
 Deploy the shop using pre-build images (notes: substitute the value for APPLB and NAMESPACE):
 
     oc new-project full-bc
@@ -32,11 +33,6 @@ Deploy the shop using pre-build images (notes: substitute the value for APPLB an
     -p APPLB=$APPLB \
     -p NAMESPACE=$NAMESPACE
 
-Example on CRC:    
-
-    oc new-app --template blue-compute-shop \
-    -p APPLB=apps-crc.testing \
-    -p NAMESPACE=full-bc
 
 Inspect the full-bc namespace console and see the shop come alive.
 
@@ -66,3 +62,13 @@ Login to the shop and enjoy:
 # 2 Tear Down (optional)
 
    oc delete project full-bc
+
+# Trivia
+
+The template has been developed tested on Redhat CRC.
+
+Example on CRC:    
+
+    oc new-app --template blue-compute-shop \
+    -p APPLB=apps-crc.testing \
+    -p NAMESPACE=full-bc
