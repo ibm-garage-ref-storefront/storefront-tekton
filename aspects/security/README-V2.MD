@@ -25,7 +25,6 @@ The images that are used to build the application image are scanned and if they 
 
 Create a pipeline run that will fail when vulnerabilities of level  'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL' are detected and follow it:
 
-    oc login -u developer -p developer https://api.crc.testing:6443
     oc create -f scripts/tools-images/scan-ubi-8.0.yaml 
     scripts/watch-the-pipeline-run.sh
 
