@@ -138,7 +138,7 @@ Setup port-forwarding and access the sonarqube report [here](http://localhost:90
 
 Explore the sonar-qube report:
 
-    ![Report](../../images/sonar-qube.png?raw=true "Title")
+![Report](../../images/sonar-qube.png?raw=true "Title")
 
 
 # Trivia
