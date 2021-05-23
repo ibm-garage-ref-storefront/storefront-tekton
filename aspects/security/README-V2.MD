@@ -122,7 +122,7 @@ Setup port-forwarding and access the OWASP dependency check report [here](http:/
 
     tools/httpd/port-forward.sh
 
-Note, the user and password is aot-user/ibm-prevail-2021, navigat to:
+Note, the user and password is aot-user/ibm-prevail-2021, navigate to:
 
 ![Report](../../images/owasp-dependency-check-1.png?raw=true "Title")
 
