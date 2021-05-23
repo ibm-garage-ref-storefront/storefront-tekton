@@ -65,3 +65,7 @@ Initialize the pipeline project / namespace:
 
 
     bash scripts/pipeline/mini-setup.sh
+
+Login to the pipelines project and see that you have access to the pipelines.
+
+![Deploy](../../images/inspect-pipelines.png?raw=true "Title")
