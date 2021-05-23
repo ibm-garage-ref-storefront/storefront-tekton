@@ -1,10 +1,20 @@
 # The Prevail 2021 setup
 
+## Login
+
+This repo was developed on Redhat CRC where 2 users exist (kubeadmin and developer). 
+
+On CRC the setup is run under kubeadmin.
+
+On the IBM Lab environment your account has cluster admin priviledges, you will configure the setup to use your account.
+
+Find your account:
+
+    oc whoami
+
+
 ### A) Setup the tools namespace
 
-In the current version of this repo we are working on Redhat CRC. It should work on a regular OCP cluster with some care. 
-
-    oc login -u kubeadmin -p <password> https://api.crc.testing:6443
     git clone https://github.com/ibm-garage-ref-storefront/storefront-tekton
     cd storefront-tekton   
     cp scripts/config ~/config.bc-full
@@ -16,6 +26,10 @@ Edit the configuration file, and modify OCP_USER and OCP_ADMIN unless you are ru
 Install the tools:
 
     bash tools/setup.sh 
+
+Note:
+- it will take a few minutes until the setup completes.
+- there will be the occasional warning. These can be ignored.
 
 Inspect the tools namespace: 
 
@@ -33,7 +47,7 @@ Inspect the tools and see if you can login
 
 ### B) Setup the tools-images namespace
 
-    oc login -u kubeadmin -p <password> https://api.crc.testing:6443
+
     bash scripts/tools-images/setup.sh 
 
 
@@ -49,5 +63,5 @@ Edit the configuration file, and modify SONAR_QUBE_PAT:
 
 Initialize the pipeline project / namespace:
 
-    oc login -u kubeadmin -p <password> https://api.crc.testing:6443
+
     bash scripts/pipeline/mini-setup.sh
