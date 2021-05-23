@@ -91,6 +91,8 @@ Enjoy:
 You can login to the shop and place an order.
 
 
+![Order](../../images/place-order.png?raw=true "Title")
+
 
 # 2 Tear Down (optional)
 
