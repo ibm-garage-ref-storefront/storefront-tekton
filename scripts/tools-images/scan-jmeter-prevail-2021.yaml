@@ -5,7 +5,7 @@ metadata:
 spec:
   params:
     - name: image-url
-      value: 'default-route-openshift-image-registry.apps-crc.testing/tools/jmeter-prevail-2021:latest'
+      value: 'image-registry.openshift-image-registry.svc.cluster.local:5000/tools/jmeter-prevail-2021:latest'
     - name: image-name
       value: jmeter-prevail-2021
     - name: image-tag
