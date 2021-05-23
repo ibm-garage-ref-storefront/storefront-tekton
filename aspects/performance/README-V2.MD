@@ -79,6 +79,8 @@ There is one difference: all tasks except for the performance test have been stu
 
 ## Lets run the performance pipeline
 
+Lets create a run with 5 parallel users, each executing the JMeter testplan 25 times.
+
     oc create -f tekton-pipeline-run/customer-performance-pipeline-ibm-prevail-2021.yaml 
     scripts/watch-the-pipeline-run.sh  
 
@@ -90,3 +92,10 @@ It is possible to watch the pipeline run via the graphical console as well.
 ## Inspect the performance dashboard.
 
 ![Fail](../../images/performance-test.png?raw=true "Title")
+
+
+## Ramp it up
+
+Lets create another run with 10 parallel users, each executing the JMeter testplan 25 times.
+
+    oc create -f tekton-pipeline-run/customer-performance-pipeline-ibm-prevail-2021-10-users.yaml 
