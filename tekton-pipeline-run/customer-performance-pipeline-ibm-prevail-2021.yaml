@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineRun
 metadata:
-  generateName: customer-security-pipeline-ibm-prevail-2021-
+  generateName: customer-performance-pipeline-ibm-prevail-2021-
 spec:
   serviceAccountName: pipeline
   timeout: "1h0m0s"  
@@ -19,6 +19,10 @@ spec:
       value: "CRITICAL"
     - name: git-repo-checkout-dir
       value: "customer-ms-spring"
+    - name: jmeter-users
+      value: "5"
+    - name: jmeter-loop-count
+      value: "25"      
   workspaces:
     - name: images-url
       emptyDir: {}
