@@ -2,13 +2,15 @@
 
 The IBM Blue Compute shop will be performance tested. The pipeline is stubbed except for the performance test.
 
-## Deploy the IBM Blue Compute shop
+## Pre-requisites
 
-[Deploy](../functionality/DEPLOY-FULL-BC.MD) the IBM Blue Compute shop 
+### a) Deploy the IBM Blue Compute shop
 
-## Install the tooling
+[Deploy](../functionality/DEPLOY-FULL-BC.MD) the IBM Blue Compute shop if you have not allready done so.
 
-[Install](../nuts-and-bolts/MINI-SETUP.MD) the tooling.
+### b) Install the tooling and pipelines
+
+[Install](../nuts-and-bolts/MINI-SETUP.MD) the tooling if you have not allready done so.
 
 The tools setup build a JMeter image in the tools namespace:
 
@@ -16,7 +18,13 @@ The tools setup build a JMeter image in the tools namespace:
     NAME                  IMAGE REPOSITORY                                                                    TAGS     UPDATED
     jmeter-prevail-2021   default-route-openshift-image-registry.apps-crc.testing/tools/jmeter-prevail-2021   latest   About an hour ago
 
-## Scan the JMeter image for vulnerabilities
+
+## Import the images for the performance pipeline
+
+The pipeline runs on images in the tools-images namespace. An image only gets into this namespace when it passes a security check.
+
+
+### a) Scan the JMeter image for vulnerabilities
 
 We will scan the JMeter image for vulnerabilities before we use it in the Tekton pipeline. 
 
@@ -44,13 +52,13 @@ Delete the access key:
 
         oc delete secret registry-access 2>/dev/null
 
-## Scan the necessary images for vulnerabilities and import it
+### b) Scan the necessary images for vulnerabilities and import it
 
     oc create -f scripts/tools-images/scan-alpine-git.yaml
     oc create -f scripts/tools-images/scan-ubi-minimal-fail-on-criticals.yaml 
 
 
-## Check the result
+### c)  Check the result
 
     $ oc get is -n tools-images
     NAME                  IMAGE REPOSITORY                                                                           TAGS             UPDATED
@@ -59,7 +67,7 @@ Delete the access key:
     ubi-minimal           default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi-minimal           for-use,latest   25 seconds ago
 
 
-## The performance pipeline
+# The performance pipeline
 
 The peformance pipeline looks similar to the security pipeline. 
 
