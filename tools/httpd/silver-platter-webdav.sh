@@ -68,8 +68,10 @@ echo "bash scripts/httpd/provide-access.sh"
 
 # Make sure that security is in place before you increase the attack surface.
 #oc expose svc silver-platter
-oc create route edge silver-platter --service=silver-platter --hostname=silver-platter-tools.apps-crc.testing
-oc annotate route silver-platter --overwrite haproxy.router.openshift.io/hsts_header="max-age=31536000;includeSubDomains;preload"
+#oc create route edge silver-platter --service=silver-platter --hostname=silver-platter-tools.apps-crc.testing
+#oc annotate route silver-platter --overwrite haproxy.router.openshift.io/hsts_header="max-age=31536000;includeSubDomains;preload"
+
+echo "Use port-forwarding to access the silver-platter"
 
 # The CM intentention is to be used in JMeter Tekton Task to provide the link to the report in the post that is done in the slack channel. 
 SPR=$(oc get routes.route.openshift.io | grep silver | awk '{ print $2 }' )
