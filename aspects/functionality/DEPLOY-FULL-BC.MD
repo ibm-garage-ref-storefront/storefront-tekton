@@ -58,26 +58,46 @@ Load the database:
 
     bash scripts/inventory/load-database.sh 
 
+Example output:
+
+    loading the inventory microservice
+    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                    Dload  Upload   Total   Spent    Left  Speed
+    100 11192  100 11192    0     0  32719      0 --:--:-- --:--:-- --:--:-- 32821
+    found pod: inventorymysql-1-6ls87
+    database initialized succesfully
+
 Make a user:
 
     bash scripts/customers/make_user.sh 
 
 Login to the shop via the route on the web deployment.
 
-Note: it will take a minute or 2 before the inventory database content is reflected in the catalog.
+Notes: 
+- we suggest that you create the default user foo with the password bar to make automatic testing a bit easier;
+- it will take a minute or 2 before the inventory database content is reflected in the catalog;
+- creating the user will give some complaints about "Insufficient scope", this can be ignored.
 
 ## d) Enjoy
 
-Login to the shop and enjoy:
+Login to the shop, find the URL via:
+
+    oc get routes | grep web
+
+Enjoy:
 
 ![Enjoy](../../images/enjoy.png?raw=true "Title")
+
+You can login to the shop and place an order.
+
 
 
 # 2 Tear Down (optional)
 
    oc delete project full-bc
 
-# Trivia
+
+# 3 Trivia
 
 The template has been developed tested on Redhat CRC.
 
