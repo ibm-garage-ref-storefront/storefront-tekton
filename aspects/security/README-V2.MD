@@ -132,6 +132,14 @@ Click on the link "dependency-check:aggregate":
 
 Take some time to explore the vulnerabilties. Click on the links in the report to visit the NIST database that provides guidance on how to fix the vulnerabilities. 
 
+Setup port-forwarding and access the sonarqube report [here](http://localhost:9000):
+
+    tools/sonarqube/port-forward.sh
+
+Explore the sonarqube report:
+
+    ![OWASP](../../images/sonar-qube.png?raw=true "Title")
+
 
 # Trivia
 
