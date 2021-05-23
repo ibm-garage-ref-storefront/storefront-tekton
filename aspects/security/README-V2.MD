@@ -136,9 +136,9 @@ Setup port-forwarding and access the sonarqube report [here](http://localhost:90
 
     tools/sonarqube/port-forward.sh
 
-Explore the sonarqube report:
+Explore the sonar-qube report:
 
-    ![OWASP](../../images/sonar-qube.png?raw=true "Title")
+    ![Report](../../images/sonar-qube.png?raw=true "Title")
 
 
 # Trivia
