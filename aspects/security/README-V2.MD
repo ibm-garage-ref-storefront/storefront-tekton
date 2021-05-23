@@ -114,6 +114,12 @@ Create a pipeline run and follow it:
     oc create -f tekton-pipeline-run/customer-security-pipeline-ibm-prevail-2021.yaml
     scripts/watch-the-pipeline-run.sh
 
+Note: the fist time that the pipeline runs with take about 14 minutes because it will download images, dependencies as well as the NIST database. Once all is fine the pipeline will be quicker.
+
+# Accessing the scan results
+
+TODO
+
 # Trivia
 
 Note on CRC, when pods do not get scheduled because the node has disk pressure. Delete completed pods and pipeline runs, and restart CRC.
