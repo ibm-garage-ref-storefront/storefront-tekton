@@ -118,7 +118,20 @@ Note: the fist time that the pipeline runs with take about 14 minutes because it
 
 # Accessing the scan results
 
-TODO
+Setup port-forwarding and access the OWASP dependency check report [here](http://localhost:8080):
+
+    tools/httpd/port-forward.sh
+
+Note, the user and password is aot-user/ibm-prevail-2021, navigat to:
+
+![Report](../../images/owasp-dependency-check-1.png?raw=true "Title")
+
+Click on the link "dependency-check:aggregate":
+
+![OWASP](../../images/owasp-dependency-check-2.png?raw=true "Title")
+
+Take some time to explore the vulnerabilties. Click on the links in the report to visit the NIST database that provides guidance on how to fix the vulnerabilities. 
+
 
 # Trivia
 
