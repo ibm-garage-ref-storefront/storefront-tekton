@@ -1,0 +1,20 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: intake-sonarsource-sonar-scanner-cli-
+spec:
+  params:
+    - name: image-url
+      value: 'quay.io/ibmgaragecloud/sonarsource-sonar-scanner-cli:latest'
+    - name: image-name
+      value: sonarsource-sonar-scanner-cli
+    - name: image-tag
+      value: 'latest'
+    - name: trivy-severity
+      value: 'HIGH,CRITICAL'
+    - name: scan-image
+      value: 'false'      
+  pipelineRef:
+    name: image-intake-pipeline-prevail-2021
+  serviceAccountName: pipeline
+  timeout: 1h0m0s
