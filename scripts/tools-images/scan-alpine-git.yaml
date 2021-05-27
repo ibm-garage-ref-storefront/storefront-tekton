@@ -11,7 +11,7 @@ spec:
     - name: image-tag
       value: 'latest'
     - name: trivy-severity
-      value: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
+      value: 'CRITICAL'
   pipelineRef:
     name: image-intake-pipeline-prevail-2021
   serviceAccountName: pipeline
