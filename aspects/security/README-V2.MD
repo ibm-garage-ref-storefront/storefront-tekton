@@ -73,6 +73,11 @@ Note that the mvn image did not pass the scan. Let's make a decision to go with 
 
     oc create -f scripts/tools-images/do-not-scan-ibmgaragecloud-mvn-3.6.3-jdk-11-slim.yaml 
 
+Also, the same is true for the sonar-qube image. Lets once more close the eye. 
+
+    oc create -f scripts/tools-images/do-not-scan-sonarsource-sonar-scanner-cli-latest.yaml
+
+
 Inspect the images:
 
     $ oc get is -n tools-images
