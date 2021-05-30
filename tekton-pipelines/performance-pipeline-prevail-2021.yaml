@@ -76,7 +76,7 @@ spec:
       taskRef:
         name: aot-mockup
       runAfter: 
-        - mvn-settings         
+        - artifact-build         
     - name: sonar-scan
       taskRef:
         name: aot-mockup

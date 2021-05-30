@@ -30,7 +30,13 @@ spec:
         claimName: maven-source-pvc
     - name: local-maven-repo
       persistentVolumeClaim:
-        claimName: maven-repo-pvc      
+        claimName: maven-repo-pvc  
+    - name: local-sonar-repo
+      persistentVolumeClaim:
+        claimName: sonar-repo-pvc 
+    - name: local-owasp-repo
+      persistentVolumeClaim:
+        claimName: owasp-repo-pvc             
     - name: report
       persistentvolumeclaim:
         claimName: httpd-pvc

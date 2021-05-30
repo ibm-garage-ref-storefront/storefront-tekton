@@ -133,14 +133,14 @@ spec:
         kind: Task
         name: aot-maven
       runAfter: 
-        - mvn-settings         
+        - artifact-build         
       workspaces:
         - name: maven-settings
           workspace: maven-settings
         - name: source
           workspace: src-workspace
         - name: maven-repo
-          workspace: local-maven-repo
+          workspace: local-owasp-repo
     - name: sonar-scan
       params:
       - name: app-name
@@ -175,6 +175,8 @@ spec:
   workspaces:
     - name: src-workspace
     - name: maven-settings
-    - name: local-maven-repo    
+    - name: local-maven-repo   
+    - name: local-sonar-repo
+    - name: local-owasp-repo     
     - name: images-url
     - name: report

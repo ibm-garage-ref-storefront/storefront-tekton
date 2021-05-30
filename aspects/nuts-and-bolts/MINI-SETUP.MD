@@ -69,3 +69,7 @@ Initialize the pipeline project / namespace:
 Login to the pipelines project and see that you have access to the pipelines.
 
 ![Deploy](../../images/inspect-pipelines.png?raw=true "Title")
+
+Inspect the persistent volume claims and see them transition from state Pending to Bound:
+
+    watch oc get pvc
