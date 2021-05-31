@@ -96,11 +96,11 @@ Note: the performance section of the workshop will scan and import several addit
 
 ## The Security pipeline
 
-The peformance pipeline looks similar to the performance pipeline. 
+The security pipeline looks similar to the performance pipeline. 
 
 ![Fail](../../images/secure-pipeline-prevail-2021.png?raw=true "Title")
 
-There is one difference: all tasks except for the security test have been stubbed.
+There is one difference: all tasks except for the performance test have been stubbed.
 
 ## Run the security-pipeline-prevail-2021 pipeline
 
