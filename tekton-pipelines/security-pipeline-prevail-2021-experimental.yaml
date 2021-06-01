@@ -79,6 +79,8 @@ spec:
       runAfter:
         - clone-1        
       workspaces:
+        - name: maven-settings
+          workspace: maven-settings      
         - name: source
           workspace: src-workspace-01
         - name: maven-repo
@@ -151,6 +153,8 @@ spec:
       runAfter: 
         - clone-2         
       workspaces:
+        - name: maven-settings
+          workspace: maven-settings      
         - name: source
           workspace: src-workspace-02
         - name: maven-repo
@@ -173,6 +177,7 @@ spec:
       runAfter: 
       - functional-test
   workspaces:
+    - name: maven-settings
     - name: src-workspace-01
     - name: src-workspace-02    
     - name: local-maven-repo   
