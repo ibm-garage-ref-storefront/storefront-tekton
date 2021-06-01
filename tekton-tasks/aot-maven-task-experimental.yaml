@@ -135,29 +135,6 @@ spec:
 
         [[ -f $(workspaces.maven-settings.path)/settings.xml ]] || echo skipping
         settings
-    - name: mvn-settings 
-      image: image-registry.openshift-image-registry.svc.cluster.local:5000/tools-images/ubi-minimal:for-use
-      resources: {}
-      script: |
-        #!/usr/bin/env bash
-
-        FILE=$(workspaces.maven-settings.path)/settings.xml
-
-        if [[ -f "$FILE" ]]; then
-            echo "running under $(id)"
-            ls -lrt $FILE
-            echo "$FILE exists."
-            exit 0
-        fi
-        exit 1
-    - name: mvn-version
-      args:
-        - '-v'
-      command:
-        - /usr/bin/mvn
-      image: image-registry.openshift-image-registry.svc.cluster.local:5000/tools-images/mvn:for-use
-      resources: {}
-      workingDir: $(workspaces.source.path)/$(params.git-repo-checkout-dir)/$(params.pom-dir)
     - name: mvn-goals
       args:
         - '-s'
