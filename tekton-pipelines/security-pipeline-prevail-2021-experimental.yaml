@@ -1,0 +1,182 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: security-pipeline-prevail-2021
+spec:
+  resources:
+    - name: git-source
+      type: git
+    - name: docker-image
+      type: image
+  params:
+    - default: 'docker://default-route-openshift-image-registry.apps-crc.testing/full-bc/customer:latest'
+      description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
+      name: source-url
+      type: string
+    - default: 'docker://de.icr.io/kitty-catt/customer-build:latest'
+      description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
+      name: destination-url-icr
+      type: string       
+    - default: 'docker://quay.io/kitty_catt/customer-build:latest'
+      description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
+      name: destination-url-quay
+      type: string    
+    - default: 'https://github.com/kitty-catt/customer-ms-spring'
+      description: A git repo that contains a java application that is build using maven.
+      name: git-url
+      type: string    
+    - default: 'solo'
+      description: The revision to pull and build.
+      name: git-revision
+      type: string
+    - default: 'app-repo-dir'
+      description: the folder where the application repo will be checked out
+      name: git-repo-checkout-dir
+      type: string   
+    - default: '.'
+      description: the directory containing the pom
+      name: pom-dir
+      type: string               
+    - default: 'customer-ms-spring'
+      description: The name of the service to pull and build.
+      name: app-name
+      type: string         
+  tasks:
+    - name: clone-1
+      params:
+        - name: url
+          value: $(params.git-url)
+        - name: revision
+          value: $(params.git-revision)           
+        - name: subdirectory
+          value: $(params.git-repo-checkout-dir)
+        - name: deleteExisting
+          value: 'true'
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: src-workspace-01
+    - name: clone-2
+      params:
+        - name: url
+          value: $(params.git-url)
+        - name: revision
+          value: $(params.git-revision)           
+        - name: subdirectory
+          value: $(params.git-repo-checkout-dir)
+        - name: deleteExisting
+          value: 'true'
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: src-workspace-02          
+    - name: artifact-build
+      params:
+        - name: GOALS
+          value:
+            - clean
+            - package
+            - deploy
+        - name: PROXY_PROTOCOL
+          value: http
+        - name: module
+          value: $(params.app-name)
+        - name: pom-dir
+          value: $(params.pom-dir) 
+        - name: git-repo-checkout-dir
+          value: $(params.git-repo-checkout-dir)                  
+      taskRef:
+        kind: Task
+        name: aot-maven
+      runAfter:
+        - clone-1        
+      workspaces:
+        - name: source
+          workspace: src-workspace-01
+        - name: maven-repo
+          workspace: local-maven-repo
+    - name: img-build
+      taskRef:
+        kind: Task
+        name: aot-buildah
+      resources:
+        inputs:
+        - name: source
+          resource: git-source
+        outputs:
+        - name: image
+          resource: docker-image
+      params:
+      - name: TLSVERIFY
+        value: "false"
+      - name: CONTEXT
+        value: $(params.pom-dir)        
+      runAfter: 
+      - artifact-build     
+    - name: owasp-scan
+      params:
+        - name: GOALS
+          value:
+            - site
+            - site-deploy
+        - name: PROXY_PROTOCOL
+          value: http
+        - name: module
+          value: $(params.app-name)
+        - name: pom-dir
+          value: $(params.pom-dir) 
+        - name: git-repo-checkout-dir
+          value: $(params.git-repo-checkout-dir)     
+      taskRef:
+        kind: Task
+        name: aot-maven
+      runAfter: 
+        - clone-2         
+      workspaces:
+        - name: source
+          workspace: src-workspace-02
+        - name: maven-repo
+          workspace: local-owasp-repo
+    - name: sonar-scan
+      params:
+      - name: app-name
+        value: $(params.app-name)   
+      - name: git-repo-checkout-dir
+        value: $(params.git-repo-checkout-dir)                    
+      taskRef:
+        kind: Task      
+        name: aot-sonar-java
+      runAfter: 
+        - artifact-build   
+      workspaces:
+        - name: source
+          workspace: src-workspace-01
+    - name: roll-out
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - img-build
+      - owasp-scan
+      - sonar-scan
+    - name: functional-test
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - roll-out
+    - name: performance-test
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - functional-test
+  workspaces:
+    - name: src-workspace-01
+    - name: src-workspace-02    
+    - name: local-maven-repo   
+    - name: local-sonar-repo
+    - name: local-owasp-repo     
+    - name: images-url
+    - name: report
