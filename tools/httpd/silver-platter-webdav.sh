@@ -22,21 +22,36 @@ oc apply -f iam-pvc.yaml
 oc apply -f webdav-pvc.yaml 
 
 PVC_STATE="unknown"
-
 until [ "$PVC_STATE" == "Bound" ]; do
     PVC_STATE=$(oc get pvc | grep httpd-pvc | awk '{print $2 }')
     echo "httpd-pvc provisioning: " $PVC_STATE
     sleep 5
 done
 
+PVC_STATE="unknown"
+until [ "$PVC_STATE" == "Bound" ]; do
+    PVC_STATE=$(oc get pvc | grep iam-pvc | awk '{print $2 }')
+    echo "iam-pvc provisioning: " $PVC_STATE
+    sleep 5
+done
+
+PVC_STATE="unknown"
+until [ "$PVC_STATE" == "Bound" ]; do
+    PVC_STATE=$(oc get pvc | grep webdav-pvc | awk '{print $2 }')
+    echo "webdav-pvc provisioning: " $PVC_STATE
+    sleep 5
+done
+
 # assume when httpd pvc is ready, then iam pvc is as well
+
 oc set triggers dc/silver-platter --from-config=false
 oc set volume dc/silver-platter --add --name=httpd --type=persistentVolumeClaim --claim-name='httpd-pvc' --mount-path=/var/www/html
 oc set volume dc/silver-platter --add --name=iam --type=persistentVolumeClaim --claim-name='iam-pvc' --mount-path=/etc/www/iam
 oc set volume dc/silver-platter --add --name=webdav --type=persistentVolumeClaim --claim-name='webdav-pvc' --mount-path=/var/www/webdav
 oc set triggers dc/silver-platter auto
 
-sleep 5
+echo "sleeping for 10 seconds"
+sleep 10
 
 POD_STATE="unknown"
 until [ "$POD_STATE" == "Running" ]; do
