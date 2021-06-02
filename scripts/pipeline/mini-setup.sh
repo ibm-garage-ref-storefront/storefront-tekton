@@ -8,13 +8,15 @@ oc new-project pipelines
 
 oc apply -f tekton-resources/customer-ms/customer-ms-spring-solo.yaml
 
-oc apply -f tekton-pipelines/security-pipeline-prevail-2021.yaml 
+#oc apply -f tekton-pipelines/security-pipeline-prevail-2021.yaml 
+oc apply -f tekton-pipelines/security-pipeline-prevail-2021-experimental.yaml
 oc apply -f tekton-pipelines/image-intake-pipeline-prevail-2021.yaml 
 oc apply -f tekton-pipelines/performance-pipeline-prevail-2021.yaml
 
 oc apply -f tekton-tasks/aot-mockup.yaml 
-oc apply -f tekton-tasks/aot-maven-settings.yaml 
-oc apply -f tekton-tasks/aot-maven-task.yaml 
+#oc apply -f tekton-tasks/aot-maven-settings.yaml 
+#oc apply -f tekton-tasks/aot-maven-task.yaml 
+oc apply -f tekton-tasks/aot-maven-task-experimental.yaml
 oc apply -f tekton-tasks/aot-buildah-task.yaml
 oc apply -f tekton-tasks/aot-sonar-java.yaml 
 oc apply -f tekton-tasks/aot-jmeter-performance-test.yaml

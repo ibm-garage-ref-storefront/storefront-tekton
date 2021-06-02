@@ -116,10 +116,10 @@ The FROM image in the Dockerfile is under control of the pipeline run. In other 
 
 Create a pipeline run and follow it:
 
-    oc create -f tekton-pipeline-run/customer-security-pipeline-ibm-prevail-2021.yaml
+     oc create -f tekton-pipeline-run/customer-security-pipeline-ibm-prevail-2021-experimental.yaml 
     scripts/watch-the-pipeline-run.sh
 
-Note: the fist time that the pipeline runs with take about 14 minutes because it will download images, dependencies as well as the NIST database. Once all is fine the pipeline will be quicker.
+Note: the fist time that the pipeline runs with take about 14 minutes because it will download images, dependencies as well as the NIST database. Once all is fine the pipeline will run in around 6 to 7 minutes.
 
 # Accessing the scan results
 
