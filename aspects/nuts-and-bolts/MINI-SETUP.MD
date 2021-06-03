@@ -53,9 +53,13 @@ Inspect the tools and see if you can login
 
 ### C) Setup the pipelines namespace
 
-Login to sonarqube via [port-forwarding](http://localhost:9000) and make a SONAR_QUBE_PAT:
+Setup port-forwarding:
 
     bash tools/sonarqube/port-forward.sh
+
+Login to sonarqube via the [forwarded port](http://localhost:9000){:target="_blank"} and make a SONAR_QUBE_PAT. 
+
+It may take half a minute to get connected.
 
 Edit the configuration file, and modify SONAR_QUBE_PAT:
 
