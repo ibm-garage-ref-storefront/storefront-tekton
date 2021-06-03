@@ -57,11 +57,11 @@ Setup port-forwarding:
 
     bash tools/sonarqube/port-forward.sh
 
-Login to sonarqube via the [forwarded port](http://localhost:9000)("right-click and open this link").
-
-Make a SONAR_QUBE_PAT. 
+Login to sonarqube via the [forwarded port](http://localhost:9000) ("right-click and open this link").
 
 It may take half a minute to get connected.
+
+Make a SONAR_QUBE_PAT via create new project and generate a key. 
 
 Edit the configuration file, and modify SONAR_QUBE_PAT:
 
