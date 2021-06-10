@@ -102,7 +102,9 @@ spec:
       - name: CONTEXT
         value: $(params.pom-dir)        
       runAfter: 
-      - artifact-build     
+      - dep-track
+      - sonar-scan  
+      - rescan-base-img       
     - name: sonar-scan
       params:
       - name: app-name
@@ -133,7 +135,7 @@ spec:
       workspaces:
         - name: output
           workspace: src-workspace-02        
-    - name: owasp-scan
+    - name: dep-check
       params:
         - name: GOALS
           value:
@@ -151,21 +153,29 @@ spec:
         kind: Task
         name: aot-maven
       runAfter: 
-        - clone-2         
+        - clone-2  
+    - name: dep-track
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - dep-check               
       workspaces:
         - name: maven-settings
           workspace: maven-settings      
         - name: source
           workspace: src-workspace-02
         - name: maven-repo
-          workspace: local-owasp-repo             
+          workspace: local-owasp-repo    
+    - name: scan-app-img
+      taskRef:
+        name: aot-mockup     
+      runAfter: 
+      - img-build                      
     - name: roll-out
       taskRef:
         name: aot-mockup
       runAfter: 
-      - img-build
-      - owasp-scan
-      - sonar-scan
+      - scan-app-img
     - name: functional-test
       taskRef:
         name: aot-mockup
@@ -176,6 +186,9 @@ spec:
         name: aot-mockup
       runAfter: 
       - functional-test
+    - name: rescan-base-img
+      taskRef:
+        name: aot-mockup      
   workspaces:
     - name: maven-settings
     - name: src-workspace-01

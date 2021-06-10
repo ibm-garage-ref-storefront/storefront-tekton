@@ -28,6 +28,8 @@ oc apply -f influxdb/influxdb-service.yaml
 echo "sleep for 120 seconds to give the operator time to install, before continuing the grafana installation"
 
 sleep 120
+
+# TODO: add checks on the presence of required objects before proceeding 
 oc apply -f grafana.yaml
 
 #echo "sleep for 10 seconds"
