@@ -13,6 +13,7 @@ oc adm policy add-role-to-user system:image-builder $OCP_USER
 # https://docs.openshift.com/container-platform/4.3/registry/securing-exposing-registry.html
 oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"defaultRoute":true}}' --type=merge
 
+echo "sleep 30 seconds to give the imageregistry operator time to re-adjust"
 sleep 30
 
 export HOST=$(oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}')
