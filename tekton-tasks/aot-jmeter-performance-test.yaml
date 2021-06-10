@@ -75,3 +75,16 @@ spec:
         ls -lrt /opt/jmeter
 
         /opt/jmeter/apache-jmeter-5.4.1/bin/jmeter.sh -n -t $(params.source-dir)/$(params.test-plan) -Jjmeter_users=$jmeter_users -Jjmeter_loop_count=$jmeter_loop_count -l /tmp/report.jtl
+
+        echo "checking for the existance of errors .."
+                
+        LINES=$(grep false /tmp/report.jtl | wc -l)
+        TOTAL_LINES=$(cat /tmp/report.jtl | wc -l)
+        
+        if [ $LINES -eq 0 ] ; then
+          echo "no errors in jmeter test -> ready to promote the code"
+          exit 0
+        else
+          echo "oops, errors were found."
+          exit 1
+        fi
