@@ -25,19 +25,19 @@ oc apply -f influxdb/influxdb-config.yaml
 oc apply -f influxdb/influxdb-deployment.yaml 
 oc apply -f influxdb/influxdb-service.yaml 
 
-echo "sleep for 60 seconds to give the operator time to install, before continuing the grafana installation"
+echo "sleep for 120 seconds to give the operator time to install, before continuing the grafana installation"
 
-sleep 60
+sleep 120
 oc apply -f grafana.yaml
 
-echo "sleep for 10 seconds"
-sleep 10
+#echo "sleep for 10 seconds"
+#sleep 10
 oc apply -f grafana_ds.yaml
 
-echo "sleep for 10 seconds"
-sleep 10
+#echo "sleep for 10 seconds"
+#sleep 10
 oc apply -f jmeter_dashboard.yaml
 
-echo "sleep for 10 seconds"
-sleep 10
+#echo "sleep for 10 seconds"
+#sleep 10
 oc expose svc grafana-operator-metrics
