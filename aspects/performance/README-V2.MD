@@ -124,3 +124,7 @@ Example line:
     [performance-test : jmeter-it] summary +    292 in 00:00:30 =    9.7/s Avg:    11 Min:     1 Max:   194 Err:    12 (4.11%) Active: 10 Started: 10 Finished: 0
 
 The pipeline run will now fail to complete. 
+
+Also Grafana will display the errors:
+
+![Fail](../../images/performance-build-breaker-1.png?raw=true "Title")
