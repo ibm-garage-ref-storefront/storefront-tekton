@@ -22,7 +22,9 @@ spec:
     - name: jmeter-users
       value: "10"
     - name: jmeter-loop-count
-      value: "25"      
+      value: "25"    
+    - name: test-plan
+      value: "jmeter-testplan/blue-compute-shop-performance-breaker.jmx"  
   workspaces:
     - name: images-url
       emptyDir: {}
