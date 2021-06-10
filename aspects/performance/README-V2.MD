@@ -116,3 +116,11 @@ Run it:
 
     oc create -f tekton-pipeline-run/customer-performance-pipeline-ibm-prevail-2021-performance-build-breaker.yaml 
     scripts/watch-the-pipeline-run.sh 
+
+In the output of the Pipeline Run you will find that a certain percentage of the calls fails to meet the response duration assertion of 30 milli-seconds. 
+
+Example line:
+
+    [performance-test : jmeter-it] summary +    292 in 00:00:30 =    9.7/s Avg:    11 Min:     1 Max:   194 Err:    12 (4.11%) Active: 10 Started: 10 Finished: 0
+
+The pipeline run will now fail to complete. 
