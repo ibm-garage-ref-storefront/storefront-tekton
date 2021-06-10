@@ -58,6 +58,10 @@ Delete the access key:
     oc create -f scripts/tools-images/scan-alpine-git.yaml
     oc create -f scripts/tools-images/scan-ubi-minimal-fail-on-criticals.yaml 
 
+Wait until the pipeline runs complete:
+
+    watch tkn pipelinerun list
+    
 
 ### c)  Check the result
 
