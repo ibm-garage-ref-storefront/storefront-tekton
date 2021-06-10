@@ -127,4 +127,4 @@ The pipeline run will now fail to complete.
 
 Also Grafana will display the errors:
 
-![Fail](../../images/performance-build-breaker-1.png?raw=true "Title")
+![Fail](../../images/performance-build-breaker-2.png?raw=true "Title")
