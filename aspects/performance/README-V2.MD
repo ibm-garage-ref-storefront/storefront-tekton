@@ -61,7 +61,7 @@ Delete the access key:
 Wait until the pipeline runs complete:
 
     watch tkn pipelinerun list
-    
+
 
 ### c)  Check the result
 
@@ -103,3 +103,15 @@ It is possible to watch the pipeline run via the graphical console as well.
 Lets create another run with 10 parallel users, each executing the JMeter testplan 25 times.
 
     oc create -f tekton-pipeline-run/customer-performance-pipeline-ibm-prevail-2021-10-users.yaml 
+
+## Add or Configure a Performance Build Breaker:
+
+On the customer-ms-spring repo, open the jmeter testplan and configure the performance build breaker:
+
+![Fail](../../images/performance-build-breaker-1.png?raw=true "Title")
+
+It is set to break the build when response times are encountered below 30 ms.
+
+Run it:
+
+    oc create -f tekton-pipeline-run/customer-performance-pipeline-ibm-prevail-2021-performance-build-breaker.yaml 

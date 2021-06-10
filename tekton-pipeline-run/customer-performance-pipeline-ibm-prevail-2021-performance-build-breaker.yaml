@@ -1,0 +1,40 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: customer-performance-pipeline-ibm-prevail-2021-
+spec:
+  serviceAccountName: pipeline
+  timeout: "1h0m0s"  
+  pipelineRef:
+    name: performance-pipeline-prevail-2021
+  resources:
+    - name: git-source
+      resourceRef:
+        name: customer-source-solo
+    - name: docker-image
+      resourceRef:
+        name: customer-image-internal
+  params:
+    - name: trivy-severity
+      value: "CRITICAL"
+    - name: git-repo-checkout-dir
+      value: "customer-ms-spring"
+    - name: jmeter-users
+      value: "10"
+    - name: jmeter-loop-count
+      value: "25"      
+  workspaces:
+    - name: images-url
+      emptyDir: {}
+    - name: maven-settings
+      persistentvolumeclaim:
+        claimName: maven-settings-pvc
+    - name: src-workspace
+      persistentvolumeclaim:
+        claimName: maven-source-pvc
+    - name: local-maven-repo
+      persistentVolumeClaim:
+        claimName: maven-repo-pvc      
+    - name: report
+      persistentvolumeclaim:
+        claimName: httpd-pvc
