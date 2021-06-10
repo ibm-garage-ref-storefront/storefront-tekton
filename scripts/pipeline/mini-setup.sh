@@ -38,6 +38,10 @@ oc adm policy add-scc-to-user privileged system:serviceaccount:pipelines:pipelin
 
 oc policy add-role-to-user edit ${OCP_USER}
 
+mkdir -pv ${HOME}/bin
+curl https://mirror.openshift.com/pub/openshift-v4/clients/pipeline/0.13.1/tkn-linux-amd64-0.13.1.tar.gz -o ~/bin/tkn-linux-amd64-0.13.1.tar.gz
+tar xvf ~/bin/tkn-linux-amd64-0.13.1.tar.gz --directory=${HOME}/bin
+
 echo ""
 echo "Welcome to IBM Prevail 2021"
 echo ""
