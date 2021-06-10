@@ -115,3 +115,4 @@ It is set to break the build when response times are encountered below 30 ms.
 Run it:
 
     oc create -f tekton-pipeline-run/customer-performance-pipeline-ibm-prevail-2021-performance-build-breaker.yaml 
+    scripts/watch-the-pipeline-run.sh 
