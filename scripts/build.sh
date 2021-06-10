@@ -1,5 +1,5 @@
 #!/bin/bash
-source ~/config
+source ~/config.bc-full 
 
 echo "building images"
 export HERE=${PWD}

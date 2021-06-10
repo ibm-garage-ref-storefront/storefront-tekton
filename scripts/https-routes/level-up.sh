@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/config
+source ~/config.bc-full 
 HERE=$(pwd)
 
 echo "Levelling up the routes from HTTP to HTTPS."

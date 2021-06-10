@@ -2,7 +2,7 @@
 
 echo "setup customers"
 echo ""
-source ~/config
+source ~/config.bc-full 
 
 # Admin JWT Token
 jwt1=$(echo -n '{"alg":"HS256","typ":"JWT"}' | openssl enc -base64);

@@ -1,10 +1,8 @@
 #!/bin/bash
-source ~/config
+source ~/config.bc-full 
 
 export HERE=${PWD}
 echo "Working from $HERE"
-
-source ~/config
 
 oc new-project pipelines
 

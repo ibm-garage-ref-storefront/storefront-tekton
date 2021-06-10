@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "###################################################################"
-#source ~/config.pnst
+source ~/config.bc-full 
 
 oc project tools
 

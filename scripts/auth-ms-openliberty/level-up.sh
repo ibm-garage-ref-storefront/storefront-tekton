@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/config
+source ~/config.bc-full 
 HERE=$(pwd)
 
 echo "*** GENERATING THE COVETED KEYS *** "

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/config
+source ~/config.bc-full 
 echo "Recycle crc-creds-skopeo secret"
 
 mkdir -pv /tmp/$WORKSPACE/

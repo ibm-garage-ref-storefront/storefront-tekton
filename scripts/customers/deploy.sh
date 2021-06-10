@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "deploy customers"
-source ~/config
+source ~/config.bc-full 
 
 #appsody run --docker-options "\
 # -e COUCHDB_PORT=5985 \

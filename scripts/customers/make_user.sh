@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "testing customers deployment"
-source ~/config
+source ~/config.bc-full 
 
 read -p 'User to create: ' -e -i 'foo' username
 

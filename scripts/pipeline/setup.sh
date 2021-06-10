@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/config
+source ~/config.bc-full 
 echo "Setting up generic openshift pipeline"
 
 # pipelines
