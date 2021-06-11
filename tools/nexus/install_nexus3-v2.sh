@@ -5,9 +5,10 @@
 oc project tools
 
 cd /tmp
-
 git clone https://github.com/m88i/nexus-operator
+
 cd /tmp/nexus-operator/
+git checkout tags/v0.5.0 
 
 sed -i "s/nexus-operator-system/tools/g" nexus-operator.yaml
 oc apply -f nexus-operator.yaml 
@@ -21,5 +22,7 @@ echo "use port-forwarding to get to nexus"
 # oc get -o yaml deployment nexus3  | grep serviceAccountName
 oc apply -f examples/scc-persistent.yaml
 oc adm policy add-scc-to-user allow-nexus-userid-200 -z nexus3
+
+rm -Rf /tmp/nexus-operator/
 
 cd -
