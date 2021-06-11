@@ -18,6 +18,21 @@ spec:
   sourceNamespace: openshift-marketplace
 EOF
 
+#-------------------------------------------------------------------------
+# Wait until the Graphana Operator is running
+POD=$(oc get po | grep grafana-operator | awk '{print $3}')
+echo ${POD}
+
+until [ "${POD}" = "Running" ]
+do
+  echo "checking"
+  POD=$(oc get po | grep grafana-operator | awk '{print $3}')
+  echo "Grafana Operator state: " ${POD}
+  sleep 5
+done
+echo "done"
+
+#-------------------------------------------------------------------------
 # Install influxdb
 oc apply -f influxdb/influxdb-data.yaml 
 oc apply -f influxdb/influxdb-secrets.yaml 
@@ -25,9 +40,19 @@ oc apply -f influxdb/influxdb-config.yaml
 oc apply -f influxdb/influxdb-deployment.yaml 
 oc apply -f influxdb/influxdb-service.yaml 
 
-echo "sleep for 120 seconds to give the operator time to install, before continuing the grafana installation"
+POD=$(oc get po | grep influxdb-deployment | awk '{print $3}')
+echo ${POD}
 
-sleep 120
+until [ "${POD}" = "Running" ]
+do
+  echo "checking"
+  POD=$(oc get po | grep influxdb-deployment | awk '{print $3}')
+  echo "InfluxDB state: " ${POD}
+  sleep 5
+done
+echo "done"
+
+sleep 5
 
 # TODO: add checks on the presence of required objects before proceeding 
 oc apply -f grafana.yaml
