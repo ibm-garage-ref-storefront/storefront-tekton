@@ -50,7 +50,7 @@ Login to the silver-platter and see what is the matter:
 
 Login with the user and password as described in the tools setup, and navigate to the report.
 
-![Fail](../../images/silver-plaater-report.png?raw=true "Title")    
+![Fail](../../images/silver-platter-report.png?raw=true "Title")    
 
 See if you can find out what went wrong. 
 
