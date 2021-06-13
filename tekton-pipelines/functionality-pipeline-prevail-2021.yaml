@@ -1,0 +1,130 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: functionality-pipeline-prevail-2021
+spec:
+  resources:
+    - name: git-source
+      type: git
+    - name: docker-image
+      type: image
+  params:
+    - default: 'docker://default-route-openshift-image-registry.apps-crc.testing/full-bc/customer:latest'
+      description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
+      name: source-url
+      type: string
+    - default: 'docker://de.icr.io/kitty-catt/customer-build:latest'
+      description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
+      name: destination-url-icr
+      type: string       
+    - default: 'docker://quay.io/kitty_catt/customer-build:latest'
+      description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
+      name: destination-url-quay
+      type: string    
+    - default: 'https://github.com/kitty-catt/customer-ms-spring'
+      description: A git repo that contains a java application that is build using maven.
+      name: git-url
+      type: string    
+    - default: 'solo'
+      description: The revision to pull and build.
+      name: git-revision
+      type: string
+    - default: 'app-repo-dir'
+      description: the folder where the application repo will be checked out
+      name: git-repo-checkout-dir
+      type: string   
+    - default: '.'
+      description: the directory containing the pom
+      name: pom-dir
+      type: string               
+    - default: 'customer-ms-spring'
+      description: The name of the service to pull and build.
+      name: app-name
+      type: string       
+    - default: 'jmeter-testplan/blue-compute-shop.jmx'
+      description: the path to the jmeter test plan in the repo
+      name: test-plan
+      type: string
+    - default: 'jmeter-testplan/order-a-calculator.jmx'
+      description: the path to the jmeter test plan in the repo
+      name: functional-test-plan
+      type: string      
+    - default: '3'
+      description: the number of jmeter threads that will execute the testplan
+      name: jmeter-users
+      type: string
+    - default: '50'
+      description: the number of times that an individual thread will execute the testplan
+      name: jmeter-loop-count
+      type: string        
+  tasks:
+    - name: rescan-base-img
+      taskRef:
+        name: aot-mockup  
+    - name: clone-1
+      taskRef:
+        name: aot-mockup  
+    - name: artifact-build
+      taskRef:
+        name: aot-mockup  
+      runAfter:
+        - clone-1        
+    - name: img-build
+      taskRef:
+        name: aot-mockup         
+      runAfter: 
+      - dep-track
+      - sonar-scan  
+      - rescan-base-img       
+    - name: sonar-scan
+      taskRef:
+        name: aot-mockup  
+      runAfter: 
+        - artifact-build   
+    - name: clone-2
+      taskRef:
+        name: aot-mockup         
+    - name: dep-check
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+        - clone-2  
+    - name: dep-track
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - dep-check               
+    - name: scan-app-img
+      taskRef:
+        name: aot-mockup     
+      runAfter: 
+      - img-build                      
+    - name: roll-out
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - scan-app-img
+    - name: functional-test
+      params:
+        - name: git-url
+          value: $(params.git-url)
+        - name: git-revision
+          value: $(params.git-revision)
+        - name: test-plan
+          value: $(params.functional-test-plan)
+      taskRef:
+        kind: Task
+        name: aot-jmeter-performance-test
+      runAfter: 
+      - roll-out
+    - name: performance-test
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - functional-test
+  workspaces:
+    - name: src-workspace
+    - name: maven-settings
+    - name: local-maven-repo    
+    - name: images-url
+    - name: report
