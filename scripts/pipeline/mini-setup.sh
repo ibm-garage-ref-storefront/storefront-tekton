@@ -35,6 +35,20 @@ oc create secret generic sonarqube-access \
     --from-literal SONARQUBE_LOGIN=${SONAR_QUBE_PAT}
 oc extract secret/sonarqube-access --to=-
 
+echo "Create access key to slack"
+oc delete secret slack-access 2>/dev/null
+oc create secret generic slack-access \
+ --from-literal=slack-url=${SLACK_URL} \
+ --from-literal=slack-channel=${SLACK_CHANNEL}
+
+# The CM intentention is to be used in JMeter Tekton Task to provide the link to the report in the post that is done in the slack channel. 
+oc create configmap silver-platter-cm  2>/dev/null
+SPR=$(oc get routes.route.openshift.io -n tools | grep silver | awk '{ print $2 }' )
+oc create configmap silver-platter-cm --from-literal route=http://$SPR 
+oc extract configmap/silver-platter-cm --to=-
+
+oc create secret generic silver-platter-basic-auth --from-literal USER=aot-user --from-literal PASSWORD=ibm-prevail-2021
+
 oc policy add-role-to-user system:image-pusher system:serviceaccount:full-bc:pipeline
 oc adm policy add-scc-to-user privileged system:serviceaccount:pipelines:pipeline
 

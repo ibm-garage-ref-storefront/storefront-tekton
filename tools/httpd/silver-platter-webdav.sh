@@ -104,3 +104,5 @@ oc set volume dc silver-platter \
 --sub-path=webdav.conf 
 
 oc set volumes dc silver-platter --all
+
+oc expose svc silver-platter
