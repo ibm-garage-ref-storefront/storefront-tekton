@@ -19,9 +19,13 @@ Find your account:
     cd storefront-tekton   
     cp scripts/config ~/config.bc-full
 
-Edit the configuration file, and modify OCP_USER and OCP_ADMIN unless you are running on CRC:
+Edit the configuration file:  
 
     vi ~/config.bc-full
+
+Modify:
+- modify OCP_USER and OCP_ADMIN unless you are running on CRC;
+- modify SLACK_URL and SLACK_CHANNEL when you jabe a slack channel that you can post to (optional).
 
 Install the tools:
 
