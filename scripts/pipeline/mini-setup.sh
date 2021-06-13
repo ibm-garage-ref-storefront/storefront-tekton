@@ -12,6 +12,7 @@ oc apply -f tekton-resources/customer-ms/customer-ms-spring-solo.yaml
 oc apply -f tekton-pipelines/security-pipeline-prevail-2021-experimental.yaml
 oc apply -f tekton-pipelines/image-intake-pipeline-prevail-2021.yaml 
 oc apply -f tekton-pipelines/performance-pipeline-prevail-2021.yaml
+oc apply -f tekton-pipelines/functionality-pipeline-prevail-2021.yaml 
 
 oc apply -f tekton-tasks/aot-mockup.yaml 
 #oc apply -f tekton-tasks/aot-maven-settings.yaml 
@@ -21,6 +22,7 @@ oc apply -f tekton-tasks/aot-buildah-task.yaml
 oc apply -f tekton-tasks/aot-sonar-java.yaml 
 oc apply -f tekton-tasks/aot-jmeter-performance-test.yaml
 oc apply -f tekton-tasks/ibm-img-scan-trivy.yaml
+oc create -f tekton-tasks/aot-jmeter-functionality-test.yaml 
 
 oc apply -f pvc --recursive
 
