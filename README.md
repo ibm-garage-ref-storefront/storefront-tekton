@@ -23,7 +23,7 @@ Once the blue compute shop is up and running your can choose to explore various 
 | [Performance](aspects/performance/README-V2.MD) | the IBM Prevail 2021 experimental version |
 
 
-## b) For lovers
+# Archived version
 
 | Aspect | Description |
 | --- | --- |
