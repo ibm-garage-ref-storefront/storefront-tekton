@@ -18,13 +18,13 @@ We will build, deploy and test the customer-ms-spring solo branch.
 [Scan and Import](../nuts-and-bolts/SCAN.MD) the images that are used by the tool-chain if you have not allready done so.
 
 
-## The Security pipeline
+# The security section of the pipeline
 
-The security pipeline looks similar to the performance pipeline. 
+The security pipeline looks similar to the functionality, and performance pipeline. Actually, it is the same.
 
 ![Fail](../../images/secure-pipeline-prevail-2021.png?raw=true "Title")
 
-There is one difference: all tasks except for the performance test have been stubbed.
+There is one difference: all tasks except for the security testing have been stubbed.
 
 ## Run the security-pipeline-prevail-2021 pipeline
 

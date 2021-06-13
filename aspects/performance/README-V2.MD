@@ -17,9 +17,9 @@ The IBM Blue Compute shop will be performance tested. The pipeline is stubbed ex
 [Scan and Import](../nuts-and-bolts/SCAN.MD) the images that are used by the tool-chain if you have not allready done so.
 
 
-# The performance pipeline
+# The performance section of the pipeline
 
-The peformance pipeline looks similar to the security pipeline. 
+The peformance pipeline looks similar to the security pipeline.  Actually, it is the same.
 
 ![Fail](../../images/performance-pipeline.png?raw=true "Title")
 
