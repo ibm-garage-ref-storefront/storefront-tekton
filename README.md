@@ -6,12 +6,19 @@ This repository aims to:
 
 Once the blue compute shop is up and running your can choose to explore various aspects:
 
-## a) Prevail 2021
+## a) Common Setup Prevail 2021
 
 | Aspect | Description |
 | --- | --- |
 | [Deploy](aspects/functionality/DEPLOY-FULL-BC.MD) | Deploy the IBM Blue Compute shop |
 | [Tools Setup](aspects/nuts-and-bolts/MINI-SETUP.MD) | Setting up the tools |
+| [Tools Images](aspects/nuts-and-bolts/SCAN.MD) | Scanning and importing the tools images |
+
+## b) Independant Tracks Prevail 2021
+
+| Aspect | Description |
+| --- | --- |
+| [Functionality](aspects/functionality/README.MD) | the IBM Prevail 2021 experimental version |
 | [Security](aspects/security/README-V2.MD) | the IBM Prevail 2021 experimental version |
 | [Performance](aspects/performance/README-V2.MD) | the IBM Prevail 2021 experimental version |
 
