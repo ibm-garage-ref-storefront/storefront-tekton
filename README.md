@@ -18,8 +18,8 @@ Once the blue compute shop is up and running your can choose to explore various 
 
 | Aspect | Description |
 | --- | --- |
-| [Functionality](aspects/functionality/README.MD) | the IBM Prevail 2021 experimental version |
 | [Security](aspects/security/README-V2.MD) | the IBM Prevail 2021 experimental version |
+| [Functionality](aspects/functionality/README.MD) | the IBM Prevail 2021 experimental version |
 | [Performance](aspects/performance/README-V2.MD) | the IBM Prevail 2021 experimental version |
 | [Availability](aspects/availability/README.MD) | the IBM Prevail 2021 experimental version |
 
