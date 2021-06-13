@@ -72,6 +72,13 @@ Wait until the pipeline runs complete:
     jmeter-prevail-2021   default-route-openshift-image-registry.apps-crc.testing/tools-images/jmeter-prevail-2021   for-use,latest   13 minutes ago
     ubi-minimal           default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi-minimal           for-use,latest   25 seconds ago
 
+### d) Fail saves
+
+It might be that vulnerabilities are discovered on one of more images. You may choose to close your eyes:
+
+    oc create -f scripts/tools-images/do-not-scan-jmeter-prevail-2021.yaml
+    oc create -f scripts/tools-images/do-not-scan-ubi-minimal.yaml
+    oc create -f scripts/tools-images/do-not-scan-alpine-git.yaml 
 
 # The performance pipeline
 
