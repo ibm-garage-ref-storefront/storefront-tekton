@@ -107,7 +107,7 @@ The expected result:
 
 The ubi:for-use image passed the security scan. It will be used for building the customer-ms-spring microservice. 
 
-### A) Scan and Import the tools images
+### B) Scan and Import the remaining images
 
 A Tekton Task is executed via a pod that loads an image to perform the task. We will scan these images.
 
@@ -140,6 +140,8 @@ Also, the same is true for the sonar-qube image. Lets once more close the eye.
 
     oc create -f scripts/tools-images/do-not-scan-sonarsource-sonar-scanner-cli-latest.yaml
 
+## Checkpoint
+
 Inspect the images:
 
     oc get is -n tools-images
@@ -158,12 +160,15 @@ The expected result:
 Note: the performance section of the workshop will scan and import several additional images which are listed here.
 
 
+
 ### B) Fail Saves for the security section of the pipeline
 
 In case one of the images fails to import, you may decide to close an eye and import it. 
 
+    oc create -f scripts/tools-images/do-not-scan-alpine-git.yaml 
+    oc create -f scripts/tools-images/do-not-scan-ibmgaragecloud-mvn-3.6.3-jdk-11-slim.yaml 
+    oc create -f scripts/tools-images/do-not-scan-jmeter-prevail-2021.yaml
+    oc create -f scripts/tools-images/do-not-scan-quayio-buildah-stable.yaml 
+    oc create -f scripts/tools-images/do-not-scan-sonarsource-sonar-scanner-cli-latest.yaml 
     oc create -f scripts/tools-images/do-not-scan-ubi-8.0.yaml 
     oc create -f scripts/tools-images/do-not-scan-ubi-minimal.yaml 
-    oc create -f scripts/tools-images/do-not-scan-sonarsource-sonar-scanner-cli-latest.yaml 
-    oc create -f scripts/tools-images/do-not-scan-ibmgaragecloud-mvn-3.6.3-jdk-11-slim.yaml 
-    oc create -f scripts/tools-images/do-not-scan-quayio-buildah-stable.yaml 
