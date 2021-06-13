@@ -1,0 +1,20 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: intake-buildah-
+spec:
+  params:
+    - name: image-url
+      value: 'quay.io/buildah/stable'
+    - name: image-name
+      value: buildah
+    - name: image-tag
+      value: 'stable'
+    - name: trivy-severity
+      value: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
+    - name: scan-image
+      value: 'false'       
+  pipelineRef:
+    name: image-intake-pipeline-prevail-2021
+  serviceAccountName: pipeline
+  timeout: 1h0m0s

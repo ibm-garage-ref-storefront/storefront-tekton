@@ -1,0 +1,20 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: intake-ubi8-
+spec:
+  params:
+    - name: image-url
+      value: 'registry.access.redhat.com/ubi8/ubi:8.0'
+    - name: image-name
+      value: ubi
+    - name: image-tag
+      value: '8.0'
+    - name: trivy-severity
+      value: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
+    - name: scan-image
+      value: 'false'       
+  pipelineRef:
+    name: image-intake-pipeline-prevail-2021
+  serviceAccountName: pipeline
+  timeout: 1h0m0s

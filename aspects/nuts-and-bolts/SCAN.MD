@@ -31,7 +31,10 @@ Let's close an eye ..
 
 Inspect the result of the import:
 
-    $ oc get is -n tools-images
+    oc get is -n tools-images
+
+The expected result:
+
     NAME                  IMAGE REPOSITORY                                                                           TAGS             UPDATED
     jmeter-prevail-2021   default-route-openshift-image-registry.apps-crc.testing/tools-images/jmeter-prevail-2021   for-use,latest   13 seconds ago
 
@@ -51,13 +54,16 @@ Wait until the pipeline runs complete:
 
 ### c)  Check the result
 
-    $ oc get is -n tools-images
+    oc get is -n tools-images
+
+The expected result:
+
     NAME                  IMAGE REPOSITORY                                                                           TAGS             UPDATED
     alpine-git            default-route-openshift-image-registry.apps-crc.testing/tools-images/alpine-git            for-use,latest   6 minutes ago
     jmeter-prevail-2021   default-route-openshift-image-registry.apps-crc.testing/tools-images/jmeter-prevail-2021   for-use,latest   13 minutes ago
     ubi-minimal           default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi-minimal           for-use,latest   25 seconds ago
 
-### d) Fail saves
+### d) Fail saves for the functionality and performance section of the pipeline
 
 It might be that vulnerabilities are discovered on one of more images. You may choose to close your eyes:
 
@@ -92,7 +98,10 @@ Notice that it is possible to visually inspect the pipeline run via the web cons
 
 Explore the images in the tools-images project:
 
-    $ oc get is -n tools-images
+    oc get is -n tools-images
+
+The expected result:
+
     NAME   IMAGE REPOSITORY                                                           TAGS          UPDATED
     ubi    default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi   8.0,for-use   12 seconds ago
 
@@ -128,10 +137,12 @@ Also, the same is true for the sonar-qube image. Lets once more close the eye.
 
     oc create -f scripts/tools-images/do-not-scan-sonarsource-sonar-scanner-cli-latest.yaml
 
-
 Inspect the images:
 
-    $ oc get is -n tools-images
+    oc get is -n tools-images
+
+The expected result:
+
     NAME                            IMAGE REPOSITORY                                                                              TAGS                        UPDATED
     alpine-git                      image-registry.openshift-image-registry.svc:5000/tools-images/alpine-git                      for-use,latest              48 minutes ago
     buildah                         image-registry.openshift-image-registry.svc:5000/tools-images/buildah                         for-use,stable              3 minutes ago
@@ -142,3 +153,14 @@ Inspect the images:
     ubi-minimal                     image-registry.openshift-image-registry.svc:5000/tools-images/ubi-minimal                     for-use,latest              48 minutes ago
 
 Note: the performance section of the workshop will scan and import several additional images which are listed here.
+
+
+### B) Fail Saves for the security section of the pipeline
+
+In case one of the images fails to import, you may decide to close an eye and import it. 
+
+    oc create -f scripts/tools-images/do-not-scan-ubi-8.0.yaml 
+    oc create -f scripts/tools-images/do-not-scan-ubi-minimal.yaml 
+    oc create -f scripts/tools-images/do-not-scan-sonarsource-sonar-scanner-cli-latest.yaml 
+    oc create -f scripts/tools-images/do-not-scan-ibmgaragecloud-mvn-3.6.3-jdk-11-slim.yaml 
+    oc create -f scripts/tools-images/do-not-scan-quayio-buildah-stable.yaml 
