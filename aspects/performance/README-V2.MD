@@ -29,6 +29,7 @@ Therefore, we will first inspect the JMeter image.
 
 We will scan the JMeter image for vulnerabilities before we use it in the Tekton pipeline. 
 
+    oc project pipelines
     oc create secret generic registry-access \
         --from-literal REGISTRY_USER=$(oc whoami) \
         --from-literal REGISTRY_PASSWORD=$(oc whoami -t)
