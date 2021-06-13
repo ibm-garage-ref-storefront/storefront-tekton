@@ -54,41 +54,52 @@ spec:
       name: jmeter-loop-count
       type: string        
   tasks:
-    - name: clone-app-repo
+    - name: rescan-base-img
       taskRef:
-        name: aot-mockup
-    - name: mvn-settings
+        name: aot-mockup  
+    - name: clone-1
       taskRef:
-        name: aot-mockup
-      runAfter:
-        - clone-app-repo        
+        name: aot-mockup  
     - name: artifact-build
       taskRef:
-        name: aot-mockup
+        name: aot-mockup  
       runAfter:
-        - mvn-settings        
+        - clone-1        
     - name: img-build
       taskRef:
-        name: aot-mockup       
+        name: aot-mockup         
       runAfter: 
-      - artifact-build     
-    - name: owasp-scan
-      taskRef:
-        name: aot-mockup
-      runAfter: 
-        - artifact-build         
+      - dep-track
+      - sonar-scan  
+      - rescan-base-img       
     - name: sonar-scan
       taskRef:
-        name: aot-mockup
+        name: aot-mockup  
       runAfter: 
         - artifact-build   
+    - name: clone-2
+      taskRef:
+        name: aot-mockup         
+    - name: dep-check
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+        - clone-2  
+    - name: dep-track
+      taskRef:
+        name: aot-mockup
+      runAfter: 
+      - dep-check               
+    - name: scan-app-img
+      taskRef:
+        name: aot-mockup     
+      runAfter: 
+      - img-build                      
     - name: roll-out
       taskRef:
         name: aot-mockup
       runAfter: 
-      - img-build
-      - owasp-scan
-      - sonar-scan
+      - scan-app-img
     - name: functional-test
       taskRef:
         name: aot-mockup
