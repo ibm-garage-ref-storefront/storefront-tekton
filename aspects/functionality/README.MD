@@ -31,3 +31,12 @@ There is one difference: all tasks except for the functional test have been stub
 The functional test plan will login to the blue compute shop with user foo and order a calculator. Every time that you run the functional test you will see an additional entry in the order history of user foo.
 
 ![Fail](../../images/order-a-calculator.png?raw=true "Title")
+
+Nough said, lets run it:
+
+    oc create -f tekton-pipeline-run/customer-functionality-pipeline-ibm-prevail-2021-build-breaker.yaml
+    scripts/watch-the-pipeline-run.sh
+
+Low and behold, the functionality breaker stopped the pipeline run:
+
+![Fail](../../images/functionality-breaks.png?raw=true "Title")
