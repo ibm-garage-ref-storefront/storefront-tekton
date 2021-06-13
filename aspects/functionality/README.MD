@@ -37,6 +37,21 @@ Nough said, lets run it:
     oc create -f tekton-pipeline-run/customer-functionality-pipeline-ibm-prevail-2021-build-breaker.yaml
     scripts/watch-the-pipeline-run.sh
 
-Low and behold, the functionality breaker stopped the pipeline run:
+Low and behold, the jmeter functionality test stopped the pipeline run:
 
 ![Fail](../../images/functionality-breaks.png?raw=true "Title")
+
+There's got to be an error.
+
+Login to the silver-platter and see what is the matter:
+
+    SPR=$(oc get routes.route.openshift.io -n tools | grep silver | awk '{ print $2 }' )
+    echo http://$SPR 
+
+Login with the user and password as described in the tools setup, and navigate to the report.
+
+![Fail](../../images/functionality-breaks.png?raw=true "Title")    
+
+See if you can find out what went wrong. 
+
+Remember the order history? Is there something missing?  .. JMeter detected it ..
