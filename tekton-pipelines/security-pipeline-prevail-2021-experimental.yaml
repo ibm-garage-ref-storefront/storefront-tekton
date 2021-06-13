@@ -42,6 +42,9 @@ spec:
       name: app-name
       type: string         
   tasks:
+    - name: rescan-base-img
+      taskRef:
+        name: aot-mockup  
     - name: clone-1
       params:
         - name: url
@@ -186,9 +189,6 @@ spec:
         name: aot-mockup
       runAfter: 
       - functional-test
-    - name: rescan-base-img
-      taskRef:
-        name: aot-mockup      
   workspaces:
     - name: maven-settings
     - name: src-workspace-01
