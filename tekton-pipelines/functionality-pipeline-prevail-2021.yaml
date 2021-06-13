@@ -114,7 +114,7 @@ spec:
           value: $(params.functional-test-plan)
       taskRef:
         kind: Task
-        name: aot-jmeter-performance-test
+        name: aot-jmeter-functionality-test
       runAfter: 
       - roll-out
     - name: performance-test

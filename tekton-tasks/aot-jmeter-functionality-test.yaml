@@ -1,0 +1,182 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: aot-jmeter-functionality-test
+  annotations:
+    description: Executes a JMeter Test from a GIT repo (preview)
+    app.openshift.io/description: Executes a JMeter Test from a GIT repo (preview)
+    app.openshift.io/vcs-uri: https://github.com/IBM/ibm-garage-tekton-tasks
+    app.openshift.io/vcs-ref: master
+  labels:
+    version: 0.0.0
+spec:
+  params:
+    - name: git-url
+      default: https://github.com/kitty-catt/customer-ms-spring
+    - name: git-revision
+      default: solo
+    - name: source-dir
+      default: /source
+    - name: test-plan
+      default: jmeter-testplan/order-a-calculator.jmx          
+    - name: jmeter-users
+      default: "1"
+    - name: jmeter-loop-count
+      default: "1"
+    - name: component
+      default: "customer-ms-spring"
+  volumes:
+    - name: source
+      emptyDir: {}
+  stepTemplate:
+    volumeMounts:
+      - name: source
+        mountPath: $(params.source-dir)
+  steps:
+    - name: git-clone
+      image: image-registry.openshift-image-registry.svc:5000/tools-images/alpine-git:for-use
+      env:
+        - name: GIT_PASSWORD
+          valueFrom:
+            secretKeyRef: 
+              name: git-credentials
+              key: password
+              optional: true
+        - name: GIT_USERNAME
+          valueFrom:
+            secretKeyRef: 
+              name: git-credentials
+              key: username
+              optional: true
+      script: |
+        set -xv
+
+        if [[ -n "${GIT_USERNAME}" ]] && [[ -n "${GIT_PASSWORD}" ]]; then
+            git clone "https://${GIT_USERNAME}:${GIT_PASSWORD}@$(echo $(params.git-url) | awk -F 'https://' '{print $2}')" $(params.source-dir)
+        else
+            git clone $(params.git-url) $(params.source-dir)
+        fi
+
+        cd $(params.source-dir)
+        git checkout $(params.git-revision)
+        ls -l jmeter-testplan     
+    - name: jmeter-it
+      image: image-registry.openshift-image-registry.svc:5000/tools-images/jmeter-prevail-2021:for-use
+      env:
+        - name: SLACK_URL
+          valueFrom:
+            secretKeyRef: 
+              name: slack-access
+              key: slack-url
+              optional: false   
+        - name: SLACK_CHANNEL
+          valueFrom:
+            secretKeyRef: 
+              name: slack-access
+              key: slack-channel
+              optional: false    
+        - name: REPORT_URL
+          valueFrom:
+            configMapKeyRef: 
+              name: silver-platter-cm
+              key: route
+              optional: false
+        - name: WEBDAV_USER
+          valueFrom:
+            secretKeyRef: 
+              name: silver-platter-basic-auth
+              key: USER
+              optional: false
+        - name: WEBDAV_PASSWORD
+          valueFrom:
+            secretKeyRef: 
+              name: silver-platter-basic-auth
+              key: PASSWORD
+              optional: false                               
+      script: |
+        set +x
+
+        echo "-----------------------------------------------------------------"
+        echo "pre-flight check"
+
+        echo "[pre-flight check]: loading " $(params.source-dir)/$(params.test-plan) for testing $(params.component)
+        ls -l $(params.source-dir)/$(params.test-plan)
+
+        echo "export jmeter_users=$(echo $(params.jmeter-users))" > /tmp/jmeter.env
+        echo "export jmeter_loop_count=$(echo $(params.jmeter-loop-count))" >> /tmp/jmeter.env
+        source /tmp/jmeter.env
+
+        export NOW=$(date +%Y-%b%d-%H%M)
+        #mkdir -pv /tmp/report-${NOW} 
+
+        echo "-----------------------------------------------------------------"
+        echo "running JMETER"
+        /opt/jmeter/apache-jmeter-5.4.1/bin/jmeter.sh \
+        -n \
+        -t $(params.source-dir)/$(params.test-plan) \
+        -Jjmeter_users=$jmeter_users \
+        -Jjmeter_loop_count=$jmeter_loop_count \
+        -l /tmp/raw.jtl \
+        -e \
+        -o /tmp/report-${NOW}
+        cp /tmp/raw.jtl /tmp/report-${NOW}/raw.jtl
+        #cat /tmp/raw.jtl
+
+        echo "-----------------------------------------------------------------"
+        echo "WebDav transfer"
+
+        echo "silver-platter URL: $REPORT_URL"
+        TOKEN=$WEBDAV_USER:$WEBDAV_PASSWORD
+        echo "basic-auth: >$TOKEN<"        
+        
+        cd /tmp/report-${NOW}
+
+        echo "action: mkdir"
+        curl -k --basic --user $TOKEN -X MKCOL $REPORT_URL/webdav/jmeter/$(params.component)
+        curl -k --basic --user $TOKEN -X MKCOL $REPORT_URL/webdav/jmeter/$(params.component)/$NOW
+
+        echo "create folder structure"
+        A=$(find . -type d)
+        for DIR in $A
+        do 
+            echo "creating directory $DIR"
+            if [ -d $DIR ] 
+            then
+                echo "$DIR is a directory"
+                if [ $DIR != "." ]
+                then
+                    curl -k --basic --user $TOKEN -X MKCOL $REPORT_URL/webdav/jmeter/$(params.component)/$NOW/$DIR
+                fi
+            fi
+        done
+
+        echo "transferring files"
+        A=$(find . -type f)
+        for FIL in $A
+        do 
+            echo "transferring file $FIL"
+            if [ -f $FIL ] 
+            then
+                curl -k --basic --user $TOKEN -T $FIL $REPORT_URL/webdav/jmeter/$(params.component)/$NOW/$FIL
+            fi
+        done        
+        
+        #------------------------------------------------------------------------
+        LINES=$(grep false /tmp/raw.jtl | wc -l)
+        TOTAL_LINES=$(cat /tmp/raw.jtl | wc -l)
+
+        echo "sending slack-notification, $LINES errors where 0 means that we are ready to promote the code."
+
+        if [ $LINES -eq 0 ] ; then
+          echo "no errors in jmeter test"
+          curl -f -k -S -X POST --data-urlencode "payload={\"channel\": \"${SLACK_CHANNEL}\", \"username\": \"tekton-bot\", \"text\": \":thumbs_up: no errors in test plan execution $(params.test-plan) on component $(params.component). Report URL=${REPORT_URL}/jmeter/$(params.component)/${NOW}. We are ready to promote the code. :happy5:\", \"icon_emoji\": \":tekton:\"}" ${SLACK_URL}          
+          echo ""
+          echo "sending slack-notification: ready to promote the code."
+          exit 0
+        else
+          curl -f -k -S -X POST --data-urlencode "payload={\"channel\": \"${SLACK_CHANNEL}\", \"username\": \"tekton-bot\", \"text\": \":working-8053: found $LINES errors in test plan execution $(params.test-plan) on component $(params.component). Report URL=${REPORT_URL}/jmeter/$(params.component)/${NOW}.\", \"icon_emoji\": \":tekton:\"}"  ${SLACK_URL}
+          echo ""
+          echo "send slack-notification: $LINES errors were found."
+          exit 1
+        fi
+
