@@ -27,3 +27,7 @@ There is one difference: all tasks except for the functional test have been stub
 
 
 ## Lets run the functionality pipeline
+
+The functional test plan will login to the blue compute shop with user foo and order a calculator. Every time that you run the functional test you will see an additional entry in the order history of user foo.
+
+![Fail](../../images/order-a-calculator.png?raw=true "Title")
