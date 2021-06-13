@@ -12,73 +12,10 @@ The IBM Blue Compute shop will be performance tested. The pipeline is stubbed ex
 
 [Install](../nuts-and-bolts/MINI-SETUP.MD) the tooling if you have not allready done so.
 
+### c) Scan and Import the Images
 
-## Import the images for the performance pipeline
+[Scan and Import](../nuts-and-bolts/SCAN.MD) the images that are used by the tool-chain if you have not allready done so.
 
-The tools setup build a JMeter image in the tools namespace:
-
-    oc get is -n tools | grep jmeter
-
-The workshop pipelines have been edited to run exclusively on images in the tools-images namespace. 
-
-An image only gets into this namespace when it passes a security check.
-
-Therefore, we will first inspect the JMeter image.
-
-### a) Scan the JMeter image for vulnerabilities
-
-We will scan the JMeter image for vulnerabilities before we use it in the Tekton pipeline. 
-
-    oc project pipelines
-    oc create secret generic registry-access \
-        --from-literal REGISTRY_USER=$(oc whoami) \
-        --from-literal REGISTRY_PASSWORD=$(oc whoami -t)
-
-    oc create -f scripts/tools-images/scan-jmeter-prevail-2021.yaml 
-    scripts/watch-the-pipeline-run.sh
-
-You will find that the jmeter image itself does have critical vulnerabilies. 
-
-Let's close an eye ..
-
-    oc create -f scripts/tools-images/do-not-scan-jmeter-prevail-2021.yaml
-    scripts/watch-the-pipeline-run.sh    
-
-Inspect the result of the import:
-
-    $ oc get is -n tools-images
-    NAME                  IMAGE REPOSITORY                                                                           TAGS             UPDATED
-    jmeter-prevail-2021   default-route-openshift-image-registry.apps-crc.testing/tools-images/jmeter-prevail-2021   for-use,latest   13 seconds ago
-
-Delete the access key:
-
-        oc delete secret registry-access 2>/dev/null
-
-### b) Scan the necessary images for vulnerabilities and import it
-
-    oc create -f scripts/tools-images/scan-alpine-git.yaml
-    oc create -f scripts/tools-images/scan-ubi-minimal-fail-on-criticals.yaml 
-
-Wait until the pipeline runs complete:
-
-    watch tkn pipelinerun list
-
-
-### c)  Check the result
-
-    $ oc get is -n tools-images
-    NAME                  IMAGE REPOSITORY                                                                           TAGS             UPDATED
-    alpine-git            default-route-openshift-image-registry.apps-crc.testing/tools-images/alpine-git            for-use,latest   6 minutes ago
-    jmeter-prevail-2021   default-route-openshift-image-registry.apps-crc.testing/tools-images/jmeter-prevail-2021   for-use,latest   13 minutes ago
-    ubi-minimal           default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi-minimal           for-use,latest   25 seconds ago
-
-### d) Fail saves
-
-It might be that vulnerabilities are discovered on one of more images. You may choose to close your eyes:
-
-    oc create -f scripts/tools-images/do-not-scan-jmeter-prevail-2021.yaml
-    oc create -f scripts/tools-images/do-not-scan-ubi-minimal.yaml
-    oc create -f scripts/tools-images/do-not-scan-alpine-git.yaml 
 
 # The performance pipeline
 
