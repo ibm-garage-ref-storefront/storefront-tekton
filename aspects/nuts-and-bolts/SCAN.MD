@@ -29,7 +29,7 @@ Let's close an eye ..
     oc create -f scripts/tools-images/do-not-scan-jmeter-prevail-2021.yaml
     scripts/watch-the-pipeline-run.sh    
 
-
+### b) Scan the Stackrox image for vulnerabilities
 
 We will also scan the stackrox image before we build it:
 
@@ -54,11 +54,11 @@ The expected result:
     stackrox-ubi          image-registry.openshift-image-registry.svc:5000/tools-images/stackrox-ubi          for-use,latest   About a minute ago
 
 
-Delete the access key:
+### c) Delete the access key:
 
         oc delete secret registry-access 2>/dev/null
 
-### b) Scan the necessary images for vulnerabilities and import it
+### d) Scan the necessary images for vulnerabilities and import it
 
     oc create -f scripts/tools-images/scan-alpine-git.yaml
     oc create -f scripts/tools-images/scan-ubi-minimal-fail-on-criticals.yaml 
@@ -68,7 +68,7 @@ Wait until the pipeline runs complete:
     watch tkn pipelinerun list
 
 
-### c)  Check the result
+### e)  Check the result
 
     oc get is -n tools-images
 
@@ -79,7 +79,7 @@ The expected result:
     jmeter-prevail-2021   default-route-openshift-image-registry.apps-crc.testing/tools-images/jmeter-prevail-2021   for-use,latest   13 minutes ago
     ubi-minimal           default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi-minimal           for-use,latest   25 seconds ago
 
-### d) Fail saves for the functionality and performance section of the pipeline
+### f) Fail saves for the functionality and performance section of the pipeline
 
 It might be that vulnerabilities are discovered on one of more images. You may choose to close your eyes:
 
