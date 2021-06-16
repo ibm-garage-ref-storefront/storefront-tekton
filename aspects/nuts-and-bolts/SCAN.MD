@@ -4,7 +4,9 @@ The workshop pipelines have been edited to run exclusively on images in the tool
 
 The images that are used to build the application image are scanned and if they are clean then they are imported into the tools-images project by the image-intake-pipeline. There is an option to skip the scan. 
 
-This pipeline can be inspected via the console:
+This pipeline can be inspected via the console (via pipelines). 
+
+The following picture shows a result of a run of this pipeline on one of the images of the workshop.
 
 ![Fail](../../images/image-intake-pipeline-prevail-2021.png?raw=true "Title")
 
