@@ -49,8 +49,10 @@ Inspect the result of the import:
 
 The expected result:
 
-    NAME                  IMAGE REPOSITORY                                                                           TAGS             UPDATED
-    jmeter-prevail-2021   default-route-openshift-image-registry.apps-crc.testing/tools-images/jmeter-prevail-2021   for-use,latest   13 seconds ago
+    NAME                  IMAGE REPOSITORY                                                                    TAGS             UPDATED
+    jmeter-prevail-2021   image-registry.openshift-image-registry.svc:5000/tools-images/jmeter-prevail-2021   for-use,latest   9 minutes ago
+    stackrox-ubi          image-registry.openshift-image-registry.svc:5000/tools-images/stackrox-ubi          for-use,latest   About a minute ago
+
 
 Delete the access key:
 
