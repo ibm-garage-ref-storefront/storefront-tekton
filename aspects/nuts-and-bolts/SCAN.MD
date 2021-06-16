@@ -1,21 +1,19 @@
 ## Import the images that we can use in our pipeline
 
-The images that are used to build the application image are scanned and if they are clean then they are imported into the tools-images project by the image-intake-pipeline. This pipeline can be inspected via the console:
+The workshop pipelines have been edited to run exclusively on images in the tools-images namespace. How do they get there?
+
+The images that are used to build the application image are scanned and if they are clean then they are imported into the tools-images project by the image-intake-pipeline. 
+
+This pipeline can be inspected via the console:
 
 ![Fail](../../images/image-intake-pipeline-prevail-2021.png?raw=true "Title")
 
-The tools setup builds 2 images in the tools namespace:
-
-    oc get is -n tools | grep jmeter
-    oc get is -n tools | grep stackrox
-
-The workshop pipelines have been edited to run exclusively on images in the tools-images namespace. 
-
 An image only gets into this namespace when it passes a security check.
 
-Therefore, we will first inspect and import the JMeter image.
 
 ### a) Scan the JMeter image for vulnerabilities
+
+The tools setup build 2 images in the tools namespace. JMeter and Stackrox.
 
 We will scan the JMeter image for vulnerabilities before we use it in the Tekton pipeline. 
 
