@@ -6,7 +6,7 @@ This repository aims to:
 
 Once the blue compute shop is up and running your can choose to explore various aspects:
 
-## a) Common Setup Prevail 2021
+## a) Common Setup IBM Prevail 2021
 
 | Aspect | Description |
 | --- | --- |
@@ -14,14 +14,14 @@ Once the blue compute shop is up and running your can choose to explore various 
 | [Tools Setup](aspects/nuts-and-bolts/MINI-SETUP.MD) | Setting up the tools |
 | [Tools Images](aspects/nuts-and-bolts/SCAN.MD) | Scanning and importing the tools images |
 
-## b) Independant Tracks Prevail 2021
+## b) Independant Tracks IBM Prevail 2021
 
-| Aspect | Description |
-| --- | --- |
-| [Security](aspects/security/README-V2.MD) | the IBM Prevail 2021 experimental version |
-| [Functionality](aspects/functionality/README.MD) | the IBM Prevail 2021 experimental version |
-| [Performance](aspects/performance/README-V2.MD) | the IBM Prevail 2021 experimental version |
-| [Availability](aspects/availability/README.MD) | the IBM Prevail 2021 experimental version |
+| Aspect | Description | Duration |
+| --- | --- | --- |
+| [Security](aspects/security/README-V2.MD) | break the build based on detected vulnerabilities (sonar-qube, owasp-dependency-check) | 30 minutes |
+| [Functionality](aspects/functionality/README.MD) | break the build based on functional requirements | 15 minutes |
+| [Performance](aspects/performance/README-V2.MD) | break the build based on performance requirements | 45 minutes |
+| [Availability](aspects/availability/README.MD) | slot available |
 
 # Archived version
 
