@@ -1,14 +1,15 @@
-## Import the images for the performance and functionality pipeline
+## Import the images that we can use in our pipeline
 
-The tools setup build a JMeter image in the tools namespace:
+The tools setup builds 2 images in the tools namespace:
 
     oc get is -n tools | grep jmeter
+    oc get is -n tools | grep stackrox
 
 The workshop pipelines have been edited to run exclusively on images in the tools-images namespace. 
 
 An image only gets into this namespace when it passes a security check.
 
-Therefore, we will first inspect the JMeter image.
+Therefore, we will first inspect and import the JMeter image.
 
 ### a) Scan the JMeter image for vulnerabilities
 
@@ -29,7 +30,7 @@ Let's close an eye ..
     oc create -f scripts/tools-images/do-not-scan-jmeter-prevail-2021.yaml
     scripts/watch-the-pipeline-run.sh    
 
-### b) Scan the Stackrox image for vulnerabilities
+### b) Scan the stackrox image for vulnerabilities
 
 We will also scan the stackrox image before we build it:
 
@@ -53,7 +54,6 @@ The expected result:
     jmeter-prevail-2021   image-registry.openshift-image-registry.svc:5000/tools-images/jmeter-prevail-2021   for-use,latest   9 minutes ago
     stackrox-ubi          image-registry.openshift-image-registry.svc:5000/tools-images/stackrox-ubi          for-use,latest   About a minute ago
 
-
 ### c) Delete the access key:
 
         oc delete secret registry-access 2>/dev/null
@@ -67,7 +67,6 @@ Wait until the pipeline runs complete:
 
     watch tkn pipelinerun list
 
-
 ### e)  Check the result
 
     oc get is -n tools-images
@@ -78,6 +77,8 @@ The expected result:
     alpine-git            default-route-openshift-image-registry.apps-crc.testing/tools-images/alpine-git            for-use,latest   6 minutes ago
     jmeter-prevail-2021   default-route-openshift-image-registry.apps-crc.testing/tools-images/jmeter-prevail-2021   for-use,latest   13 minutes ago
     ubi-minimal           default-route-openshift-image-registry.apps-crc.testing/tools-images/ubi-minimal           for-use,latest   25 seconds ago
+    stackrox-ubi          image-registry.openshift-image-registry.svc:5000/tools-images/stackrox-ubi          for-use,latest   About a minute ago
+
 
 ### f) Fail saves for the functionality and performance section of the pipeline
 
@@ -172,6 +173,8 @@ The expected result:
     sonarsource-sonar-scanner-cli   image-registry.openshift-image-registry.svc:5000/tools-images/sonarsource-sonar-scanner-cli   for-use,latest              3 minutes ago
     ubi                             image-registry.openshift-image-registry.svc:5000/tools-images/ubi                             8.0,for-use                 5 minutes ago
     ubi-minimal                     image-registry.openshift-image-registry.svc:5000/tools-images/ubi-minimal                     for-use,latest              48 minutes ago
+    stackrox-ubi          image-registry.openshift-image-registry.svc:5000/tools-images/stackrox-ubi          for-use,latest   About a minute ago
+
 
 Note: the performance section of the workshop will scan and import several additional images which are listed here.
 
