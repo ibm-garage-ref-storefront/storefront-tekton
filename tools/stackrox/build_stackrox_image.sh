@@ -20,8 +20,8 @@ export HOST=$(oc get route default-route -n openshift-image-registry --template=
 docker login -u $(oc whoami) -p $(oc whoami -t) $HOST
 
 docker build -t stackrox-ubi:8.0 .
-docker tag stackrox-ubi:8.0 $HOST/tools/stackrox-ubi:8.0
-docker push $HOST/tools/stackrox-ubi:8.0
+docker tag stackrox-ubi:8.0 $HOST/tools/stackrox-ubi
+docker push $HOST/tools/stackrox-ubi
 
 oc get is
 
