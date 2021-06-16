@@ -12,7 +12,7 @@ Once the blue compute shop is up and running your can choose to explore various 
 | --- | --- |
 | [Deploy](aspects/functionality/DEPLOY-FULL-BC.MD) | Deploy the IBM Blue Compute shop |
 | [Tools Setup](aspects/nuts-and-bolts/MINI-SETUP.MD) | Setting up the tools |
-| [Tools Images](aspects/nuts-and-bolts/SCAN.MD) | Scanning and importing the tools images |
+| [Tools Images](aspects/nuts-and-bolts/SCAN.MD) | Loading the tool rack |
 
 ## b) Independant Tracks IBM Prevail 2021
 
