@@ -11,6 +11,12 @@ oc new-project tools
 # Allow project full-bc to pull the jmeter image
 oc policy add-role-to-group system:image-puller system:serviceaccounts:${NAMESPACE}
 
+# Speed optimisations
+oc apply -f tools/httpd/httpd-pvc.yaml
+oc apply -f tools/httpd/iam-pvc.yaml
+oc apply -f tools/httpd/webdav-pvc.yaml 
+oc apply -f tools/jmeter-performance-test/influxdb/influxdb-data.yaml
+
 # Setup Openshift pipelines
 echo "###################################################################"
 cd ${HERE}/tools/pipelines
