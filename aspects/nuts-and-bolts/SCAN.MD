@@ -12,6 +12,7 @@ The following picture shows a result of a run of this pipeline on one of the ima
 
 An image only gets into this namespace when it passes a security check.
 
+## Import the custom build images into the rack
 
 ### a) Scan the JMeter image for vulnerabilities
 
@@ -59,11 +60,18 @@ Inspect the result of the import:
     oc get is -n tools-images
 
 
-### c) Delete the access key:
+### c) Delete the access key for the openshift image registry
+
+A key is precious thing. We do not let it linger more than necessary.
 
         oc delete secret registry-access 2>/dev/null
 
-### d) Scan the necessary images for vulnerabilities and import it
+We will now continue to import public images into the tool rack. 
+
+
+## Import public images into the rack
+
+### a) Scan the necessary images for vulnerabilities and import it
 
 A Tekton Task is executed via a pod that loads an image to perform the task. We will scan these images.
 
@@ -85,7 +93,7 @@ Explore the images in the tools-images project:
 
 If an image fails to import then we will repair this at the end of this excercise (see the fail-save section).
 
-### f) Special: scan and Import UBI:8
+### b) Special: scan and Import UBI:8
 
 Create a pipeline run that will fail when vulnerabilities of level  'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL' are detected and follow it:
 
@@ -110,7 +118,7 @@ Explore the images in the tools-images project:
 The ubi:for-use image passed the security scan. It will be used for building the customer-ms-spring microservice. 
 
 
-### g) Special: scan and Import Maven
+### c) Special: scan and Import Maven
 
 Scan and import maven:
 
@@ -148,7 +156,7 @@ The expected result:
 Note: the performance section of the workshop will scan and import several additional images which are listed here.
 
 
-### B) Fail Saves 
+## Fail Saves 
 
 It might be that vulnerabilities are discovered on one of more images. In that case the PLR will not load the image into the tool rack, you may decide to close an eye and import it. 
 
