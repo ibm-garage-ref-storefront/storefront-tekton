@@ -18,7 +18,7 @@ Once the blue compute shop is up and running your can choose to explore various 
 
 | Aspect | Description | Duration |
 | --- | --- | --- |
-| [Security](aspects/security/README-V2.MD) | break the build based on detected vulnerabilities (sonar-qube, owasp-dependency-check) | 30 minutes |
+| [Security](aspects/security/README-V2.MD) | break the build based on detected vulnerabilities | 30 minutes |
 | [Functionality](aspects/functionality/README.MD) | break the build based on functional requirements | 15 minutes |
 | [Performance](aspects/performance/README-V2.MD) | break the build based on performance requirements | 45 minutes |
 | [Availability](aspects/availability/README.MD) | slot available |
