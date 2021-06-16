@@ -8,7 +8,7 @@ Once the blue compute shop is up and running your can choose to explore various 
 
 ## a) Common Setup IBM Prevail 2021
 
-| Aspect | Description | --- |
+| Aspect | Description | Estimate |
 | --- | --- | --- |
 | [Deploy](aspects/functionality/DEPLOY-FULL-BC.MD) | Deploy the IBM Blue Compute shop | 15 minutes |
 | [Tools Setup](aspects/nuts-and-bolts/MINI-SETUP.MD) | Setting up the tools | 15 minutes |
@@ -16,7 +16,7 @@ Once the blue compute shop is up and running your can choose to explore various 
 
 ## b) Independant Tracks IBM Prevail 2021
 
-| Aspect | Description | --- |
+| Aspect | Description | Estimate |
 | --- | --- | --- |
 | [Security](aspects/security/README-V2.MD) | break the build based on detected vulnerabilities | 45 minutes |
 | [Functionality](aspects/functionality/README.MD) | break the build based on functional requirements | 15 minutes |
