@@ -173,7 +173,7 @@ The expected result:
     sonarsource-sonar-scanner-cli   image-registry.openshift-image-registry.svc:5000/tools-images/sonarsource-sonar-scanner-cli   for-use,latest              3 minutes ago
     ubi                             image-registry.openshift-image-registry.svc:5000/tools-images/ubi                             8.0,for-use                 5 minutes ago
     ubi-minimal                     image-registry.openshift-image-registry.svc:5000/tools-images/ubi-minimal                     for-use,latest              48 minutes ago
-    stackrox-ubi                     image-registry.openshift-image-registry.svc:5000/tools-images/stackrox-ubi          for-use,latest   About a minute ago
+    stackrox-ubi                    image-registry.openshift-image-registry.svc:5000/tools-images/stackrox-ubi          for-use,latest   About a minute ago
 
 
 Note: the performance section of the workshop will scan and import several additional images which are listed here.
