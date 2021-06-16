@@ -16,6 +16,7 @@ Therefore, we will first inspect and import the JMeter image.
 We will scan the JMeter image for vulnerabilities before we use it in the Tekton pipeline. 
 
     oc project pipelines
+
     oc create secret generic registry-access \
         --from-literal REGISTRY_USER=$(oc whoami) \
         --from-literal REGISTRY_PASSWORD=$(oc whoami -t)
@@ -23,12 +24,17 @@ We will scan the JMeter image for vulnerabilities before we use it in the Tekton
     oc create -f scripts/tools-images/scan-jmeter-prevail-2021.yaml 
     scripts/watch-the-pipeline-run.sh
 
-You will find that the jmeter image itself does have critical vulnerabilies. 
+You will find that the jmeter image itself does have CRITICAL vulnerabilies. 
 
 Let's close an eye ..
 
     oc create -f scripts/tools-images/do-not-scan-jmeter-prevail-2021.yaml
     scripts/watch-the-pipeline-run.sh    
+
+And check it:
+
+    oc get is -n tools-images
+
 
 ### b) Scan the stackrox image for vulnerabilities
 
@@ -48,11 +54,6 @@ Inspect the result of the import:
 
     oc get is -n tools-images
 
-The expected result:
-
-    NAME                  IMAGE REPOSITORY                                                                    TAGS             UPDATED
-    jmeter-prevail-2021   image-registry.openshift-image-registry.svc:5000/tools-images/jmeter-prevail-2021   for-use,latest   9 minutes ago
-    stackrox-ubi          image-registry.openshift-image-registry.svc:5000/tools-images/stackrox-ubi          for-use,latest   About a minute ago
 
 ### c) Delete the access key:
 
