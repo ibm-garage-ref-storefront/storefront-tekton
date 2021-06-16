@@ -1,10 +1,11 @@
 # 1 Purpose
 
-This repository aims to:
+This repository:
 - deploy the full IBM Blue Compute shop consisting of 10 micro services with a single command into an Openshift Cluster;
-- setup Openshift Pipelines (based on Tekton) to perform builds, deployment and various tests.
+- installs Openshift Pipelines (based on Tekton) to perform builds, deployment and various tests.
 
-Once the blue compute shop is up and running your can choose to explore various aspects:
+The purpose is to measure various quality aspects during the build of an application on Openshift - and break the build if necessary to ensure a quality outcome.
+
 
 ## a) Common Setup IBM Prevail 2021
 
@@ -15,6 +16,8 @@ Once the blue compute shop is up and running your can choose to explore various 
 | [Tools Images](aspects/nuts-and-bolts/SCAN.MD) | Loading the tool rack | 30 minutes |
 
 ## b) Independant Tracks IBM Prevail 2021
+
+Once the blue compute shop and the tool-chain is up and running your can choose to explore various aspects:
 
 | Aspect | Description | Estimate |
 | --- | --- | --- |
