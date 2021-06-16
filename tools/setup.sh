@@ -49,6 +49,12 @@ cd ${HERE}/tools/jmeter-performance-test
 ./install_jmeter_framework.sh
 echo ""
 
+# Setup stackrox
+echo "###################################################################"
+cd ${HERE}/tools/stackrox
+./build_stackrox_image.sh  
+echo ""
+
 # view cannot create pods/portforward
 oc policy add-role-to-user admin ${OCP_USER}
 oc policy add-role-to-user admin system:serviceaccount:pipelines:pipeline 
