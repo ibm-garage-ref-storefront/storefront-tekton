@@ -2,7 +2,7 @@
 
 The workshop pipelines have been edited to run exclusively on images in the tools-images namespace. How do they get there?
 
-The images that are used to build the application image are scanned and if they are clean then they are imported into the tools-images project by the image-intake-pipeline. 
+The images that are used to build the application image are scanned and if they are clean then they are imported into the tools-images project by the image-intake-pipeline. There is an option to skip the scan. 
 
 This pipeline can be inspected via the console:
 
