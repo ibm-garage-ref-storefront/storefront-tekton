@@ -108,16 +108,18 @@ Explore the images in the tools-images project:
 The ubi:for-use image passed the security scan. It will be used for building the customer-ms-spring microservice. 
 
 
-### B) Scan and Import the remaining images
+### g) Special: scan and Import Maven
 
-Security specials (select one):
+Scan and import maven:
 
-    oc create -f scripts/tools-images/scan-gcr-cloud-builders-mvn-3.5.0.yaml 
     oc create -f scripts/tools-images/scan-ibmgaragecloud-mvn-3.6.3-jdk-11-slim.yaml 
 
-Note that the mvn image did not pass the scan. Let's make a decision to go with the IBM build image of mvn. Check the status: [here](https://quay.io/repository/ibmgaragecloud/maven?tab=tags):
+Note that the mvn image did not pass the scan. Let's make a decision to go with the IBM build image of mvn. 
 
     oc create -f scripts/tools-images/do-not-scan-ibmgaragecloud-mvn-3.6.3-jdk-11-slim.yaml 
+
+Note: check the security status of this image: [here](https://quay.io/repository/ibmgaragecloud/maven?tab=tags):
+
 
 ## Checkpoint
 
