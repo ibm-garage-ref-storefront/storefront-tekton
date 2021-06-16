@@ -130,15 +130,15 @@ Inspect the images:
 
 The expected result:
 
-NAME                            IMAGE REPOSITORY                                                                              TAGS                        UPDATED
-alpine-git                      image-registry.openshift-image-registry.svc:5000/tools-images/alpine-git                      for-use,latest              13 minutes ago
-buildah                         image-registry.openshift-image-registry.svc:5000/tools-images/buildah                         for-use,stable              17 minutes ago
-jmeter-prevail-2021             image-registry.openshift-image-registry.svc:5000/tools-images/jmeter-prevail-2021             for-use,latest              49 minutes ago
-mvn                             image-registry.openshift-image-registry.svc:5000/tools-images/mvn                             for-use,3.6.3-jdk-11-slim   About a minute ago
-sonarsource-sonar-scanner-cli   image-registry.openshift-image-registry.svc:5000/tools-images/sonarsource-sonar-scanner-cli   for-use,latest              17 minutes ago
-stackrox-ubi                    image-registry.openshift-image-registry.svc:5000/tools-images/stackrox-ubi                    for-use,latest              41 minutes ago
-ubi                             image-registry.openshift-image-registry.svc:5000/tools-images/ubi                             8.0,for-use                 26 seconds ago
-ubi-minimal                     image-registry.openshift-image-registry.svc:5000/tools-images/ubi-minimal                     for-use,latest              24 seconds ago
+    NAME                            IMAGE REPOSITORY                                                                              TAGS                        UPDATED
+    alpine-git                      image-registry.openshift-image-registry.svc:5000/tools-images/alpine-git                      for-use,latest              13 minutes ago
+    buildah                         image-registry.openshift-image-registry.svc:5000/tools-images/buildah                         for-use,stable              17 minutes ago
+    jmeter-prevail-2021             image-registry.openshift-image-registry.svc:5000/tools-images/jmeter-prevail-2021             for-use,latest              49 minutes ago
+    mvn                             image-registry.openshift-image-registry.svc:5000/tools-images/mvn                             for-use,3.6.3-jdk-11-slim   About a minute ago
+    sonarsource-sonar-scanner-cli   image-registry.openshift-image-registry.svc:5000/tools-images/sonarsource-sonar-scanner-cli   for-use,latest              17 minutes ago
+    stackrox-ubi                    image-registry.openshift-image-registry.svc:5000/tools-images/stackrox-ubi                    for-use,latest              41 minutes ago
+    ubi                             image-registry.openshift-image-registry.svc:5000/tools-images/ubi                             8.0,for-use                 26 seconds ago
+    ubi-minimal                     image-registry.openshift-image-registry.svc:5000/tools-images/ubi-minimal                     for-use,latest              24 seconds ago
 
 Note: the performance section of the workshop will scan and import several additional images which are listed here.
 
