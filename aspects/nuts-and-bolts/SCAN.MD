@@ -124,7 +124,11 @@ Note that the mvn image did not pass the scan. Let's make a decision to go with 
 
 ## Checkpoint
 
-Inspect the images:
+You want to see the 8 images, check via:
+
+    if [ $(oc get is -n tools-images | grep for-use | wc -l) -eq 8 ] ; then echo OK ; else echo NoK ; fi
+
+When you have a NoK, then inspect the images:
 
     oc get is -n tools-images
 
