@@ -29,6 +29,20 @@ Let's close an eye ..
     oc create -f scripts/tools-images/do-not-scan-jmeter-prevail-2021.yaml
     scripts/watch-the-pipeline-run.sh    
 
+
+
+We will also scan the stackrox image before we build it:
+
+    oc create -f scripts/tools-images/scan-stackrox-prevail-2021.yaml
+    scripts/watch-the-pipeline-run.sh    
+
+Also here CRITICAL vulnerabilities are found. 
+
+Let's close the eye again ..
+
+    oc create -f scripts/tools-images/do-not-scan-stackrox-prevail-2021.yaml
+    scripts/watch-the-pipeline-run.sh
+
 Inspect the result of the import:
 
     oc get is -n tools-images

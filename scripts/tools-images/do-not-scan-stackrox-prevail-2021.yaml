@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: intake-stackrox-ubi-prevail-2021-
+spec:
+  params:
+    - name: image-url
+      value: 'image-registry.openshift-image-registry.svc.cluster.local:5000/tools/stackrox-ubi:latest'
+    - name: image-name
+      value: stackrox-ubi
+    - name: image-tag
+      value: 'latest'
+    - name: trivy-severity
+      value: 'CRITICAL'
+    - name: insecure
+      value: 'true'  
+    - name: registry-is-internal
+      value: 'true'   
+    - name: scan-image
+      value: 'false'           
+  pipelineRef:
+    name: image-intake-pipeline-prevail-2021
+  serviceAccountName: pipeline
+  timeout: 1h0m0s
