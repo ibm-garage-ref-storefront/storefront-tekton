@@ -47,10 +47,23 @@ Alternatively, check the deployment state via the console:
     watch oc get po
 
 It will take about 5 minutes before the pods all get into the running state. 
-They are is waiting until storage gets assigned. 
-Once that completes, the mysql and mariadb pods will be able to start. 
-And next the inventory and order micros can connect to it, and will come alive.
+The backing services (e.g. mysql) of them will be in state "Pending" until storage gets assigned. Some of them (e.g. the inventory ms) will flip into the "Error" state because they depend on their backing Deployments to be up and "Running". After 4 or 5 minutes the shop will be in state "Running".
 
+Expected result:
+
+    NAME                                   READY   STATUS      RESTARTS   AGE
+    auth-ms-spring-cff7b487-m4rdk          1/1     Running     0          7m11s
+    catalog-ms-spring-6956b7bfdb-smfvw     1/1     Running     0          7m11s
+    catalogelasticsearch-c8944d99f-rjj9c   1/1     Running     0          7m11s
+    customer-ms-spring-569d6f6cfd-zcsxb    1/1     Running     0          7m11s
+    customercouchdb-767c98c59-hdpzm        1/1     Running     0          7m11s
+    inventory-ms-spring-5d4fc4768f-tcsr6   1/1     Running     3          7m11s
+    inventorymysql-1-deploy                0/1     Completed   0          7m9s
+    inventorymysql-1-vwtpp                 1/1     Running     0          6m24s
+    orders-ms-spring-8654cc8dd6-rhj8s      1/1     Running     3          7m11s
+    ordersmysql-1-deploy                   0/1     Completed   0          7m9s
+    ordersmysql-1-fdzqd                    1/1     Running     0          5m34s
+    web-688d87d9c5-bhdws                   1/1     Running     0          7m11s
 
 ## c) Configure the shop
 
@@ -74,7 +87,7 @@ Make a user:
 Login to the shop via the route on the web deployment.
 
 Notes: 
-- we suggest that you create the default user foo with the password bar to make automatic testing a bit easier;
+- we suggest that you create the default user foo with the password bar because that user is used in the testplan to order a calculator from the shop;
 - it will take a minute or 2 before the inventory database content is reflected in the catalog;
 - creating the user will give some complaints about "Insufficient scope", this can be ignored.
 
