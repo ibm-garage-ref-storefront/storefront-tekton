@@ -43,6 +43,10 @@ Low and behold, the jmeter functionality test stopped the pipeline run:
 
 There's got to be an error.
 
+If you have configured the slack channel then you will get notification:
+
+![Fail](../../images/slack-notification.png?raw=true "Title")  
+
 Login to the silver-platter and see what is the matter:
 
     SPR=$(oc get routes.route.openshift.io -n tools | grep silver | awk '{ print $2 }' )
