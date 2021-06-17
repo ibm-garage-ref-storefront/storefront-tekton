@@ -16,6 +16,8 @@ oc apply -f tools/httpd/httpd-pvc.yaml
 oc apply -f tools/httpd/iam-pvc.yaml
 oc apply -f tools/httpd/webdav-pvc.yaml 
 oc apply -f tools/jmeter-performance-test/influxdb/influxdb-data.yaml
+oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"defaultRoute":true}}' --type=merge
+
 
 # Setup Openshift pipelines
 echo "###################################################################"
