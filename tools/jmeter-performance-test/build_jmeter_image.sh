@@ -19,8 +19,8 @@ oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"
 export HOST=$(oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}')
 docker login -u $(oc whoami) -p $(oc whoami -t) $HOST
 
-docker build -t jmeter-prevail2020 .
-docker tag jmeter-prevail2020 $HOST/tools/jmeter-prevail-2021
+docker build -t jmeter-prevail-2021 .
+docker tag jmeter-prevail-2021 $HOST/tools/jmeter-prevail-2021
 docker push $HOST/tools/jmeter-prevail-2021
 
 oc get is
