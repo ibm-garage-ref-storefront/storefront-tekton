@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi:8.0
+FROM registry.access.redhat.com/ubi8/ubi:latest
 
 MAINTAINER kitty-catt kitty-catt@example.com
 
@@ -7,13 +7,17 @@ ENV JMETER_BASE=/opt/jmeter \
     JMETER_VERSION="5.4.1" \
     PATH=/opt/jmeter/apache-jmeter/bin:$PATH
 
+# Note: ubi-minimal does not have yum
 RUN yum install -y --disableplugin=subscription-manager java-1.8.0-openjdk-headless && \
     yum clean all --disableplugin=subscription-manager -y && \
+    yum update && \
+    yum clean all -y && \
     mkdir -p $JMETER_BASE/{tests,results}
 
 WORKDIR $JMETER_BASE
 
 # Download jmeter into the WORKDIR, Resources from remote URLs are not decompressed.
+# Note: a save approach here is COPY or ADD with cksum check.
 ADD https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz .
 
 RUN tar xvf apache-jmeter-${JMETER_VERSION}.tgz && \
