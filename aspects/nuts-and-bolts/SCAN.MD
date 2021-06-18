@@ -124,7 +124,7 @@ Note that the mvn image did not pass the scan. Let's make a decision to go with 
 
     oc create -f scripts/tools-images/do-not-scan-ibmgaragecloud-mvn-3.6.3-jdk-11-slim.yaml 
 
-Note: check the security status of this image: [here](https://quay.io/repository/ibmgaragecloud/maven?tab=tags):
+Note: check the security status of this image: ["click here"](https://quay.io/repository/ibmgaragecloud/maven?tab=tags).
 
 
 ## Checkpoint
@@ -135,7 +135,7 @@ You want to see the 8 images, check via:
 
 When you have a NoK, then inspect the images:
 
-    oc get is -n tools-images
+    oc get is -n tools-images | grep for-use | awk ' { print $1 } '
 
 The expected result:
 
