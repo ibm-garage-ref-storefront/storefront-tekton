@@ -73,7 +73,7 @@ We will now continue to import public images into the tool rack.
 
 ### a) Scan the necessary images for vulnerabilities and import it
 
-A Tekton Task is executed via a pod that loads an image to perform the task. We will scan these images.
+The Tekton Pipeline consists of a series of Tekton Tasks. Each Tasks loads a container image to perform the task. We will scan these images.
 
     oc create -f scripts/tools-images/scan-alpine-git.yaml
     oc create -f scripts/tools-images/scan-quayio-buildah-stable.yaml
@@ -93,18 +93,18 @@ Explore the images in the tools-images project:
 
 If an image fails to import then we will repair this at the end of this excercise (see the fail-save section).
 
-### b) Special: scan and Import UBI:8
+### b) Special: scan and Import UBI 8
 
 Create a pipeline run that will fail when vulnerabilities of level  'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL' are detected and follow it:
 
-    oc create -f scripts/tools-images/scan-ubi-8.0.yaml 
+    oc create -f scripts/tools-images/scan-ubi-8.4.yaml 
     scripts/watch-the-pipeline-run.sh
 
 Notice that it fails to complete because the scanner detected vulnerabilities. 
 
 Create a pipeline run that will fail when vulnerabilities of level  'CRITICAL' are detected and follow it:
 
-    oc create -f scripts/tools-images/scan-ubi-8.0-fail-on-criticals-only.yaml 
+    oc create -f scripts/tools-images/scan-ubi-8.4-fail-on-criticals-only.yaml 
     scripts/watch-the-pipeline-run.sh
 
 Explore the images in the tools-images project:
@@ -160,6 +160,6 @@ It might be that vulnerabilities are discovered on one of more images. In that c
     oc create -f scripts/tools-images/do-not-scan-ibmgaragecloud-mvn-3.6.3-jdk-11-slim.yaml 
     oc create -f scripts/tools-images/do-not-scan-quayio-buildah-stable.yaml 
     oc create -f scripts/tools-images/do-not-scan-sonarsource-sonar-scanner-cli-latest.yaml 
-    oc create -f scripts/tools-images/do-not-scan-ubi-8.0.yaml 
+    oc create -f scripts/tools-images/do-not-scan-ubi-8.4.yaml  
     oc create -f scripts/tools-images/do-not-scan-ubi-minimal.yaml 
 
