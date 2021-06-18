@@ -34,6 +34,7 @@ The functional test plan will login to the blue compute shop with user foo and o
 
 Nough said, lets run it:
 
+    oc project pipelines
     oc create -f tekton-pipeline-run/customer-functionality-pipeline-ibm-prevail-2021-build-breaker.yaml
     scripts/watch-the-pipeline-run.sh
 
