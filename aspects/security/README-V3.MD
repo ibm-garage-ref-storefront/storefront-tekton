@@ -74,4 +74,6 @@ Setup port-forwarding:
 
 Login via your browser, via right-click, open a new tab ["here"](https://localhost:8443). 
 
-Use the login that was previously obtained. 
+Use the login that was previously obtained. You should now be logged in:
+
+![Fail](../../images/stackrox-login.png?raw=true "Title")
