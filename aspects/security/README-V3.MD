@@ -88,3 +88,5 @@ Go to Platform Configuration, Integrations, Authentication Tokens, StackRox
 Open it and create an API token of type CI integration.
 
 ![Fail](../../images/stackrox-api-token-type-ci.png?raw=true "Title")
+
+Copy the token and store it savely.
