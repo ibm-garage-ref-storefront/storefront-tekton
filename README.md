@@ -19,12 +19,12 @@ The purpose is to measure various quality aspects during the build of an applica
 
 Once the blue compute shop and the tool-chain is up and running your can choose to explore various aspects:
 
-| Aspect | Description | Estimate |
+| Aspect | Build Breakers based on | Estimate |
 | --- | --- | --- |
-| [Security](aspects/security/README-V2.MD) | break the build based on detected vulnerabilities using owasp-dependency check and sonarqube.| 45 minutes |
-| [Security](aspects/security/README-V3.MD) | break the build based on detected vulnerabilities using StackRox in the pipeline| 45 minutes |
-| [Functionality](aspects/functionality/README.MD) | break the build based on functional requirements using jmeter| 15 minutes |
-| [Performance](aspects/performance/README-V2.MD) | break the build based on performance requirements using jmeter and grafana| 45 minutes |
+| [Security](aspects/security/README-V2.MD) | detected vulnerabilities using owasp-dependency check and sonarqube.| 45 minutes |
+| [Security](aspects/security/README-V3.MD) | bdetected vulnerabilities using StackRox   | 45 minutes |
+| [Functionality](aspects/functionality/README.MD) | functional requirements using jmeter| 15 minutes |
+| [Performance](aspects/performance/README-V2.MD) | performance requirements using jmeter and grafana| 45 minutes |
 | [Availability](aspects/availability/README.MD) | slot available |
 
 # Archived version
