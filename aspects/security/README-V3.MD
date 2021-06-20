@@ -66,7 +66,9 @@ Switch back
 
     oc project pipelines
 
-## e) Login to StackRox
+# Configure StackRox
+
+## a) Login to StackRox
 
 Setup port-forwarding:
 
@@ -79,7 +81,7 @@ Use the login that was previously obtained. You should now be logged in:
 ![Fail](../../images/stackrox-login.png?raw=true "Title")
 
 
-## f) Make a StackRox API token
+## b) Make a StackRox API token
 
 Go to Platform Configuration, Integrations, Authentication Tokens, StackRox
 
@@ -91,7 +93,7 @@ Open it and create an API token of type CI integration.
 
 Copy the token and store it savely.
 
-## g) Configure the StackRox API token
+## c) Configure the StackRox API token
 
 Edit the configuration of the installer.
 
@@ -99,3 +101,16 @@ Edit the configuration of the installer.
 
 Set the value of STACKROX_API_TOKEN with the previously created Token.
 
+Run the setup:
+
+    TODO
+
+## d) Connect StackRox to the Openshift Image Registry
+
+    TODO
+
+# Run the StackRox pipeline
+
+## a) Run it
+
+    TODO
