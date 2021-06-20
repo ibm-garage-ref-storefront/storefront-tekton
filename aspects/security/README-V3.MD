@@ -72,6 +72,6 @@ Setup port-forwarding:
 
     oc port-forward svc/central -n stackrox 8443:443
 
-Login via your browser ["right-click here"](http://localhost:8443). 
+Login via your browser, via right-click, open a new tab ["here"](https://localhost:8443). 
 
 Use the login that was previously obtained. 
