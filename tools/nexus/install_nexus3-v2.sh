@@ -16,6 +16,11 @@ oc apply -f nexus-operator.yaml
 sed -i "s/expose: true/expose: false/g" /tmp/nexus-operator/examples/nexus3-redhat.yaml 
 oc apply -f examples/nexus3-redhat.yaml 
 
+
+sleep 10
+oc patch nexus.apps.m88i.io/nexus3  \
+--patch '{"spec":{"resources":{"requests":{"cpu":"100m"}}}}' --type=merge
+
 echo "use port-forwarding to get to nexus" 
 
 # the account runs under nexus3 as serviceaccount
