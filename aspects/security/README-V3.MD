@@ -36,7 +36,9 @@ There is one difference: all tasks except for scanning the "base image" and the 
 
 ## b) Install StackRox
 
-    helm install -n stackrox --create-namespace stackrox-central-services rhacs/central-services --set imagePullSecrets.allowNone=true
+    helm install -n stackrox \
+    --create-namespace stackrox-central-services rhacs/central-services \
+    --set imagePullSecrets.allowNone=true
 
 ## c) Get the admin password
 
