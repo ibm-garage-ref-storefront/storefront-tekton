@@ -90,3 +90,12 @@ Open it and create an API token of type CI integration.
 ![Fail](../../images/stackrox-api-token-type-ci.png?raw=true "Title")
 
 Copy the token and store it savely.
+
+## g) Configure the StackRox API token
+
+Edit the configuration of the installer.
+
+    vi ~/config.bc-full
+
+Set the value of STACKROX_API_TOKEN with the previously created Token.
+
