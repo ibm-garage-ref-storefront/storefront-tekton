@@ -77,3 +77,14 @@ Login via your browser, via right-click, open a new tab ["here"](https://localho
 Use the login that was previously obtained. You should now be logged in:
 
 ![Fail](../../images/stackrox-login.png?raw=true "Title")
+
+
+## f) Make a StackRox API token
+
+Go to Platform Configuration, Integrations, Authentication Tokens, StackRox
+
+![Fail](../../images/stack-rox-api-token.png?raw=true "Title")
+
+Open it and create an API token of type CI integration.
+
+![Fail](../../images/stackrox-api-token-type-ci.png?raw=true "Title")
