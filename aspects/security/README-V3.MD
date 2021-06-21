@@ -24,7 +24,10 @@ The stackrox security pipeline looks similar to all the other pipelines.
 
 ![Fail](../../images/stackrox-pipeline-prevail-2021.png?raw=true "Title")
 
-There is one difference: all tasks except for scanning the "base image" and the build "application image"  have been stubbed.
+There is one difference, all tasks have been stubbed except for:
+- for scanning the "base image"
+- building the "application image" 
+- scanning the build "application image"
 
 # Install StackRox
 
