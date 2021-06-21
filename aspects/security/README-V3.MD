@@ -26,6 +26,7 @@ The stackrox security pipeline looks similar to all the other pipelines.
 
 There is one difference, all tasks have been stubbed except for:
 - for scanning the "base image"
+- building the application;
 - building the "application image" 
 - scanning the build "application image"
 
