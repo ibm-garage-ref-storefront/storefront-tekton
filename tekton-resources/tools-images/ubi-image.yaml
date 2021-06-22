@@ -7,6 +7,8 @@ items:
   spec:
     params:
     - name: url
-      value: image-registry.openshift-image-registry.svc:5000/tools-images/ubi:for-use
+      value: image-registry.openshift-image-registry.svc:5000/tools-images/ubi
+    - name: tag
+      value: for-use
     type: image
 kind: List

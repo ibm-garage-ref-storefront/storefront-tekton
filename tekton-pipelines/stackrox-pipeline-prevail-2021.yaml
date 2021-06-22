@@ -50,7 +50,15 @@ spec:
   tasks:
     - name: rescan-base-img
       taskRef:
-        name: aot-mockup  
+        kind: Task
+        name: aot-stackrox-scan
+      params:
+        - name: imageTag
+          value: "for-use"        
+      resources:
+        inputs:
+        - name: image
+          resource: base-image 
     - name: clone-1
       taskRef:
         name: aot-mockup  

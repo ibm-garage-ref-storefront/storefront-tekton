@@ -141,4 +141,18 @@ Run the setup:
 
 ## a) Run the pipeline
 
+    oc create -f tekton-pipeline-run/customer-stackrox-pipeline-ibm-prevail-2021.yaml
+    scripts/watch-the-pipeline-run.sh
 
+## b) The pipeline run now fails on stackrox 
+
+    TODO
+
+## c) Inspect the stackrox report for the base image
+
+![Fail](../../images/ubi-stackrox-report.png?raw=true "Title")
+
+
+## d) Inspect the stackrox report for the image that was build
+
+    TODO
