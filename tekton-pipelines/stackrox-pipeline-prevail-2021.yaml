@@ -94,7 +94,12 @@ spec:
       - dep-check               
     - name: scan-app-img
       taskRef:
-        name: aot-mockup     
+        kind: Task
+        name: aot-stackrox-scan
+      resources:
+        inputs:
+        - name: image
+          resource: app-image   
       runAfter: 
       - img-build                      
     - name: roll-out

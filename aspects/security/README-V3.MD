@@ -144,15 +144,24 @@ Run the setup:
     oc create -f tekton-pipeline-run/customer-stackrox-pipeline-ibm-prevail-2021.yaml
     scripts/watch-the-pipeline-run.sh
 
-## b) The pipeline run now fails on stackrox 
+## b) The pipeline run now fails on the application image that was build 
 
-    TODO
+![Fail](../../images/stackrox-plr.png?raw=true "Title")
 
-## c) Inspect the stackrox report for the base image
+## c) Inspect the stackrox reports
 
-![Fail](../../images/ubi-stackrox-report.png?raw=true "Title")
+Goto the vulnerability overview in stackrox
 
+![Fail](../../images/risky-images.png?raw=true "Title")
 
-## d) Inspect the stackrox report for the image that was build
+Inspect the stackrox report for the image that was build
 
-    TODO
+![Fail](../../images/customer-report.png?raw=true "Title")
+
+Inspect the Customer Micro Service Dockerfile
+
+![Fail](../../images/customer-docker-file.png?raw=true "Title")
+
+Drill down on the critical vulnerability
+
+![Fail](../../images/drill-down.png?raw=true "Title")
