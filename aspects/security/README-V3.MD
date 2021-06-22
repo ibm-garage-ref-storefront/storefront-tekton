@@ -113,8 +113,8 @@ Run the setup:
 
     TODO
 
-# Run the StackRox pipeline
+# The StackRox pipeline
 
-## a) Run it
+## a) Create the pipeline
 
-    TODO
+    bash scripts/pipeline/stackrox-setup.sh  
