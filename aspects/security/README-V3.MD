@@ -42,7 +42,11 @@ There is one difference, all tasks have been stubbed except for:
 
     helm install -n stackrox \
     --create-namespace stackrox-central-services rhacs/central-services \
-    --set imagePullSecrets.allowNone=true
+    --set imagePullSecrets.allowNone=true \
+    --set central.resources.requests.memory="2Gi" \
+    --set central.resources.requests.cpu="100m" \
+    --set scanner.resources.requests.memory="1000Mi" \
+    --set scanner.resources.requests.cpu="100m"
 
 ## c) Get the admin password
 
@@ -51,24 +55,6 @@ There is one difference, all tasks have been stubbed except for:
 notes:
 - Write down the admin password. This is the only time you will be able to see it.
 
-## d) Lower the CPU requirements for StackRox
-
-Switch to the StackRox namespace:
-
-    oc project stackrox
-
-Update the Helm Chart:
-
-    helm upgrade  stackrox-central-services rhacs/central-services \
-    --reuse-values \
-    --set central.resources.requests.memory="2Gi" \
-    --set central.resources.requests.cpu="100m" \
-    --set scanner.resources.requests.memory="1000Mi" \
-    --set scanner.resources.requests.cpu="100m"
-
-Switch back
-
-    oc project pipelines
 
 # Configure StackRox
 
@@ -165,3 +151,14 @@ Inspect the Customer Micro Service Dockerfile
 Drill down on the critical vulnerability
 
 ![Fail](../../images/drill-down.png?raw=true "Title")
+
+Find out what needs to be fixed:
+
+![Fail](../../images/fix-version.png?raw=true "Title")
+
+Take a carefull look at the recommended fix version.
+
+
+# Let's go and build our defense.
+
+    TODO
