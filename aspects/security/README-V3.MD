@@ -18,7 +18,7 @@ We will build, deploy and test the customer-ms-spring solo branch.
 [Scan and Import](../nuts-and-bolts/SCAN.MD) the images that are used by the tool-chain if you have not allready done so.
 
 
-# The security section of the pipeline
+# The Stackrox section of the pipeline
 
 The stackrox security pipeline looks similar to all the other pipelines. 
 
