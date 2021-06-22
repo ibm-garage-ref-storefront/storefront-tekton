@@ -105,8 +105,11 @@ spec:
       runAfter: 
       - functional-test
   workspaces:
-    - name: src-workspace
     - name: maven-settings
-    - name: local-maven-repo    
+    - name: src-workspace-01
+    - name: src-workspace-02    
+    - name: local-maven-repo   
+    - name: local-sonar-repo
+    - name: local-owasp-repo     
     - name: images-url
     - name: report
