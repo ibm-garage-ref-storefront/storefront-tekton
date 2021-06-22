@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: stackrox-details
+type: Opaque
+stringData:
+  ROX_SECURE_TOKEN: REPLACE_WITH_STACKROX_API_TOKEN
