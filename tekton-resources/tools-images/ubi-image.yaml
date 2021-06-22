@@ -1,0 +1,12 @@
+apiVersion: v1
+items:
+- apiVersion: tekton.dev/v1alpha1
+  kind: PipelineResource
+  metadata:
+    name: ubi-base-image
+  spec:
+    params:
+    - name: url
+      value: image-registry.openshift-image-registry.svc:5000/tools-images/ubi:for-use
+    type: image
+kind: List
