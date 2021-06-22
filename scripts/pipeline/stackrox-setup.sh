@@ -8,14 +8,18 @@ oc project pipelines
 
 # Tasks
 echo "--------------------------------"
+echo "add resources:"
 oc apply -f tekton-resources/tools-images/ubi-image.yaml
 
 # Pipelines
 echo "--------------------------------"
+echo "add pipeline:"
 oc apply -f tekton-pipelines/stackrox-pipeline-prevail-2021.yaml 
 
 # Secrets
 echo "--------------------------------"
+echo "add secrets:"
+
 export HOST=$(oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}')
 docker login -u $(oc whoami) -p $(oc whoami -t) $HOST
 
