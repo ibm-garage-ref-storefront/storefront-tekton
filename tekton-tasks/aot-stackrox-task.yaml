@@ -1,0 +1,138 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: aot-stackrox-scan
+  annotations:
+    description: Executes a stackrox scan (preview)
+    app.openshift.io/description: Executes a stackrox scan (preview)
+    app.openshift.io/vcs-uri: https://github.com/IBM/ibm-garage-tekton-tasks
+    app.openshift.io/vcs-ref: master
+  labels:
+    version: 0.0.0  
+spec:
+  params:
+  - name: pathToDockerfile
+    description: the path to the dockerfile to build
+    default: ""
+  - name: imageTag
+    description: Image tag
+    default: ""
+  - name: imageSha
+    description: SHA code digest for the image to be scanned
+    default: ""
+  - name: dockerfileAvailable
+    description: Is there a Dockerfile to accompany the image scan
+    default: "false"
+  - name: isBaseImage
+    description: Is this a scan of a base image specified in a dockerfile
+    default: "false"
+  - name: endpointStackRox
+    description: This is the StackRox URL to invoke to scan images
+    default: "central.stackrox:443"
+  - name: reg-secret-name
+    description: Is the name of the Registry namespace secret
+    default: "oir-registrycreds"
+  results:
+    - name: image-url
+      description: store image url
+    - name: image-tag
+      description: store image tag
+  resources:
+    inputs:
+    - name: image
+      type: image
+    - name: git-source #to be used with dockerfile reference
+      type: git
+      optional: true      
+  steps:
+    - name: get-base-image-name
+      image: image-registry.openshift-image-registry.svc:5000/tools-images/ubi-minimal:for-use
+      script: |
+        #!/usr/bin/env bash
+        
+        set +x
+        
+        printf "\nCheck if git-source is provided\n"
+        if [ ! -d $(inputs.resources.git-source.path) ]; then
+          printf "\ngit-source not provided so confirming isBaseImage and dockerfileAvailable are false\n"
+          if [ "$(params.isBaseImage)" = "true" ] || [ "$(params.dockerfileAvailable)" = "true" ]; then
+            printf "\nYou cannot specify isBaseImage=true or dockerfileAvailable=true if no git-source is provided\n"
+            exit 1
+          fi
+        else
+          printf "\ngit-source is provided\n"
+        fi
+        printf "\nCheck if imageSha provided and correct format...\n"
+        if [ "$(params.imageSha)" = "" ]; then
+          printf "\nSHA code not provided, no action required\n"
+        else
+          printf "\nSHA code provided, checking the format\n"
+          SHAFORMAT=$(echo "$(params.imageSha)" | head -c6)
+          if [ $SHAFORMAT = "sha256" ]; then
+            printf "\nSHA format correct\n"
+          else
+            printf "\nSHA format incorrect, make sure you are using this param only for the SHA code (image digest)\n"
+            exit 1
+          fi
+        fi
+        if [ "$(params.isBaseImage)" = "true" ]; then # if this is a scan of a base image
+          # confirm dockerfile is found
+          printf "\nConfirming dockerfile exists\n"
+          if [ ! -f ./git-source/$(inputs.params.pathToDockerfile) ]; then
+            printf "\nDockerfile not found\n"
+            exit 1
+          fi
+          # get image name and tag into results files
+          printf "\nGetting the image name and tag into results files\n"
+          BASEIMAGE=$(grep "FROM" ./git-source/$(inputs.params.pathToDockerfile) | tail -1 | sed 's/\(.*\)FROM //' | awk -F: '{print $1}') && printf "\nImage is $BASEIMAGE\n"
+          echo -n $BASEIMAGE > $(results.image-url.path)
+          
+          # For tag we need to check if tag has been left blank to signify to use latest
+          BASETAG=$(grep "FROM" ./git-source/$(inputs.params.pathToDockerfile) | tail -1 | sed 's/\(.*\)FROM //' | awk -F: '{print $2}') && printf "\nTag is $BASETAG\n"
+          if [ $BASETAG ]; then
+            echo -n $BASETAG > $(results.image-tag.path)
+          else
+           echo -n "latest" > $(results.image-tag.path)
+          fi
+        else
+          printf "\nGetting the image name and tag into results files\n"
+          echo -n $(inputs.resources.image.url) > $(results.image-url.path) && echo "Image is $(inputs.resources.image.url)"
+          if [ $(inputs.params.imageTag) ]; then
+            echo -n $(inputs.params.imageTag) > $(results.image-tag.path) && echo "Tag is $(inputs.params.imageTag)"
+          else
+            echo -n "latest" > $(results.image-tag.path) && printf "\nTag is latest\n"
+          fi
+        fi
+    - name: scan
+      image: image-registry.openshift-image-registry.svc:5000/tools-images/stackrox-ubi:for-use
+      imagePullPolicy: IfNotPresent
+      script: |
+        if [ "$(params.imageSha)" = "" ]; then
+          /home/stackrox/bin/roxctl image check --endpoint $(inputs.params.endpointStackRox) --image $(head -1 $(results.image-url.path)):$(head -1 $(results.image-tag.path)) --insecure-skip-tls-verify --token-file /home/.stackrox/stackrox.txt
+        else # use digest with SHA code
+          /home/stackrox/bin/roxctl image check --endpoint $(inputs.params.endpointStackRox) --image $(head -1 $(results.image-url.path))@$(params.imageSha) --insecure-skip-tls-verify --token-file /home/.stackrox/stackrox.txt
+        fi
+#      env:
+#        - name: ROX_API_TOKEN
+#          valueFrom:
+#            secretKeyRef:
+#              name: stackrox-details
+#              key: ROX_SECURE_TOKEN
+      volumeMounts:
+      - name: registry-creds
+        mountPath: /home/.docker/
+      - name: stackrox-creds
+        mountPath: /home/.stackrox/
+  volumes:
+    - name: registry-creds
+      secret:
+        secretName: $(params.reg-secret-name)
+        items:
+          - key: .dockerconfigjson
+            path: config.json
+    - name: stackrox-creds
+      secret:
+        secretName: stackrox-details
+        items:
+          - key: ROX_SECURE_TOKEN
+            path: stackrox.txt

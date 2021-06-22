@@ -16,6 +16,11 @@ echo "--------------------------------"
 echo "add pipeline:"
 oc apply -f tekton-pipelines/stackrox-pipeline-prevail-2021.yaml 
 
+# Task
+echo "--------------------------------"
+echo "add task:"
+oc apply -f tekton-tasks/aot-stackrox-task.yaml 
+
 # Secrets
 echo "--------------------------------"
 echo "add secrets:"
