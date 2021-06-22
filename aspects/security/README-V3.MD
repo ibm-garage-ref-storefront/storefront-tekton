@@ -99,7 +99,28 @@ Copy the token and store it savely.
 
 ## c) Connect StackRox to the Openshift Image Registry
 
-    TODO
+Create a new registry integration of type "generic docker registry":
+
+![Fail](../../images/generic-docker-registry.png?raw=true "Title")
+
+Fill in your credentials and test that the integration works:
+
+Get your user name:
+
+    oc whoami
+
+Get your token:
+
+    oc whoami -t
+
+For registry use:
+
+    image-registry.openshift-image-registry.svc:5000
+
+![Fail](../../images/test-integration.png?raw=true "Title")
+
+Save and exit.
+
 
 ## d) Configure the StackRox API token
 
