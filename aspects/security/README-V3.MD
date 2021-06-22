@@ -97,7 +97,11 @@ Open it and create an API token of type CI integration.
 
 Copy the token and store it savely.
 
-## c) Configure the StackRox API token
+## c) Connect StackRox to the Openshift Image Registry
+
+    TODO
+
+## d) Configure the StackRox API token
 
 Edit the configuration of the installer.
 
@@ -107,14 +111,11 @@ Set the value of STACKROX_API_TOKEN with the previously created Token.
 
 Run the setup:
 
-    TODO
+    bash scripts/pipeline/stackrox-setup.sh  
 
-## d) Connect StackRox to the Openshift Image Registry
-
-    TODO
 
 # The StackRox pipeline
 
-## a) Create the pipeline
+## a) Run the pipeline
 
-    bash scripts/pipeline/stackrox-setup.sh  
+
