@@ -57,6 +57,9 @@ cd ${HERE}/tools/stackrox
 ./build_stackrox_image.sh  
 echo ""
 
+# Import the openshift cli into the Lab environment
+oc import-image cli -n openshift 
+
 # view cannot create pods/portforward
 oc policy add-role-to-user admin ${OCP_USER}
 oc policy add-role-to-user admin system:serviceaccount:pipelines:pipeline 
