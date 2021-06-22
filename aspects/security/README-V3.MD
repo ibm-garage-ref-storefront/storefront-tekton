@@ -119,6 +119,8 @@ For registry use:
 
 ![Fail](../../images/test-integration.png?raw=true "Title")
 
+Disable TLS Certificate Validation.
+
 Save and exit.
 
 
