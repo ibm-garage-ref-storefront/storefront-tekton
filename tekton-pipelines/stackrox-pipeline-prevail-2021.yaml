@@ -8,6 +8,8 @@ spec:
       type: git
     - name: docker-image
       type: image
+    - name: base-image
+      type: image      
   params:
     - default: 'docker://default-route-openshift-image-registry.apps-crc.testing/full-bc/customer:latest'
       description: The landing location of image that is copied from IBM Container Registry <server>/<namespace>/<repository>:<tag>
