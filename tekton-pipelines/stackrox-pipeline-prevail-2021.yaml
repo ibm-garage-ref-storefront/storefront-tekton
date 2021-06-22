@@ -6,10 +6,10 @@ spec:
   resources:
     - name: git-source
       type: git
-    - name: docker-image
-      type: image
     - name: base-image
-      type: image      
+      type: image  
+    - name: app-image
+      type: image
   params:
     - default: 'https://github.com/kitty-catt/customer-ms-spring'
       description: A git repo that contains a java application that is build using maven.
