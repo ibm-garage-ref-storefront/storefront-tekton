@@ -30,30 +30,13 @@ There is one difference, all tasks have been stubbed except for:
 - building the "application image" 
 - scanning the build "application image"
 
-# Install StackRox
+# StackRox
 
-## a) Add the Stackrox Helm Repository
+## a) Get the admin password
 
-    helm repo add rhacs https://mirror.openshift.com/pub/rhacs/charts/
-    helm search repo -l rhacs/
-    helm repo update
-
-## b) Install StackRox
-
-    helm install -n stackrox \
-    --create-namespace stackrox-central-services rhacs/central-services \
-    --set imagePullSecrets.allowNone=true \
-    --set central.resources.requests.memory="2Gi" \
-    --set central.resources.requests.cpu="100m" \
-    --set scanner.resources.requests.memory="1000Mi" \
-    --set scanner.resources.requests.cpu="100m"
-
-## c) Get the admin password
+The tools setup has installed stackrox.
 
     helm get notes stackrox-central-services -n stackrox
-
-notes:
-- Write down the admin password. This is the only time you will be able to see it.
 
 
 # Configure StackRox

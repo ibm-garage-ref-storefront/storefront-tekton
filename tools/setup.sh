@@ -44,8 +44,19 @@ cd ${HERE}/tools/nexus
 ./install_nexus3-v2.sh
 echo ""
 
-# The Image Registry Operator needs time to adjust
-sleep 30
+# Setup stackrox
+echo "###################################################################"
+helm repo add rhacs https://mirror.openshift.com/pub/rhacs/charts/
+helm search repo -l rhacs/
+helm repo update
+
+helm install -n stackrox \
+--create-namespace stackrox-central-services rhacs/central-services \
+--set imagePullSecrets.allowNone=true \
+--set central.resources.requests.memory="2Gi" \
+--set central.resources.requests.cpu="100m" \
+--set scanner.resources.requests.memory="1000Mi" \
+--set scanner.resources.requests.cpu="100m"
 
 # Setup jmeter-performance-test
 echo "###################################################################"
