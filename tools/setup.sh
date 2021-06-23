@@ -44,6 +44,9 @@ cd ${HERE}/tools/nexus
 ./install_nexus3-v2.sh
 echo ""
 
+# The Image Registry Operator needs time to adjust
+sleep 30
+
 # Setup jmeter-performance-test
 echo "###################################################################"
 cd ${HERE}/tools/jmeter-performance-test
