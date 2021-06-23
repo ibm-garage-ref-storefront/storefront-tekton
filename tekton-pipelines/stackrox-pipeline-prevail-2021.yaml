@@ -101,7 +101,21 @@ spec:
         - name: source
           workspace: src-workspace-01
         - name: maven-repo
-          workspace: local-maven-repo      
+          workspace: local-maven-repo  
+    - name: sonar-scan
+      params:
+      - name: app-name
+        value: $(params.app-name)   
+      - name: git-repo-checkout-dir
+        value: $(params.git-repo-checkout-dir)                    
+      taskRef:
+        kind: Task      
+        name: aot-sonar-java
+      runAfter: 
+        - artifact-build   
+      workspaces:
+        - name: source
+          workspace: src-workspace-01                 
     - name: img-build
       taskRef:
         name: aot-mockup         
@@ -109,11 +123,6 @@ spec:
       - dep-track
       - sonar-scan  
       - rescan-base-img       
-    - name: sonar-scan
-      taskRef:
-        name: aot-mockup  
-      runAfter: 
-        - artifact-build   
     - name: clone-2
       taskRef:
         name: aot-mockup         
