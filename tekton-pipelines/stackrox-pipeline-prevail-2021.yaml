@@ -60,8 +60,21 @@ spec:
         - name: image
           resource: base-image 
     - name: clone-1
+      params:
+        - name: url
+          value: $(params.git-url)
+        - name: revision
+          value: $(params.git-revision)           
+        - name: subdirectory
+          value: $(params.git-repo-checkout-dir)
+        - name: deleteExisting
+          value: 'true'
       taskRef:
-        name: aot-mockup  
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: src-workspace-01
     - name: artifact-build
       taskRef:
         name: aot-mockup  
