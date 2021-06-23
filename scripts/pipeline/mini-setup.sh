@@ -63,8 +63,11 @@ oc create configmap silver-platter-cm --from-literal route=http://$SPR
 oc extract configmap/silver-platter-cm --to=-
 
 echo "--------------------------------"
-echo "add policies:"
+echo "add scc:"
 oc adm policy add-scc-to-user privileged system:serviceaccount:pipelines:pipeline
+
+echo "--------------------------------"
+echo "add roles:"
 oc policy add-role-to-user system:image-pusher system:serviceaccount:full-bc:pipeline
 oc policy add-role-to-user edit ${OCP_USER}
 
