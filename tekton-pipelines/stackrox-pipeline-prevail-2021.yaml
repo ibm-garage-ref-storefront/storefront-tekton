@@ -118,11 +118,24 @@ spec:
           workspace: src-workspace-01                 
     - name: img-build
       taskRef:
-        name: aot-mockup         
+        kind: Task
+        name: aot-buildah
+      resources:
+        inputs:
+        - name: source
+          resource: git-source
+        outputs:
+        - name: image
+          resource: app-image
+      params:
+      - name: TLSVERIFY
+        value: "false"
+      - name: CONTEXT
+        value: $(params.pom-dir)        
       runAfter: 
       - dep-track
       - sonar-scan  
-      - rescan-base-img       
+      - rescan-base-img         
     - name: clone-2
       taskRef:
         name: aot-mockup         
