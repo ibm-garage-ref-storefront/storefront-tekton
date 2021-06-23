@@ -148,3 +148,7 @@ Analyze the project using snyk, it recommends us to level up the pom of the micr
 
 ![Fail](../../images/snyk-recommendation.png?raw=true "Title")
 
+You may fork the repo that we are building, and make the mod yourself. For the interest of time we suggest you use the pre-build branch with the fix version:
+
+    oc create -f tekton-pipeline-run/customer-stackrox-pipeline-ibm-prevail-2021-fix-version.yaml
+    scripts/watch-the-pipeline-run.sh

@@ -10,6 +10,7 @@ oc project pipelines
 echo "--------------------------------"
 echo "add resources:"
 oc apply -f tekton-resources/tools-images/ubi-image.yaml
+oc apply -f tekton-resources/customer-ms/customer-ms-spring-fix-version.yaml 
 
 # Pipelines
 echo "--------------------------------"
