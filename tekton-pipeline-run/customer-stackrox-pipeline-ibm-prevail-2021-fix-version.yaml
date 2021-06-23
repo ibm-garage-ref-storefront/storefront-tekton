@@ -20,6 +20,10 @@ spec:
   params:
     - name: trivy-severity
       value: "CRITICAL"
+    - name: git-url
+      value: "https://github.com/kitty-catt/customer-ms-spring"
+    - name: git-revision
+      value: "fix-version"
     - name: git-repo-checkout-dir
       value: "customer-ms-spring"
   workspaces:
