@@ -109,9 +109,13 @@ spec:
       script: |
         if [ "$(params.imageSha)" = "" ]; then
           /home/stackrox/bin/roxctl image check --endpoint $(inputs.params.endpointStackRox) --image $(head -1 $(results.image-url.path)):$(head -1 $(results.image-tag.path)) --insecure-skip-tls-verify --token-file /home/.stackrox/stackrox.txt
+          RC=$?
         else # use digest with SHA code
           /home/stackrox/bin/roxctl image check --endpoint $(inputs.params.endpointStackRox) --image $(head -1 $(results.image-url.path))@$(params.imageSha) --insecure-skip-tls-verify --token-file /home/.stackrox/stackrox.txt
+          RC=$?
         fi
+        echo "result: ${RC}"
+        exit ${RC}
 #      env:
 #        - name: ROX_API_TOKEN
 #          valueFrom:
