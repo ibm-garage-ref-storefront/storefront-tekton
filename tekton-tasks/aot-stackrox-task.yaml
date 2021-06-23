@@ -107,7 +107,9 @@ spec:
       image: image-registry.openshift-image-registry.svc:5000/tools-images/stackrox-ubi:for-use
       imagePullPolicy: IfNotPresent
       script: |
+        #!/bin/bash -e
         if [ "$(params.imageSha)" = "" ]; then
+          set -xv
           /home/stackrox/bin/roxctl image check --endpoint $(inputs.params.endpointStackRox) --image $(head -1 $(results.image-url.path)):$(head -1 $(results.image-tag.path)) --insecure-skip-tls-verify --token-file /home/.stackrox/stackrox.txt
           RC=$?
         else # use digest with SHA code
