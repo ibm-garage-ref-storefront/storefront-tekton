@@ -76,6 +76,8 @@ Initialize the pipeline project / namespace:
 
     bash scripts/pipeline/mini-setup.sh
 
+# Checkpoint
+
 Login to the pipelines project and see that you have access to the pipelines.
 
 ![Deploy](../../images/inspect-pipelines.png?raw=true "Title")
@@ -83,3 +85,16 @@ Login to the pipelines project and see that you have access to the pipelines.
 Inspect the persistent volume claims and see them transition from state Pending to Bound:
 
     watch oc get pvc
+
+Inspect the images in the tools namespace:
+
+    if [ $(oc get is -n tools | grep 5000 | wc -l) -eq 3 ] ; then echo OK ; else echo NoK ; fi
+
+There must be 3 images. If there are less then inspect:
+
+    oc get is -n tools
+
+And repair if necessary:    
+
+    tools/stackrox/build_stackrox_image.sh
+    tools/jmeter-performance-test/build_jmeter_image.sh
