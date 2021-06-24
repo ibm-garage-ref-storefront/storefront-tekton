@@ -20,6 +20,8 @@ We will build, deploy and test the customer-ms-spring solo branch.
 
 # The Stackrox section of the pipeline
 
+As part of this section of the workshop, the stackrox security pipeline will be created in a few moments.
+
 The stackrox security pipeline looks similar to all the other pipelines. 
 
 ![Fail](../../images/stackrox-pipeline-prevail-2021.png?raw=true "Title")
