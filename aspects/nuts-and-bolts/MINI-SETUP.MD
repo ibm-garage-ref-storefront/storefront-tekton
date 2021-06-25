@@ -25,7 +25,7 @@ Edit the configuration file:
 
 Modify:
 - modify OCP_USER and OCP_ADMIN unless you are running on CRC;
-- modify SLACK_URL and SLACK_CHANNEL when you jabe a slack channel that you can post to (optional).
+- modify SLACK_URL and SLACK_CHANNEL when you have a slack channel that you can post to (optional).
 
 Install the tools:
 
