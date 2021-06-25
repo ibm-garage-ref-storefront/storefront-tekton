@@ -32,6 +32,10 @@ spec:
       default: "false"   
       description: "whether or not we are using the openshift internal registry"
       type: string
+    - name: src-namespace
+      default: "tools"   
+      description: "where the src image lives when we are importing from the internal registry"
+      type: string      
   tasks:
     - name: scan-image
       taskRef:
@@ -49,7 +53,7 @@ spec:
           value: |
             #!/bin/bash -e
 
-            #set -xv
+            set -xv
 
             oc whoami
             oc projects
@@ -66,7 +70,7 @@ spec:
 
               echo "tag from internal registry"
 
-              source=tools/$(params.image-name):$(params.image-tag)
+              source=$(params.src-namespace)/$(params.image-name):$(params.image-tag)
               target=tools-images/$(params.image-name):$(params.image-tag)
               oc tag ${source} ${target}               
 
