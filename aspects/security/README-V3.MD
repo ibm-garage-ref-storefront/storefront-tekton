@@ -154,3 +154,11 @@ You may fork the repo that we are building, and make the mod yourself. For the i
 
     oc create -f tekton-pipeline-run/customer-stackrox-pipeline-ibm-prevail-2021-fix-version.yaml
     scripts/watch-the-pipeline-run.sh
+
+The pipeline now runs to completion:
+
+![Fail](../../images/fix-version-pipelinerun.png?raw=true "Title")
+
+Inspect the stackrox console and verify the vulnerability was successfully patched.
+
+![Fail](../../images/fix-version-in-stackrox.png?raw=true "Title")
