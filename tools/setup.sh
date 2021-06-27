@@ -78,4 +78,25 @@ oc import-image cli -n openshift
 oc policy add-role-to-user admin ${OCP_USER}
 oc policy add-role-to-user admin system:serviceaccount:pipelines:pipeline 
 
+# Checks
+echo "###################################################################"
+
+IMG=$(oc get is | grep jmeter-prevail-2021 | awk ' { print $1 } ')
+if [ $IMG == "jmeter-prevail-2021" ] ; then
+    echo "jmeter-prevail-2021 is present"
+else
+    echo "rinse and repeat for jmeter-prevail-2021 image"
+    cd ${HERE}/tools/jmeter-performance-test
+    ./build_jmeter_image.sh  
+fi
+
+IMG=$(oc get is | grep stackrox-ubi | awk ' { print $1 } ')
+if [ $IMG == "stackrox-ubi" ] ; then
+    echo "stackrox-ubi is present"
+else
+    echo "rinse and repeat for stackrox-ubi image"
+    cd ${HERE}/tools/stackrox
+    ./build_stackrox_image.sh  
+fi
+
 cd ${HERE}
