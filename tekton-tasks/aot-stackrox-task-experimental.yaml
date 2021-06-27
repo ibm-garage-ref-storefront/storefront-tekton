@@ -1,0 +1,112 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: aot-stackrox-scan
+  annotations:
+    description: Executes a stackrox scan (preview)
+    app.openshift.io/description: Executes a stackrox scan (preview)
+    app.openshift.io/vcs-uri: https://github.com/IBM/ibm-garage-tekton-tasks
+    app.openshift.io/vcs-ref: master
+  labels:
+    version: 0.0.0  
+spec:
+  params:
+  - name: pathToDockerfile
+    description: the path to the dockerfile to build
+    default: ""
+  - name: imageTag
+    description: Image tag
+    default: ""
+  - name: imageSha
+    description: SHA code digest for the image to be scanned
+    default: ""
+  - name: dockerfileAvailable
+    description: Is there a Dockerfile to accompany the image scan
+    default: "false"
+  - name: isBaseImage
+    description: Is this a scan of a base image specified in a dockerfile
+    default: "false"
+  - name: endpointStackRox
+    description: This is the StackRox URL to invoke to scan images
+    default: "central.stackrox:443"
+  - name: reg-secret-name
+    description: Is the name of the Registry namespace secret
+    default: "oir-registrycreds"
+  - name: image-namespace
+    description: The project where the imagestream to scan is located.
+    default: "pipelines"
+  - name: image-name
+    description: The name of the imagestream to scan .
+    default: "customer"   
+  results:
+    - name: image-url
+      description: store image url
+    - name: image-tag
+      description: store image tag
+    - name: determined-sha
+      description: the SHA of the latest image
+  resources:
+    inputs:
+    - name: image
+      type: image
+    - name: git-source #to be used with dockerfile reference
+      type: git
+      optional: true      
+  steps:
+    - name: determine-sha
+      image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
+      script: |
+        #!/usr/bin/env bash
+        
+        set +x
+        oc get is $(params.image-name) -n $(params.image-namespace)
+
+        oc describe is $(params.image-name) -n $(params.image-namespace)
+
+        SHA=$(oc describe is $(params.image-name) -n $(params.image-namespace) | grep "*" | cut -f2 -d"@" )
+
+        echo SHA=${SHA}
+
+        echo ${SHA} > $(results.determined-sha.path)
+
+    - name: scan
+      image: image-registry.openshift-image-registry.svc:5000/tools-images/stackrox-ubi:for-use
+      imagePullPolicy: IfNotPresent
+      script: |
+        #!/bin/bash -e
+
+        SHA=$(cat $(results.determined-sha.path))
+        echo "SHA: >${SHA}<"
+
+        IMAGE_URL="image-registry.openshift-image-registry.svc:5000/$(params.image-namespace)/$(params.image-name)@${SHA}"
+        echo "IMAGE_URL: >${IMAGE_URL}<"
+
+        /home/stackrox/bin/roxctl image check --endpoint $(inputs.params.endpointStackRox) --image ${IMAGE_URL} --insecure-skip-tls-verify --token-file /home/.stackrox/stackrox.txt
+        RC=$?
+
+        echo "result: ${RC}"
+        exit ${RC}
+#      env:
+#        - name: ROX_API_TOKEN
+#          valueFrom:
+#            secretKeyRef:
+#              name: stackrox-details
+#              key: ROX_SECURE_TOKEN
+      volumeMounts:
+      - name: registry-creds
+        mountPath: /home/.docker/
+      - name: stackrox-creds
+        mountPath: /home/.stackrox/
+  volumes:
+    - name: registry-creds
+      secret:
+        secretName: $(params.reg-secret-name)
+        items:
+          - key: .dockerconfigjson
+            path: config.json
+    - name: stackrox-creds
+      secret:
+        secretName: stackrox-details
+        items:
+          - key: ROX_SECURE_TOKEN
+            path: stackrox.txt
