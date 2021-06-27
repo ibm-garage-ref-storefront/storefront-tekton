@@ -37,7 +37,7 @@ spec:
     default: "pipelines"
   - name: image-name
     description: The name of the imagestream to scan .
-    default: "customer"   
+    default: "customer-ms-spring"   
   results:
     - name: image-url
       description: store image url
@@ -63,7 +63,7 @@ spec:
 
         oc describe is $(params.image-name) -n $(params.image-namespace)
 
-        SHA=$(oc describe is $(params.image-name) -n $(params.image-namespace) | grep "*" | cut -f2 -d"@" )
+        SHA=$(oc describe is $(params.image-name) -n $(params.image-namespace) | grep "*" | uniq | cut -f2 -d"@" )
 
         echo SHA=${SHA}
 

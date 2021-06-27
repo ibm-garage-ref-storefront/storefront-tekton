@@ -53,8 +53,10 @@ spec:
         kind: Task
         name: aot-stackrox-scan
       params:
-        - name: imageTag
-          value: "for-use"        
+        - name: image-namespace
+          value: "tools-images"
+        - name: image-name
+          value: "ubi"          
       resources:
         inputs:
         - name: image
@@ -156,7 +158,12 @@ spec:
       resources:
         inputs:
         - name: image
-          resource: app-image   
+          resource: app-image 
+      params:
+        - name: image-namespace
+          value: "pipelines"
+        - name: image-name
+          value: $(params.app-name)                   
       runAfter: 
       - img-build                      
     - name: roll-out

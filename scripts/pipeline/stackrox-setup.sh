@@ -20,7 +20,8 @@ oc apply -f tekton-pipelines/stackrox-pipeline-prevail-2021.yaml
 # Task
 echo "--------------------------------"
 echo "add task:"
-oc apply -f tekton-tasks/aot-stackrox-task.yaml 
+#oc apply -f tekton-tasks/aot-stackrox-task.yaml 
+oc apply -f tekton-tasks/aot-stackrox-task-experimental.yaml 
 
 # Secrets
 echo "--------------------------------"

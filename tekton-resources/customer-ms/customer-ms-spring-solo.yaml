@@ -7,7 +7,7 @@ items:
   spec:
     params:
     - name: url
-      value: image-registry.openshift-image-registry.svc:5000/pipelines/customer
+      value: image-registry.openshift-image-registry.svc:5000/pipelines/customer-ms-spring
     type: image
 - apiVersion: tekton.dev/v1alpha1
   kind: PipelineResource
@@ -16,7 +16,7 @@ items:
   spec:
     params:
     - name: url
-      value: quay.io/kitty_catt/customer
+      value: quay.io/kitty_catt/customer-ms-spring
     type: image    
 - apiVersion: tekton.dev/v1alpha1
   kind: PipelineResource
