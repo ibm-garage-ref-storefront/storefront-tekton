@@ -105,4 +105,6 @@ oc set volume dc silver-platter \
 
 oc set volumes dc silver-platter --all
 
-oc expose svc silver-platter
+#oc expose svc silver-platter
+echo "use the following command to open the silver-platter"
+echo "oc port-forward -n tools svc/silver-platter 8080:8080&"
