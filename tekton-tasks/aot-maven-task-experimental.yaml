@@ -59,82 +59,63 @@ spec:
         cat > $(workspaces.maven-settings.path)/settings.xml <<EOF
 
         <settings>
-          
           <servers>
-            <server> 
-              <id>releases-repository</id> 
-              <username>admin</username> 
+            <server>
+              <id>releases-repository</id>
+              <username>admin</username>
               <password>admin123</password>
-            </server> 
-            <server> 
-              <id>snapshots-repository</id> 
-              <username>admin</username> 
-              <password>admin123</password>
-            </server> 
-            <server> 
-              <id>mirror.default</id> 
-              <username>kitty-catt</username> 
-              <password>climbs-the-wall</password>
             </server>
             <server>
-                <id>silver-platter</id>
-                <username>aot-user</username>
-                <password>ibm-prevail-2021</password>
-            </server>                                
+              <id>snapshots-repository</id>
+              <username>admin</username>
+              <password>admin123</password>
+            </server>
+            <server>
+              <id>mirror.default</id>
+              <username>admin</username>
+              <password>admin123</password>
+            </server>
+            <server>
+              <id>silver-platter</id>
+              <username>aot-user</username>
+              <password>ibm-prevail-2021</password>
+            </server>
           </servers>
+
+          <profiles>
+            <profile>
+              <id>ibm-cloud</id>
+              <repositories>
+                <repository>
+                  <id>nexus3-releases</id>
+                  <name>Nexus3 releases</name>
+                  <url>http://nexus3.tools.svc:80/repository/maven-releases/</url>
+                </repository>
+                <repository>
+                  <id>nexus3-snapshots</id>
+                  <name>Nexus3 snapshots</name>
+                  <url>http://nexus3.tools.svc:80/repository/maven-snapshots/</url>
+                </repository>                
+              </repositories>
+            </profile>
+          </profiles>
           
+          <activeProfiles>
+            <activeProfile>ibm-cloud</activeProfile>
+          </activeProfiles>
+
           <mirrors>
-            <!-- The mirrors added here are generated from environment variables. Don't change. -->
-            <!-- ### mirrors from ENV ### -->
+            <mirror>
+              <id>mirror.default</id>
+              <url>http://nexus3.tools.svc:80/repository/maven-central/</url>
+              <mirrorOf>central</mirrorOf>
+            </mirror>
           </mirrors>
-          <proxies>
-            <!-- The proxies added here are generated from environment variables. Don't change. -->
-            <!-- ### HTTP proxy from ENV ### -->
-          </proxies>
         </settings>
 
         EOF
 
-
-        xml=""
-
-        if [ -n "$(params.PROXY_HOST)" -a -n "$(params.PROXY_PORT)" ]; then
-          xml="<proxy>\
-            <id>genproxy</id>\
-            <active>true</active>\
-            <protocol>$(params.PROXY_PROTOCOL)</protocol>\
-            <host>$(params.PROXY_HOST)</host>\
-            <port>$(params.PROXY_PORT)</port>"
-          if [ -n "$(params.PROXY_USER)" -a -n "$(params.PROXY_PASSWORD)" ]; then
-            xml="$xml\
-                <username>$(params.PROXY_USER)</username>\
-                <password>$(params.PROXY_PASSWORD)</password>"
-          fi
-          if [ -n "$(params.PROXY_NON_PROXY_HOSTS)" ]; then
-            xml="$xml\
-                <nonProxyHosts>$(params.PROXY_NON_PROXY_HOSTS)</nonProxyHosts>"
-          fi
-          xml="$xml\
-              </proxy>"
-          sed -i "s|<!-- ### HTTP proxy from ENV ### -->|$xml|" $(workspaces.maven-settings.path)/settings.xml
-        fi
-
-
-        if [ -n "$(params.MAVEN_MIRROR_URL)" ]; then
-          xml="    <mirror>\
-            <id>mirror.default</id>\
-            <url>$(params.MAVEN_MIRROR_URL)</url>\
-            <mirrorOf>central</mirrorOf>\
-          </mirror>"
-          sed -i "s|<!-- ### mirrors from ENV ### -->|$xml|" $(workspaces.maven-settings.path)/settings.xml
-        fi
-
-
-        [[ -f $(workspaces.maven-settings.path)/settings.xml ]] && cat
-        $(workspaces.maven-settings.path)/settings.xml
-
-        [[ -f $(workspaces.maven-settings.path)/settings.xml ]] || echo skipping
-        settings
+        cat $(workspaces.maven-settings.path)/settings.xml 
     - name: mvn-goals
       args:
         - '-s'
