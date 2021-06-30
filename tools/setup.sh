@@ -2,7 +2,7 @@
 source ~/config.bc-full 
 
 clear
-
+START_TIME=$(date +%H:%M:%S)
 HERE=$(pwd)
 echo "working from ${HERE}"
 
@@ -100,6 +100,8 @@ else
 fi
 
 cd ${HERE}
+END_TIME=$(date +%H:%M:%S)
 
 echo "###################################################################"
-echo "tools setup = COMPLETE"
+echo "Start: ${START_TIME} - Finish: ${${END_TIME}"
+echo "tools setup = COMPLETED"
