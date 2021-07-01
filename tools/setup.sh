@@ -103,5 +103,5 @@ cd ${HERE}
 END_TIME=$(date +%H:%M:%S)
 
 echo "###################################################################"
-echo "Start: ${START_TIME} - Finish: ${${END_TIME}"
+echo "Start: ${START_TIME} - Finish: ${END_TIME}"
 echo "tools setup = COMPLETED"
