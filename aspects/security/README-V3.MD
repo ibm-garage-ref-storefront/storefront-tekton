@@ -40,6 +40,9 @@ The tools setup has installed stackrox.
 
     helm get notes stackrox-central-services -n stackrox
 
+We are looking for:
+
+    helm get notes stackrox-central-services -n stackrox | grep -A3 "initial setup"
 
 # Configure StackRox
 
