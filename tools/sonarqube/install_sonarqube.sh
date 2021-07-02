@@ -1,8 +1,17 @@
 #!/bin/bash
 
-mkdir -pv ~/bin
-curl -k https://mirror.openshift.com/pub/openshift-v4/clients/helm/latest/helm-linux-amd64 -o ~/bin/helm
-chmod 755 ~/bin/helm
+if [ -f ~/bin/helm ] 
+then
+    echo "helm cli allready exists"
+else
+    echo "bring you the helm cli"
+    mkdir -pv ~/bin
+    curl -k https://mirror.openshift.com/pub/openshift-v4/clients/helm/latest/helm-linux-amd64 -o ~/bin/helm
+    chmod 755 ~/bin/helm
+fi
+
+
+
 
 # CHECKPOINT
 ~/bin/helm version

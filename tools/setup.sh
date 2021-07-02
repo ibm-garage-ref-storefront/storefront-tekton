@@ -46,17 +46,9 @@ echo ""
 
 # Setup stackrox
 echo "###################################################################"
-helm repo add rhacs https://mirror.openshift.com/pub/rhacs/charts/
-helm search repo -l rhacs/
-helm repo update
 
-helm install -n stackrox \
---create-namespace stackrox-central-services rhacs/central-services \
---set imagePullSecrets.allowNone=true \
---set central.resources.requests.memory="2Gi" \
---set central.resources.requests.cpu="100m" \
---set scanner.resources.requests.memory="1000Mi" \
---set scanner.resources.requests.cpu="100m"
+cd ${HERE}/tools/stackrox
+
 
 # Setup jmeter-performance-test
 echo "###################################################################"
@@ -69,6 +61,7 @@ echo ""
 echo "###################################################################"
 cd ${HERE}/tools/stackrox
 ./build_stackrox_image.sh  
+./install_stackrox.sh
 echo ""
 
 # Import the openshift cli into the Lab environment
