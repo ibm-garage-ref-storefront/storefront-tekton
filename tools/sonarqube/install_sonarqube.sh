@@ -10,11 +10,8 @@ else
     chmod 755 ~/bin/helm
 fi
 
-
-
-
 # CHECKPOINT
-~/bin/helm version
+~/bin/helm version --short
 
 LATEST=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
 echo $LATEST
