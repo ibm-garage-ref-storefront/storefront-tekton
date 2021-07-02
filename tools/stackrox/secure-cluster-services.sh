@@ -25,5 +25,17 @@ else
 fi
 echo ""
 
+echo "start port-forward to stackrox"
+oc port-forward svc/central -n stackrox 8443:443&
+sleep 5
+echo ""
 
 helm get notes stackrox-central-services -n stackrox | grep -A3 "initial setup"
+
+sleep 10
+
+# bring tunnel to foreground
+echo "end port-forward to stackrox"
+tunnel=$(ps -ef | grep port-forward | grep stackrox | awk ' { print $2 } ')
+echo $tunnel
+kill $tunnel
