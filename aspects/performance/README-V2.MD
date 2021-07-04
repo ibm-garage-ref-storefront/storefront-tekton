@@ -75,3 +75,9 @@ The pipeline run will now fail to complete.
 Also Grafana will display the errors:
 
 ![Fail](../../images/performance-build-breaker-2.png?raw=true "Title")
+
+During the performance test
+
+Run:
+
+    watch oc adm top nodes
