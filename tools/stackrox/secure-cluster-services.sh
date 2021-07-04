@@ -25,8 +25,6 @@ else
 fi
 echo ""
 
-exit 1
-
 echo "start port-forward to stackrox"
 oc port-forward svc/central -n stackrox 8443:443 > /dev/null 2>&1 &
 echo ""
@@ -34,9 +32,9 @@ sleep 5
 
 helm get notes stackrox-central-services -n stackrox | grep -A3 "initial setup"
 
-echo "login to https://localhost:8443 and make the ROX_API_TOKEN”"
+echo "login to https://localhost:8443 and make the ROX_API_TOKEN"
 
-echo “Enter ROX_API_TOKEN (role admin)”
+echo “Enter ROX_API_TOKEN hint: role admin”
 read ROX_API_TOKEN
 echo “ROX_API_TOKEN:” $ROX_API_TOKEN
 

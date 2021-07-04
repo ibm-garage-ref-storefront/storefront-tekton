@@ -72,3 +72,25 @@ Open it and create an API token of type Admin.
 
 Make sure you store the token.
 
+Close the port-forwarding.
+
+## d) Configure Cluster Monitoring
+
+Keep the admin token at hand.
+
+    bash tools/stackrox/secure-cluster-services.sh
+
+Paste in the admin api token.
+
+## e) Verify the state
+
+Wait until stackrox has reconfigured itself:
+
+    watch oc get po -n stackrox
+
+Login to stackrox:
+
+    oc port-forward svc/central -n stackrox 8443:443
+
+Login via your browser, via right-click, open a new tab ["here"](https://localhost:8443). 
+
