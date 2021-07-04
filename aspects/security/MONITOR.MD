@@ -23,12 +23,12 @@ Verify using:
 
 Output:
 
-Every 2.0s: oc get po -n stackrox             kitty-catt-server.ibm.com: Sun Jul  4 12:24:21 2021
+    Every 2.0s: oc get po -n stackrox             kitty-catt-server.ibm.com: Sun Jul  4 12:24:21 2021
 
-NAME                          READY   STATUS    RESTARTS   AGE
-central-7df8c69d6b-lvdsb      1/1     Running   0          2m33s
-scanner-7dd9877c46-h2b7r      1/1     Running   0          2m33s
-scanner-7dd9877c46-jrnmp      1/1     Running   0          2m33s
-scanner-7dd9877c46-kq5x2      1/1     Running   0          2m33s
-scanner-db-74f5b84444-z65wv   1/1     Running   0          2m33s
+    NAME                          READY   STATUS    RESTARTS   AGE
+    central-7df8c69d6b-lvdsb      1/1     Running   0          2m33s
+    scanner-7dd9877c46-h2b7r      1/1     Running   0          2m33s
+    scanner-7dd9877c46-jrnmp      1/1     Running   0          2m33s
+    scanner-7dd9877c46-kq5x2      1/1     Running   0          2m33s
+    scanner-db-74f5b84444-z65wv   1/1     Running   0          2m33s
 
