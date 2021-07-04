@@ -16,14 +16,16 @@ echo "stackrox state:"
 oc get po -n stackrox
 echo ""
 
-SR_STATE=$(oc get po -n stackrox | grep Running | wc -l)
+SR_STATE=$(oc get po -n stackrox | grep -v Running | wc -l)
 
-if [ ${SR_STATE} -eq 4 ] ; then
+if [ ${SR_STATE} -eq 1 ] ; then
     echo "StackRox is up"
 else
     echo "StackRox initial setup is not complete yet, please try again later"
 fi
 echo ""
+
+exit 1
 
 echo "start port-forward to stackrox"
 oc port-forward svc/central -n stackrox 8443:443 > /dev/null 2>&1 &
