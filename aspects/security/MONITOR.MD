@@ -108,6 +108,6 @@ Press the scan button.
 
 ![Fail](../../images/vulnerability-management.png?raw=true "Title")
 
-The blue compute customer-ms-spring image made it to the top of ***. 
+The blue compute customer-ms-spring image made it to the top of the list of vulnerable deployments. 
 
 Lets handle it in the next section of the workshop.
