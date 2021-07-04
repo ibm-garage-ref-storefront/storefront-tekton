@@ -57,3 +57,18 @@ Login via your browser, via right-click, open a new tab ["here"](https://localho
 Use the login that was previously obtained. You should now be logged in:
 
 ![Fail](../../images/stackrox-login.png?raw=true "Title")
+
+## c) Make the StackRox API tokens
+
+Go to Platform Configuration, Integrations, Authentication Tokens, StackRox
+
+Open it and create an API token of type Sensor.
+
+![Fail](../../images/sensor-token.png?raw=true "Title")
+
+Open it and create an API token of type Admin.
+
+![Fail](../../images/admin-api-token.png?raw=true "Title")
+
+Make sure you store the token.
+
