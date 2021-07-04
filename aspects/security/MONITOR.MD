@@ -15,7 +15,9 @@ We will inspect the running status of the blue compute shop via stackrox.
 
 # StackRox Cluster Monitoring
 
-The tools setup will have installed stackrox. 
+## a) Verify
+
+The tools setup will have installed stackrox. It needs to be configured to monitor the cluster.
 
 Verify using:
 
@@ -32,3 +34,26 @@ Output:
     scanner-7dd9877c46-kq5x2      1/1     Running   0          2m33s
     scanner-db-74f5b84444-z65wv   1/1     Running   0          2m33s
 
+# Create the API tokens
+
+## a) Get the admin password
+
+The tools setup has installed stackrox.
+
+    helm get notes stackrox-central-services -n stackrox
+
+We are looking for:
+
+    helm get notes stackrox-central-services -n stackrox | grep -A3 "initial setup"
+
+## b) Login to StackRox
+
+Setup port-forwarding:
+
+    oc port-forward svc/central -n stackrox 8443:443
+
+Login via your browser, via right-click, open a new tab ["here"](https://localhost:8443). 
+
+Use the login that was previously obtained. You should now be logged in:
+
+![Fail](../../images/stackrox-login.png?raw=true "Title")
