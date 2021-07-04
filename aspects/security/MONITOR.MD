@@ -94,3 +94,20 @@ Login to stackrox:
 
 Login via your browser, via right-click, open a new tab ["here"](https://localhost:8443). 
 
+Verify that the cluster is monitored:
+
+![Fail](../../images/cluster-is-monitored.png?raw=true "Title")
+
+## e) Configure Compliance
+
+Press the scan button.
+
+![Fail](../../images/compliance.png?raw=true "Title")
+
+## f) Inspect the vulnerable images
+
+![Fail](../../images/vulnerability-management.png?raw=true "Title")
+
+The blue compute customer-ms-spring image made it to the top of ***. 
+
+Lets handle it in the next section of the workshop.
