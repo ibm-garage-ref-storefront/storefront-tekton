@@ -90,7 +90,7 @@ echo "Use port-forwarding to access the silver-platter"
 
 # The CM intentention is to be used in JMeter Tekton Task to provide the link to the report in the post that is done in the slack channel. 
 #SPR=$(oc get routes.route.openshift.io | grep silver | awk '{ print $2 }' )
-SPR="localhost:8080"
+SPR="silver-platter.tools:8080"
 oc create configmap silver-platter-cm --from-literal route=http://$SPR 
 oc extract configmap/silver-platter-cm --to=-
 
