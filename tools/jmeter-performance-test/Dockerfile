@@ -3,9 +3,11 @@ FROM registry.access.redhat.com/ubi8/ubi:latest
 MAINTAINER kitty-catt kitty-catt@example.com
 
 ENV JMETER_BASE=/opt/jmeter \
-    JMETER_HOME=/opt/jmeter/apache-jmeter \
     JMETER_VERSION="5.4.1" \
     PATH=/opt/jmeter/apache-jmeter/bin:$PATH
+
+# ARG can be used in variable substition for COPY 
+ARG JMETER_HOME=/opt/jmeter/apache-jmeter
 
 # Note: ubi-minimal does not have yum
 RUN yum install -y --disableplugin=subscription-manager java-1.8.0-openjdk-headless && \
