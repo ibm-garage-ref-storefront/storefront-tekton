@@ -26,7 +26,7 @@ RUN tar xvf apache-jmeter-${JMETER_VERSION}.tgz && \
 VOLUME ["/opt/jmeter/tests", "/opt/jmeter/results"]
 
 # Additional jars (for example jdbc or jms drivers) can be copied into $JMETER_HOME/lib
-#COPY lib/* $JMETER_HOME/lib/
+COPY lib/* $JMETER_HOME/lib/
 
 # Copy custom user.properties file for reports dashboard to be generated
 # COPY user.properties $JMETER_HOME/bin/user.properties
