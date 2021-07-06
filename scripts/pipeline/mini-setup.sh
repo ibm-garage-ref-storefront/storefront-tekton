@@ -58,7 +58,8 @@ echo "--------------------------------"
 echo "add configmaps:"
 # The CM intentention is to be used in JMeter Tekton Task to provide the link to the report in the post that is done in the slack channel. 
 oc delete configmap silver-platter-cm  2>/dev/null
-SPR=$(oc get routes.route.openshift.io -n tools | grep silver | awk '{ print $2 }' )
+#SPR=$(oc get routes.route.openshift.io -n tools | grep silver | awk '{ print $2 }' )
+SPR="silver-platter.tools:8080"
 oc create configmap silver-platter-cm --from-literal route=http://$SPR 
 oc extract configmap/silver-platter-cm --to=-
 
