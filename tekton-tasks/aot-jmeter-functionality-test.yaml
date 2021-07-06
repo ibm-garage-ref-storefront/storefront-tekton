@@ -63,6 +63,7 @@ spec:
         ls -l      
     - name: jmeter-it
       image: image-registry.openshift-image-registry.svc:5000/tools-images/jmeter-prevail-2021:for-use
+      imagePullPolicy: Always
       env:
         - name: SLACK_URL
           valueFrom:
@@ -116,13 +117,12 @@ spec:
         echo "check /opt/jmeter"
         ls -l /opt/jmeter
 
-        echo "check /opt/jmeter/apache-jmeter-5.4.1/lib"
-        ls -l /opt/jmeter/apache-jmeter-5.4.1/lib
-
         echo "check /opt/jmeter/apache-jmeter/lib"
         ls -l /opt/jmeter/apache-jmeter/lib
 
-        /opt/jmeter/apache-jmeter-5.4.1/bin/jmeter.sh \
+        /opt/jmeter/apache-jmeter/bin/jmeter.sh --version
+
+        /opt/jmeter/apache-jmeter/bin/jmeter.sh \
         -n \
         -t $(params.source-dir)/$(params.test-plan) \
         -Jjmeter_users=$jmeter_users \
