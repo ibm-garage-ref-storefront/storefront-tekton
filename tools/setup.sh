@@ -31,24 +31,11 @@ cd ${HERE}/tools/sonarqube
 ./install_sonarqube.sh
 echo ""
 
-# Setup httpd
-echo "###################################################################"
-cd ${HERE}/tools/httpd
-./silver-platter-webdav.sh  
-echo ""
-
-
 # Setup nexus
 echo "###################################################################"
 cd ${HERE}/tools/nexus
 ./install_nexus3-v2.sh
 echo ""
-
-# Setup stackrox
-echo "###################################################################"
-
-cd ${HERE}/tools/stackrox
-
 
 # Setup jmeter-performance-test
 echo "###################################################################"
@@ -63,6 +50,13 @@ cd ${HERE}/tools/stackrox
 ./build_stackrox_image.sh  
 ./install_stackrox.sh
 echo ""
+
+# Setup httpd
+echo "###################################################################"
+cd ${HERE}/tools/httpd
+./silver-platter-webdav.sh  
+echo ""
+
 
 # Import the openshift cli into the Lab environment
 oc import-image cli -n openshift 
