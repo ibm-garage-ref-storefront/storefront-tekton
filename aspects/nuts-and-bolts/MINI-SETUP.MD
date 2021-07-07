@@ -32,7 +32,7 @@ Install the tools:
     bash tools/setup.sh 
 
 Note:
-- it will take about 10 minutes until the setup completes on the IBM Lab Environment.
+- it will take about 10 to 15 minutes until the setup completes on the IBM Lab Environment.
 - there will be the occasional warning. These can be ignored.
 
 Inspect the tools namespace: 
