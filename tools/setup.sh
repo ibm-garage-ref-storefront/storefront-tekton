@@ -47,6 +47,7 @@ echo ""
 # Setup stackrox
 echo "###################################################################"
 cd ${HERE}/tools/stackrox
+cat banner.txt
 ./build_stackrox_image.sh  
 ./install_stackrox.sh
 echo ""
