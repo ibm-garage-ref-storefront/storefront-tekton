@@ -84,7 +84,7 @@ else
     tar xvf ~/bin/tkn-linux-amd64-0.13.1.tar.gz --directory=${HOME}/bin
     chmod 755 ~/bin/tkn
 fi
-
+tkn version
 
 # diagnostics
 oc adm top nodes
