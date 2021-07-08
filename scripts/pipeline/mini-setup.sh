@@ -73,10 +73,18 @@ oc policy add-role-to-user system:image-pusher system:serviceaccount:full-bc:pip
 oc policy add-role-to-user edit ${OCP_USER}
 
 echo "--------------------------------"
-echo "bring you the tkn cli:"
-mkdir -pv ${HOME}/bin
-curl https://mirror.openshift.com/pub/openshift-v4/clients/pipeline/0.13.1/tkn-linux-amd64-0.13.1.tar.gz -o ~/bin/tkn-linux-amd64-0.13.1.tar.gz
-tar xvf ~/bin/tkn-linux-amd64-0.13.1.tar.gz --directory=${HOME}/bin
+
+if [ -f ~/bin/tkn ] 
+then
+    echo "tkn cli allready exists"
+else
+    echo "bring you the tkn cli:"
+    mkdir -pv ${HOME}/bin
+    curl https://mirror.openshift.com/pub/openshift-v4/clients/pipeline/0.13.1/tkn-linux-amd64-0.13.1.tar.gz -o ~/bin/tkn-linux-amd64-0.13.1.tar.gz
+    tar xvf ~/bin/tkn-linux-amd64-0.13.1.tar.gz --directory=${HOME}/bin
+    chmod 755 ~/bin/tkn
+fi
+
 
 # diagnostics
 oc adm top nodes
