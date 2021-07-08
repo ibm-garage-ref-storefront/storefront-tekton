@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cat banner.txt
+
 if [ -f ~/bin/helm ] 
 then
     echo "helm cli allready exists"
