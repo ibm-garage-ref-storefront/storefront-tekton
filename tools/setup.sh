@@ -21,6 +21,7 @@ oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"
 # Setup Openshift pipelines
 echo "###################################################################"
 cd ${HERE}/tools/pipelines
+cat banner.txt
 ./install_pipelines.sh
 echo ""
 
