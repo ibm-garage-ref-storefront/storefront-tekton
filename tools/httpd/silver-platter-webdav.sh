@@ -10,7 +10,8 @@ echo "Setting the silver platter in the tools namespace."
 oc new-app \
  --name=silver-platter \
  --as-deployment-config \
- --image-stream="openshift/httpd:2.4" 
+ --image-stream="openshift/httpd:2.4" \
+ --labels app.openshift.io/runtime=apache
 
 # We will be using RWO pvc's
 oc patch dc/silver-platter --patch '{"spec":{"strategy":{"type":"Recreate"}}}'
