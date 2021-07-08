@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat banner.txt
+#cat banner.txt
 
 # reference: https://github.com/m88i/nexus-operator/blob/main/README.md#openshift
 

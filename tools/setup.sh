@@ -18,7 +18,6 @@ oc apply -f tools/httpd/webdav-pvc.yaml
 oc apply -f tools/jmeter-performance-test/influxdb/influxdb-data.yaml
 oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"defaultRoute":true}}' --type=merge
 
-
 # Setup Openshift pipelines
 echo "###################################################################"
 cd ${HERE}/tools/pipelines
@@ -28,12 +27,14 @@ echo ""
 # Setup sonarqube
 echo "###################################################################"
 cd ${HERE}/tools/sonarqube
+cat banner.txt
 ./install_sonarqube.sh
 echo ""
 
 # Setup nexus
 echo "###################################################################"
 cd ${HERE}/tools/nexus
+cat banner.txt
 ./install_nexus3-v2.sh
 echo ""
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat banner.txt
+#cat banner.txt
 
 if [ -f ~/bin/helm ] 
 then
