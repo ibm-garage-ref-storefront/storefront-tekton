@@ -39,7 +39,7 @@ spec:
           envFrom:
             - secretRef:
                 name: influxdb-secrets
-          image: 'influxdb:1.7.4'
+          image: 'influxdb:1.8.6'
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
