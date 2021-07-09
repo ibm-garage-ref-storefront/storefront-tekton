@@ -57,7 +57,7 @@ spec:
 
         cd $(params.source-dir)
         git checkout $(params.git-revision)
-        ls -l jmeter-testplan    
+        #ls -l jmeter-testplan    
     - name: jmeter-it
       image: image-registry.openshift-image-registry.svc:5000/tools-images/jmeter-prevail-2021:for-use
       script: |
