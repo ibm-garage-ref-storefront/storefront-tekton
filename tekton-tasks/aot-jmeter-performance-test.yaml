@@ -49,6 +49,12 @@ spec:
       script: |
         set -xv
 
+        ls -lrt
+
+        if [ -d $(params.source-dir) ] ; then
+            rm -Rf $(params.source-dir)/*
+        fi
+
         if [[ -n "${GIT_USERNAME}" ]] && [[ -n "${GIT_PASSWORD}" ]]; then
             git clone "https://${GIT_USERNAME}:${GIT_PASSWORD}@$(echo $(params.git-url) | awk -F 'https://' '{print $2}')" $(params.source-dir)
         else
