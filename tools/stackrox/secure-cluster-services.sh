@@ -51,3 +51,6 @@ echo "end port-forward to stackrox"
 tunnel=$(ps -ef | grep port-forward | grep stackrox | awk ' { print $2 } ')
 echo $tunnel
 kill $tunnel
+
+NOW=$(date +%Y-%m-%d)
+mv cluster-init-bundle.yaml cluster-init-bundle.yaml-${NOW}
