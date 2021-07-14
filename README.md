@@ -12,7 +12,7 @@ The purpose is to measure various quality aspects during the build of an applica
 | Aspect | Description | Estimate |
 | --- | --- | --- |
 | [Deploy](aspects/functionality/DEPLOY-FULL-BC.MD) | Deploy the IBM Blue Compute shop | 15 minutes |
-| [Examen](aspects/security/TROUBLE.MD) | Could there be trouble? | 15 minutes |
+| [Examine](aspects/security/TROUBLE.MD) | Could there be trouble? | 15 minutes |
 | [Tools Setup](aspects/nuts-and-bolts/MINI-SETUP.MD) | Setting up the tools | 15 minutes |
 | [Tools Images](aspects/nuts-and-bolts/SCAN.MD) | Loading the tool rack | 30 minutes |
 
