@@ -21,12 +21,15 @@ Get the Application Load Balancer address:
 
 Example output for the prevail workshop environment:
 
-    $ echo $APPLB
     prevail-wrkshp-new-roks-915b3b336cabec458a7c7ec2aa7c625f-0000.ams03.containers.appdomain.cloud
+
+The customer-ms-spring microservice is deliberately deployed as a root pod for educational purposes. For this we have to grant extra permissions.
+
+    oc new-project full-bc
+    oc adm policy add-scc-to-user anyuid -z customer-ms-spring-sa
 
 Deploy the shop using pre-build images (notes: substitute the value for APPLB and NAMESPACE):
 
-    oc new-project full-bc
     NAMESPACE=$(oc project -q)
     oc create -f template/blue-compute-template.yaml 
     oc new-app --template blue-compute-shop \

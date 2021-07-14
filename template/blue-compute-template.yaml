@@ -406,12 +406,17 @@ objects:
         schedulerName: default-scheduler
         securityContext: {}
         terminationGracePeriodSeconds: 30
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: customer-ms-spring-sa
+    namespace: ${NAMESPACE}
 - apiVersion: apps/v1
   kind: Deployment
   metadata:
     annotations:
       deployment.kubernetes.io/revision: "2"
-      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"customer:latest","namespace":"${NAMESPACE}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"customer-ms-spring\")].image"}]'
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"customer-ms-spring:latest","namespace":"${NAMESPACE}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"customer-ms-spring\")].image"}]'
     labels:
       app: customer-ms-spring
       app.kubernetes.io/component: customer-ms-spring
@@ -442,6 +447,7 @@ objects:
           app.kubernetes.io/part-of: customer-subsystem
           deployment: customer-ms-spring
       spec:
+        serviceAccountName: customer-ms-spring-sa
         containers:
         - env:
           - name: COUCHDB_DATABASE
@@ -458,7 +464,7 @@ objects:
             value: admin
           - name: HS256_KEY
             value: E6526VJkKYhyTFRFMC0pTECpHcZ7TGcq8pKsVVgz9KtESVpheEO284qKzfzg8HpWNBPeHOxNGlyudUHi6i8tFQJXC8PiI48RUpMh23vPDLGD35pCM0417gf58z5xlmRNii56fwRCmIhhV7hDsm3KO2jRv4EBVz7HrYbzFeqI45CaStkMYNipzSm2duuer7zRdMjEKIdqsby0JfpQpykHmC5L6hxkX0BT7XWqztTr6xHCwqst26O0g8r7bXSYjp4a
-          image: quay.io/kitty_catt/customer:latest
+          image: quay.io/kitty_catt/customer-ms-spring:latest
           imagePullPolicy: Always
           name: customer-ms-spring
           ports:
