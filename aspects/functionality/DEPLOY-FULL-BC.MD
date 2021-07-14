@@ -118,6 +118,10 @@ You can login to the shop and place an order.
 
 ## e) Get into the root pod
 
+Things look good from a functional perspective but how about the non-functionals?
+
+Let's go!
+
     oc rsh $(oc get po -l deployment=customer-ms-spring --output custom-columns=:.metadata.name)
 
 Examine who you are:
