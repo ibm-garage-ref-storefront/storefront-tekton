@@ -1,10 +1,15 @@
+# Context
+
+The blue compute shop is run by by the rebels on the fourth moon of a planet called Yavin.
+
+It is maintained by our trusted friend, developer Cody.
+
+
 # Up and Running in a Minute
 
 The following animation shows the installation and configuration of the full IBM blue compute shop.
 
 ![Deploy](../../images/deploy-in-a-minute.gif?raw=true "Title")
-
-The blue compute shop is run by by the rebels on the fourth moon of a planet called Yavin.
 
 
 ## a) Deploy the shop using a template.
