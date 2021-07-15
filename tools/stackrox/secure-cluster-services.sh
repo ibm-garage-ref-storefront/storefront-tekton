@@ -10,6 +10,13 @@ clusterName=prevail-cluster
 # Clear the screen
 clear
 
+# Check curl exists
+curl_check=$(command -v curl)
+if [ -z "$curl_check" ]; then
+  printf "\nERROR! This script requires curl to run. Please install it.\n"
+  exit 1
+fi
+
 # Check roxctl exists
 roxctl_check=$(command -v roxctl)
 if [ -z "$roxctl_check" ]; then
@@ -18,6 +25,19 @@ if [ -z "$roxctl_check" ]; then
     chmod 755 ~/bin/roxctl
 else
     echo "Stackrox cli already exists, located at $roxctl_check and version is $(roxctl version)"
+fi
+
+else
+    roxInstalledVer=$(roxctl version)
+    sortedVal=$(printf "$roxVer\n$roxInstalledVer" | sort -V -r | sed -n 1p)
+    echo "Stackrox cli already exists, located at $roxctl_check and version is $roxInstalledVer."
+    if [[ "$roxInstalledVer" == "$sortedVal" ]]; then
+      echo "Installed roxctl version meets or exceeds requirement"
+    else
+      echo "Need to upgrade roxctl - attempting now"
+      curl https://mirror.openshift.com/pub/rhacs/assets/$roxVer/bin/Linux/roxctl -o $roxctl_check
+      chmod 755 $roxctl_check
+    fi
 fi
 
 # Check oc exists
