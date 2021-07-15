@@ -70,6 +70,7 @@ sleep 5
 # Display the password back to the screen
 echo "StackRox password is:"
 helm get notes stackrox-central-services -n stackrox | grep password -A 2 | sed -n 4p | sed 's/^ *//g'
+echo ""
 
 # Login to StackRox, generate the API_TOKEN and pass it to this script
 echo "Please login to https://localhost:8443 and make the ROX_API_TOKEN"
@@ -77,6 +78,7 @@ echo ""
 echo "Enter ROX_API_TOKEN hint: role admin"
 read ROX_API_TOKEN
 echo "ROX_API_TOKEN:" $ROX_API_TOKEN
+echo ""
 
 export ROX_API_TOKEN=$ROX_API_TOKEN
 export ROX_CENTRAL_ADDRESS=localhost:8443
