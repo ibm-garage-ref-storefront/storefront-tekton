@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+#set -e # look to handle errors within script
 set +x
 
 # Set any variables for later use
@@ -95,7 +95,6 @@ RC=$?
 if [ "$RC" -ne "0" ]; then
   printf "\nFailed to create the cluster-init-bundle - please check.\n"
   tunnel=$(ps -ef | grep port-forward | grep stackrox | awk ' { print $2 } ')
-  echo $tunnel
   kill $tunnel
   exit 1
 fi
@@ -108,7 +107,6 @@ if [ -z "$helm_repo_check" ]; then
     if [ "$RC" -ne "0" ]; then
       printf "\nFailed to add the helm repo - please check.\n"
       tunnel=$(ps -ef | grep port-forward | grep stackrox | awk ' { print $2 } ')
-      echo $tunnel
       kill $tunnel
       exit 1
     fi
@@ -120,7 +118,6 @@ RC=$?
 if [ "$RC" -ne "0" ]; then
   printf "\nFailed to perform the helm install - please check.\n"
   tunnel=$(ps -ef | grep port-forward | grep stackrox | awk ' { print $2 } ')
-  echo $tunnel
   kill $tunnel
   exit 1
 fi
@@ -128,7 +125,7 @@ fi
 # Bring tunnel to foreground
 echo "end port-forward to stackrox"
 tunnel=$(ps -ef | grep port-forward | grep stackrox | awk ' { print $2 } ')
-echo $tunnel
+echo Killing off tunnel process ID: $tunnel
 kill $tunnel
 
 # Name the cluster-init-bundle with the current time
