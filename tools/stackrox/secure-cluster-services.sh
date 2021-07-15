@@ -35,6 +35,7 @@ if [ -z "$helm_check" ]; then
 fi
 
 # List the pods in stackrox namespace
+echo ""
 echo "stackrox state:"
 oc get po -n stackrox
 echo ""
