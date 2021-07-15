@@ -24,10 +24,6 @@ if [ -z "$roxctl_check" ]; then
     curl https://mirror.openshift.com/pub/rhacs/assets/$roxVer/bin/Linux/roxctl -o ~/bin/roxctl     
     chmod 755 ~/bin/roxctl
 else
-    echo "Stackrox cli already exists, located at $roxctl_check and version is $(roxctl version)"
-fi
-
-else
     roxInstalledVer=$(roxctl version)
     sortedVal=$(printf "$roxVer\n$roxInstalledVer" | sort -V -r | sed -n 1p)
     echo "Stackrox cli already exists, located at $roxctl_check and version is $roxInstalledVer."
