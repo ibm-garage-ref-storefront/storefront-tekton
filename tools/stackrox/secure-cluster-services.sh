@@ -17,25 +17,6 @@ if [ -z "$curl_check" ]; then
   exit 1
 fi
 
-# Check roxctl exists
-roxctl_check=$(command -v roxctl)
-if [ -z "$roxctl_check" ]; then
-    echo "Installing the stackrox cli"
-    curl https://mirror.openshift.com/pub/rhacs/assets/$roxVer/bin/Linux/roxctl -o ~/bin/roxctl     
-    chmod 755 ~/bin/roxctl
-else
-    roxInstalledVer=$(roxctl version)
-    sortedVal=$(printf "$roxVer\n$roxInstalledVer" | sort -V -r | sed -n 1p)
-    echo "Stackrox cli already exists, located at $roxctl_check and version is $roxInstalledVer."
-    if [[ "$roxInstalledVer" == "$sortedVal" ]]; then
-      echo "Installed roxctl version meets or exceeds requirement"
-    else
-      echo "Need to upgrade roxctl - attempting now"
-      curl https://mirror.openshift.com/pub/rhacs/assets/$roxVer/bin/Linux/roxctl -o $roxctl_check
-      chmod 755 $roxctl_check
-    fi
-fi
-
 # Check oc exists
 oc_check=$(command -v oc)
 if [ -z "$oc_check" ]; then
@@ -48,6 +29,47 @@ helm_check=$(command -v helm)
 if [ -z "$helm_check" ]; then
   printf "\nERROR! This script requires helm to run. Please install it.\n"
   exit 1
+fi
+
+# Check roxctl exists - try to download if it doesn't or if it can be updated
+roxctl_check=$(command -v roxctl)
+if [ -z "$roxctl_check" ]; then
+    echo "Installing the stackrox cli"
+    curl https://mirror.openshift.com/pub/rhacs/assets/$roxVer/bin/Linux/roxctl -o ~/bin/roxctl
+    RC=$?
+    if [ "$RC" -eq 0 ]; then
+      chmod 755 ~/bin/roxctl
+      RC=$?
+      if [ "$RC" -ne 0 ]; then
+        echo "Error performing 'chmod' please check permissions."
+        exit 1
+      fi
+    else
+      echo "Download could not be performed - please investigate."
+      exit 1
+    fi
+else
+    roxInstalledVer=$(roxctl version)
+    sortedVal=$(printf "$roxVer\n$roxInstalledVer" | sort -V -r | sed -n 1p)
+    echo "Stackrox cli already exists, located at $roxctl_check and version is $roxInstalledVer."
+    if [[ "$roxInstalledVer" == "$sortedVal" ]]; then
+      echo "Installed roxctl version meets or exceeds requirement."
+    else
+      echo "Need to upgrade roxctl"
+      curl https://mirror.openshift.com/pub/rhacs/assets/$roxVer/bin/Linux/roxctl -o $roxctl_check
+      RC=$?
+      if [ "$RC" -eq 0 ]; then
+        chmod 755 $roxctl_check
+        RC=$?
+        if [ "$RC" -ne 0 ]; then
+          echo "Error performing 'chmod' please check permissions."
+          exit 1
+        fi
+      else
+        echo "Download could not be performed - please investigate."
+        exit 1
+      fi
+    fi
 fi
 
 # List the pods in stackrox namespace
