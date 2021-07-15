@@ -11,7 +11,7 @@ clusterName=prevail-cluster
 clear
 
 # Check roxctl exists
-roxctl_check=$(which roxctl)
+roxctl_check=$(command -v roxctl)
 if [ -z "$roxctl_check" ]; then
     echo "Installing the stackrox cli"
     curl https://mirror.openshift.com/pub/rhacs/assets/$roxVer/bin/Linux/roxctl -o ~/bin/roxctl     
@@ -21,14 +21,14 @@ else
 fi
 
 # Check oc exists
-oc_check=$(which oc)
+oc_check=$(command -v oc)
 if [ -z "$oc_check" ]; then
   printf "\nERROR! This script requires oc to run. Please install it.\n"
   exit 1
 fi
 
 # Check helm exists
-helm_check=$(which helm)
+helm_check=$(command -v helm)
 if [ -z "$helm_check" ]; then
   printf "\nERROR! This script requires helm to run. Please install it.\n"
   exit 1
