@@ -44,7 +44,7 @@ The tools setup has installed stackrox.
 
 We are looking for:
 
-    helm get notes stackrox-central-services -n stackrox | grep -A3 "initial setup"
+    helm get notes stackrox-central-services -n stackrox | grep password -A 2 | sed -n 4p | sed 's/^ *//g'
 
 ## b) Login to StackRox
 
