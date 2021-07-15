@@ -35,10 +35,15 @@ if [ -z "$helm_check" ]; then
 fi
 
 # List the pods in stackrox namespace
-echo ""
-echo "stackrox state:"
-oc get po -n stackrox
-echo ""
+if [ ! oc get po -n stackrox >> /dev/null 2>&1 ]; then
+  printf "\nCheck OpenShift user permissions - could not list pods\n"
+  exit 1
+else
+  echo ""
+  echo "stackrox state:"
+  oc get po -n stackrox
+  echo ""
+fi
 
 # Check the stackrox deployments are happy.
 # There might be some overlap between this and the 'oc get pod' check, so it's belt and braces...
