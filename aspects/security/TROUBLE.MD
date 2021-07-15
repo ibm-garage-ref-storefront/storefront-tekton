@@ -28,7 +28,9 @@ Install some tools:
 
     yum install -y tcpdump
     yum install -y nmap
+    yum install epel-release
     yum install -y jq
+
 
 Get the CouchDB address:
 
