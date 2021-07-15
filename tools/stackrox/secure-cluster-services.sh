@@ -63,7 +63,7 @@ fi
 echo ""
 
 # Create the port-forward to stackrox, running in the background
-echo "start port-forward to stackrox"
+echo "Start port-forward to stackrox"
 oc port-forward svc/central -n stackrox 8443:443 > /dev/null 2>&1 &
 echo ""
 sleep 5
@@ -86,15 +86,39 @@ export ROX_CENTRAL_ADDRESS=localhost:8443
 
 # Generate the bundle from StackRox
 roxctl -e "$ROX_CENTRAL_ADDRESS" central init-bundles generate $clusterName --output cluster-init-bundle.yaml --insecure-skip-tls-verify
+RC=$?
+if [ "$RC" -ne "0" ]; then
+  printf "\nFailed to create the cluster-init-bundle - please check.\n"
+  tunnel=$(ps -ef | grep port-forward | grep stackrox | awk ' { print $2 } ')
+  echo $tunnel
+  kill $tunnel
+  exit 1
+fi
 
 # Check RHACS helm repo has been added locally
 helm_repo_check=$(helm repo list | grep rhacs)
 if [ -z "$helm_repo_check" ]; then
     helm repo add rhacs https://mirror.openshift.com/pub/rhacs/charts/
+    RC=$?
+    if [ "$RC" -ne "0" ]; then
+      printf "\nFailed to add the helm repo - please check.\n"
+      tunnel=$(ps -ef | grep port-forward | grep stackrox | awk ' { print $2 } ')
+      echo $tunnel
+      kill $tunnel
+      exit 1
+    fi
 fi
 
 # Use helm to deploy the bundle
 helm install -n stackrox stackrox-secured-cluster-services rhacs/secured-cluster-services -f cluster-init-bundle.yaml --set centralEndpoint=central.stackrox:443 --set clusterName=$clusterName --set imagePullSecrets.allowNone=true
+RC=$?
+if [ "$RC" -ne "0" ]; then
+  printf "\nFailed to perform the helm install - please check.\n"
+  tunnel=$(ps -ef | grep port-forward | grep stackrox | awk ' { print $2 } ')
+  echo $tunnel
+  kill $tunnel
+  exit 1
+fi
 
 # Bring tunnel to foreground
 echo "end port-forward to stackrox"
