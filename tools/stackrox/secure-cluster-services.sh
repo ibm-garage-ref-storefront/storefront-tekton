@@ -1,23 +1,103 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+#set -e # look to handle errors within script
+set +x
+
+# Set any variables for later use
+roxVer=3.0.62.0
+clusterName=prevail-cluster
+
+# Clear the screen
 clear
 
-if [ -f ~/bin/roxctl ] 
-then
-    echo "stackrox cli allready exists"
-else
-    echo "bring you the stackrox cli"
-    curl https://mirror.openshift.com/pub/rhacs/assets/3.0.62.0/bin/Linux/roxctl -o ~/bin/roxctl     
-    chmod 755 ~/bin/roxctl
+# Check curl exists
+curl_check=$(command -v curl)
+if [ -z "$curl_check" ]; then
+  printf "\nERROR! This script requires curl to run. Please install it.\n"
+  exit 1
 fi
-echo ""
 
-echo "stackrox state:"
-oc get po -n stackrox
-echo ""
+# Check oc exists
+oc_check=$(command -v oc)
+if [ -z "$oc_check" ]; then
+  printf "\nERROR! This script requires oc to run. Please install it.\n"
+  exit 1
+fi
 
+# Check helm exists
+helm_check=$(command -v helm)
+if [ -z "$helm_check" ]; then
+  printf "\nERROR! This script requires helm to run. Please install it.\n"
+  exit 1
+fi
+
+# Check roxctl exists - try to download if it doesn't or if it can be updated
+roxctl_check=$(command -v roxctl)
+if [ -z "$roxctl_check" ]; then
+    echo "Installing the stackrox cli"
+    curl https://mirror.openshift.com/pub/rhacs/assets/$roxVer/bin/Linux/roxctl -o ~/bin/roxctl
+    RC=$?
+    if [ "$RC" -eq 0 ]; then
+      chmod 755 ~/bin/roxctl
+      RC=$?
+      if [ "$RC" -ne 0 ]; then
+        echo "Error performing 'chmod' please check permissions."
+        exit 1
+      fi
+    else
+      echo "Download could not be performed - please investigate."
+      exit 1
+    fi
+else
+    roxInstalledVer=$(roxctl version)
+    sortedVal=$(printf "$roxVer\n$roxInstalledVer" | sort -V -r | sed -n 1p)
+    echo "Stackrox cli already exists, located at $roxctl_check and version is $roxInstalledVer."
+    if [[ "$roxInstalledVer" == "$sortedVal" ]]; then
+      echo "Installed roxctl version meets or exceeds requirement."
+    else
+      echo "Need to upgrade roxctl"
+      curl https://mirror.openshift.com/pub/rhacs/assets/$roxVer/bin/Linux/roxctl -o $roxctl_check
+      RC=$?
+      if [ "$RC" -eq 0 ]; then
+        chmod 755 $roxctl_check
+        RC=$?
+        if [ "$RC" -ne 0 ]; then
+          echo "Error performing 'chmod' please check permissions."
+          exit 1
+        fi
+      else
+        echo "Download could not be performed - please investigate."
+        exit 1
+      fi
+    fi
+fi
+
+# List the pods in stackrox namespace
+if [ ! oc get po -n stackrox >> /dev/null 2>&1 ]; then
+  printf "\nCheck OpenShift user permissions - could not list pods\n"
+  exit 1
+else
+  echo ""
+  echo "stackrox state:"
+  oc get po -n stackrox
+  echo ""
+fi
+
+# Check the stackrox deployments are happy.
+# There might be some overlap between this and the 'oc get pod' check, so it's belt and braces...
+oc get deploy -n stackrox |  sed -n '1!p' | while read line; do
+  podReady=$(echo $line | awk '{print $2}' | awk -F"/" '{print $1}')
+  podTotal=$(echo $line | awk '{print $2}' | awk -F"/" '{print $2}')
+  if [ "$podReady" != "$podTotal" ]; then
+    echo "Please check 'oc get deploy -n stackrox' as some pods are not in a ready state"
+    exit 1
+  fi
+done
+
+# List pods - then filter for any pods that aren't in running state.
 SR_STATE=$(oc get po -n stackrox | grep -v Running | wc -l)
 
+# If only 1 line was returned, it's the header line and so all containers must be in running state
 if [ ${SR_STATE} -eq 1 ] ; then
     echo "StackRox is up"
 else
@@ -25,32 +105,67 @@ else
 fi
 echo ""
 
-echo "start port-forward to stackrox"
+# Create the port-forward to stackrox, running in the background
+echo "Start port-forward to stackrox"
 oc port-forward svc/central -n stackrox 8443:443 > /dev/null 2>&1 &
 echo ""
 sleep 5
 
-helm get notes stackrox-central-services -n stackrox | grep -A3 "initial setup"
+# Display the password back to the screen
+echo "StackRox password is:"
+helm get notes stackrox-central-services -n stackrox | grep password -A 2 | sed -n 4p | sed 's/^ *//g'
+echo ""
 
-echo "login to https://localhost:8443 and make the ROX_API_TOKEN"
-
-echo “Enter ROX_API_TOKEN hint: role admin”
+# Login to StackRox, generate the API_TOKEN and pass it to this script
+echo "Please login to https://localhost:8443 and make the ROX_API_TOKEN"
+echo ""
+echo "Enter ROX_API_TOKEN hint: role admin"
 read ROX_API_TOKEN
-echo “ROX_API_TOKEN:” $ROX_API_TOKEN
+echo "ROX_API_TOKEN:" $ROX_API_TOKEN
+echo ""
 
 export ROX_API_TOKEN=$ROX_API_TOKEN
 export ROX_CENTRAL_ADDRESS=localhost:8443
 
-roxctl -e "$ROX_CENTRAL_ADDRESS" central init-bundles generate prevail-cluster --output cluster-init-bundle.yaml --insecure-skip-tls-verify
+# Generate the bundle from StackRox
+roxctl -e "$ROX_CENTRAL_ADDRESS" central init-bundles generate $clusterName --output cluster-init-bundle.yaml --insecure-skip-tls-verify
+RC=$?
+if [ "$RC" -ne "0" ]; then
+  printf "\nFailed to create the cluster-init-bundle - please check.\n"
+  tunnel=$(ps -ef | grep port-forward | grep stackrox | awk ' { print $2 } ')
+  kill $tunnel
+  exit 1
+fi
 
-helm install -n stackrox stackrox-secured-cluster-services rhacs/secured-cluster-services -f cluster-init-bundle.yaml --set centralEndpoint=central.stackrox:443 --set clusterName=prevail-cluster --set imagePullSecrets.allowNone=true
+# Check RHACS helm repo has been added locally
+helm_repo_check=$(helm repo list | grep rhacs)
+if [ -z "$helm_repo_check" ]; then
+    helm repo add rhacs https://mirror.openshift.com/pub/rhacs/charts/
+    RC=$?
+    if [ "$RC" -ne "0" ]; then
+      printf "\nFailed to add the helm repo - please check.\n"
+      tunnel=$(ps -ef | grep port-forward | grep stackrox | awk ' { print $2 } ')
+      kill $tunnel
+      exit 1
+    fi
+fi
 
+# Use helm to deploy the bundle
+helm install -n stackrox stackrox-secured-cluster-services rhacs/secured-cluster-services -f cluster-init-bundle.yaml --set centralEndpoint=central.stackrox:443 --set clusterName=$clusterName --set imagePullSecrets.allowNone=true
+RC=$?
+if [ "$RC" -ne "0" ]; then
+  printf "\nFailed to perform the helm install - please check.\n"
+  tunnel=$(ps -ef | grep port-forward | grep stackrox | awk ' { print $2 } ')
+  kill $tunnel
+  exit 1
+fi
 
-# bring tunnel to foreground
+# Bring tunnel to foreground
 echo "end port-forward to stackrox"
 tunnel=$(ps -ef | grep port-forward | grep stackrox | awk ' { print $2 } ')
-echo $tunnel
+echo Killing off tunnel process ID: $tunnel
 kill $tunnel
 
+# Name the cluster-init-bundle with the current time
 NOW=$(date +%Y-%m-%d)
 mv cluster-init-bundle.yaml cluster-init-bundle.yaml-${NOW}
