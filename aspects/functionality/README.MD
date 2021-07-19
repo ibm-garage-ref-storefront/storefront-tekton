@@ -48,10 +48,9 @@ If you have configured the slack channel then you will get notification:
 
 ![Fail](../../images/slack-notification.png?raw=true "Title")  
 
-Login to the silver-platter and see what is the matter:
+Setup port-forwarding to the silver-platter and see what is the matter:
 
-    SPR=$(oc get routes.route.openshift.io -n tools | grep silver | awk '{ print $2 }' )
-    echo http://$SPR 
+    oc port-forward svc/silver-platter -n tools 8080:8080
 
 Login with the user and password as described in the tools setup, and navigate to the report.
 
