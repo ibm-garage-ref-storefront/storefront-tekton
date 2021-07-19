@@ -176,6 +176,9 @@ spec:
         LINES=$(grep false /tmp/raw.jtl | wc -l)
         TOTAL_LINES=$(cat /tmp/raw.jtl | wc -l)
 
+        # Use port forwarding
+        REPORT_URL="http://localhost:8080"
+
         echo "sending slack-notification, $LINES errors where 0 means that we are ready to promote the code."
 
         if [ $LINES -eq 0 ] ; then
