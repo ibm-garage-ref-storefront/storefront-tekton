@@ -28,7 +28,10 @@ RUN tar xvf apache-jmeter-${JMETER_VERSION}.tgz && \
 VOLUME ["/opt/jmeter/tests", "/opt/jmeter/results"]
 
 # Additional jars (for example jdbc or jms drivers) can be copied into $JMETER_HOME/lib
-COPY lib/* $JMETER_HOME/lib/
+#COPY lib/* $JMETER_HOME/lib/
+
+# We are using active-mq-all-5.11.0.redhat-630475.jar
+RUN curl https://maven.repository.redhat.com/ga/org/apache/activemq/activemq-all/5.11.0.redhat-630475/activemq-all-5.11.0.redhat-630475.jar -o  $JMETER_HOME/lib/activemq-all-5.11.0.redhat-630475.jar
 
 # Copy custom user.properties file for reports dashboard to be generated
 # COPY user.properties $JMETER_HOME/bin/user.properties
