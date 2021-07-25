@@ -26,8 +26,9 @@ Once the blue compute shop and the tool-chain is up and running your can choose 
 | [Security](aspects/security/MONITOR.MD) | detect vulnerabilities using StackRox to monitor the cluster  | 45 minutes |
 | [Security](aspects/security/README-V3.MD) | detect vulnerabilities using StackRox in the Pipeline  | 45 minutes |
 | [Functionality](aspects/functionality/README.MD) | verify functional requirements using jmeter| 15 minutes |
+| [Functionality](aspects/functionality/README.MD) | verify functional requirements using selenium| 45 minutes |
 | [Performance](aspects/performance/README-V2.MD) | verify performance requirements using jmeter and grafana| 45 minutes |
-| [Availability](aspects/availability/README.MD) | slot available |
+| [Availability](aspects/availability/README.MD) | in progress |
 
 # Archived version
 
