@@ -18,6 +18,7 @@ oc apply -f tekton-pipelines/security-pipeline-prevail-2021-experimental.yaml
 oc apply -f tekton-pipelines/image-intake-pipeline-prevail-2021.yaml 
 oc apply -f tekton-pipelines/performance-pipeline-prevail-2021.yaml
 oc apply -f tekton-pipelines/functionality-pipeline-prevail-2021.yaml 
+oc apply -f tekton-pipelines/availability-pipeline-prevail-2021.yaml 
 
 
 echo "--------------------------------"
