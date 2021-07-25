@@ -141,7 +141,7 @@ spec:
           value: |
             #!/bin/bash -e
 
-            # consider making a Tekton Task for it to clone a repo and work with that.
+            # No luck with mounting the workspace. New plan: explore a custom Tektom task.
 
             oc whoami
             
@@ -155,6 +155,9 @@ spec:
       taskRef:
         kind: ClusterTask
         name: openshift-client  
+#      workspaces:
+#        - name: output
+#          workspace: src-workspace-01
     - name: sign-and-push
       taskRef:
         name: aot-mockup
