@@ -35,7 +35,7 @@ Lets create a run with 5 parallel users, each executing the JMeter testplan 25 t
 
 It is possible to watch the pipeline run via the graphical console as well.
 
-![Fail](../../images/performance-test-run.png?raw=true "Title")
+![Fail](../../images/availability-plr.png?raw=true "Title")
 
 
 ## Inspect the performance dashboard.

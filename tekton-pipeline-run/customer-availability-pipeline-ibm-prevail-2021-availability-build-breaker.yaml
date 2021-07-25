@@ -31,9 +31,9 @@ spec:
     - name: maven-settings
       persistentvolumeclaim:
         claimName: maven-settings-pvc
-    - name: src-workspace
+    - name: src-workspace-01
       persistentvolumeclaim:
-        claimName: maven-source-pvc
+        claimName: clone-1-pvc
     - name: local-maven-repo
       persistentVolumeClaim:
         claimName: maven-repo-pvc      

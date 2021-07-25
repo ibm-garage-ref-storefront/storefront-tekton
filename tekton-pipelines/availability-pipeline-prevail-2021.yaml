@@ -58,8 +58,21 @@ spec:
       taskRef:
         name: aot-mockup  
     - name: clone-1
+      params:
+        - name: url
+          value: $(params.git-url)
+        - name: revision
+          value: $(params.git-revision)           
+        - name: subdirectory
+          value: $(params.git-repo-checkout-dir)
+        - name: deleteExisting
+          value: 'true'
       taskRef:
-        name: aot-mockup  
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: src-workspace-01
     - name: artifact-build
       taskRef:
         name: aot-mockup  
@@ -132,7 +145,7 @@ spec:
 
             oc whoami
             
-            ls $(workspaces.source.path)
+            #ls $(workspaces.source.path)
 
         - name: ARGS
           value:
@@ -142,9 +155,6 @@ spec:
       taskRef:
         kind: ClusterTask
         name: openshift-client  
-      workspaces:
-        - name: source
-          workspace: src-workspace
     - name: sign-and-push
       taskRef:
         name: aot-mockup
@@ -152,7 +162,7 @@ spec:
       - performance-test
       - chaos-test      
   workspaces:
-    - name: src-workspace
+    - name: src-workspace-01
     - name: maven-settings
     - name: local-maven-repo    
     - name: images-url
