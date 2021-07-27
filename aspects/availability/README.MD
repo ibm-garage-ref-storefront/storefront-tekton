@@ -17,7 +17,7 @@ The IBM Blue Compute shop will be tested for robustness. The pipeline is stubbed
 [Scan and Import](../nuts-and-bolts/SCAN.MD) the images that are used by the tool-chain if you have not allready done so.
 
 
-# The performance section of the pipeline
+# The availability section of the pipeline
 
 The availability pipeline looks similar to the security pipeline.  Actually, it is the same.
 
