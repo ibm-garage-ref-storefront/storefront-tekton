@@ -141,15 +141,18 @@ spec:
           value: |
             #!/bin/bash -e
 
-            # No luck with mounting the workspace. New plan: explore a custom Tektom task.
+            # clones into /workspace/source
+            ls -lrt /workspace/source
 
             oc whoami
-            
-            #ls $(workspaces.source.path)
 
         - name: ARGS
           value:
             - ""
+      resources:
+        inputs:
+          - name: source
+            resource: git-source            
       runAfter:
         - functional-test
       taskRef:
