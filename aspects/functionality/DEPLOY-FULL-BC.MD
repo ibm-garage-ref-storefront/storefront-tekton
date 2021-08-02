@@ -14,6 +14,11 @@ The following animation shows the installation and configuration of the full IBM
 
 ## a) Deploy the shop using a template.
 
+Get the repo:
+
+    git clone https://github.com/ibm-garage-ref-storefront/storefront-tekton
+    cd storefront-tekton
+
 Login to the cluster:
 
     oc login --token=... --server=...
