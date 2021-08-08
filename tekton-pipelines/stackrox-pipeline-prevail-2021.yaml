@@ -30,7 +30,15 @@ spec:
     - default: 'customer-ms-spring'
       description: The name of the service to pull and build.
       name: app-name
-      type: string       
+      type: string   
+    - default: 'customer-ms-spring'
+      description: The name of the service to deploy.
+      name: deployment
+      type: string    
+    - default: 'full-bc'
+      description: The namespace where the deployment is updated.
+      name: dev-namespace
+      type: string    
     - default: 'jmeter-testplan/blue-compute-shop.jmx'
       description: the path to the jmeter test plan in the repo
       name: test-plan
@@ -167,8 +175,35 @@ spec:
       runAfter: 
       - img-build                      
     - name: roll-out
+      params:
+        - name: SCRIPT
+          value: |
+            #!/bin/bash
+
+            echo "updating deployment: $(params.deployment)"
+            echo "in namespace: $(params.dev-namespace)"
+
+            # The Golden Guidance:
+            oc tag pipelines/$(params.app-name):latest $(params.dev-namespace)/$(params.app-name):latest
+
+            oc set image deployment $(params.deployment) $(params.deployment)=$(params.app-name):latest -n $(params.dev-namespace)
+
+            # How do we know that the image was rolled out?
+            echo "sleep for 180 seconds"
+            sleep 180
+
+            echo "done"            
+
+        - name: ARGS
+          value:
+            - ""
+      resources:
+        inputs:
+          - name: source
+            resource: git-source
       taskRef:
-        name: aot-mockup
+        kind: ClusterTask
+        name: openshift-client 
       runAfter: 
       - scan-app-img
     - name: functional-test
