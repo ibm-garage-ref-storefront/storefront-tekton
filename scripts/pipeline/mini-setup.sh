@@ -73,6 +73,9 @@ echo "add roles:"
 oc policy add-role-to-user system:image-pusher system:serviceaccount:full-bc:pipeline
 oc policy add-role-to-user edit ${OCP_USER}
 
+# allow the pipeline account to update the image in the full-bc namespace
+oc policy add-role-to-user edit system:serviceaccount:pipelines:pipeline -n ${NAMESPACE}
+
 echo "--------------------------------"
 
 if [ -f ~/bin/tkn ] 
