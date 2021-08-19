@@ -43,3 +43,18 @@ It is possible to watch the pipeline run via the graphical console as well.
 ![Fail](../../images/performance-test.png?raw=true "Title")
 
 
+## Making the CustomerCouch DB survice pod failover
+
+    oc project full-bc
+
+    oc set volumes deployment/customercouchdb --remove --name=customercouchdb-volume-1
+
+    oc set volumes deployment/customercouchdb \
+    --add \
+    --name customercouchdb-storage \
+    --type pvc \
+    --claim-class ibmc-block-gold \
+    --claim-mode rwo \
+    --claim-size 10Gi \
+    --mount-path /opt/couchdb/data \
+    --claim-name couchdb-storage
