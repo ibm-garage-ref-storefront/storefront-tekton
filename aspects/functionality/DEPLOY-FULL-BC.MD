@@ -27,6 +27,7 @@ Get the repo:
 
     git clone https://github.com/ibm-garage-ref-storefront/storefront-tekton
     cd storefront-tekton
+    cp scripts/config ~/config.bc-full
 
 ### IBM Lab - Excercise 4
 
