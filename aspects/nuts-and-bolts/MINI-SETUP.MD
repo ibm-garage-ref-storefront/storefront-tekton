@@ -103,8 +103,13 @@ There must be 3 images. If there are less then inspect:
 
 And repair if necessary:    
 
+    cd tools/stackrox/
     tools/stackrox/build_stackrox_image.sh
+    cd -
+
+    cd tools/jmeter-performance-test/
     tools/jmeter-performance-test/build_jmeter_image.sh
+    cd -
 
 # Trivia
 
