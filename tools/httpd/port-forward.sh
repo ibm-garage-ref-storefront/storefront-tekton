@@ -13,7 +13,7 @@ while true; do
     read -p "Do you wish to expose the silver-platter to the internet (Y/N)?" yn
     case $yn in
         [Yy]* ) 
-            oc create route edge --service=silver-platter; 
+            oc create route edge --service=silver-platter -n tools; 
             break;;
         [Nn]* ) 
             exit;;
@@ -29,4 +29,4 @@ echo "https://${SILVER}/"
 echo ""
 echo " .. and ... perhaps you want to consider closing the drawbridge when you are done:"
 echo ""
-echo "oc delete route silver-platter"
+echo "oc delete route silver-platter -n tools"
