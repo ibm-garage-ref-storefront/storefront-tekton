@@ -1,30 +1,26 @@
 # The Prevail 2021 setup
 
-## Login
+## Find your RHOCP user
 
-This repo was developed on Redhat CRC where 2 users exist (kubeadmin and developer). 
-
-On CRC the setup is run under kubeadmin.
-
-On the IBM Lab environment your account has cluster admin priviledges, you will configure the setup to use your account.
-
-Find your account:
+Find your user:
 
     oc whoami
 
+Example output:
+
+    IAM#kitty-catt@example.com
+
 
 ### A) Setup the tools namespace
-
-    git clone https://github.com/ibm-garage-ref-storefront/storefront-tekton
-    cd storefront-tekton   
-    cp scripts/config ~/config.bc-full
 
 Edit the configuration file:  
 
     vi ~/config.bc-full
 
-Modify:
-- modify OCP_USER and OCP_ADMIN unless you are running on CRC;
+Notes:
+- It is not possible to add additional users on the IBM Lab environment.
+- Your User has the cluster-role, set that User as value in OCP_ADMIN (example value IAM#kitty-catt@example.com);
+- Set your User as value in OCP_USER (example value IAM#kitty-catt@example.com). This user will become project admin for various projects.
 - modify SLACK_URL and SLACK_CHANNEL when you have a slack channel that you can post to (optional).
 
 Install the tools:
@@ -104,3 +100,9 @@ And repair if necessary:
 
     tools/stackrox/build_stackrox_image.sh
     tools/jmeter-performance-test/build_jmeter_image.sh
+
+# Trivia
+
+This repo was developed on Redhat CRC where 2 users exist (kubeadmin and developer). 
+
+On CRC the setup is run under kubeadmin. On that environment you can make distinction between a cluster-admin and a project admin.
