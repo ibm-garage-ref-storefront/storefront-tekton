@@ -59,8 +59,26 @@ Inspect the result of the import:
 
     oc get is -n tools-images
 
+## Checkpoint
 
-### c) Delete the access key for the openshift image registry
+You want to see the 2 images before you proceed, check via:
+
+    if [ $(oc get is -n tools-images | grep for-use | wc -l) -eq 2 ] ; then echo OK ; else echo NoK ; fi
+
+When you have a NoK, then inspect the images:
+
+    oc get is -n tools-images | grep for-use | awk ' { print $1 } '
+
+The expected result:
+
+    NAME                            IMAGE REPOSITORY                                                                              TAGS                        UPDATED
+    jmeter-prevail-2021             image-registry.openshift-image-registry.svc:5000/tools-images/jmeter-prevail-2021             for-use,latest              49 minutes ago
+    stackrox-ubi                    image-registry.openshift-image-registry.svc:5000/tools-images/stackrox-ubi                    for-use,latest              41 minutes ago
+
+Repair the situation if necessary.
+
+
+### d) Delete the access key for the openshift image registry
 
 A key is precious thing. We do not let it linger more than necessary.
 
