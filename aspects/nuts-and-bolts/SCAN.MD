@@ -80,7 +80,7 @@ Repair the situation if necessary.
 
 ### d) Delete the access key for the openshift image registry
 
-A key is precious thing. We do not let it linger more than necessary.
+A key is precious thing. We do not let it linger more than necessary. Also, its presence will block scans of the public images that we are to import in the remainder of this section.
 
         oc delete secret registry-access 2>/dev/null
 
