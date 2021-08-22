@@ -15,12 +15,17 @@ Example output:
 
 Edit the configuration file:  
 
+    # if you like vi
     vi ~/config.bc-full
 
+    # if you like nano (use ctl O to save, and ctl X to exit)
+    nano ~/config.bc-full
+
+If you prefer a grafical environment then you could login to the VNC console. This is not preferred as the API tokens that we have to edit later during the lab are long and cannot be pasted through VNC.
+
 Notes:
-- It is not possible to add additional users on the IBM Lab environment.
-- Your User has the cluster-role, set that User as value in OCP_ADMIN (example value IAM#kitty-catt@example.com);
-- Set your User as value in OCP_USER (example value IAM#kitty-catt@example.com). This user will become project admin for various projects.
+- Set your User as value in OCP_ADMIN (example value IAM#kitty-catt@example.com). Your User has the cluster-role in the IBM Lab Environment;
+- Set your User as value in OCP_USER (example value IAM#kitty-catt@example.com). This user will become project admin for various projects on your RHOCP cluster.
 - modify SLACK_URL and SLACK_CHANNEL when you have a slack channel that you can post to (optional).
 
 Install the tools:
@@ -106,3 +111,5 @@ And repair if necessary:
 This repo was developed on Redhat CRC where 2 users exist (kubeadmin and developer). 
 
 On CRC the setup is run under kubeadmin. On that environment you can make distinction between a cluster-admin and a project admin.
+
+It is not possible to add additional users on the IBM Lab environment.
