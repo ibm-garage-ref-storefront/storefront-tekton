@@ -67,7 +67,9 @@ You want to see the 2 images before you proceed, check via:
 
 When you have a NoK, then inspect the images:
 
-    oc get is -n tools-images | grep for-use | awk ' { print $1 } '
+    oc get is -n tools-images | grep for-use 
+
+Note: press F11 to get in fullscreen mode.    
 
 The expected result:
 
@@ -153,7 +155,9 @@ You want to see the 8 images, check via:
 
 When you have a NoK, then inspect the images:
 
-    oc get is -n tools-images | grep for-use | awk ' { print $1 } '
+    oc get is -n tools-images | grep for-use 
+
+Note: press F11 to get in fullscreen mode.    
 
 The expected result:
 
