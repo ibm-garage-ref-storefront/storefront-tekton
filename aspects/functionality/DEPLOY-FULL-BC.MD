@@ -14,16 +14,23 @@ The following animation shows the installation and configuration of the full IBM
 
 ## a) Deploy the shop using a template.
 
-Get the repo:
-
-    git clone https://github.com/ibm-garage-ref-storefront/storefront-tekton
-    cd storefront-tekton
+### IBM Lab - Excercise 2
 
 Login to the cluster:
 
     oc login --token=... --server=...
 
-Note: you can get the oc CLI from the openshift web console.
+
+### IBM Lab - Excercise 3
+
+Get the repo:
+
+    git clone https://github.com/ibm-garage-ref-storefront/storefront-tekton
+    cd storefront-tekton
+
+### IBM Lab - Excercise 4
+
+New.
 
 Get the Application Load Balancer address:
 
