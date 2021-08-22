@@ -24,10 +24,10 @@ while true; do
 done
 
 echo ""
-SQR=$(oc get routes -n tools | grep sonarqube-sonarqube | awk '{ print $2 }')
+SONAR=$(oc get routes -n tools | grep sonarqube-sonarqube | awk '{ print $2 }')
 echo ""
 echo "Open a browser to:"
-echo "https://${SQR}/"
+echo "https://${SONAR}/"
 echo ""
 echo "make the sonarqube PAT .. and ... perhaps you want to consider closing the drawbridge:"
 echo ""
