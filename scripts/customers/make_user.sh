@@ -14,7 +14,8 @@ echo "Creating user ${username} with password ${password}."
 # OPEN THE DOOR
 #oc expose svc customer-ms-spring
 
-sleep 7
+# In the current version the door is allready open
+#sleep 7
 
 jwt1=$(echo -n '{"alg":"HS256","typ":"JWT"}' | openssl enc -base64);
 jwt2=$(echo -n "{\"scope\":[\"admin\"],\"user_name\":\"${username}\"}" | openssl enc -base64);
