@@ -33,7 +33,7 @@ In words:
 
 Can developer login to the openshift internal registry?
 
-    sudo podman login -u developer -p $(oc whoami -t) \
+    sudo docker login -u developer -p $(oc whoami -t) \
      default-route-openshift-image-registry.apps-crc.testing \
      --tls-verify=false
     oc describe rolebinding system:image-puller
