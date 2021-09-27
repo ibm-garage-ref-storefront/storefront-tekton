@@ -1,6 +1,6 @@
 # Context
 
-The blue compute shop is run by by the rebels on the fourth moon of a planet called Yavin.
+The blue compute shop is run by the rebels on the fourth moon of a planet called Yavin.
 
 It is maintained by our trusted friend, developer Cody.
 
