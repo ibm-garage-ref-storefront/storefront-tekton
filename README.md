@@ -1,10 +1,10 @@
 # 1 Purpose
 
 This repository:
-- deploy the full IBM Blue Compute shop consisting of 10 micro services with a single command into an Openshift Cluster;
-- installs Openshift Pipelines (based on Tekton) to perform builds, deployment and various tests.
+- deploy the full IBM Blue Compute shop consisting of 10 micro services with a single command into an OpenShift Cluster;
+- installs OpenShift Pipelines (based on Tekton) to perform builds, deployment and various tests.
 
-The purpose is to measure various quality aspects during the build of an application on Openshift - and break the build if necessary to ensure a quality outcome.
+The purpose is to measure various quality aspects during the build of an application on OpenShift - and break the build if necessary to ensure a quality outcome.
 
 
 ## a) Common Setup IBM Prevail 2021
