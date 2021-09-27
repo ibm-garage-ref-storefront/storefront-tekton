@@ -24,9 +24,9 @@ Edit the configuration file:
 If you prefer a graphical environment then you could login to the VNC console. This is not preferred as the API tokens that we have to edit later during the lab are long and cannot be pasted through VNC.
 
 Notes:
-- Set your User as value in OCP_ADMIN (example value IAM#kitty-catt@example.com). Your User has the cluster-role in the IBM Lab Environment;
-- Set your User as value in OCP_USER (example value IAM#kitty-catt@example.com). This user will become project admin for various projects on your RHOCP cluster;
-- modify SLACK_URL and SLACK_CHANNEL when you have a slack channel that you can post to (optional).
+- Set your User as value in OCP_ADMIN (example value `IAM#kitty-catt@example.com`). Your user has the cluster-role in the IBM Lab Environment;
+- Set your User as value in OCP_USER (example value `IAM#kitty-catt@example.com`). This user will become project admin for various projects on your RHOCP cluster;
+- Modify SLACK_URL and SLACK_CHANNEL when you have a slack channel that you can post to (optional).
 
 Install the tools:
 
