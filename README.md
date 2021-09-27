@@ -22,13 +22,13 @@ Once the blue compute shop and the tool-chain is up and running your can choose 
 
 | Aspect | Build Breakers based on | Estimate |
 | --- | --- | --- |
-| [Security](aspects/security/README-V2.MD) | detect vulnerabilities using owasp-dependency check and sonarqube.| 45 minutes |
-| [Security](aspects/security/MONITOR.MD) | detect vulnerabilities using StackRox to monitor the cluster  | 45 minutes |
-| [Security](aspects/security/README-V3.MD) | detect vulnerabilities using StackRox in the Pipeline  | 45 minutes |
-| [Functionality](aspects/functionality/README.MD) | verify functional requirements using jmeter| 15 minutes |
-| [Functionality](aspects/functionality/SELENIUM.MD) | verify functional requirements using selenium| 45 minutes |
-| [Performance](aspects/performance/README-V2.MD) | verify performance requirements using jmeter and grafana| 45 minutes |
-| [Availability](aspects/availability/README.MD) | in progress |
+| [Security.1](aspects/security/README-V2.MD) | detect vulnerabilities using owasp-dependency check and sonarqube.| 45 minutes |
+| [Security.2](aspects/security/MONITOR.MD) | detect vulnerabilities using StackRox to monitor the cluster  | 45 minutes |
+| [Security.3](aspects/security/README-V3.MD) | detect vulnerabilities using StackRox in the Pipeline  | 45 minutes |
+| [Functionality.1](aspects/functionality/README.MD) | verify functional requirements using jmeter| 15 minutes |
+| [Functionality.2](aspects/functionality/SELENIUM.MD) | verify functional requirements using selenium| 45 minutes |
+| [Performance.3](aspects/performance/README-V2.MD) | verify performance requirements using jmeter and grafana| 45 minutes |
+| [Availability.1](aspects/availability/README.MD) | in progress |
 
 # Archived version
 
