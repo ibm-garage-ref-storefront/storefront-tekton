@@ -10,7 +10,7 @@ echo "temporary artifacts are stored in: " /tmp/$WORKSPACE
 
 if [ -d /tmp/$WORKSPACE ] 
 then
-    echo "Directory /tmp/$WORKSPACE allready exists, cleaning up." 
+    echo "Directory /tmp/$WORKSPACE already exists, cleaning up." 
     rm -rfi /tmp/$WORKSPACE
     mkdir -pv /tmp/$WORKSPACE
 else
