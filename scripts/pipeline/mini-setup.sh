@@ -80,15 +80,17 @@ echo "--------------------------------"
 
 if [ -f ~/bin/tkn ] 
 then
-    echo "tkn cli allready exists"
+    echo "tkn cli already exists"
 else
-    echo "bring you the tkn cli:"
+    echo "Downloading the tkn cli to your machine:"
     mkdir -pv ${HOME}/bin
     curl https://mirror.openshift.com/pub/openshift-v4/clients/pipeline/0.13.1/tkn-linux-amd64-0.13.1.tar.gz -o ~/bin/tkn-linux-amd64-0.13.1.tar.gz
     tar xvf ~/bin/tkn-linux-amd64-0.13.1.tar.gz --directory=${HOME}/bin
     chmod 755 ~/bin/tkn
 fi
 tkn version
+
+echo "--------SCRIPT COMPLETE----------"
 
 # diagnostics
 oc adm top nodes
