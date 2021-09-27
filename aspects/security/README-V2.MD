@@ -7,15 +7,15 @@ We will build, deploy and test the customer-ms-spring solo branch.
 
 ### a) Deploy the IBM Blue Compute shop
 
-[Deploy](../functionality/DEPLOY-FULL-BC.MD) the IBM Blue Compute shop if you have not allready done so.
+[Deploy](../functionality/DEPLOY-FULL-BC.MD) the IBM Blue Compute shop if you have not already done so.
 
 ### b) Install the tooling and pipelines
 
-[Install](../nuts-and-bolts/MINI-SETUP.MD) the tooling if you have not allready done so.
+[Install](../nuts-and-bolts/MINI-SETUP.MD) the tooling if you have not already done so.
 
 ### c) Scan and Import the Images
 
-[Scan and Import](../nuts-and-bolts/SCAN.MD) the images that are used by the tool-chain if you have not allready done so.
+[Scan and Import](../nuts-and-bolts/SCAN.MD) the images that are used by the tool-chain if you have not already done so.
 
 
 # The security section of the pipeline
