@@ -69,9 +69,9 @@ Open it and create an API token of type CI integration.
 
 ![Fail](../../images/stackrox-api-token-type-ci.png?raw=true "Title")
 
-Copy the token and store it savely.
+Copy the token and store it safely.
 
-## c) Connect StackRox to the Openshift Image Registry
+## c) Connect StackRox to the OpenShift Image Registry
 
 Create a new registry integration of type "generic docker registry":
 
