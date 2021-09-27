@@ -124,7 +124,7 @@ Run the setup:
 
 ## c) Inspect the Stackrox reports
 
-Goto the vulnerability overview in Stackrox
+Go to the vulnerability overview in Stackrox
 
 ![Fail](../../images/risky-images.png?raw=true "Title")
 
