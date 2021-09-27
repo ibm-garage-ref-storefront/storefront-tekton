@@ -10,7 +10,7 @@ We will inspect the running status of the blue compute shop via stackrox.
 
 ### b) Install the tooling and pipelines
 
-[Install](../nuts-and-bolts/MINI-SETUP.MD) the tooling if you have not allready done so.
+[Install](../nuts-and-bolts/MINI-SETUP.MD) the tooling if you have not already done so.
 
 
 # StackRox Cluster Monitoring
