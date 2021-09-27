@@ -11,7 +11,7 @@ We will build, deploy and test the customer-ms-spring solo branch.
 
 ### b) Install the tooling and pipelines
 
-[Install](../nuts-and-bolts/MINI-SETUP.MD) the tooling if you have not allready done so.
+[Install](../nuts-and-bolts/MINI-SETUP.MD) the tooling if you have not already done so.
 
 ### c) Scan and Import the Images
 
