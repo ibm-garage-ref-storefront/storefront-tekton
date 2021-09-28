@@ -6,7 +6,7 @@ source ~/config.bc-full
 
 oc project pipelines
 
-# Tasks
+# Resources
 echo "--------------------------------"
 echo "add resources:"
 oc apply -f tekton-resources/tools-images/ubi-image.yaml
