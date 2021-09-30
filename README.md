@@ -24,7 +24,7 @@ Once the blue compute shop and the tool-chain is up and running your can choose 
 | --- | --- | --- |
 | [Security.1](aspects/security/README-V2.MD) | detect application vulnerabilities using owasp-dependency check and sonarqube.| 45 minutes |
 | [Security.2](aspects/security/README-V3.MD) | detect container vulnerabilities using StackRox in the pipeline | 45 minutes |
-| [Security.merge-with-2](aspects/security/MONITOR.MD) | detect container vulnerabilities using StackRox to monitor the cluster | 45 minutes |
+| [Security.join-2](aspects/security/MONITOR.MD) | detect container vulnerabilities using StackRox to monitor the cluster | 45 minutes |
 | [Security.to-be-3](aspects/security/RUNTIME.MD) | detect and inspect container runtime security concerns using StackRox | 45 minutes |
 | [Functionality.1](aspects/functionality/README.MD) | verify functional requirements using jmeter| 15 minutes |
 | [Functionality.2](aspects/functionality/SELENIUM.MD) | verify functional requirements using selenium| 45 minutes |
