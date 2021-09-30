@@ -14,4 +14,4 @@ We will inspect the running status of the blue compute shop via stackrox.
 
 ### c) Configure StackRox monitoring of the cluster
 
-[Monitor](./MONITOR.MD) the tooling if you have not already done so.
+[Configure](./MONITOR.MD) monitoring if you have not already done so.
