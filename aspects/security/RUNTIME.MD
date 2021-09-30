@@ -6,7 +6,7 @@ We will inspect the running status of the blue compute shop via stackrox.
 
 ### a) Deploy the IBM Blue Compute shop
 
-[Deploy](../functionality/DEPLOY-FULL-BC.MD) the IBM Blue Compute shop if you have not allready done so.
+[Deploy](../functionality/DEPLOY-FULL-BC.MD) the IBM Blue Compute shop if you have not already done so.
 
 ### b) Install the tooling and pipelines
 
@@ -14,4 +14,8 @@ We will inspect the running status of the blue compute shop via stackrox.
 
 ### c) Configure StackRox monitoring of the cluster
 
-[Configure](./MONITOR.MD) monitoring if you have not already done so.
+[Configure](./README-V3.MD) monitoring if you have not already done so.
+
+### d) Configure StackRox pipeline
+
+[Configure](./README-V3.MD) StackRox pipeline if you have not already done so.
