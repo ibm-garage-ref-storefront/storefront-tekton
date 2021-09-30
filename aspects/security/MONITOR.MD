@@ -6,7 +6,7 @@ We will inspect the running status of the blue compute shop via stackrox.
 
 ### a) Deploy the IBM Blue Compute shop
 
-[Deploy](../functionality/DEPLOY-FULL-BC.MD) the IBM Blue Compute shop if you have not allready done so.
+[Deploy](../functionality/DEPLOY-FULL-BC.MD) the IBM Blue Compute shop if you have not already done so.
 
 ### b) Install the tooling and pipelines
 
