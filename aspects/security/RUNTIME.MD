@@ -41,7 +41,11 @@ Inspect the Stackrox report for the image that was built
 
 ![Fail](../../images/customer-report.png?raw=true "Title")
 
-The scan has failed due to two items: tomcat needs upgrading and the use of root user is prohibited. We will fix the tomcat vulnerability, but choose to bypass the policy check on root user to "make life easier" - however we wish to demonstrate the implications this decision will have!
+The scan has failed due to two items:
+  - Tomcat needs upgrading; and
+  - The use of root user is prohibited.
+ 
+We will fix the Tomcat vulnerability, but choose to bypass the policy check on root user to "make life easier" - however we wish to demonstrate the implications this decision will have!
 
 ## TODO: Disable "root user" policy enforcement in StackRox, to bypass
 Write this section:
