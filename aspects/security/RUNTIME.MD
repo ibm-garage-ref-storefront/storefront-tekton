@@ -22,6 +22,28 @@ We will inspect the running status of the blue compute shop via stackrox.
 
 ## Update intro line
 ## TODO: deploy a run-as-root container
+
+# The StackRox pipeline
+
+## a) Run the pipeline # --this pipeline reference needs changing to use a broken tomcat and root user image--
+
+    oc create -f tekton-pipeline-run/customer-stackrox-pipeline-ibm-prevail-2021-XYZ.yaml
+    scripts/watch-the-pipeline-run.sh
+
+## b) The pipeline run now fails on the application image that was built  
+
+![Fail](../../images/stackrox-plr.png?raw=true "Title")
+
+## c) Inspect the Stackrox reports
+
+Go to the vulnerability overview in Stackrox
+
+![Fail](../../images/risky-images.png?raw=true "Title")
+
+Inspect the Stackrox report for the image that was built
+
+![Fail](../../images/customer-report.png?raw=true "Title")
+
 ## Fix tomcat but not root
 You may fork the repo that we are building, and make the mod yourself. For the interest of time we suggest you use the pre-built branch with the fix version:
 
