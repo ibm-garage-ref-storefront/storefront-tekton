@@ -237,7 +237,7 @@ Find out what needs to be fixed:
 
 ![Fail](../../images/fix-version.png?raw=true "Title")
 
-Take a carefull look at the recommended fix version.
+Take a careful look at the recommended fix version.
 
 
 # Let's go and build our defense.
