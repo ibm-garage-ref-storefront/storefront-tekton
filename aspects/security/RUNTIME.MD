@@ -25,9 +25,9 @@ We will inspect the running status of the blue compute shop via stackrox.
 
 # The StackRox pipeline
 
-## a) Run the pipeline # --this pipeline reference needs changing to use a broken tomcat and root user image--
+## a) Run the pipeline
 
-    oc create -f tekton-pipeline-run/customer-stackrox-pipeline-ibm-prevail-2021-XYZ.yaml
+    oc create -f tekton-pipeline-run/customer-stackrox-pipeline-ibm-prevail-2021-runtime.yaml
     scripts/watch-the-pipeline-run.sh
 
 ## b) The pipeline run now fails on the application image that was built  
