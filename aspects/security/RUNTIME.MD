@@ -22,7 +22,12 @@ We will inspect the running status of the blue compute shop via stackrox.
 
 ## Update intro line
 ## TODO: deploy a run-as-root container
-## Fix tomcat
+## Fix tomcat but not root
+You may fork the repo that we are building, and make the mod yourself. For the interest of time we suggest you use the pre-built branch with the fix version:
+
+    oc create -f tekton-pipeline-run/customer-stackrox-pipeline-ibm-prevail-2021-tomcatfix-stillroot-version.yaml
+    scripts/watch-the-pipeline-run.sh
+
 ## Disable "root user" policy enforcement in StackRox, to bypass
 ## Demonstrate what can be done in the container and what StackRox runtime monitoring is detecting (i.e. policy violations)
 ## Amend the deployment.yaml to add securityContexts in to reduce attack vectors.
