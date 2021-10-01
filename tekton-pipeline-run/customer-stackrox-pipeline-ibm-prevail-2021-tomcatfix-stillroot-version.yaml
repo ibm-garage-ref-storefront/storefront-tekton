@@ -10,7 +10,7 @@ spec:
   resources:
     - name: git-source
       resourceRef:
-        name: customer-source-solo # tomcat-fixed-runs-root
+        name: customer-source-tomcat-root
     - name: base-image
       resourceRef:
         name: ubi-base-image
