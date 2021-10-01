@@ -63,7 +63,7 @@ We will fix the Tomcat vulnerability, but choose to "overlook" the other violati
 See how, by default, only a small number of policies are configured to apply enforcement of the policy (that would cause pipeline to fail if violated).
 
 ***Note:** For informational purposes only - do not set this policy's enforcement behaviour to "on" as part of th demo run.*
-*It is possible to turn enforcement behaviour on:*  
+*It is possible to turn enforcement behaviour on by doing the following:*  
   *- Go to UI > Platform Configuration > System Policies*  
     *- Filter for "Docker CIS 4.1: Ensure That a User for the Container Has Been Created"*  
     *- Click on the policy. Then click on: Edit > Next > Next > Next > Turn "Enforcement Behaviour" on > Save*  
