@@ -22,6 +22,10 @@ We will build, deploy and test the customer-ms-spring runtime branch and then lo
 
 # The StackRox pipeline
 
+## a ) Run the setup
+
+    bash scripts/pipeline/stackrox-setup-runtime.sh  
+
 ## a) Run the pipeline
 
     oc create -f tekton-pipeline-run/customer-stackrox-pipeline-ibm-prevail-2021-runtime.yaml
