@@ -1,0 +1,14 @@
+apiVersion: v1
+items:
+- apiVersion: tekton.dev/v1alpha1
+  kind: PipelineResource
+  metadata:
+    name: customer-source-runsroot
+  spec:
+    params:
+    - name: revision
+      value: run-as-root
+    - name: url
+      value: https://github.com/kitty-catt/customer-ms-spring
+    type: git
+kind: List
