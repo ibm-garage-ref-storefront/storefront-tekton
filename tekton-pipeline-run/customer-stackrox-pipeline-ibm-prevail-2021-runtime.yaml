@@ -1,0 +1,47 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: customer-stackrox-pipeline-ibm-prevail-2021-
+spec:
+  serviceAccountName: pipeline
+  timeout: "1h0m0s"  
+  pipelineRef:
+    name: stackrox-pipeline-prevail-2021
+  resources:
+    - name: git-source
+      resourceRef:
+        name: customer-source-runsroot
+    - name: base-image
+      resourceRef:
+        name: ubi-base-image
+    - name: app-image
+      resourceRef:
+        name: customer-image-internal        
+  params:
+    - name: trivy-severity
+      value: "CRITICAL"
+    - name: git-repo-checkout-dir
+      value: "customer-ms-spring"
+  workspaces:
+    - name: images-url
+      emptyDir: {}
+    - name: maven-settings
+      emptyDir: {}
+    - name: src-workspace-01
+      persistentvolumeclaim:
+        claimName: clone-1-pvc
+    - name: src-workspace-02
+      persistentvolumeclaim:
+        claimName: clone-2-pvc
+    - name: local-maven-repo
+      persistentVolumeClaim:
+        claimName: maven-repo-pvc  
+    - name: local-sonar-repo
+      persistentVolumeClaim:
+        claimName: sonar-repo-pvc 
+    - name: local-owasp-repo
+      persistentVolumeClaim:
+        claimName: owasp-repo-pvc             
+    - name: report
+      persistentvolumeclaim:
+        claimName: httpd-pvc
