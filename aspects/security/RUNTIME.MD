@@ -52,12 +52,16 @@ The scan has failed due to two items:
 We will fix the Tomcat vulnerability, but choose to bypass the policy check on root user to "make life easier" - however we wish to demonstrate the implications this decision will have!
 
 ## TODO: Disable "root user" policy enforcement in StackRox, to bypass
+
+**Note:** Martin/Sion: We need to check whether by default:
+  - a) this policy is enabled
+  - b) this policy is in enforcement mode or not... Otherwise we need to amend task as necessary
+
 Write this section:
   - Show in logs that the "root user" policy is in violation
-  - Go to console
-  - Go to policies
-  - Find policy XYZ
-  - Disable the enforcement behaviour
+  - Go to UI > Platform Configuration > System Policies
+    - Filter for "Docker CIS 4.1: Ensure That a User for the Container Has Been Created"
+    - Click on the policy. Then click on: Edit > Next > Next > Next > Turn "Enforcement Behaviour" off > Save
 
 ## Fix tomcat but not root
 You may fork the repo that we are building, and make the mod yourself. For the interest of time we suggest you use the pre-built branch with the Tomcat fix, but still running as root user:
