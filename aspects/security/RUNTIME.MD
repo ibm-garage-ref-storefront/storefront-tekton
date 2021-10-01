@@ -56,7 +56,7 @@ Write this section:
   - Disable the enforcement behaviour
 
 ## Fix tomcat but not root
-You may fork the repo that we are building, and make the mod yourself. For the interest of time we suggest you use the pre-built branch with the tomcat fix, but still running as root user:
+You may fork the repo that we are building, and make the mod yourself. For the interest of time we suggest you use the pre-built branch with the Tomcat fix, but still running as root user:
 
     oc create -f tekton-pipeline-run/customer-stackrox-pipeline-ibm-prevail-2021-tomcatfix-stillroot-version.yaml
     scripts/watch-the-pipeline-run.sh
