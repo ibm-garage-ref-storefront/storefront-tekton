@@ -8,6 +8,7 @@ The purpose is to measure various quality aspects during the build of an applica
 
 
 ## a) Common Setup IBM Prevail 2021
+You must run all of these setup tasks in order:
 
 | Aspect | Description | Estimate |
 | --- | --- | --- |
