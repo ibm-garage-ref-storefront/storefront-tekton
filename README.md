@@ -18,7 +18,7 @@ You must run all of these setup tasks in order:
 
 ## b) Independant Tracks IBM Prevail 2021
 
-Once the blue compute shop and the tool-chain is up and running your can choose to explore various aspects:
+Once the blue compute shop and the tool-chain is up and running (tasks 1-4 above) you can choose to explore various aspects:
 
 | Aspect | Build Breakers based on | Estimate |
 | --- | --- | --- |
