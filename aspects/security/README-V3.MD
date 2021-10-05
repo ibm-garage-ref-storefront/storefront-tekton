@@ -12,6 +12,10 @@ We will inspect the running status of the blue compute shop via stackrox **and**
 
 [Install](../nuts-and-bolts/MINI-SETUP.MD) the tooling if you have not already done so.
 
+### c) Scan and Import the Images
+
+[Scan and Import](../nuts-and-bolts/SCAN.MD) the images that are used by the tool-chain if you have not already done so.
+
 # StackRox Cluster Monitoring
 
 ## a) Verify
