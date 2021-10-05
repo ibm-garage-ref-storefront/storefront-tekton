@@ -43,9 +43,10 @@ docker login -u $(oc whoami) -p $(oc whoami -t) $HOST ### maybe comment this lin
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     mycommand="base64 -w 0"  
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    mycommand="/usr/bin/base64 -b 0"
+    mycommand="base64 -b 0"
 else
     printf "\nOS-TYPE is not Linux or Mac, so attempting base64 single-line command. Please investigate if it fails.\n"
+    # For some Mac's we might need to use "/usr/bin/base64 -b 0"
     mycommand="base64 -w 0"
 fi
 
