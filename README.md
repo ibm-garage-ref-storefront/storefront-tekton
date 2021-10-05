@@ -37,7 +37,7 @@ Once the blue compute shop and the tool-chain is up and running (tasks 1-4 above
 | [Security](aspects/security/README.MD) | a Tekton Pipeline that builds and scans the microservice for vulnerabilities |
 | [Nuts and Bolts](aspects/nuts-and-bolts/README.MD) | For nuts and bolts lovers |
 
-Follow the mandatory [preparation](aspects/general/README.MD)
+Follow the mandatory [preparation](aspects/general/README.MD).
 
 
 
