@@ -12,30 +12,34 @@ We will build, deploy and test the customer-ms-spring runtime branch and then lo
 
 [Install](../nuts-and-bolts/MINI-SETUP.MD) the tooling if you have not already done so.
 
-### c) Configure StackRox monitoring of the cluster
+### c) Scan and Import the Images
+
+[Scan and Import](../nuts-and-bolts/SCAN.MD) the images that are used by the tool-chain if you have not already done so.
+
+### d) Configure StackRox monitoring of the cluster
 
 [Configure](./README-V3.MD) monitoring if you have not already done so.
 
-### d) Configure StackRox pipeline
+### e) Configure StackRox pipeline
 
 [Configure](./README-V3.MD) StackRox pipeline if you have not already done so.
 
 # The StackRox pipeline
 
-## a ) Run the setup
+## a) Run the setup
 
     bash scripts/pipeline/stackrox-setup-runtime.sh  
 
-## a) Run the pipeline
+## b) Run the pipeline
 
     oc create -f tekton-pipeline-run/customer-stackrox-pipeline-ibm-prevail-2021-runtime.yaml
     scripts/watch-the-pipeline-run.sh
 
-## b) The pipeline run now fails on the application image that was built  
+## c) The pipeline run now fails on the application image that was built  
 
 ![Fail](../../images/stackrox-plr.png?raw=true "Title")
 
-## c) Inspect the Stackrox reports
+## d) Inspect the Stackrox reports
 
 Go to the vulnerability overview in Stackrox
 
