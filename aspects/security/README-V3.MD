@@ -223,6 +223,8 @@ Run the setup:
 
 Go to the vulnerability overview in Stackrox
 
+(**Note:** direct link is https://localhost:8443/main/vulnerability-management/images and then filter on "Images:" and the image name)
+
 ![Fail](../../images/risky-images.png?raw=true "Title")
 
 Inspect the Stackrox report for the image that was built
