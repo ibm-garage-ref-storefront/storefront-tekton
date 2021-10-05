@@ -223,7 +223,7 @@ Run the setup:
 
 Go to the vulnerability overview in Stackrox
 
-(**Note:** direct link is https://localhost:8443/main/vulnerability-management/images and then filter on "Images:" and the image name)
+(**Note:** You can "right-click > new tab" on this direct link: https://localhost:8443/main/vulnerability-management/images and then filter on "Images:" and the image name)
 
 ![Fail](../../images/risky-images.png?raw=true "Title")
 
