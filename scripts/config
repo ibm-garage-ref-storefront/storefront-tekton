@@ -20,7 +20,7 @@ ICR_API_KEY=
 ICR_EMAIL=kitty-catt@example.com
 ICR_REGISTRY_URL=de.icr.io
 
-#For accessing Slack 
+# For accessing Slack 
 SLACK_URL=
 SLACK_CHANNEL=#channel-name-here
 
@@ -50,6 +50,6 @@ ORDER_USER=dbuser
 ORDER_PASSWORD=password
 ORDER_DATABASE=ordersdb
 
-#Customer
+# Customer
 username=foo
 password=bar
