@@ -92,7 +92,7 @@ Or via the CLI:
 Example Output
 
     NAME                                  AGE            LAST RUN   STARTED   DURATION   STATUS
-    vailability-pipeline-prevail-2021    1 minute ago   ---        ---       ---        ---
+    vailability-pipeline-prevail-2021     1 minute ago   ---        ---       ---        ---
     functionality-pipeline-prevail-2021   1 minute ago   ---        ---       ---        ---
     image-intake-pipeline-prevail-2021    1 minute ago   ---        ---       ---        ---
     performance-pipeline-prevail-2021     1 minute ago   ---        ---       ---        ---
@@ -124,8 +124,8 @@ There must be 3 images. If there are less then inspect:
 Example Output
 
     jmeter-prevail-2021   image-registry.openshift-image-registry.svc:5000/tools/jmeter-prevail-2021   latest   26 minutes ago
-    silver-platter        image-registry.openshift-image-registry.svc:5000/tools/   silver-platter        2.4      
-    stackrox-ubi          image-registry.openshift-image-registry.svc:5000/tools/   stackrox-ubi          latest   25 minutes ago
+    silver-platter        image-registry.openshift-image-registry.svc:5000/tools/   silver-platter     2.4      
+    stackrox-ubi          image-registry.openshift-image-registry.svc:5000/tools/   stackrox-ubi       latest   25 minutes ago
 
 And repair if necessary:    
 
