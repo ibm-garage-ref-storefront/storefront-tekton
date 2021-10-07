@@ -3,7 +3,7 @@
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     if [ -f ~/bin/roxctl ] 
         then
-            echo "stackrox cli allready exists"
+            echo "stackrox cli already exists"
         else
             echo "bring you the stackrox cli"
             curl https://mirror.openshift.com/pub/rhacs/assets/3.0.62.0/bin/Linux/roxctl -o ~/bin/roxctl     
@@ -12,7 +12,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     if [ -f /usr/local/bin/roxctl ]
         then
-            echo "stackrox cli allready exists"
+            echo "stackrox cli already exists"
         else
             echo "bring you the stackrox cli for mac"
             curl https://mirror.openshift.com/pub/rhacs/assets/3.0.62.0/bin/Darwin/roxctl -o /usr/local/bin/roxctl     
@@ -20,6 +20,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     fi
 fi
 
+####### Section commented out as the above is used to cope with Linux vs Mac #######
 # if [ -f ~/bin/roxctl ] 
 # then
 #     echo "stackrox cli allready exists"
@@ -28,6 +29,7 @@ fi
 #     curl https://mirror.openshift.com/pub/rhacs/assets/3.0.62.0/bin/Linux/roxctl -o ~/bin/roxctl     
 #     chmod 755 ~/bin/roxctl
 # fi
+###################################
 
 # Add helm repo
 helm repo add rhacs https://mirror.openshift.com/pub/rhacs/charts/
