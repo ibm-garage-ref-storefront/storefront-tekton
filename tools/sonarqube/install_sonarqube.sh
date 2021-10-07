@@ -3,10 +3,11 @@
 #cat banner.txt
 #Check and install HELM if needed.
 
+# Try to determine Linux vs Mac for correct install steps
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     if [ -f ~/bin/helm ] 
         then
-            echo "helm cli allready exists"
+            echo "helm cli already exists"
         else
             echo "installing helm cli for linux"
             mkdir -pv ~/bin
@@ -17,7 +18,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     if [ -f /usr/local/bin/helm ]
         then
-            echo "helm cli allready exists"
+            echo "helm cli already exists"
         else
             echo "installing helm cli for mac"
             mkdir -pv ~/bin
@@ -27,6 +28,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     fi
 fi
 
+###### Replaced by Linux vs Mac install steps above ######
 # if [ -f ~/bin/helm ] 
 # then
 #     echo "helm cli allready exists"
@@ -36,7 +38,9 @@ fi
 #     curl -k https://mirror.openshift.com/pub/openshift-v4/clients/helm/latest/helm-linux-amd64 -o ~/bin/helm
 #     chmod 755 ~/bin/helm
 # fi
+##############################
 
+############## Removed as not using Helm v2 ####################
 # CHECKPOINT
 # ~/bin/helm version --short
 
@@ -46,30 +50,30 @@ fi
 # curl -L "https://storage.googleapis.com/kubernetes-release/release/$LATEST/bin/linux/amd64/kubectl" -o ~/bin/kubectl
 # ~/bin/kubectl  version
 
-
 # kubectl create serviceaccount --namespace kube-system tiller
 # kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
 
 #helm init
 #kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+#################################
 
+# Add repo for SonarQube helm chart
 helm repo add oteemo https://oteemo.github.io/charts/
 helm repo update
 
 # CHECKPOINT:
-
 helm repo list
 
 # CHECKPOINT
 #NAME  	URL                                             
 #oteemo	https://oteemo.github.io/charts/   
 
-# install sonar qube in the existing tools namespace
+# install sonarqube in the existing tools namespace
 oc project tools
 oc create serviceaccount sonarqube -n tools
 #oc adm policy add-scc-to-user anyuid system:serviceaccount:tools:default
 
-# sonarqube's postgress runs under default
+# sonarqube's postgres runs under default
 oc adm policy add-scc-to-user privileged system:serviceaccount:tools:default
 
 # note: sonarqube runs under sa sonarqube
@@ -115,5 +119,3 @@ echo "oc port-forward $SQ -n tools 9000:9000&"
 
 #echo "The internal SONARQUBE_URL in boot.sh should look like:" 
 #export SONARQUBE_URL='http://sonarqube-sonarqube.tools.svc.cluster.local:9000'
-
-
