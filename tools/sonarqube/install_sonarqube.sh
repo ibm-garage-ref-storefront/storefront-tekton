@@ -1,37 +1,64 @@
 #!/bin/bash
 
 #cat banner.txt
+#Check and install HELM if needed.
 
-if [ -f ~/bin/helm ] 
-then
-    echo "helm cli allready exists"
-else
-    echo "bring you the helm cli"
-    mkdir -pv ~/bin
-    curl -k https://mirror.openshift.com/pub/openshift-v4/clients/helm/latest/helm-linux-amd64 -o ~/bin/helm
-    chmod 755 ~/bin/helm
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    if [ -f ~/bin/helm ] 
+        then
+            echo "helm cli allready exists"
+        else
+            echo "installing helm cli for linux"
+            mkdir -pv ~/bin
+            curl -k https://mirror.openshift.com/pub/openshift-v4/clients/helm/latest/helm-linux-amd64 -o ~/bin/helm
+            chmod 755 ~/bin/helm
+            ~/bin/helm version --short
+        fi
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    if [ -f /usr/local/bin/helm ]
+        then
+            echo "helm cli allready exists"
+        else
+            echo "installing helm cli for mac"
+            mkdir -pv ~/bin
+            curl -k https://mirror.openshift.com/pub/openshift-v4/clients/helm/latest/helm-darwin-amd64 -o /usr/local/bin/helm
+            chmod 755 /usr/local/bin/helm
+            /usr/local/bin/helm version
+    fi
 fi
 
+# if [ -f ~/bin/helm ] 
+# then
+#     echo "helm cli allready exists"
+# else
+#     echo "bring you the helm cli"
+#     mkdir -pv ~/bin
+#     curl -k https://mirror.openshift.com/pub/openshift-v4/clients/helm/latest/helm-linux-amd64 -o ~/bin/helm
+#     chmod 755 ~/bin/helm
+# fi
+
 # CHECKPOINT
-~/bin/helm version --short
+# ~/bin/helm version --short
 
-LATEST=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
-echo $LATEST
-curl -L "https://storage.googleapis.com/kubernetes-release/release/$LATEST/bin/linux/amd64/kubectl" -o ~/bin/kubectl
-~/bin/kubectl  version
+# NO longer required as using HELM 3 which no longer uses tiller
+# LATEST=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+# echo $LATEST
+# curl -L "https://storage.googleapis.com/kubernetes-release/release/$LATEST/bin/linux/amd64/kubectl" -o ~/bin/kubectl
+# ~/bin/kubectl  version
 
-kubectl create serviceaccount --namespace kube-system tiller
-kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+
+# kubectl create serviceaccount --namespace kube-system tiller
+# kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
 
 #helm init
 #kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
 
-~/bin/helm repo add oteemo https://oteemo.github.io/charts/
-~/bin/helm repo update
+helm repo add oteemo https://oteemo.github.io/charts/
+helm repo update
 
 # CHECKPOINT:
 
-~/bin/helm repo list
+helm repo list
 
 # CHECKPOINT
 #NAME  	URL                                             
@@ -59,7 +86,7 @@ oc adm policy add-scc-to-user privileged system:serviceaccount:tools:sonarqube
 #helm show values oteemo/sonarqube --version 6.6.0
 
 # version 6.6.0 shows the detailed vulnerabilities
-~/bin/helm install sonarqube oteemo/sonarqube --version 6.6.0 -f values.yaml
+helm install sonarqube oteemo/sonarqube --version 6.6.0 -f values.yaml
 
 # oc expose svc sonarqube-sonarqube --hostname=sonar-tools.apps-crc.testing
 # oc create route edge sonarqube --service=sonarqube-sonarqube --hostname=sonar-tools.apps-crc.testing

@@ -35,8 +35,7 @@ New.
 
 Get the Application Load Balancer address:
 
-    KVP=$(oc describe deploy router-default -n openshift-ingress | grep ROUTER_CANONICAL_HOSTNAME)
-    APPLB=$(echo $KVP|awk '{print $2}')
+    APPLB=$(oc describe deploy router-default -n openshift-ingress | grep ROUTER_CANONICAL_HOSTNAME |awk '{print $2}')
     echo $APPLB
 
 Example output for the prevail workshop environment:
@@ -65,9 +64,11 @@ You can find the ULR of the openshift cluster, via:
 
     oc whoami --show-console
 
-Alternatively, check the deployment state via the console:
+Alternatively, You can either rerun the command `oc get pods` until all pods are started or you can add the parameter -w or --watch to your command. This parameter will watch for status changes and will display them. So to watch your pods use the command:
 
-    watch oc get po
+    oc get po -w
+
+Hint: To stop watch just hit ctrl & c.
 
 It will take about 5 minutes before the pods all get into the running state. 
 The backing services (e.g. mysql) of them will be in state "Pending" until storage gets assigned. Some of them (e.g. the inventory ms) will flip into the "Error" state because they depend on their backing Deployments to be up and "Running". After 4 or 5 minutes the shop will be in state "Running".
@@ -103,11 +104,18 @@ Example output:
     found pod: inventorymysql-1-6ls87
     database initialized succesfully
 
-Make a user:
+Make a user (username and passowrd are set in the config file):
 
     bash scripts/customers/make_user.sh 
 
-Login to the shop via the route on the web deployment.
+Example output:
+
+    Creating user foo.
+    send of the request to the the customer.add api
+    HTTP/1.1 201 
+    Location: http://customer-ms-spring-full-bc.    sion-cluster-ecf58268eb10995f067698dffc82d2a7-0000.eu-gb.containers.    appdomain.cloud/micro/customer/add/225cdeb923604180954a360a6bf6dc47
+    Content-Length: 0
+    Date: Wed, 06 Oct 2021 23:18:44 GMT
 
 Notes: 
 - we suggest that you create the default user foo with the password bar because that user is used in the testplan to order a calculator from the shop;
@@ -116,7 +124,7 @@ Notes:
 
 ## d) Enjoy
 
-Login to the shop, find the URL via:
+Login to the shop via the route on the web deployment with user foo (default password is bar), find the URL via:
 
     oc get routes | grep web
 
@@ -130,7 +138,7 @@ You can login to the shop and place an order.
 
 Things look good, or do they?
 
-# 2 Tear Down (optional)
+# 2 Tear Down (optional, once all other excercises have been completed)
 
    oc delete project full-bc
 

@@ -49,3 +49,7 @@ ORDER_ROOT_PASSWORD=admin123
 ORDER_USER=dbuser
 ORDER_PASSWORD=password
 ORDER_DATABASE=ordersdb
+
+#Customer
+username=foo
+password=bar
