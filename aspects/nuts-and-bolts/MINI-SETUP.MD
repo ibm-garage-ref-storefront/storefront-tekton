@@ -62,7 +62,7 @@ Setup port-forwarding:
 
     bash tools/sonarqube/port-forward.sh
 
-Login to sonarqube via the [forwarded port](http://localhost:9000) ("right-click and open this link").
+Login to sonarqube via the [forwarded port](http://localhost:9000) ("right-click and open this link"). Default username and password are both `admin`
 
 It may take half a minute to get connected.
 
@@ -89,9 +89,29 @@ Or via the CLI:
 
     tkn pipeline list
 
+Example Output
+
+    NAME                                  AGE            LAST RUN   STARTED   DURATION   STATUS
+    vailability-pipeline-prevail-2021     1 minute ago   ---        ---       ---        ---
+    functionality-pipeline-prevail-2021   1 minute ago   ---        ---       ---        ---
+    image-intake-pipeline-prevail-2021    1 minute ago   ---        ---       ---        ---
+    performance-pipeline-prevail-2021     1 minute ago   ---        ---       ---        ---
+    security-pipeline-prevail-2021        1 minute ago   ---        ---       ---        ---
+
 Inspect the persistent volume claims and see them transition from state Pending to Bound:
 
     oc get pvc
+
+Example Output
+
+    NAME                 STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS      AGE
+    clone-1-pvc          Bound    pvc-51999dec-00f3-466d-82f2-1901a70e8570      20Gi       RWO            ibmc-block-gold   3m21s
+    clone-2-pvc          Bound    pvc-e0bbda9e-80eb-4f71-a176-c8f3a4bbd120      20Gi       RWO            ibmc-block-gold   3m20s
+    maven-repo-pvc       Bound    pvc-bf804d58-56aa-46c7-9f78-b2ee4e92de7a      20Gi       RWO            ibmc-block-gold   3m20s
+    maven-settings-pvc   Bound    pvc-ac96c2dc-3e50-4c13-a64b-7ccd577f3e0f      20Gi       RWO            ibmc-block-gold   3m20s
+    maven-source-pvc     Bound    pvc-d9b83f9f-0cba-4e60-833c-05a2c422cc41      20Gi       RWO            ibmc-block-gold   3m20s
+    owasp-repo-pvc       Bound    pvc-8a4a3d68-e82e-48c1-9f99-92bfeb093bfc      20Gi       RWO            ibmc-block-gold   3m20s
+    sonar-repo-pvc       Bound    pvc-1a3f9162-e48b-47ed-9019-e7a963fa3c51      20Gi       RWO            ibmc-block-gold   3m20s
 
 Inspect the images in the tools namespace:
 
@@ -100,6 +120,12 @@ Inspect the images in the tools namespace:
 There must be 3 images. If there are less then inspect:
 
     oc get is -n tools
+
+Example Output
+
+    jmeter-prevail-2021   image-registry.openshift-image-registry.svc:5000/tools/jmeter-prevail-2021   latest   26 minutes ago
+    silver-platter        image-registry.openshift-image-registry.svc:5000/tools/   silver-platter     2.4      
+    stackrox-ubi          image-registry.openshift-image-registry.svc:5000/tools/   stackrox-ubi       latest   25 minutes ago
 
 And repair if necessary:    
 

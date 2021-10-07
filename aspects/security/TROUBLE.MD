@@ -64,3 +64,8 @@ If the hacker were able to perform remote code execution ..
 Suddenly it feels chilly on Yavin 4 ..
 
 Can developer Cody defend the shop? 
+
+To exit the container type `exit` and hit enter
+    
+    sh-4.2# exit
+    exit

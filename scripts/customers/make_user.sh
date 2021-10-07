@@ -3,9 +3,9 @@
 # the environment contains the HS256_KEY key
 source ~/config.bc-full 
 
-read -p 'User to create: ' -e -i 'foo' username
+# read -p 'User to create: ' -e -i 'foo' username
 
-read -p 'Password: ' -e -i 'bar' password
+# read -p 'Password: ' -e -i 'bar' password
 
 echo "Creating user ${username}."
 
