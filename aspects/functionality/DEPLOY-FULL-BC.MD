@@ -47,7 +47,7 @@ The customer-ms-spring microservice is deliberately deployed as a root pod for e
     oc new-project full-bc
     oc adm policy add-scc-to-user anyuid -z customer-ms-spring-sa
 
-Deploy the shop using pre-build images (notes: substitute the value for APPLB and NAMESPACE):
+Deploy the shop using pre-built images (notes: substitute the value for APPLB and NAMESPACE):
 
     NAMESPACE=$(oc project -q)
     oc create -f template/blue-compute-template.yaml 
@@ -60,17 +60,18 @@ Deploy the shop using pre-build images (notes: substitute the value for APPLB an
 
 Inspect the full-bc namespace via the web console and see the shop come alive.
 
-You can find the ULR of the openshift cluster, via:
+You can find the URL of the OpenShift cluster, via:
 
     oc whoami --show-console
 
-Alternatively, You can either rerun the command `oc get pods` until all pods are started or you can add the parameter -w or --watch to your command. This parameter will watch for status changes and will display them. So to watch your pods use the command:
+Alternatively, you can either rerun the command `oc get pods` until all pods are started or you can add the parameter `-w` or `--watch` to your command. This parameter will watch for status changes and will display them. So to watch your pods use the command:
 
     oc get po -w
 
 Hint: To stop watch just hit ctrl & c.
 
 It will take about 5 minutes before the pods all get into the running state. 
+
 The backing services (e.g. mysql) of them will be in state "Pending" until storage gets assigned. Some of them (e.g. the inventory ms) will flip into the "Error" state because they depend on their backing Deployments to be up and "Running". After 4 or 5 minutes the shop will be in state "Running".
 
 Expected result:
@@ -118,13 +119,13 @@ Example output:
     Date: Wed, 06 Oct 2021 23:18:44 GMT
 
 Notes: 
-- we suggest that you create the default user foo with the password bar because that user is used in the testplan to order a calculator from the shop;
+- we suggest that you create the default user `foo` with the password `bar` because that user is used in the testplan to order a calculator from the shop;
 - it will take a minute or 2 before the inventory database content is reflected in the catalog;
 - creating the user will give some complaints about "Insufficient scope", this can be ignored.
 
 ## d) Enjoy
 
-Login to the shop via the route on the web deployment with user foo (default password is bar), find the URL via:
+Login to the shop via the route on the web deployment with user `foo` (default password is `bar`), find the URL via:
 
     oc get routes | grep web
 
