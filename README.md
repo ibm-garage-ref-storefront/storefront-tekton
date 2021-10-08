@@ -22,19 +22,19 @@ Once the Blue Compute shop and the tool-chain is up and running (tasks 1-4 above
 
 | Aspect | Build Breakers based on | Estimate |
 | --- | --- | --- |
-| [Security.1](aspects/security/README-V2.MD) | detect application vulnerabilities using owasp-dependency check and sonarqube.| 45 minutes |
-| [Security.2](aspects/security/README-V3.MD) | detect container vulnerabilities using StackRox cluster & pipeline monitoring | 45 minutes |
-| [Security.3](aspects/security/RUNTIME.MD) | detect and inspect container runtime security concerns using StackRox | 45 minutes |
-| [Functionality.1](aspects/functionality/README.MD) | verify functional requirements using jmeter| 15 minutes |
-| [Functionality.2](aspects/functionality/SELENIUM.MD) | verify functional requirements using selenium| 45 minutes |
-| [Performance.1](aspects/performance/README-V2.MD) | verify performance requirements using jmeter and grafana| 45 minutes |
-| [Availability.1](aspects/availability/README.MD) | in progress |
+| [Security.1](aspects/security/README-V2.MD) | Detect application vulnerabilities using owasp-dependency check and sonarqube.| 45 minutes |
+| [Security.2](aspects/security/README-V3.MD) | Detect container vulnerabilities using StackRox cluster & pipeline monitoring | 45 minutes |
+| [Security.3](aspects/security/RUNTIME.MD) | Detect and inspect container runtime security concerns using StackRox | 45 minutes |
+| [Functionality.1](aspects/functionality/README.MD) | Verify functional requirements using jmeter| 15 minutes |
+| [Functionality.2](aspects/functionality/SELENIUM.MD) | Verify functional requirements using selenium| 45 minutes |
+| [Performance.1](aspects/performance/README-V2.MD) | Verify performance requirements using jmeter and grafana| 45 minutes |
+| [Availability.1](aspects/availability/README.MD) | In progress |
 
 # Archived version
 
 | Aspect | Description |
 | --- | --- |
-| [Security](aspects/security/README.MD) | a Tekton Pipeline that builds and scans the microservice for vulnerabilities |
+| [Security](aspects/security/README.MD) | A Tekton Pipeline that builds and scans the microservice for vulnerabilities |
 | [Nuts and Bolts](aspects/nuts-and-bolts/README.MD) | For nuts and bolts lovers |
 
 Follow the mandatory [preparation](aspects/general/README.MD).
