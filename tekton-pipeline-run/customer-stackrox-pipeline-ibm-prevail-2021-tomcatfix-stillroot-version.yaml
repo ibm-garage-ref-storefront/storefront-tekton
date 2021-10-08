@@ -23,7 +23,7 @@ spec:
     - name: git-repo-checkout-dir
       value: "customer-ms-spring"
     - name: git-revision
-      name: "tomcat-fixed-runs-root"
+      value: "tomcat-fixed-runs-root"
   workspaces:
     - name: images-url
       emptyDir: {}
