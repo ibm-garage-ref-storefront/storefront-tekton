@@ -16,9 +16,9 @@ You must run all of these setup tasks in order:
 | [3.Tools Setup](aspects/nuts-and-bolts/MINI-SETUP.MD) | Setting up the tools | 15 minutes |
 | [4.Tools Images](aspects/nuts-and-bolts/SCAN.MD) | Loading the tool rack | 30 minutes |
 
-## b) Independant Tracks IBM Prevail 2021
+## b) Independent Tracks IBM Prevail 2021
 
-Once the blue compute shop and the tool-chain is up and running (tasks 1-4 above) you can choose to explore various aspects:
+Once the Blue Compute shop and the tool-chain is up and running (tasks 1-4 above) you can choose to explore various aspects:
 
 | Aspect | Build Breakers based on | Estimate |
 | --- | --- | --- |
@@ -38,6 +38,3 @@ Once the blue compute shop and the tool-chain is up and running (tasks 1-4 above
 | [Nuts and Bolts](aspects/nuts-and-bolts/README.MD) | For nuts and bolts lovers |
 
 Follow the mandatory [preparation](aspects/general/README.MD).
-
-
-
