@@ -59,19 +59,6 @@ The scan has an additional violation:
  
 We will fix the Tomcat vulnerability, but choose to "overlook" the other violations to "make life easier" - however we wish to demonstrate the implications this decision will have!
 
-## The "root user" policy isn't enforced by default in StackRox
-
-  - Go to UI > Platform Configuration > System Policies
-  - Type "Enforcement" in the filter bar, click on it so it becomes blue. Then type "FAIL_BUILD_ENFORCEMENT" and press enter.
-
-See how, by default, only a small number of policies are configured to apply enforcement of the policy (that would cause pipeline to fail if violated).
-
-***Note:** For informational purposes only - do not set this policy's enforcement behaviour to "on" as part of th demo run.*
-*It is possible to turn enforcement behaviour on by doing the following:*  
-  *- Go to UI > Platform Configuration > System Policies*  
-    *- Filter for "Docker CIS 4.1: Ensure That a User for the Container Has Been Created"*  
-    *- Click on the policy. Then click on: Edit > Next > Next > Next > Turn "Enforcement Behaviour" on > Save*  
-
 ## Fix Tomcat, but not the use of root-user
 You may fork the repo that we are building, and make the mod yourself. For the interest of time we suggest you use the pre-built branch with the Tomcat fix, but still running as root user:
 
@@ -94,3 +81,16 @@ Write this section:
 
 ## TODO: Changes to SCC to ensure deployment yaml causes correct SCC to be used - show how securityContexts can help reduce attack vectors.
 SCCs changing needs to be part of the previous section...
+
+## The "root user" policy isn't enforced by default in StackRox
+
+  - Go to UI > Platform Configuration > System Policies
+  - Type "Enforcement" in the filter bar, click on it so it becomes blue. Then type "FAIL_BUILD_ENFORCEMENT" and press enter.
+
+See how, by default, only a small number of policies are configured to apply enforcement of the policy (that would cause pipeline to fail if violated).
+
+***Note:** For informational purposes only - do not set this policy's enforcement behaviour to "on" as part of th demo run.*
+*It is possible to turn enforcement behaviour on by doing the following:*  
+  *- Go to UI > Platform Configuration > System Policies*  
+    *- Filter for "Docker CIS 4.1: Ensure That a User for the Container Has Been Created"*  
+    *- Click on the policy. Then click on: Edit > Next > Next > Next > Turn "Enforcement Behaviour" on > Save*  
