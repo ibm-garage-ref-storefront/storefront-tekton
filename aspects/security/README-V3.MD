@@ -239,7 +239,7 @@ Edit the configuration of the installer.
 
     vi ~/config.bc-full
 
-Set the value of STACKROX_API_TOKEN with the previously created Token.
+Set the value of STACKROX_API_TOKEN with the previously created CI Token.
 
 Run the setup:
 
@@ -273,11 +273,15 @@ Inspect the Customer Micro Service Dockerfile
 
 ![Fail](../../images/customer-docker-file.png?raw=true "Title")
 
-Drill down on the critical vulnerability
+Drill down on the critical vulnerability by clicking on View All CVES by CVSS Score and then sorting by severity
+
+![Fail](../../images/cves-by-cvss-score.png?raw=true "Title")
+
+As we see below the CVE-2020-1938 is the critical vulnrability in our image.  Click on this to find out more detail.
 
 ![Fail](../../images/drill-down.png?raw=true "Title")
 
-Find out what needs to be fixed:
+Find out what needs to be fixed and look at the component and deployment tabs in the related entities section on the left hand side.
 
 ![Fail](../../images/fix-version.png?raw=true "Title")
 
