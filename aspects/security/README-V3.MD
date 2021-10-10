@@ -24,7 +24,7 @@ The tools setup will have installed stackrox. It needs to be configured to monit
 
 Verify using:
 
-    watch oc get po -n stackrox
+    oc get po -n stackrox
 
 Output:
 
@@ -55,7 +55,7 @@ Setup port-forwarding:
 
     oc port-forward svc/central -n stackrox 8443:443
 
-Login via your browser, via right-click, open a new tab ["here"](https://localhost:8443). 
+Login via your browser, via right-click, open a new tab ["here"](https://localhost:8443). (You can ignore the privacy error in your browser)
 
 Use the login that was previously obtained. You should now be logged in:
 
@@ -64,6 +64,8 @@ Use the login that was previously obtained. You should now be logged in:
 ## c) Make the StackRox API tokens
 
 Go to Platform Configuration, Integrations, Authentication Tokens, StackRox
+
+![Fail](../../images/srox-platform-config.png?raw=true "Title")
 
 Open it and create an API token of type Sensor.
 
