@@ -67,15 +67,23 @@ Go to Platform Configuration, Integrations, Authentication Tokens, StackRox
 
 ![Fail](../../images/srox-platform-config.png?raw=true "Title")
 
-Open it and create an API token of type Sensor.
+Click on New Integration and create an API token with Token Name set to sensor_api_token and a role of Sensor Creator.
 
-![Fail](../../images/sensor-token.png?raw=true "Title")
+![Fail](../../images/srox-api-token.png?raw=true "Title")
 
-Open it and create an API token of type Admin.
+![Fail](../../images/srox-sensor-token-1.png?raw=true "Title")  
 
-![Fail](../../images/admin-api-token.png?raw=true "Title")
+Copy the generated Token as we will use this later
 
-Make sure you store the tokens.
+Create a API token with Token Name set to admin_api_token & Role set to Admin.
+
+![Fail](../../images/srox-admin-api-token.png?raw=true "Title")
+
+Copy the generated Token as we will use this later
+
+Your integrations screen should have 2 integrations shown as below;
+
+![Fail](../../images/srox-integrations.png?raw=true "Title")
 
 Close the port-forwarding.
 
@@ -89,9 +97,31 @@ Paste in the admin api token.
 
 ## e) Verify the state
 
-Wait until stackrox has reconfigured itself:
+Wait until stackrox has reconfigured itself by running the command `oc get po -n stackrox` until all pods are started or you can add the parameter `-w` or `--watch` to your command. This parameter will watch for status changes and will display them. So to watch your pods use the command:
 
-    watch oc get po -n stackrox
+    oc get po -n stackrox -w
+
+Hint: To stop watch just hit ctrl & c.
+
+Output:
+
+    NAME                                 READY   STATUS    RESTARTS   AGE
+    admission-control-555f6c6c8b-l8x97   1/1     Running   0          94s
+    admission-control-555f6c6c8b-xbdf6   1/1     Running   0          94s
+    admission-control-555f6c6c8b-znhj4   1/1     Running   0          94s
+    central-675bb87b56-k8fpj             1/1     Running   0          3d13h
+    collector-29sv9                      2/2     Running   0          94s
+    collector-jk7cb                      2/2     Running   0          94s
+    collector-w6vmn                      2/2     Running   0          94s
+    scanner-6f69b6d8d6-27jxk             1/1     Running   0          42s
+    scanner-6f69b6d8d6-5srdz             1/1     Running   0          3d13h
+    scanner-6f69b6d8d6-f297z             1/1     Running   0          57s
+    scanner-6f69b6d8d6-hrtdv             1/1     Running   0          57s
+    scanner-6f69b6d8d6-j588m             1/1     Running   0          3d13h
+    scanner-db-857d66bccd-mdc4m          1/1     Running   0          3d13h
+    sensor-549f459476-qjqrv              1/1     Running   0          94s
+
+Notice we have some new pods to our Stackrox deployment now, admission-controler, collector and sensor pods.
 
 Login to stackrox:
 
