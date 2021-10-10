@@ -37,25 +37,25 @@ echo "add secrets:"
 
 # Access to OpenShift
 export HOST=$(oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}')
-docker login -u $(oc whoami) -p $(oc whoami -t) $HOST ### maybe comment this line out, unless something else requires the login to have occurred? ###
+# docker login -u $(oc whoami) -p $(oc whoami -t) $HOST ### maybe comment this line out, unless something else requires the login to have occurred? ###
 
-# find os to ensure correct base64 command syntax
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    mycommand="base64 -w 0"  
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-    mycommand="base64 -b 0"
-else
-    printf "\nOS-TYPE is not Linux or Mac, so attempting base64 single-line command. Please investigate if it fails.\n"
-    # For some Mac's we might need to use "/usr/bin/base64 -b 0"
-    mycommand="base64 -w 0"
-fi
+# # find os to ensure correct base64 command syntax
+# if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+#     mycommand="base64 -w 0"  
+# elif [[ "$OSTYPE" == "darwin"* ]]; then
+#     mycommand="base64 -b 0"
+# else
+#     printf "\nOS-TYPE is not Linux or Mac, so attempting base64 single-line command. Please investigate if it fails.\n"
+#     # For some Mac's we might need to use "/usr/bin/base64 -b 0"
+#     mycommand="base64 -w 0"
+# fi
 
 # create auth file
 cat <<EOF > ./auth.json
 {
         "auths": {
                 "$HOST": {
-                        "auth": "$(echo -n $(oc whoami):$(oc whoami -t) | $mycommand)"
+                        "auth": "$(echo -n $(oc whoami):$(oc whoami -t))"
                 }
         }
 }
@@ -67,9 +67,10 @@ oc create secret generic oir-registrycreds \
 
 # Access to StackRox
 oc delete secret generic stackrox-details 2>/dev/null
-cp tools/stackrox/stackrock-details.yaml /tmp/stackrox-details.yaml
-sed -i "s/REPLACE_WITH_STACKROX_API_TOKEN/${STACKROX_API_TOKEN}/g" /tmp/stackrox-details.yaml
-oc apply -f /tmp/stackrox-details.yaml
-rm /tmp/stackrox-details.yaml
+oc create secret generic stackrox-details --from-literal ROX_SECURE_TOKEN=${STACKROX_API_TOKEN}
+# cp tools/stackrox/stackrock-details.yaml /tmp/stackrox-details.yaml
+# sed 's|'REPLACE_WITH_STACKROX_API_TOKEN'|'"${STACKROX_API_TOKEN}"'|g' /tmp/stackrox-details.yaml
+# oc apply -f /tmp/stackrox-details.yaml
+# rm /tmp/stackrox-details.yaml
 
 echo "--------------------------------"

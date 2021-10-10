@@ -65,25 +65,25 @@ Use the login that was previously obtained. You should now be logged in:
 
 Go to Platform Configuration, Integrations, Authentication Tokens, StackRox
 
-![Fail](../../images/srox-platform-config.png?raw=true "Title")
+![Fail](../../images/stackrox-platform-config.png?raw=true "Title")
 
 Click on New Integration and create an API token with Token Name set to sensor_api_token and a role of Sensor Creator.
 
-![Fail](../../images/srox-api-token.png?raw=true "Title")
+![Fail](../../images/stackrox-api-token.png?raw=true "Title")
 
-![Fail](../../images/srox-sensor-token-1.png?raw=true "Title")  
+![Fail](../../images/stackrox-sensor-token-1.png?raw=true "Title")  
 
 Copy the generated Token as we will use this later
 
 Create a API token with Token Name set to admin_api_token & Role set to Admin.
 
-![Fail](../../images/srox-admin-api-token.png?raw=true "Title")
+![Fail](../../images/stackrox-admin-api-token.png?raw=true "Title")
 
 Copy the generated Token as we will use this later
 
 Your integrations screen should have 2 integrations shown as below;
 
-![Fail](../../images/srox-integrations.png?raw=true "Title")
+![Fail](../../images/stackrox-integrations.png?raw=true "Title")
 
 Close the port-forwarding.
 
@@ -127,7 +127,7 @@ Login to stackrox:
 
     oc port-forward svc/central -n stackrox 8443:443
 
-Login via your browser, via right-click, open a new tab ["here"](https://localhost:8443). 
+Login via your browser, via right-click, open a new tab ["here"](https://localhost:8443/main/clusters). 
 
 Verify that the cluster is monitored:
 
@@ -135,15 +135,19 @@ Verify that the cluster is monitored:
 
 ## e) Configure Compliance
 
-Press the scan button.
+Navigate to Compliance and then Press the Scan environment button.
+
+![Fail](../../images/stackrox-compliance-scan-env.png?raw=true "Title")
 
 ![Fail](../../images/compliance.png?raw=true "Title")
 
 ## f) Inspect the vulnerable images
 
+Navigate to Vulnerability Management to view the results of our scan.
+
 ![Fail](../../images/vulnerability-management.png?raw=true "Title")
 
-The blue compute customer-ms-spring image made it to the top of the list of vulnerable deployments. 
+The blue compute customer-ms-spring image made it to the top 10 list of riskiest images!!
 
 Lets handle it in the next section of the workshop.
 
@@ -194,19 +198,21 @@ Go to Platform Configuration, Integrations, Authentication Tokens, StackRox
 
 ![Fail](../../images/stack-rox-api-token.png?raw=true "Title")
 
-Open it and create an API token of type CI integration.
+Click on New Integration and create an API token with name set to ci_token adn Role set to Continuous Integration.
 
-![Fail](../../images/stackrox-api-token-type-ci.png?raw=true "Title")
+![Fail](../../images/stackrox-ci-token.png?raw=true "Title")
 
 Copy the token and store it safely.
 
 ## c) Connect StackRox to the OpenShift Image Registry
 
-Create a new registry integration of type "generic docker registry":
+Click on Integrations on the left hand menu and select the image integration docker "generic docker registry" as shown below:
 
 ![Fail](../../images/generic-docker-registry.png?raw=true "Title")
 
-Fill in your credentials and test that the integration works:
+Click New Integration button and complete the details as shown below
+
+Integration Name - OpenShift_Image_registry
 
 Get your user name:
 
@@ -216,7 +222,7 @@ Get your token:
 
     oc whoami -t
 
-For registry use:
+For Endpoint use:
 
     image-registry.openshift-image-registry.svc:5000
 
@@ -224,7 +230,7 @@ For registry use:
 
 Disable TLS Certificate Validation.
 
-Save and exit.
+Click Test button to confirm details are correct and then Save and exit.
 
 
 ## d) Configure the StackRox API token
