@@ -290,7 +290,7 @@ Take a careful look at the recommended fix version.
 
 # Let's go and build our defense.
 
-Analyze the project using snyk, it recommends us to level up the pom of the microservice.
+Analyze the project using Snyk, it recommends us to level up the pom of the microservice.
 
 ![Fail](../../images/snyk-recommendation.png?raw=true "Title")
 
