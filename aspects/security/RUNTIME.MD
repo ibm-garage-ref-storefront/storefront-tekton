@@ -122,6 +122,25 @@ Inspect the Stackrox report for the image that was built
 
 ![Fail](../../images/customer-report.png?raw=true "Title")
 
+Inspect the Customer Micro Service Dockerfile
+
+![Fail](../../images/customer-docker-file.png?raw=true "Title")
+
+Drill down on the critical vulnerability by clicking on View All CVES by CVSS Score and then sorting by severity
+
+![Fail](../../images/cves-by-cvss-score.png?raw=true "Title")
+
+As we see below the CVE-2020-1938 is the critical vulnrability in our image.  Click on this to find out more detail.
+
+![Fail](../../images/drill-down.png?raw=true "Title")
+
+Find out what needs to be fixed and look at the component and deployment tabs in the related entities section on the left hand side.
+
+![Fail](../../images/fix-version.png?raw=true "Title")
+
+Take a careful look at the recommended fix version.
+
+**Summary**
 The scan has failed due to one policy violation:
   - Tomcat needs upgrading
 
@@ -131,6 +150,28 @@ The scan has an additional violation:
 ...but StackRox isn't configured to enforce it so won't cause the task to fail.
  
 We will fix the Tomcat vulnerability, but choose to "overlook" the other violations to "make life easier" - however we wish to demonstrate the implications this decision will have!
+
+
+# Let's go and build our defense.
+
+Analyze the project using Snyk, it recommends us to level up the pom of the microservice.
+
+## Install Snyk
+
+If you don't already have Maven, Visual Studio Code (VS Code) and Red Hat Dependency Analytics installed and configured on your machine, follow [these instructions](./rhda_setup.md) (ensure to open in a new tab so that you can return here). They provide additional steps to ensure Maven is correctly configured. If you have Maven configured, then:
+  - Install [Visual Studio Code (VS Code)](https://code.visualstudio.com/download)
+  - Install the Red Hat Dependency Analytics [plugin](https://marketplace.visualstudio.com/items?itemName=redhat.fabric8-analytics) in VS Code
+
+Clone the customer-ms-spring microservice [repo](https://github.com/kitty-catt/customer-ms-spring) and inspect the branch named **solo** with Snyk (it is very important to inspect the correct branch, otherwise the results of the inspection will not be accurate).
+
+If not already done, create a free Snyk account and get your token.
+
+## Snyk Recommendation
+
+Inspect the report:
+
+![Fail](../../images/snyk-recommendation.png?raw=true "Title")
+
 
 ## Fix Tomcat, but not the use of root-user
 You may fork the repo that we are building, and make the mod yourself. For the interest of time we suggest you use the pre-built branch with the Tomcat fix, but still running as root user:
