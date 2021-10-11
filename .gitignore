@@ -1,1 +1,3 @@
 .dccache
+auth.json
+cluster-init-bundle.yaml*

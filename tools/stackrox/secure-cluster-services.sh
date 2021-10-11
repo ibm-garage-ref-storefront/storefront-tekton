@@ -12,6 +12,15 @@ CLUSTERNOTREADY=false
 # Clear the screen
 clear
 
+# Set Directory
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    export ROXCTL_DIR=~/bin/roxctl
+    echo "linux OS so Roxctl is set to $ROXCTL_DIR"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    export ROXCTL_DIR=/usr/local/bin/roxctl
+    echo "Set mac OS so Roxctl is set to $ROXCTL_DIR"
+fi
+
 # Check curl exists
 curl_check=$(command -v curl)
 if [ -z "$curl_check" ]; then
@@ -38,15 +47,15 @@ fi
 printf "\nChecking if roxctl exists.\n"
 roxctl_check=$(command -v roxctl)
 if [ -z "$roxctl_check" ]; then
-    if [ ! -f ~/bin/roxctl ]; then
+    if [ ! -f $ROXCTL_DIR ]; then
       echo "roxctl doesn't exist; installing the stackrox cli."
 	  if [ ! -d "~/bin" ]; then
 	    mkdir ~/bin
 	  fi
-      curl https://mirror.openshift.com/pub/rhacs/assets/$roxVer/bin/Linux/roxctl -o ~/bin/roxctl
+      curl https://mirror.openshift.com/pub/rhacs/assets/$roxVer/bin/Linux/roxctl -o $ROXCTL_DIR
       RC=$?
       if [ "$RC" -eq 0 ]; then
-        chmod 755 ~/bin/roxctl
+        chmod 755 $ROXCTL_DIR
 	    HOMEDIRBIN=true
         RC=$?
         if [ "$RC" -ne 0 ]; then
@@ -62,7 +71,7 @@ else
     roxInstalledVer=$(roxctl version)
     sortedVal=$(printf "$roxVer\n$roxInstalledVer" | sort -V -r | sed -n 1p)
     echo "Stackrox cli already exists, located at $roxctl_check and version is $roxInstalledVer."
-	if [ -f ~/bin/roxctl ]; then
+	if [ -f $ROXCTL_DIR ]; then
 	  HOMEDIRBIN=true
 	fi
     if [[ "$roxInstalledVer" == "$sortedVal" ]]; then
@@ -150,7 +159,7 @@ export ROX_CENTRAL_ADDRESS=localhost:8443
 # Generate the bundle from StackRox
 printf "\nGenerating bundle from Stackrox.\n"
 if [ "$HOMEDIRBIN" == "true" ]; then
-  ~/bin/roxctl -e "$ROX_CENTRAL_ADDRESS" central init-bundles generate $clusterName --output cluster-init-bundle.yaml --insecure-skip-tls-verify
+  $ROXCTL_DIR -e "$ROX_CENTRAL_ADDRESS" central init-bundles generate $clusterName --output cluster-init-bundle.yaml --insecure-skip-tls-verify
 else
   roxctl -e "$ROX_CENTRAL_ADDRESS" central init-bundles generate $clusterName --output cluster-init-bundle.yaml --insecure-skip-tls-verify
 fi
