@@ -294,6 +294,8 @@ Analyze the project using Snyk, it recommends us to level up the pom of the micr
 
 ## Install Snyk
 
+If not already done, install [Visual Studio Code (VS Code)](https://code.visualstudio.com/download) on your workstation.
+
 Install the Redhat Dependency Analytics [plugin](https://marketplace.visualstudio.com/items?itemName=redhat.fabric8-analytics) in VS Code.
 
 Clone the customer-ms-spring microservice [repo](https://github.com/kitty-catt/customer-ms-spring) and inspect the branch named **solo** with Snyk (it is very important to inspect the correct branch, otherwise the results of the inspection will not be accurate).
