@@ -156,7 +156,7 @@ We will fix the Tomcat vulnerability, but choose to "overlook" the other violati
 
 Analyze the project using Snyk, it recommends us to level up the pom of the microservice.
 
-## Install Snyk
+## OPTIONAL: Install Snyk
 
 If you don't already have Maven, Visual Studio Code (VS Code) and Red Hat Dependency Analytics installed and configured on your machine, follow [these instructions](./rhda_setup.md) (ensure to open in a new tab so that you can return here). They provide additional steps to ensure Maven is correctly configured. If you have Maven configured, then:
   - Install [Visual Studio Code (VS Code)](https://code.visualstudio.com/download)
@@ -166,7 +166,7 @@ Clone the customer-ms-spring microservice [repo](https://github.com/kitty-catt/c
 
 If not already done, create a free Snyk account and get your token.
 
-## Snyk Recommendation
+## OPTIONAL: Snyk Recommendation
 
 Inspect the report:
 
