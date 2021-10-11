@@ -16,6 +16,86 @@ We will build, deploy and test the customer-ms-spring runtime branch and then lo
 
 [Scan and Import](../nuts-and-bolts/SCAN.MD) the images that are used by the tool-chain if you have not already done so.
 
+# StackRox
+
+## a) Get the admin password
+
+The tools setup has installed stackrox.
+
+    helm get notes stackrox-central-services -n stackrox
+
+We are looking for:
+
+    helm get notes stackrox-central-services -n stackrox | grep -A3 "initial setup"
+
+# Configure StackRox
+
+## a) Login to StackRox
+
+Setup port-forwarding:
+
+    oc port-forward svc/central -n stackrox 8443:443
+
+Login via your browser, via right-click, open a new tab ["here"](https://localhost:8443). 
+
+Use the login that was previously obtained. You should now be logged in:
+
+![Fail](../../images/stackrox-login.png?raw=true "Title")
+
+
+## b) Make a StackRox API token
+
+Go to Platform Configuration, Integrations, Authentication Tokens, StackRox
+
+![Fail](../../images/stack-rox-api-token.png?raw=true "Title")
+
+Click on New Integration and create an API token with name set to ci_token adn Role set to Continuous Integration.
+
+![Fail](../../images/stackrox-ci-token.png?raw=true "Title")
+
+Copy the token and store it safely.
+
+## c) Connect StackRox to the OpenShift Image Registry
+
+Click on Integrations on the left hand menu and select the image integration docker "generic docker registry" as shown below:
+
+![Fail](../../images/generic-docker-registry.png?raw=true "Title")
+
+Click New Integration button and complete the details as shown below
+
+Integration Name - OpenShift_Image_registry
+
+Get your user name:
+
+    oc whoami
+
+Get your token:
+
+    oc whoami -t
+
+For Endpoint use:
+
+    image-registry.openshift-image-registry.svc:5000
+
+![Fail](../../images/test-integration.png?raw=true "Title")
+
+Disable TLS Certificate Validation.
+
+Click Test button to confirm details are correct and then Save and exit.
+
+
+## d) Configure the StackRox API token
+
+Edit the configuration of the installer.
+
+    vi ~/config.bc-full
+
+Set the value of STACKROX_API_TOKEN with the previously created CI Token.
+
+Run the setup:
+
+    bash scripts/pipeline/stackrox-setup.sh  
+
 
 # The StackRox pipeline
 
