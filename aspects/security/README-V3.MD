@@ -172,31 +172,47 @@ StackRox is detecting the actions and therefore we can elect as whether we wish 
 (**Insert screenshot and instructions "process with UID 0", performing this for a single namespace only**)
  - Platform Configuration \> System Policies \> Find "process with UID 0" \> edit x3 runtime enforcement on etc...
 
+Let's take a look at see what's happened to our container:
+```
+oc rsh $(oc get po -l deployment=customer-ms-spring --output custom-columns=:.metadata.name)
+```
+
+StackRox has taken an action on our container!
+
 However this should be used as a secondary line of defence, with good container configuration hygiene being the correct resolution (i.e. create a container in your container configuration and ensure it doesn't default to root, or worse, you specifiy root as the user without good reason).
 
 (**Is the process baselining forming yet? If so, let's write something about that**)
 
 Alongside good container hygiene and StackRox monitoring, there is an additional line of defence to be aware of...
 
-## TODO: Amend the deployment.yaml to add securityContexts in to reduce attack vectors.
-Write this section:
-  - ensure `privilege` is removed
-  - remove `capabilities`
-
-We need to make an impact on:
+## Admission Control: Security Context Constraints (SCCs)
+OpenShift very kindly provides an opinionated set of deployment policies, called Security Context Constraints (SCCs). You may remember back in the initial labs, we did what most developers like to do - we took a shortcut.
 ```
 oc new-project full-bc
 oc adm policy add-scc-to-user anyuid -z customer-ms-spring-sa
 ```
 
-So...
+It might not seem like much, but what we did here was to say that the service account (i.e. the programmtic account) assigned to our deployment was allowed to make deployments (within the `full-bc` project) aligned with the `anyuid` SCC. This SCC, as the name suggests, permits workloads to run as "anyuid", which includes root (uid=0). This shows just how easy it can be to "slacken security contraints". It might help us initially, but it sets us down the road of bad practice and could cause us (security) problems later in.
+
+So... what simple change can we try, in order to revert this?
 ```
 oc adm policy remove-scc-from-user anyuid -z customer-ms-spring-sa
-# scale down to 0, back up to 1.
 ```
 
-## TODO: Changes to SCC to ensure deployment yaml causes correct SCC to be used - show how securityContexts can help reduce attack vectors.
-SCCs changing needs to be part of the previous section...
+And then amend the replicas to invoke the change in SCC used:
+```
+oc scale --replicas=0 deployment/customer-ms-spring
+oc scale --replicas=1 deployment/customer-ms-spring
+```
+
+Then take a look at the pods
+```
+oc get pods
+```
+
+Create a remote shell into the newly created customer-ms-spring pod: `oc rsh <pod-name>`. Let's see what user id we are running with (type `id` in the pod).
+
+Now try and see if how many of [these things](./TROUBLE.MD) (right-click, next tab) you can still do.
 
 ## TODO: Run container image with user=1001 and fixed Tomcat
 
