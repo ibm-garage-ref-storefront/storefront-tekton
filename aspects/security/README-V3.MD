@@ -153,7 +153,7 @@ Navigate to Vulnerability Management to view the results of our scan.
 
 
 ## Taking Advantage of a Root Container
-If we look at (right-click, next tab) [this](./TROUBLE.MD) set of tests, we can examine the impacts of running a container as root. You'll see we can:
+If we look at (right-click, new tab) [this](./TROUBLE.MD) set of tests, we can examine the impacts of running a container as root. You'll see we can:
  - install lots of tools, with access to yum
  - We can also obtain and use environment variables
  - Further to this, we can utilise the installed tools like `tcpdump` and `nmap` to look at traffic and inspect the network around us
@@ -212,7 +212,7 @@ oc get pods
 
 Create a remote shell into the newly created customer-ms-spring pod: `oc rsh <pod-name>`. Let's see what user id we are running with (type `id` in the pod).
 
-Now try and see if how many of [these things](./TROUBLE.MD) (right-click, next tab) you can still do.
+Now try and see if how many of [these things](./TROUBLE.MD) (right-click, new tab) you can still do.
 
 ## TODO: Run container image with user=1001 and fixed Tomcat
 
