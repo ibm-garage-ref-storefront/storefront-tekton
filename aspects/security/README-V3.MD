@@ -1,6 +1,6 @@
 # Welcome to IBM Prevail 2021
 
-We will inspect the running status of the blue compute shop via stackrox **and** we will build, deploy and test the customer-ms-spring solo branch.
+We will inspect the running status of the blue compute shop via stackrox.
 
 ## Pre-requisites
 
@@ -214,7 +214,11 @@ Create a remote shell into the newly created customer-ms-spring pod: `oc rsh <po
 
 Now try and see if how many of [these things](./TROUBLE.MD) (right-click, new tab) you can still do.
 
-## TODO: Run container image with user=1001 and fixed Tomcat
+By removing the permission to use the anyuid SCC, the customer-ms-spring service account fell back to the default SCC, named `restricted`. This SCC doesn't permit a container to run as root and it causes an arbitrary UID to be assigned - how great is that?! Alongside this, it also doesn't permit [privileged](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#privileged) containers, nor access to the underlying host's [namespaces](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#host-namespaces). The restricted SCC on OpenShift is incredibly useful, and developers should align every deployment to it where possible.
+
+But we haven't yet done the best thing regarding the user of our customer-ms-spring container. By not specifying a non-root user, we are at risk that someone will deploy it under an SCC that doesn't enforce a non-root rule. So what should we do...
+
+## Specify Non-root user in Container Image
 
 We can now look at a container image with user != root and Tomcat at a fixed version:
 
