@@ -16,6 +16,10 @@ We will inspect the running status of the blue compute shop via stackrox **and**
 
 [Scan and Import](../nuts-and-bolts/SCAN.MD) the images that are used by the tool-chain if you have not already done so.
 
+### d) Configure StackRox pipeline
+
+[Configure](./RUNTIME.MD) StackRox pipeline if you have not already done so.
+
 # StackRox Cluster Monitoring
 
 ## a) Verify
