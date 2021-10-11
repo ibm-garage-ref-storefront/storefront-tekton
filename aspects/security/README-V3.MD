@@ -183,3 +183,6 @@ The pipeline now runs to completion:
 Inspect the stackrox console and verify the vulnerability was successfully patched.
 
 ![Fail](../../images/fix-version-in-stackrox.png?raw=true "Title")
+
+## TODO: show that with SCCs, nonroot user, etc things are locked down
+I.e. the story that a good container config + deployment yaml = correct use of SCCs and SAs makes a massive difference.
