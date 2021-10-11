@@ -300,9 +300,9 @@ Clone the customer-ms-spring microservice [repo](https://github.com/kitty-catt/c
 
 If not already done, create a free Snyk account and get your token.
 
-Inspect the report.
-
 ## Snyk Recommendation
+
+Inspect the report:
 
 ![Fail](../../images/snyk-recommendation.png?raw=true "Title")
 
