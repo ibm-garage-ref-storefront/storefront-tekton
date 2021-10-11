@@ -38,3 +38,9 @@ mvn -version
 
 ## VS Code
 Install via [this webpage](https://code.visualstudio.com/download).
+
+## Red hat Dependency Analytics
+Install the [Red Hat Dependency Analytics plugin](https://marketplace.visualstudio.com/items?itemName=redhat.fabric8-analytics) in VS Code.
+
+### Extension Pack for Java
+After having installed Red Hat Dependency Analytics, it may suggest you need the [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack). If so, follow the instructions from within VS Code. Ensure to restart VS Code post install.
