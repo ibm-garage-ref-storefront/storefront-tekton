@@ -324,3 +324,20 @@ The pipeline now runs to completion:
 Inspect the stackrox console and verify the vulnerability was successfully patched.
 
 ![Fail](../../images/fix-version-in-stackrox.png?raw=true "Title")
+
+## TODO: Demonstrate what can be done in the container and what StackRox runtime monitoring is detecting (i.e. policy violations)
+Write this section:
+  - install curl et al
+  - update packages
+  - could give privilege and mount host directory?
+  - show what StackRox is picking up
+    - both; policy violations (e.g. use of package manager)
+    - and; the baseline (assuming it's forming?) 
+
+## TODO: Amend the deployment.yaml to add securityContexts in to reduce attack vectors.
+Write this section:
+  - ensure `privilege` is removed
+  - remove `capabilities`
+
+## TODO: Changes to SCC to ensure deployment yaml causes correct SCC to be used - show how securityContexts can help reduce attack vectors.
+SCCs changing needs to be part of the previous section...
