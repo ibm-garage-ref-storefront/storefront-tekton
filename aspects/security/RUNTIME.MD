@@ -154,11 +154,9 @@ We will fix the Tomcat vulnerability, but choose to "overlook" the other violati
 
 # Let's go and build our defense.
 
-Analyze the project using Snyk, it recommends us to level up the pom of the microservice.
-
 ## OPTIONAL: Install Snyk
 
-If you don't already have Maven, Visual Studio Code (VS Code) and Red Hat Dependency Analytics installed and configured on your machine, follow [these instructions](./rhda_setup.md) (ensure to open in a new tab so that you can return here). They provide additional steps to ensure Maven is correctly configured. If you have Maven configured, then:
+Analyze the project using Snyk, it recommends us to level up the pom of the microservice. If you don't already have Maven, Visual Studio Code (VS Code) and Red Hat Dependency Analytics installed and configured on your machine, follow [these instructions](./rhda_setup.md) (ensure to open in a new tab so that you can return here). They provide additional steps to ensure Maven is correctly configured. If you have Maven configured, then:
   - Install [Visual Studio Code (VS Code)](https://code.visualstudio.com/download)
   - Install the Red Hat Dependency Analytics [plugin](https://marketplace.visualstudio.com/items?itemName=redhat.fabric8-analytics) in VS Code
 
