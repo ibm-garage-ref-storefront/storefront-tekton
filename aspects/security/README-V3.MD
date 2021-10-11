@@ -175,7 +175,7 @@ oc adm policy add-scc-to-user anyuid -z customer-ms-spring-sa
 So...
 ```
 oc adm policy remove-scc-from-user anyuid -z customer-ms-spring-sa
-### oc adm policy add-scc-to-user nonroot -z customer-ms-spring-sa
+# scale down to 0, back up to 1.
 ```
 
 ## TODO: Changes to SCC to ensure deployment yaml causes correct SCC to be used - show how securityContexts can help reduce attack vectors.
