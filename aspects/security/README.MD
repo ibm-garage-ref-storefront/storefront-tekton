@@ -101,7 +101,7 @@ Take some time to explore the vulnerabilties. Click on the links in the report t
 
 # Levelling up
 
-## a) install Snyk
+## a) Install Snyk
 
 Download and Install Maven:
 
