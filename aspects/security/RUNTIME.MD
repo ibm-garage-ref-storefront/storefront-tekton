@@ -16,13 +16,6 @@ We will build, deploy and test the customer-ms-spring runtime branch and then lo
 
 [Scan and Import](../nuts-and-bolts/SCAN.MD) the images that are used by the tool-chain if you have not already done so.
 
-### d) Configure StackRox monitoring of the cluster
-
-[Configure](./README-V3.MD) monitoring if you have not already done so.
-
-### e) Configure StackRox pipeline
-
-[Configure](./README-V3.MD) StackRox pipeline if you have not already done so.
 
 # The StackRox pipeline
 
