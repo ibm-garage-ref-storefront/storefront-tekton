@@ -157,7 +157,7 @@ If we look at (right-click, next tab) [this](./TROUBLE.MD) set of tests, we can 
  - install lots of tools, with access to yum
  - We can also obtain and use environment variables
  - Further to this, we can utilise the installed tools like `tcpdump` and `nmap` to look at traffic and inspect the network around us
-  - Given we can find pods' and nodes' IPs (`oc get pod -o wide`) perhaps we can do something here `nmap \<pod-range\>` or nmap \<node-range\>`?
+  - Given we can find pods' and nodes' IPs (`oc get pod -o wide`) perhaps we can do something here `nmap <pod-range>` or `nmap <node-range>`?
 
 So we know we can do things that aren't required for the running of the specific application this pod was deployed to run (and these are just some basics), but the access to the package manager (`yum`) and being root user could potentially mean it is possible to [create a yum repository somewhere](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/sec-yum_repository), or find a malicious external repository and then [add it to the container](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/sec-managing_yum_repositories).
     
