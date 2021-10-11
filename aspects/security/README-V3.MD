@@ -294,8 +294,6 @@ Analyze the project using Snyk, it recommends us to level up the pom of the micr
 
 ## Install Snyk
 
-## a) Install Snyk
-
 Install the Redhat Dependency Analytics [plugin](https://marketplace.visualstudio.com/items?itemName=redhat.fabric8-analytics) in VS Code.
 
 Clone the customer-ms-spring microservice [repo](https://github.com/kitty-catt/customer-ms-spring) and inspect it with Snyk.
@@ -303,10 +301,6 @@ Clone the customer-ms-spring microservice [repo](https://github.com/kitty-catt/c
 If not already done, create a free Snyk account and get your token.
 
 Inspect the report.
-
-![Report](../../images/snyk.png?raw=true "Title")
-
-Create a clone of the repo. See if you can improve the security of the image via the snyk & owasp report suggestions. Update the tekton resource to build your clone. 
 
 ## Snyk Recommendation
 
