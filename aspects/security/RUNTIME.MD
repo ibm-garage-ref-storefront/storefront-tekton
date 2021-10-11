@@ -140,7 +140,7 @@ Find out what needs to be fixed and look at the component and deployment tabs in
 
 Take a careful look at the recommended fix version.
 
-**Summary**
+**Summary**  
 The scan has failed due to one policy violation:
   - Tomcat needs upgrading
 
