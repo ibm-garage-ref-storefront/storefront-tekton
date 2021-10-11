@@ -20,7 +20,7 @@ We will inspect the running status of the blue compute shop via stackrox **and**
 
 ## a) Verify
 
-The tools setup will have installed stackrox. It needs to be configured to monitor the cluster.
+The tools setup will have installed StackRox. It needs to be configured to monitor the cluster.
 
 Verify using:
 
@@ -41,7 +41,7 @@ Output:
 
 ## a) Get the admin password
 
-The tools setup has installed stackrox.
+The tools setup has installed StackRox.
 
     helm get notes stackrox-central-services -n stackrox
 
@@ -57,7 +57,7 @@ Setup port-forwarding:
 
 Login via your browser, via right-click, open a new tab ["here"](https://localhost:8443). (You can ignore the privacy error in your browser)
 
-Use the login that was previously obtained. You should now be logged in:
+Use the password that was previously obtained (the user account is "admin"). You should now be logged in:
 
 ![Fail](../../images/stackrox-login.png?raw=true "Title")
 
