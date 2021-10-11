@@ -73,13 +73,13 @@ Click on New Integration and create an API token with Token Name set to sensor_a
 
 ![Fail](../../images/stackrox-sensor-token-1.png?raw=true "Title")  
 
-Copy the generated Token as we will use this later
+Copy the generated Token as we will use this later.
 
 Create a API token with Token Name set to admin_api_token & Role set to Admin.
 
 ![Fail](../../images/stackrox-admin-api-token.png?raw=true "Title")
 
-Copy the generated Token as we will use this later
+Copy the generated Token as we will use this later.
 
 Your integrations screen should have 2 integrations shown as below;
 
@@ -93,7 +93,7 @@ Keep the admin token at hand.
 
     bash tools/stackrox/secure-cluster-services.sh
 
-Paste in the admin api token.
+Paste in the admin api token when prompted.
 
 ## e) Verify the state
 
