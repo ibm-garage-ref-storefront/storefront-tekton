@@ -154,21 +154,43 @@ We will fix the Tomcat vulnerability, but choose to "overlook" the other violati
 
 # Let's go and build our defense.
 
-## OPTIONAL: Install Snyk
+## OPTIONAL SECTION: View Code Vulnrabilities with Snyk in IDE
 
-Analyze the project using Snyk, it recommends us to level up the pom of the microservice. If you don't already have Maven, Visual Studio Code (VS Code) and Red Hat Dependency Analytics installed and configured on your machine, follow [these instructions](./rhda_setup.md) (ensure to open in a new tab so that you can return here). They provide additional steps to ensure Maven is correctly configured. If you have Maven configured, then:
+So far we have looked at using tools to analyise our application once a pipeline is triggered, however we can shift even further left!  We can use Red Hat Dependency Analytics to enable developers to create more secure applications by showing code vulnrabilities in thier IDE environment.  It will automatically analyze software composition, and provides recommendations to address security holes and licensing problems that a developer may miss.  This will help developers to fix any security issues before they have even pushed any code to a pipeline.  Red Hat Dependancy Analysis uses the Snyk database of vulnrabilities.  
+
+If you don't already have Maven, Visual Studio Code (VS Code) and Red Hat Dependency Analytics installed and configured on your machine, follow [these instructions](./rhda_setup.md) (ensure to open in a new tab so that you can return here). They provide additional steps to ensure Maven is correctly configured. If you have Maven configured, then:
   - Install [Visual Studio Code (VS Code)](https://code.visualstudio.com/download)
   - Install the Red Hat Dependency Analytics [plugin](https://marketplace.visualstudio.com/items?itemName=redhat.fabric8-analytics) in VS Code
 
-Clone the customer-ms-spring microservice [repo](https://github.com/kitty-catt/customer-ms-spring) and inspect the branch named **solo** with Snyk (it is very important to inspect the correct branch, otherwise the results of the inspection will not be accurate).
+## a) Clone the customer-ms-spring microservice 
 
-If not already done, create a free Snyk account and get your token.
+Clone the [repo](https://github.com/kitty-catt/customer-ms-spring) and checkout the the branch named **solo**. (it is very important to inspect the correct branch, otherwise the results of the inspection will not be accurate)
+
+    git checkout solo
+
+    Branch 'solo' set up to track remote branch 'solo' from 'origin'.
+    Switched to a new branch 'solo'
+
+## b) Analyise the pom.xml 
+Right click on the pom.xml and select Dependency Analytics Report as shown below. (You may need to click on the right hand side window area in VS Code for the Dependency Analytics screen to appear)
+
+![Fail](../../images/RHDA-select-pom.png?raw=true "Title")
+
+Click on the Orange Snyk Token button and generate a Snyk Token by signing up with your GitHub credentials to Snyk.
+
+![Fail](../../images/RHDA-main-screen.png?raw=true "Title")
 
 ## OPTIONAL: Snyk Recommendation
 
 Inspect the report:
 
 ![Fail](../../images/snyk-recommendation.png?raw=true "Title")
+
+If we drill down we can view the detail of the dependencies which shows current version and also the recommneded or latest version available.
+
+![Fail](../../images/RHDA-dependencies-view.png?raw=true "Title")
+
+As a developer this provides us with the infomration needed to improve our code before we have even deployed anything.  Any further left and we will fall off our chair! :)
 
 
 ## Fix Tomcat, but not the use of root-user
