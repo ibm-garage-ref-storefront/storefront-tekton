@@ -166,6 +166,18 @@ Write this section:
   - ensure `privilege` is removed
   - remove `capabilities`
 
+We need to make an impact on:
+```
+oc new-project full-bc
+oc adm policy add-scc-to-user anyuid -z customer-ms-spring-sa
+```
+
+So...
+```
+oc adm policy remove-scc-from-user anyuid -z customer-ms-spring-sa -n full-bc
+### oc adm policy add-scc-to-user nonroot -z customer-ms-spring-sa -n full-bc
+```
+
 ## TODO: Changes to SCC to ensure deployment yaml causes correct SCC to be used - show how securityContexts can help reduce attack vectors.
 SCCs changing needs to be part of the previous section...
 
