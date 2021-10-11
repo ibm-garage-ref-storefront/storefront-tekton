@@ -159,7 +159,23 @@ Write this section:
   - could give privilege and mount host directory?
   - show what StackRox is picking up
     - both; policy violations (e.g. use of package manager)
-    - and; the baseline (assuming it's forming?) 
+    - and; the baseline (assuming it's forming?)
+
+If we look at (right-click, next tab) [this](./TROUBLE.MD) set of tests, we can examine the impacts of running a container as root. You'll see we can:
+ - install lots of tools, with access to yum
+ - We can also obtain and use environment variables
+ - Further to this, we can utilise the installed tools like `tcpdump` and `nmap` to look at traffic and inspect the network around us
+   - Given we can find pods' and nodes 'IPs (`oc get pod -o wide`) perhaps we can do something here `nmap <pod-range>` or nmap <node-range>`?
+
+So we know we can do things that aren't required for the running of the specific application this pod was deployed to run (and these are just some basics), but the access to the package manager (`yum`) and being root user could potentially mean it is possible to [create a yum repository somewhere](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/sec-yum_repository), or find a malicious external repository and then [add it to the container](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/sec-managing_yum_repositories).
+    
+Or perhaps you'd like to install [crypto mining software](https://hostadvice.com/how-to/how-to-mine-cryptocurrency-with-cgminer-on-ubuntu/) - please don't!
+    
+Luckily, we can utilise policies within StackRox to prohibit the deployment of containers running as root.
+
+**(Insert screenshot and instructions "process with UID 0", performing this for a single namespace only)**
+
+However this should be used as a secondary line of defence, with good container configuration hygiene being the correct resolution (i.e. create a container in your container configuration and ensure it doesn't default to root, or worse, you specifiy root as the user without good reason).
 
 ## TODO: Amend the deployment.yaml to add securityContexts in to reduce attack vectors.
 Write this section:
