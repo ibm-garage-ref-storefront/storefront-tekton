@@ -233,5 +233,5 @@ Inspect the stackrox console and verify the vulnerability was successfully patch
 
 ![Fail](../../images/fix-version-in-stackrox.png?raw=true "Title")
 
-## TODO: show that with SCCs, nonroot user, etc things are locked down
-I.e. the story that a good container config + deployment yaml + correct use of SCCs and SAs makes a massive difference.
+## Summary: Container Security layering
+Secure container config + secure workload yaml + correct use of SCCs and SAs = Good container security
