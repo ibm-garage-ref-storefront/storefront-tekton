@@ -220,7 +220,7 @@ But we haven't yet done the best thing regarding the user of our customer-ms-spr
 
 ## Specify Non-root user in Container Image
 
-We can now look at a container image with user != root and Tomcat at a fixed version:
+We can now look at a container image with user != root and Tomcat at a fixed version, see the Dockerfile [here](https://github.com/kitty-catt/customer-ms-spring/blob/fix-version/Dockerfile). Run this command to initiate a pipelineRun using this container image:
 
     oc create -f tekton-pipeline-run/customer-stackrox-pipeline-ibm-prevail-2021-fix-version.yaml
     scripts/watch-the-pipeline-run.sh
