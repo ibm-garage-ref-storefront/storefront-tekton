@@ -179,7 +179,7 @@ oc rsh $(oc get po -l deployment=customer-ms-spring --output custom-columns=:.me
 
 StackRox has taken an action on our container!
 
-However this should be used as a secondary line of defence, with good container configuration hygiene being the correct resolution (i.e. create a container in your container configuration and ensure it doesn't default to root, or worse, you specifiy root as the user without good reason).
+However this should be used as a secondary line of defence, with good container configuration hygiene being the correct resolution (i.e. create a user in your container configuration to ensure it doesn't default to root, or worse, you specifiy root as the user without good reason).
 
 (**Is the process baselining forming yet? If so, let's write something about that**)
 
