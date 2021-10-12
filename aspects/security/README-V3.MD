@@ -192,7 +192,7 @@ oc new-project full-bc
 oc adm policy add-scc-to-user anyuid -z customer-ms-spring-sa
 ```
 
-It might not seem like much, but what we did here was to say that the service account (i.e. the programmtic account) assigned to our deployment was allowed to make deployments (within the `full-bc` project) aligned with the `anyuid` SCC. This SCC, as the name suggests, permits workloads to run as "anyuid", which includes root (uid=0). This shows just how easy it can be to "slacken security contraints". It might help us initially, but it sets us down the road of bad practice and could cause us (security) problems later in.
+It might not seem like much, but what we did here was to say that the service account (i.e. the programmtic account) assigned to our deployment was allowed to make deployments (within the `full-bc` project) aligned with the `anyuid` SCC. This SCC, as the name suggests, permits workloads to run as "anyuid", which includes root (uid=0). This shows just how easy it can be to "slacken security contraints". It might help us initially, but it sets us down the road of bad practice and could cause us (security) problems later on.
 
 So... what simple change can we try, in order to revert this?
 ```
