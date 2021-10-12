@@ -220,7 +220,20 @@ But we haven't yet done the best thing regarding the user of our customer-ms-spr
 
 ## Specify Non-root user in Container Image
 
-We can now look at a container image with user != root and Tomcat at a fixed version, see the Dockerfile [here](https://github.com/kitty-catt/customer-ms-spring/blob/fix-version/Dockerfile). Run this command to initiate a pipelineRun using this container image:
+We can now look at a container image with user != root and Tomcat at a fixed version, see the Dockerfile [here](https://github.com/kitty-catt/customer-ms-spring/blob/fix-version/Dockerfile).
+
+    RUN chown -R 1001:0 /opt/app-root && \
+        chmod -R g=u /opt/app-root &&\
+        chgrp -R 0 /opt/app-root
+    
+    USER 1001
+    EXPOSE 8080
+
+Notice how the user's UID (1001) is specified and that `chown`, `chmod` and `chgrp` commands have been run to ensure this user has the correct permissions to the directories it needs.
+
+**Fun fact:** OpenShift restricted SCC applies and arbitrary UID rather than the one specified in the container image, as well as setting the user in the root group (GID=0). This is why the configuration above specifies the ownership is `1001:0` (user=1001, group=0) and `chmod -R g=u` (so that the group has the same permissions assigned to the user). These small bits of configuration help ensure compatibility with the OpenShift restricted SCC.
+
+Run this command to initiate a pipelineRun using this container image:
 
     oc create -f tekton-pipeline-run/customer-stackrox-pipeline-ibm-prevail-2021-fix-version.yaml
     scripts/watch-the-pipeline-run.sh
