@@ -25,7 +25,7 @@ Verify the installation and path setting:
  - Press Win + R, type `powershell` (or `cmd`) and press Enter to start a new prompt
  - Run `mvn -version` and check for confirmation response
 
-### Linux/Mac
+### Linux
 [Download](https://maven.apache.org/download.cgi) the **binary tar.gz archive** and then follow the instructions to extract it to the desired location
 ```
 cd ~
@@ -34,6 +34,24 @@ tar xvf apache-maven-3.8.3-bin.tar.gz
 cd bin
 ln -sf /home/<user-name>/apache-maven-3.8.3/bin/mvn mvn
 mvn -version
+```
+
+### Mac
+Install Homebrew package manager
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Install openjdk
+
+```
+brew install openjdk
+```
+
+Install Maven
+
+```
+brew install maven
 ```
 
 ## VS Code
