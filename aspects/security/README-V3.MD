@@ -200,7 +200,7 @@ This should now only show the customer-ms-spring deployment violations as shown 
 
 ![Fail](../../images/container-runtime-initial.png?raw=true "Title")
 
-StackRox is detecting the actions taken at runtime and on deployment of the application.  Notice we can see Process with UID 0 has been triggered as well as our Linux add user commands.  In a real environment this should ring alarm bells! We can elect as whether we wish for enforcement action to be taken.
+StackRox is detecting the actions taken at runtime and on deployment of the application.  Notice we can see Process with UID 0 has been triggered as well as our Linux add user commands.  In a real environment this should ring alarm bells! We can elect as to whether we wish for enforcement action to be taken.
 
 ## d) Limiting the scope of policies
 
@@ -209,28 +209,25 @@ If you clear the ms-customer-spring and deployment filter and now filter on `Pol
 ![Fail](../../images/stackrox-policy-process-uid-0-enabled.png?raw=true "Title")
 
 In reality we may not be able to change these and accept that we are happy to allow them to run as root.  So how do we limit the scope to ensure that we only enforce that root user is not allowed on our deployment only but not affect other deployments?
-
-Naviagte to Platform Configuration \> System Policies then type "Process with UID 0" in the filter search.
-
-Click on edit and scroll done to Restrict to Scope section and click the plus icon
-
-Type full-bc
+  - Navigate to Platform Configuration \> System Policies
+  - Type "Process with UID 0" in the filter search.
+  - Click on edit and scroll down to the "Restrict to Scope" section and click the plus (+) icon.
+  - Type `full-bc`
 
 ![Fail](../../images/stackrox-process-with-uid-restrict-to-scope.png?raw=true "Title")
 
-Click Next > Next > Next and Save
+Click Next \> Next \> Next and Save
 
-Navigate to Violations and type Policy + Process UID 0 into the filter box.  We should now see that only the customer-ms-spring is returned, which is what we want as all other namespaces are now ignored.
+Navigate to Violations and type "Policy" + "Process UID 0" into the filter box.  We should now see that only the customer-ms-spring is returned, which is what we want as all other namespaces are now ignored.
 
 ![Fail](../../images/stackrox-violation-uid-limited-to-full-bc.png?raw=true "Title")
 
 ## e) Enforcing UID 0 Policy
 
 Now we have limited the scope to just our container we can enforce the policy, safe in the knowledge that nothing else will be inadvertantly affected.
-
-Naviagte to Platform Configuration \> System Policies then type "Process with UID 0" in the filter search.
-
-Click on edit > Next > Next > Next and turn Enforcement Behaviour on as shown below nd press save.
+  - Navigate to Platform Configuration \> System Policies
+  - Type "Process with UID 0" in the filter search.
+  - Click on Edit \> Next \> Next \> Next and turn "Enforcement Behaviour" on as shown below and press save.
 
 ![Fail](../../images/stackrox-process-with-uid-enforce.png?raw=true "Title")
 
@@ -239,7 +236,7 @@ Let's take a look at see what's happened to our container:
 oc rsh $(oc get po -l deployment=customer-ms-spring --output custom-columns=:.metadata.name)
 ```
 
-As we see we cannot exec into the container as we are trying to login to the containe rwith UID 0 which is not allowed and our container is terminated.  A new one will be created automatically due to the deployment, although that will be terminated as soon as UID 0 process is started. StackRox has taken an action on our container!
+As we see we cannot `exec` into the container as we are trying to login to the container with UID 0 which is not allowed and our container is terminated.  A new one will be created automatically due to the deployment, although that will be terminated as soon as UID 0 process is started. StackRox has taken an action on our container!
 
 However this should be used as a secondary line of defence, with good container configuration hygiene being the correct resolution (i.e. create a user in your container configuration to ensure it doesn't default to root, or worse, you specifiy root as the user without good reason).
 
