@@ -198,21 +198,44 @@ StackRox is detecting the actions taken at runtime and on deployment of the appl
 
 ## d) Limiting the scope of policies
 
-If you clear the ms-customer-spring and deployment filter and now filter on `Policy` & `Process with UID 0` we may see other containers running with a UID of 0.  In reality we may not be able to change these and accept that we are happy to allow them to run as root.  So how do we limit the scope to ensure that we only enforce that root user is not allowed on our deployment only but not affect other deployments?
-    
-(**Insert screenshot and instructions "process with UID 0", performing this for a single namespace only**)
- - Platform Configuration \> System Policies \> Find "process with UID 0" \> edit x3 runtime enforcement on etc...
+If you clear the ms-customer-spring and deployment filter and now filter on `Policy` & `Process with UID 0` we may see other containers running with a UID of 0.
+
+![Fail](../../images/stackrox-policy-process-uid-0-enabled.png?raw=true "Title")
+
+In reality we may not be able to change these and accept that we are happy to allow them to run as root.  So how do we limit the scope to ensure that we only enforce that root user is not allowed on our deployment only but not affect other deployments?
+
+Naviagte to Platform Configuration \> System Policies then type "Process with UID 0" in the filter search.
+
+Click on edit and scroll done to Restrict to Scope section and click the plus icon
+
+Type full-bc
+
+![Fail](../../images/stackrox-process-with-uid-restrict-to-scope.png?raw=true "Title")
+
+Click Next > Next > Next and Save
+
+Navigate to Violations and type Policy + Process UID 0 into the filter box.  We should now see that only the customer-ms-spring is returned, which is what we want as all other namespaces are now ignored.
+
+![Fail](../../images/stackrox-violation-uid-limited-to-full-bc.png?raw=true "Title")
+
+## e) Enforcing UID 0 Policy
+
+Now we have limited the scope to just our container we can enforce the policy, safe in the knowledge that nothing else will be inadvertantly affected.
+
+Naviagte to Platform Configuration \> System Policies then type "Process with UID 0" in the filter search.
+
+Click on edit > Next > Next > Next and turn Enforcement Behaviour on as shown below nd press save.
+
+![Fail](../../images/stackrox-process-with-uid-enforce.png?raw=true "Title")
 
 Let's take a look at see what's happened to our container:
 ```
 oc rsh $(oc get po -l deployment=customer-ms-spring --output custom-columns=:.metadata.name)
 ```
 
-StackRox has taken an action on our container!
+As we see we cannot exec into the container as we are trying to login to the containe rwith UID 0 which is not allowed and our container is terminated.  A new one will be created automatically due to the deployment, although that will be terminated as soon as UID 0 process is started. StackRox has taken an action on our container!
 
 However this should be used as a secondary line of defence, with good container configuration hygiene being the correct resolution (i.e. create a user in your container configuration to ensure it doesn't default to root, or worse, you specifiy root as the user without good reason).
-
-(**Is the process baselining forming yet? If so, let's write something about that**)
 
 Alongside good container hygiene and StackRox monitoring, there is an additional line of defence to be aware of...
 
@@ -227,6 +250,7 @@ It might not seem like much, but what we did here was to say that the service ac
 
 So... what simple change can we try, in order to revert this?
 ```
+oc project full-bc
 oc adm policy remove-scc-from-user anyuid -z customer-ms-spring-sa
 ```
 
@@ -241,7 +265,13 @@ Then take a look at the pods
 oc get pods
 ```
 
-Create a remote shell into the newly created customer-ms-spring pod: `oc rsh <pod-name>`. Let's see what user id we are running with (type `id` in the pod).
+Create a remote shell into the newly created customer-ms-spring pod:
+
+```
+oc rsh $(oc get po -l deployment=customer-ms-spring --output custom-columns=:.metadata.name)
+```
+
+Firstly we can now exec into the pod! Stackrox is no longer taking action on the pod.
 
 Now try and see if how many of [these things](./TROUBLE.MD) (right-click, new tab) you can still do.
 
@@ -265,7 +295,7 @@ Notice how the user's UID (1001) is specified and that `chown`, `chmod` and `chg
 **Fun fact:** OpenShift restricted SCC applies and arbitrary UID rather than the one specified in the container image, as well as setting the user in the root group (GID=0). This is why the configuration above specifies the ownership is `1001:0` (user=1001, group=0) and `chmod -R g=u` (so that the group has the same permissions assigned to the user). These small bits of configuration help ensure compatibility with the OpenShift restricted SCC.
 
 Run this command to initiate a pipelineRun using this container image:
-
+    oc project pipelines
     oc create -f tekton-pipeline-run/customer-stackrox-pipeline-ibm-prevail-2021-fix-version.yaml
     scripts/watch-the-pipeline-run.sh
 
