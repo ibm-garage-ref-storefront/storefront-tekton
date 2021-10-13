@@ -185,13 +185,18 @@ As you have seen we can examine the impacts of running a container as root and w
 
 So we know we can do things that aren't required for the running of the specific application this pod was deployed to run (and these are just some basics), but the access to the package manager (`yum`) and being root user could potentially mean it is possible to [create a yum repository somewhere](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/sec-yum_repository), or find a malicious external repository and then [add it to the container](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/sec-managing_yum_repositories).
     
-Or perhaps you'd like to install [crypto mining software](https://hostadvice.com/how-to/how-to-mine-cryptocurrency-with-cgminer-on-ubuntu/) - please do
-It also allows us to look folders and files which could be used by a mallicious user to gain information or causse disruption such as accessing the etc/shadow file or /proc folder which is scary as by altering files located in this directory you can even read/change kernel parameters (sysctl) while the system is running.
+Or perhaps you'd like to install [crypto mining software](https://hostadvice.com/how-to/how-to-mine-cryptocurrency-with-cgminer-on-ubuntu/) - please don't!
+
+It also allows us to look folders and files which could be used by a malicious user to gain information or cause disruption such as accessing the `etc/shadow` file or `/proc` folder which is scary as by altering files located in this directory you can even read/change kernel parameters (sysctl) while the system is running.
 
 ## c) What has Stackrox noticed?
 
 Now we have run some commands as root user lets have a look at stackrox to see what it has picked up.
-Navigate to Violations and enter Deployment then press enter so it turns blue and then enter customer-ms-sprint and press enter.  This should now only show the customer-ms-spring deployment voilations as shown below.
+  - Navigate to Violations
+  - Type "Deployment" then press Enter so it turns blue
+  - Type "customer-ms-sprint" and press Enter.
+
+This should now only show the customer-ms-spring deployment violations as shown below.
 
 ![Fail](../../images/container-runtime-initial.png?raw=true "Title")
 
