@@ -1,61 +1,61 @@
 # Welcome to IBM Prevail 2021
 
-The IBM Blue Compute shop will be tested on its functionality. The pipeline is stubbed except for the functional test.
+OpenShift hosted Functional Test Automation Framework using Selenium will be tested in Functionality track of the workshop.
 
 ## Pre-requisites
 
-### a) Deploy the IBM Blue Compute shop
+You must have created an IBM Cloud Account.
+Download the YAML files and deployment instructions attached in this repository.
 
-[Deploy](../functionality/DEPLOY-FULL-BC.MD) the IBM Blue Compute shop if you have not allready done so.
+## Workshop Purpose
 
-### b) Install the tooling and pipelines
+Have an open shift based functional test automation framework which can be used to maintain and execute the functional test cases.
 
-[Install](../nuts-and-bolts/MINI-SETUP.MD) the tooling if you have not allready done so.
+## Why is it needed?
+Functional Test Automation is need of every testing project now a days. Automation has become a key component of every software project to become successful. Functional test automation helps to ensure software works as expected and meets the expectations before it gets rolled out to end customers. While test automation is necessity and organizations plan to include it as a part of software delivery process, below are some of the common challenges faced during the test automation – 
+Dependency on the skilled programmers to create automation scripts.
+Dedicated hardware/infrastructure needs to host/run the test automation frameworks.
+Scalability to handle large volume of test cases.
 
-### c) Scan and Import the Images
+Having OpenShift cloud based scalable and scriptless test automation framework address above challenges and takes test automation to next level. With UIAF(User Interface for Test Automation Framework), testers can create functional test automation suite in efficient and faster way, and which gets executed and hosted on OpenShift by leveraging cloud capabilities.
 
-[Scan and Import](../nuts-and-bolts/SCAN.MD) the images that are used by the tool-chain if you have not allready done so.
+## What will Student learn?:
+How to deploy & test the docker image on an open shift container.
+The student will also learn how to –
+* Record a test flow using Robotcorder plugin. 
+* How to generate a required script and data files from recorded file.
+* How to maintain a test automation script in UIAF tool.
+* How to execute the test automation script in UIAF tool and create a test execution report.
+
+The User Interface For Automation Framework (UIAF) automation tool uses scriptless test automation approach with record and playback. 
+
+# Workshop Agenda?
+**Part 1:**
+
+Deploy the docker image of UIAF web framework to Open shift Linux instance using provided YAML files.
+
+**Part 2:**
+* Record the automation script with the help Chrome Robocorder plugin using below steps - 
+* Navigate to https://opensource-demo.orangehrmlive.com.
+* Login using credentials (Admin/admin123).
+* Click on “Recruitment” and then “Add” button.
+* Populate Candidate info(First Name, Last Name, Email & Contact Number).
+* Click on Save.
+* Click Welcome from the top right corner and then logout.
+* Share the recorded with facilitators who will generate the scripts using web scrapper utility.
+* Import generated scripts into UIAF web framework and execute the test.
+* Share the report of successful test execution.
+
+# Workshop Schedule?
+**Day 1**
+* Break out Session(11:30am India Time):
+* Functional Test Automation(Theory) – 1.5hrs
+* Framework Deployment Instructions – 1 hr
+
+**Day 2**
+* Break out Session (11:30am India Time):
+* Demonstration of framework deployment to OpenShift – 1hr
+* Hands on Framework Deployment & Automation Script Execution – 2 hrs
+* Quiz – 30 mins
 
 
-# The functionality section of the pipeline
-
-The peformance pipeline looks similar to the security pipeline.  Actually, it is the same.
-
-![Fail](../../images/functionality-pipeline.png?raw=true "Title")
-
-There is one difference: all tasks except for the functional test have been stubbed.
-
-
-## Lets run the functionality pipeline
-
-The functional test plan will login to the blue compute shop with user foo and order a calculator. Every time that you run the functional test you will see an additional entry in the order history of user foo.
-
-![Fail](../../images/order-a-calculator.png?raw=true "Title")
-
-Nough said, lets run it:
-
-    oc project pipelines
-    oc create -f tekton-pipeline-run/customer-functionality-pipeline-ibm-prevail-2021-build-breaker.yaml
-    scripts/watch-the-pipeline-run.sh
-
-Low and behold, the jmeter functionality test stopped the pipeline run:
-
-![Fail](../../images/functionality-breaks.png?raw=true "Title")
-
-There's got to be an error.
-
-If you have configured the slack channel then you will get notification:
-
-![Fail](../../images/slack-notification.png?raw=true "Title")  
-
-Setup port-forwarding to the silver-platter and see what is the matter:
-
-    oc port-forward svc/silver-platter -n tools 8080:8080
-
-Login with the user and password as described in the tools setup, and navigate to the report.
-
-![Fail](../../images/silver-platter-report.png?raw=true "Title")    
-
-See if you can find out what went wrong. 
-
-Remember the order history? Is there something missing?  .. JMeter detected it ..
