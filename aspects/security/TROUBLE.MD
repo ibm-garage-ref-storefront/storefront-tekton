@@ -31,6 +31,10 @@ Install some tools:
     yum install epel-release
     yum install -y jq
 
+Create a user:
+
+    useradd sneaky
+
 
 Get the CouchDB address:
 
@@ -69,3 +73,5 @@ To exit the container type `exit` and hit enter
     
     sh-4.2# exit
     exit
+
+Now lets return to our lab [here](./README-V3.md#root-container)
