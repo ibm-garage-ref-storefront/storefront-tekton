@@ -157,11 +157,12 @@ In this section we are going to see how Stackrox can show us where violations to
 
 ## a) Enable policy Process with UID 0
 We need to check that the runtime policy `Process with UID 0` is enabled on our Stackrox instance.
-Navigate to System Policies then type `Process with UID 0` and select it so that it is shown as below
+
+Navigate to System Policies then type `Process with UID 0` and select it so that it is shown as below:
 
 ![Fail](../../images/stackrox-policy-process-uid-0-disabled.png?raw=true "Title")
 
-Hoevr the mouse over the High severity and click `Enable policy`
+Hover the mouse over the "High severity" and click `Enable policy`.
 
 ![Fail](../../images/stackrox-policy-process-uid-0-enable.png?raw=true "Title")
 
