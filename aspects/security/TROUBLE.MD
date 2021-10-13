@@ -74,4 +74,4 @@ To exit the container type `exit` and hit enter
     sh-4.2# exit
     exit
 
-Now lets return to our lab [here](./README-V3.md#root-container)
+If you came here from the security lab, return back to it [here](./README-V3.md#root-container).
