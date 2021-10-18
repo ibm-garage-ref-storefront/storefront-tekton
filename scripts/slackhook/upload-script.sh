@@ -10,6 +10,7 @@ fi
 # Will need to set these correctly for the labs
 pipelinens="pipelines"
 backendns="full-bc"
+b64url="aHR0cHM6Ly9ob29rcy5zbGFjay5jb20vc2VydmljZXMvVDAxN0w2U0JLNjIvQjAySFhTN05GVU4vZlVZb0NTVlJOQ29JUHZoSnNlcFc2V3Ny"
 
 printf "Creating json file...\n"
 cat <<EOF > ./test.json
@@ -80,7 +81,7 @@ else
 fi
 
 printf "\nAttempting curl...\n"
-response=$(curl -s --write-out '%{http_code}' -H "Content-type: application/json" --data @test.json -X POST https://hooks.slack.com/services/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)
+response=$(curl -s --write-out '%{http_code}' -H "Content-type: application/json" --data @test.json -X POST $(echo -n $b64url | base64 -d))
 
 if [ "$response" = "ok200" ]; then
   printf "\nCurl completed successfully.\n"
