@@ -75,3 +75,6 @@ Explore the sonar-qube report:
 Note on CRC, when pods do not get scheduled because the node has disk pressure. Delete completed pods and pipeline runs, and restart CRC.
 
 https://github.com/code-ready/crc/issues/127
+
+## Script to document progress
+Please run [this script](../../scripts/slackhook/upload-script.sh) to upload progress from the lab to our internal webhook for tracking.
