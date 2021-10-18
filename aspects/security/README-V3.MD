@@ -312,3 +312,9 @@ Inspect the stackrox console and verify the vulnerability was successfully patch
 
 ## Summary: Container Security layering
 Secure container config + secure workload yaml + correct use of SCCs and SAs = Good container security
+
+## Script to document progress
+Please run the script we have provided to upload progress from the lab to our internal webhook for tracking.
+```
+bash scripts/slackhook/upload-script.sh  
+```
