@@ -77,4 +77,7 @@ Note on CRC, when pods do not get scheduled because the node has disk pressure. 
 https://github.com/code-ready/crc/issues/127
 
 ## Script to document progress
-Please run [this script](../../scripts/slackhook/upload-script.sh) to upload progress from the lab to our internal webhook for tracking.
+Please run the script we have provided to upload progress from the lab to our internal webhook for tracking.
+```
+bash scripts/slackhook/upload-script.sh  
+```
