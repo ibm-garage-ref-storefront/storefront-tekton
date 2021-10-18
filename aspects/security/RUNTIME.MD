@@ -220,3 +220,9 @@ See how, by default, only a small number of policies are configured to apply enf
   *- Go to UI > Platform Configuration > System Policies*  
     *- Filter for "Docker CIS 4.1: Ensure That a User for the Container Has Been Created"*  
     *- Click on the policy. Then click on: Edit > Next > Next > Next > Turn "Enforcement Behaviour" on > Save*  
+
+## Script to document progress
+Please run the script we have provided to upload progress from the lab to our internal webhook for tracking.
+```
+bash scripts/slackhook/upload-script.sh  
+```
