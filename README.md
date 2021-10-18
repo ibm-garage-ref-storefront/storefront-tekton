@@ -22,7 +22,7 @@ Once the Blue Compute shop and the tool-chain is up and running (tasks 1-4 above
 
 | Aspect | Build Breakers based on | Estimate |
 | --- | --- | --- |
-| [Security.0]((aspects/security/README.MD) | Intro to the security labs course | 5 mins |
+| [Security.0](aspects/security/README.MD) | Intro to the security labs course | 5 mins |
 | [Security.1](aspects/security/README-V2.MD) | Detect application vulnerabilities using owasp-dependency check and sonarqube.| 45 minutes |
 | [Security.2](aspects/security/RUNTIME.MD) | Defect application and container vulnerabilities using StackRox pipeline scanning | 45 minutes |
 | [Security.3](aspects/security/README-V3.MD) | Detect and inspect container runtime security concerns using StackRox | 45 minutes |
