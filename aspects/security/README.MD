@@ -1,11 +1,10 @@
 # Welcome to IBM Prevail 2021
-
 Theory and hands-on exercises on OpenShift security and adding security quality gates in Tekton CI/CD pipelines will be provided by the Security track of the workshop.
 
 ## Pre-requisites:
 You must have created an IBM Cloud Account.
 
-You must have a Linux-like environment (native or VM) with the following installed in order to work through the exercises
+You must have a Linux-like environment (native or VM) with the following installed in order to work through the exercises:
   - oc (OpenShift CLI)
   - Docker
   - git
