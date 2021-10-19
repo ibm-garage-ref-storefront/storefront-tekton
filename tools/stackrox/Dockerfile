@@ -21,8 +21,4 @@ RUN chown -R ${USER}:0  /home/${USER} && \
     chmod -R g=u /home/${USER} && \
     chmod +x /home/${USER}/bin/roxctl 
 
-# Note: ubi-minimal does not have yum
-#RUN yum update && \
-#    yum clean all -y
-
 USER ${UID}
