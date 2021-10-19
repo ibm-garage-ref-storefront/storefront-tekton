@@ -1,4 +1,4 @@
-# Prevail 2021 : DevQosOps Workshop - Availability Track
+# IBM Prevail 2021 : DevQosOps Workshop - Availability Track
 
 ## Steps
 
