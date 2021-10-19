@@ -48,12 +48,10 @@ Deploy the docker image of UIAF web framework to Open shift Linux instance using
 
 # Workshop Schedule:
 **Day 1**
-* Break out Session(11:30am India Time): Webex: https://ibm.webex.com/meet/pravin.fengade
 * Functional Test Automation(Theory) – 1.5hrs
 * Framework Deployment Instructions – 1 hr
 
 **Day 2**
-* Break out Session (11:30am India Time): https://ibm.webex.com/meet/pravin.fengade
 * Demonstration of framework deployment to OpenShift – 1hr
 * Hands on Framework Deployment & Automation Script Execution – 2 hrs
 * Quiz – 30 mins
