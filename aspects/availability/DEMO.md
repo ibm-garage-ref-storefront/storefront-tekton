@@ -10,7 +10,7 @@ Please execute the steps as mentioned below.
 git clone https://github.com/ibm-garage-ref-storefront/storefront-tekton.git
 ```
 
-In this repository, `aspects/availability/automated-demo` folder contains the scripts to do setup automatically. The manual steps are also provided in the root folder of the cloned repository for your better understanding.
+In this repository, `aspects/availability/automated-demo` folder contains the scripts to do setup automatically. The manual steps are also provided in the `Manual-steps.md` of the cloned repository for your better understanding.
 
 **2. Login to OpenShift Cluster.**
 
