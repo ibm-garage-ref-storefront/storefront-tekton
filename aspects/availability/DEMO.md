@@ -7,7 +7,7 @@ Please execute the steps as mentioned below.
 **1. Clone the code.**
 
 ```
-git clone https://github.com/soumensaha001/prevail_availability.git
+git clone https://github.com/ibm-garage-ref-storefront/storefront-tekton.git
 ```
 
 In this repository, `automated-demo` folder contains the scripts and readme to do setup automatically. The manual steps are also provided in the root folder of the cloned repository for your better understanding.
@@ -36,7 +36,7 @@ oc login --token=xxxx --server=https://xxxx.containers.cloud.ibm.com:xxx
 **3. Change the working directory to `automated-demo` and add execute permission to the script.**
 
 ```
-cd prevail_availability/automated-demo
+cd storefront-tekton/aspects/availability/automated-demo
 chmod +x setup-availability-trail.sh
 chmod +x scripts/*.sh
 ```
