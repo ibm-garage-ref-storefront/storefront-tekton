@@ -2,7 +2,8 @@
 
 Clone this repo.
 
-cd prevail_availability
+cd storefront-tekton/aspects/availability/
+
 
 ## Create project istio-system
 oc new-project istio-system</br>
