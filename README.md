@@ -29,7 +29,7 @@ Once the Blue Compute shop and the tool-chain is up and running (tasks 1-4 above
 | [Functionality.1](aspects/functionality/README.MD) | Verify functional requirements using jmeter| 15 minutes |
 | [Functionality.2](aspects/functionality/SELENIUM.MD) | Verify functional requirements using selenium| 45 minutes |
 | [Performance.1](aspects/performance/README-V2.MD) | Verify performance requirements using jmeter and grafana| 45 minutes |
-| [Availability.1](aspects/availability/README.MD) | Be prepared for turbulant conditions, test your application's availability potential using chaos engineering |
+| [Availability.1](aspects/availability/README.MD) | Be prepared for turbulant conditions, test your application's availability potential using chaos engineering and Openshift Service Mesh | 60 Minutes
 
 # Archived version
 
