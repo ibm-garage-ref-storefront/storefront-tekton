@@ -1,11 +1,11 @@
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
-  name: <operator_name>
-  namespace: <namespace_name>
+  name: operator_name
+  namespace: namespace_name
 
 spec:
-  channel: '<channel-name>'
-  name: <operator_name> 
-  source: <source-name>
+  channel: 'channel-name'
+  name: operator_name
+  source: source-name
   sourceNamespace: openshift-marketplace 
