@@ -41,56 +41,69 @@ while true; do
                 break
                 ;;  
             "install Jaeger Operator")
-                echo "\nJaeger Operator"
+                echo
+                echo "Jaeger Operator"
                 cd scripts
                 ./install-allNamespaces.sh jaeger-product
                 cd ..
                 break
                 ;;  
             "install Kiali Operator")
-                echo "\nKiali Operator"
+                echo
+                echo "Kiali Operator"
                 cd scripts
                 ./install-allNamespaces.sh kiali-ossm
                 cd ..
                 break
                 ;;  
             "install Service Mesh Operator")
-                echo "\nService Mesh Operator"
+                echo
+                echo "Service Mesh Operator"
                 cd scripts
                 ./install-allNamespaces.sh servicemeshoperator
                 cd ..
                 break
                 ;;   
             "create Project")
-                echo "\nCreating Project - $PROJECT_NAME"
+                echo
+                echo "Creating Project - $PROJECT_NAME"
                 oc new-project $PROJECT_NAME
-                echo "\nProject created\n"
+                echo "Project created"
+                echo
                 break
                 ;; 
             "create Service-Mesh Control Plane Service")
-                echo "\nService-Mesh Control Plane Service"
+                echo
+                echo "Service-Mesh Control Plane Service"
                 cd scripts
                 cp servicemesh-control-plane-service.yaml.template servicemesh-control-plane-service.yaml
-                sed -i "" "s/PROJECT_NAME/$PROJECT_NAME/g" servicemesh-control-plane-service.yaml
+                sed -i s#PROJECT_NAME#$PROJECT_NAME#g servicemesh-control-plane-service.yaml
                 oc apply -f servicemesh-control-plane-service.yaml
                 cd ..
-                echo "\nService instance created\n"
+                echo
+                echo "Service instance created"
+                echo
                 break
                 ;; 
             "create Service-Mesh Member Roll Service")
-                echo "\nService-Mesh Member Roll Service"
+                echo
+                echo "Service-Mesh Member Roll Service"
                 cd scripts
                 cp servicemesh-member-roll-service.yaml.template servicemesh-member-roll-service.yaml
-                sed -i "" "s/PROJECT_NAME/$PROJECT_NAME/g" servicemesh-member-roll-service.yaml
-                sed -i "" "s/APP-PROJECT-NAME/$APP_PROJECT_NAME/g" servicemesh-member-roll-service.yaml
+                sed -i s#PROJECT_NAME#$PROJECT_NAME#g servicemesh-member-roll-service.yaml
+                sed -i s#APP-PROJECT-NAME#$APP_PROJECT_NAME#g servicemesh-member-roll-service.yaml
                 oc apply -f servicemesh-member-roll-service.yaml
                 cd ..
-                echo "\nService instance created\n"
+                echo
+                echo "Service instance created"
+                echo
                 break
                 ;;
             "deploy Sample Application")
-                echo "\nDeploy Sample Application"
-                echo "\nCreating new project - $APP_PROJECT_NAME"
+                echo
+                echo "Deploy Sample Application"
+                echo
+                echo "Creating new project - $APP_PROJECT_NAME"
                 oc new-project $APP_PROJECT_NAME
                 oc apply -f https://raw.githubusercontent.com/Maistra/istio/maistra-2.0/samples/bookinfo/platform/kube/bookinfo.yaml
                 sleep 15
@@ -100,37 +113,49 @@ while true; do
                 export INGRESS_HOST=$INGRESS_HOST
 
                 oc create -f https://raw.githubusercontent.com/Maistra/istio/maistra-2.0/samples/bookinfo/networking/bookinfo-gateway.yaml
-                echo "\n\nApplication deployed\n"
+                echo
+                echo "Application deployed"
+                echo
                 break
                 ;;
             "access the Sample Application")
-                echo "\nAccess the Sample Application"
-                echo "\nCheck Pods:"
+                echo
+                echo "Access the Sample Application"
+                echo
+                echo "Check Pods:"
                 oc get pods
-                echo "\nGet route:"
+                echo
+                echo "Get route:"
                 oc get routes -n $PROJECT_NAME istio-ingressgateway 
 
                 INGRESS_HOST=`oc get routes -n $PROJECT_NAME istio-ingressgateway |grep ingress | awk '{print $2}'`
                 export INGRESS_HOST=$INGRESS_HOST
 
-                echo "\nAccess the app at http://$INGRESS_HOST/productpage \n"
+                echo
+                echo "Access the app at http://$INGRESS_HOST/productpage "
+                echo
                 break
                 ;;
             "install Chaos Toolkit and its Kubernetes extension")
-                echo "\nInstall Chaos Toolkit"
+                echo
+                echo "Install Chaos Toolkit"
                 python3 -m venv ~/.venvs/chaostk
                 source ~/.venvs/chaostk/bin/activate
                 pip install -U chaostoolkit
                 sleep 10
-                echo "\nInstalling Chaos Toolkit extension"
+                echo
+                echo "Installing Chaos Toolkit extension"
                 pip install -U chaostoolkit-kubernetes
-                chaos discover chaostoolkit-kubernetes    
-                echo "\nChaos toolkit and its extension is installed. You can try running the command `chaos --help`."
-                echo "\nIf `chaos` command does not work, please run the command `source ~/.venvs/chaostk/bin/activate` and then execute chaos.\n"  
+                chaos discover chaostoolkit-kubernetes 
+                echo
+                echo "Chaos toolkit and its extension is installed. You can try running the command `chaos --help`."
+                echo "If `chaos` command does not work, please run the command `source ~/.venvs/chaostk/bin/activate` and then execute chaos."
+                echo
                 break
                 ;;
             "Quit")
-                echo "Exiting!!\n"
+                echo "Exiting!!"
+                echo
                 break
                 ;;
             *) echo "invalid option";;
