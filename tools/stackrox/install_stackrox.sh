@@ -6,6 +6,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
             echo "stackrox cli already exists"
         else
             echo "bring you the stackrox cli"
+            mkdir -pv ~/bin
             curl https://mirror.openshift.com/pub/rhacs/assets/3.0.62.0/bin/Linux/roxctl -o ~/bin/roxctl     
             chmod 755 ~/bin/roxctl
         fi
