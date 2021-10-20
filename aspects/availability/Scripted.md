@@ -133,9 +133,7 @@ Exits the script.
 
 Go to OpenShift web console and access `istio-system` project. It will show as:
 
-![image](https://user-images.githubusercontent.com/45451838/128295542-00ae1107-c424-4e1e-be91-a06032a784a2.png)
-
-![image](https://user-images.githubusercontent.com/45451838/128295522-46591c5c-3a7e-4131-a970-100a6ee9472c.png)
+<img width="1545" alt="image" src="https://user-images.githubusercontent.com/10827415/138044256-ab528b7a-f562-40d4-9fcf-dc2431865ad9.png">
 
 Access the Kiali, Grafana, Jaeger dashboards to analyse the deployed application.
 
