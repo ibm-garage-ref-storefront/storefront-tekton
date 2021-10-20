@@ -8,7 +8,8 @@ Availability of an application deployed on OpenShift will be tested in the Avail
    * Download the files attached in this repository.
    * Python3
 
-
+## Youtube Playlist:
+https://www.youtube.com/playlist?list=PLkdti3UldXd3_tOUdxqp36OgDmg-eanEg
 ## Workshop Schedule:
  
  * Availability Test (Theory) 
