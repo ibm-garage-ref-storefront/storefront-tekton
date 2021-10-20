@@ -11,15 +11,19 @@ APP_PROJECT_NAME=bookinfo
 
 ## Login to OpenShift
 
-echo '\nChecking if you are already logged-in to OpenShift Cluster'
+echo
+echo 'Checking if you are already logged-in to OpenShift Cluster'
 oc whoami
 
 if [ $? == 1 ] 
 then
-    echo '\nYou are not logged-in. Login to OpenShift Cluster (oc login)\n'
+    echo 
+    echo 'You are not logged-in. Login to OpenShift Cluster (oc login)'
     exit 0
 fi
-echo "\nYou are already logged-in.\n"
+echo
+echo "You are already logged-in."
+echo
 
 while true; do
     PS3="Please enter your choice: "
@@ -29,7 +33,8 @@ while true; do
     do
         case $opt in
             "install Elastic Search Operator")
-                echo "\nElastic Search Operator"
+                echo
+                echo "Elastic Search Operator"
                 cd scripts
                 ./install-allNamespaces.sh elasticsearch-operator
                 cd ..
