@@ -24,7 +24,6 @@ fi
 
 OPERATOR_INFO=`oc get packagemanifests -n openshift-marketplace|grep $OPERATOR_NAME`
 echo "**Operator Info:"
-echo
 echo "$OPERATOR_INFO"
 
 if [ -f "$FILE" ]; then
@@ -49,11 +48,11 @@ sed -i s#source-name#$source_name#g $SUBSCRIPTION_FILE
 
 ## replace channel-name
 channel_name=`cat $FILE | grep 'Default Channel:' | cut -d ':' -f 2 | xargs`
-sed -i s#channel-name#$channel_name#g" $SUBSCRIPTION_FILE
+sed -i s#channel-name#$channel_name#g $SUBSCRIPTION_FILE
 
 ## replace namespace-name
 # echo "namespace name = openshift-operators"
-sed -i s#namespace_name#openshift-operators#g" $SUBSCRIPTION_FILE
+sed -i s#namespace_name#openshift-operators#g $SUBSCRIPTION_FILE
 
 echo
 echo
