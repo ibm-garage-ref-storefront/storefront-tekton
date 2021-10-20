@@ -1,6 +1,6 @@
 version: 1.0.0
-title: What happens if we terminate a Pod?
-description: If a Pod is terminated, a new one should be created in its places.
+title: What happens if we terminate a Pod in a kubernete cluster?
+description: If a Pod is terminated, a new one should be created in its place without much delay.
 tags:
 - k8s
 - pod
