@@ -62,7 +62,7 @@ pip install -U chaostoolkit-kubernetes</br>
 chaos discover chaostoolkit-kubernetes</br>
 
 ## start killing application pods experiments </br>
-chaos run chaos/terminate-pod.yaml</br>
+chaos run automated-demo/terminate-pod.yaml</br>
 ![image](https://user-images.githubusercontent.com/45451838/128295569-4924fbf3-a468-4f82-8644-89e74576a411.png)
 
 ## Check the applications product page
