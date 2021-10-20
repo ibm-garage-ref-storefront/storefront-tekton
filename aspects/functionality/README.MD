@@ -6,6 +6,7 @@ OpenShift hosted Functional Test Automation Framework using Selenium will be tes
 
 * You must have created an IBM Cloud Account.
 * Download the YAML files and deployment instructions attached in this repository.
+* Download the deployment instruction document & test case/data file in this repository.
 
 ## Workshop Purpose:
 
