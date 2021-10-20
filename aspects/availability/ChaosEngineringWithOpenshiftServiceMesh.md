@@ -4,6 +4,9 @@ Clone this repo.
 
 cd storefront-tekton/aspects/availability/
 
+## Pre requisite check
+Check if python 3 is installed on system or not. If not then do sudo yum install python3.
+Then Check python3 --version is not throwing error. For chaos toolkit python3 is mandatory.
 
 ## Create project istio-system
 oc new-project istio-system</br>
