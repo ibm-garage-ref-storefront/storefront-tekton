@@ -62,3 +62,4 @@ oc apply -f $SUBSCRIPTION_FILE
 sleep 15
 echo
 echo "Operator installed successfully."
+echo
