@@ -9,7 +9,9 @@ fi
 
 # Will need to set these correctly for the labs
 pipelinens="pipelines"
-backendns="full-bc"
+frontendns="full-bc"
+backendns="tools"
+imagens=tools-images"
 b64url="aHR0cHM6Ly9ob29rcy5zbGFjay5jb20vc2VydmljZXMvVDAxN0w2U0JLNjIvQjAySFhTN05GVU4vZlVZb0NTVlJOQ29JUHZoSnNlcFc2V3Ny"
 
 printf "Creating json file...\n"
@@ -21,6 +23,20 @@ cat <<EOF > ./test.json
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
+				"text": "*$(echo -n $(oc whoami) $(date +%d-%m-%Y) oc get frontend pods:* $(oc get pod -n $frontendns | awk '{print $1}' | grep -v "NAME"))"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*$(echo -n $(oc whoami) $(date +%d-%m-%Y) oc get frontend svc:* $(oc get svc -n $frontendns | awk '{print $1}' | grep -v "NAME"))"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
 				"text": "*$(echo -n $(oc whoami) $(date +%d-%m-%Y) oc get backend pods:* $(oc get pod -n $backendns | awk '{print $1}' | grep -v "NAME"))"
 			}
 		},
@@ -28,7 +44,21 @@ cat <<EOF > ./test.json
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "*$(echo -n $(oc whoami) $(date +%d-%m-%Y) oc get backends svc:* $(oc get svc -n $backendns | awk '{print $1}' | grep -v "NAME"))"
+				"text": "*$(echo -n $(oc whoami) $(date +%d-%m-%Y) oc get backend svc:* $(oc get svc -n $backendns | awk '{print $1}' | grep -v "NAME"))"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*$(echo -n $(oc whoami) $(date +%d-%m-%Y) oc get tools images:* $(oc get is -n $imagens | awk '{print $1}' | grep -v "NAME"))"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*$(echo -n $(oc whoami) $(date +%d-%m-%Y) oc get build images:* $(oc get is -n $pipelinens | awk '{print $1}' | grep -v "NAME"))"
 			}
 		},
 		{
