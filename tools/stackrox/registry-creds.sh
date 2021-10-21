@@ -24,7 +24,7 @@ cat <<EOF > ./auth.json
         }
 }
 EOF
-oc delete secret generic oir-registrycreds 2>/dev/null
+oc delete secret generic oir-registrycreds 2>/dev/null || :
 oc create secret generic oir-registrycreds \
 --from-file .dockerconfigjson=./auth.json \
 --type kubernetes.io/dockerconfigjson
