@@ -28,13 +28,6 @@ cat <<EOF > ./test.json
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "*$(echo -n $(oc whoami) $(date +%d-%m-%Y) oc get pipeline pods:* $(oc get pod -n $pipelinens | awk '{print $1}' | grep -v "NAME"))"
-			}
-		},
-		{
-			"type": "section",
-			"text": {
-				"type": "mrkdwn",
 				"text": "*$(echo -n $(oc whoami) $(date +%d-%m-%Y) oc get backends svc:* $(oc get svc -n $backendns | awk '{print $1}' | grep -v "NAME"))"
 			}
 		},
