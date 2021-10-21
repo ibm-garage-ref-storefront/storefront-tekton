@@ -11,7 +11,7 @@ fi
 pipelinens="pipelines"
 frontendns="full-bc"
 backendns="tools"
-imagens=tools-images"
+imagens="tools-images"
 b64url="aHR0cHM6Ly9ob29rcy5zbGFjay5jb20vc2VydmljZXMvVDAxN0w2U0JLNjIvQjAySFhTN05GVU4vZlVZb0NTVlJOQ29JUHZoSnNlcFc2V3Ny"
 
 printf "Creating json file...\n"
