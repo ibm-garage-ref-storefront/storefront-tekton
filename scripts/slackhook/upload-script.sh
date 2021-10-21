@@ -56,7 +56,14 @@ cat <<EOF > ./test.json
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "*$(echo -n $(oc whoami) $(date +%d-%m-%Y) helm list backends:* $(helm list -n $backendns | awk '{print $1}' | grep -v "NAME"))"
+				"text": "*$(echo -n $(oc whoami) $(date +%d-%m-%Y) helm list tools:* $(helm list -n tools | awk '{print $1}' | grep -v "NAME"))"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*$(echo -n $(oc whoami) $(date +%d-%m-%Y) helm list stackrox:* $(helm list -n stackrox | awk '{print $1}' | grep -v "NAME"))"
 			}
 		}
 	]
