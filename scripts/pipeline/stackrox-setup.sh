@@ -68,7 +68,7 @@ oc create secret generic oir-registrycreds \
 --type kubernetes.io/dockerconfigjson
 
 # Access to StackRox
-oc delete secret generic stackrox-details 2>/dev/null
+oc delete secret generic stackrox-details 2>/dev/null || :
 oc create secret generic stackrox-details --from-literal ROX_SECURE_TOKEN=${STACKROX_API_TOKEN}
 # cp tools/stackrox/stackrock-details.yaml /tmp/stackrox-details.yaml
 # sed 's|'REPLACE_WITH_STACKROX_API_TOKEN'|'"${STACKROX_API_TOKEN}"'|g' /tmp/stackrox-details.yaml
