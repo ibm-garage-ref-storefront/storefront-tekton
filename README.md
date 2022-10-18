@@ -10,7 +10,7 @@ The purpose is to measure various quality aspects during the build of an applica
 The agenda for the security workstream is self-paced, with a series of video presentations and hands-on labs to complete. Please use the links provided in the table below. The timings give you guidance on the duration of the session.
 | Topic                                      | Start Time | End Time | Link |
 | ------------------------------------------ | --- | --- | --- |
-|Overview/Agenda of the Workshop             | 11:30 | 11:40 | link|
+|Overview/Agenda of the Workshop             | 11:30 | 11:40 | [video](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
 |Container & Orchestration security theory   | 11:40| 13:05| link|
 |Lunch break                                 | 13:05| 13:45| link|
 |Walkthrough of the labs and tools           | 13:45| 13:50| link|
