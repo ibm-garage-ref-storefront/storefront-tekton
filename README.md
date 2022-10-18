@@ -11,7 +11,7 @@ The agenda for the security workstream is self-paced, with a series of video pre
 | Topic                                      | Start Time | End Time | Link |
 | ------------------------------------------ | ---------- | -------- | ---- |
 |Overview/Agenda of the Workshop             | 11:30 | 11:40 | [other](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
-|Container & Orchestration security theory   | 11:40 | 13:05 | [other](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
+|Container & Orchestration security theory   | 11:40 | 13:05 | [2. Container & Orchestration security theory](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
 |Lunch break                                 | 13:05 | 13:45 | -|
 |Walkthrough of the labs and tools           | 13:45 | 13:50 | [lab-intro](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
 |Deploy base BlueCompute app from template   | 13:50 | 14:30 | [lab1](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
