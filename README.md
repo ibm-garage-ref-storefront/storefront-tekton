@@ -6,8 +6,8 @@ This repository:
 
 The purpose is to measure various quality aspects during the build of an application on OpenShift - and break the build if necessary to ensure a quality outcome.
 
-## Prevail 2022 Self-paced agenda Day 1 October 19th 2022
-The agenda for the security workstream is self-paced, with a series of video presentations and hands-on labs to complete. Please use the links provided in the table below. The timings give you guidance on the duration of the session.
+## Prevail 2022: Security Workstream - self-paced agenda, day 1, October 19th 2022
+The agenda for the security workstream is self-paced, with a series of video presentations and hands-on labs to complete. Please use the links provided in the table below. The timings give you guidance on the duration of the session. If you need any assistance, please access the Slack Channel you have been provided a link to in the Prevail stream session.
 | Topic                                      | Start Time | End Time | Link |
 | ------------------------------------------ | ---------- | -------- | ---- |
 |Overview/Agenda of the Workshop             | 11:30 | 11:40 | [1. introduction-security-stream](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
