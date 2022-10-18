@@ -15,7 +15,7 @@ The agenda for the security workstream is self-paced, with a series of video pre
 |Lunch break                                 | 13:05 | 13:45 | -|
 |Walkthrough of the labs and tools           | 13:45 | 13:50 | [lab-intro](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
 |Deploy base BlueCompute app from template   | 13:50 | 14:30 | [lab1](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
-|Deploy tools and pipelines                  | 14:30 | 15:00 | [lab2](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs) [lab3](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
+|Deploy tools and pipelines                  | 14:30 | 15:00 | Optional: [lab2](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs) <br /> [lab3](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
 |Deploy and scan base images                 | 15:00 | 15:30 | [lab4](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
 |Wrap-up and Q&A                             | 15:30 | 16:00 | -|
 
