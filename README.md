@@ -6,6 +6,9 @@ This repository:
 
 The purpose is to measure various quality aspects during the build of an application on OpenShift - and break the build if necessary to ensure a quality outcome.
 
+## Prevail 2022 Self-paced agenda Day 1 October 19th 2022
+do something...
+
 ## a) Common Setup IBM Prevail 2022
 You must run all of these setup tasks in order:
 
