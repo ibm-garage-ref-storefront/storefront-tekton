@@ -6,7 +6,7 @@ This repository:
 
 The purpose is to measure various quality aspects during the build of an application on OpenShift - and break the build if necessary to ensure a quality outcome.
 
-## a) Common Setup IBM Prevail 2021
+## a) Common Setup IBM Prevail 2022
 You must run all of these setup tasks in order:
 
 | Aspect | Description | Estimate |
@@ -16,7 +16,7 @@ You must run all of these setup tasks in order:
 | [3.Tools Setup](aspects/nuts-and-bolts/MINI-SETUP.MD) | Setting up the tools | 15 minutes |
 | [4.Tools Images](aspects/nuts-and-bolts/SCAN.MD) | Loading the tool rack | 30 minutes |
 
-## b) Independent Tracks IBM Prevail 2021
+## b) Independent Tracks IBM Prevail 2022
 
 Once the Blue Compute shop and the tool-chain is up and running (tasks 1-4 above) you can choose to explore various aspects:
 
