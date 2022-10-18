@@ -36,7 +36,7 @@ echo ""
 echo "###################################################################"
 cd ${HERE}/tools/nexus
 cat banner.txt
-./install_nexus3-v2.sh
+./install_nexus3-v3.sh
 echo ""
 
 # Setup jmeter-performance-test

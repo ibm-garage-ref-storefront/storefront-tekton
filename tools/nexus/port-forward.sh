@@ -2,7 +2,7 @@
 clear
 
 echo "Use the following command to setup port-forwarding to the nexus3:"
-echo "oc port-forward svc/nexus3 -n tools 8081:80&"
+echo "oc port-forward svc/nexus3 -n tools 8081:8081&"
 
 echo ""
 

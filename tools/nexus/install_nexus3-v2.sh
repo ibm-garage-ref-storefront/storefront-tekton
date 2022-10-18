@@ -10,7 +10,7 @@ cd /tmp
 git clone https://github.com/m88i/nexus-operator
 
 cd /tmp/nexus-operator/
-git checkout tags/v0.5.0 
+git checkout tags/v0.6.0 
 
 sed -i "s/nexus-operator-system/tools/g" nexus-operator.yaml
 oc apply -f nexus-operator.yaml 
