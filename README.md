@@ -9,15 +9,15 @@ The purpose is to measure various quality aspects during the build of an applica
 ## Prevail 2022 Self-paced agenda Day 1 October 19th 2022
 The agenda for the security workstream is self-paced, with a series of video presentations and hands-on labs to complete. Please use the links provided in the table below. The timings give you guidance on the duration of the session.
 | Topic                                      | Start Time | End Time | Link |
-| ------------------------------------------ | --- | --- | --- |
-|Overview/Agenda of the Workshop             | 11:30 | 11:40 | [video](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
-|Container & Orchestration security theory   | 11:40| 13:05| link|
-|Lunch break                                 | 13:05| 13:45| link|
-|Walkthrough of the labs and tools           | 13:45| 13:50| link|
-|Deploy base BlueCompute app from template   | 13:50| 14:30| link|
-|Deploy tools and pipelines                  | 14:30| 15:00| link|
-|Deploy and scan base images                 | 15:00| 15:30| link|
-|Wrap-up and Q&A                             | 15:30| 16:00| link|
+| ------------------------------------------ | ---------- | -------- | ---- |
+|Overview/Agenda of the Workshop             | 11:30 | 11:40 | [other](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
+|Container & Orchestration security theory   | 11:40 | 13:05 | [other](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
+|Lunch break                                 | 13:05 | 13:45 | -|
+|Walkthrough of the labs and tools           | 13:45 | 13:50 | [lab-intro](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
+|Deploy base BlueCompute app from template   | 13:50 | 14:30 | [lab2](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
+|Deploy tools and pipelines                  | 14:30 | 15:00 | [lab3](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
+|Deploy and scan base images                 | 15:00 | 15:30 | [lab4](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
+|Wrap-up and Q&A                             | 15:30 | 16:00 | -|
 
 ## a) Common Setup IBM Prevail 2022
 You must run all of these setup tasks in order:
