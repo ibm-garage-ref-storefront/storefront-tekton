@@ -11,7 +11,13 @@ The agenda for the security workstream is self-paced, with a series of video pre
 | Topic | Start Time | End Time | Link |
 | --- | --- | --- | --- |
 |Overview/Agenda of the Workshop | 11:30 | 11:40 | link|
-|next| time| time| link|
+|Container & Orchestration security theory| 11:40| time| link|
+|Lunch break| 13:05| time| link|
+|Walkthrough of the labs and tools| 13:45| time| link|
+|Deploy base BlueCompute app from template| 13:50| time| link|
+|Deploy tools and pipelines| 14:30| time| link|
+|Deploy and scan base images| 15:00| time| link|
+|Wrap-up and Q&A| 15:30| time| link|
 
 
 ## a) Common Setup IBM Prevail 2022
