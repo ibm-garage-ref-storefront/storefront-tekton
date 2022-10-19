@@ -8,7 +8,7 @@ The purpose is to measure various quality aspects during the build of an applica
 
 ## Prevail 2022: Security Workstream - self-paced agenda, day 1, October 19th 2022
 The agenda for the security workstream is self-paced, with a series of video presentations and hands-on labs to complete. Please use the links provided in the table below. The timings give you guidance on the duration of the session. If you need any assistance, please access the Slack Channel you have been provided a link to in the Prevail stream session.
-| Topic                                      | Start Time | End Time | Link |
+| Topic                                      | Start Time (UTC) | End Time | Link |
 | ------------------------------------------ | ---------- | -------- | ---- |
 |Overview/Agenda of the Workshop             | 11:30 | 11:40 | [1. introduction-security-stream](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
 |Container & Orchestration security theory   | 11:40 | 13:05 | [2. Container & Orchestration security theory](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
@@ -24,7 +24,7 @@ The agenda for the security workstream is self-paced, with a series of video pre
 
 (Video links will be published at the end of day 1)
 
-| Topic                                      | Start Time | End Time | Link |
+| Topic                                      | Start Time (UTC) | End Time | Link |
 | ------------------------------------------ | ---------- | -------- | ---- |
 |Recap of day 1, outlook into day 2          | 10:20 | 11:40 | [link TBC](https://ibm.box.com/s/szvr0l1yglvicnowl06wtml9h84a02iz)|
 |Security Lab 1 - Detect app vulns using owasp dependency dependency check and sonarqube   | 11:00 | 12:00 | [link TBC](https://ibm.box.com/s/szvr0l1yglvicnowl06wtml9h84a02iz) |
