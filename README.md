@@ -19,6 +19,11 @@ The agenda for the security workstream is self-paced, with a series of video pre
 |Deploy and scan base images                 | 15:00 | 15:30 | [lab4](https://ibm.box.com/s/89awajtforadft51npykehar1l8focxs)|
 |Wrap-up and Q&A                             | 15:30 | 16:00 | -|
 
+## Prevail 2022: Security Workstream - self-paced agenda, day 2, October 20th 2022
+The agenda for the security workstream is self-paced, with a series of video presentations and hands-on labs to complete. Please use the links provided in the table below. The timings give you guidance on the duration of the session. If you need any assistance, please access the Slack Channel you have been provided a link to in the Prevail stream session.
+
+(Agenda will be published at the end of day 1)
+
 ## a) Common Setup IBM Prevail 2022
 You must run all of these setup tasks in order:
 
