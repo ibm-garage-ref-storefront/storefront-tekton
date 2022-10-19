@@ -22,7 +22,16 @@ The agenda for the security workstream is self-paced, with a series of video pre
 ## Prevail 2022: Security Workstream - self-paced agenda, day 2, October 20th 2022
 The agenda for the security workstream is self-paced, with a series of video presentations and hands-on labs to complete. Please use the links provided in the table below. The timings give you guidance on the duration of the session. If you need any assistance, please access the Slack Channel you have been provided a link to in the Prevail stream session.
 
-(Agenda will be published at the end of day 1)
+(Video links will be published at the end of day 1)
+
+| Topic                                      | Start Time | End Time | Link |
+| ------------------------------------------ | ---------- | -------- | ---- |
+|Recap of day 1, outlook into day 2          | 10:20 | 11:040 | [link to be published](https://ibm.box.com/s/szvr0l1yglvicnowl06wtml9h84a02iz)|
+|Security Lab 1 - Detect app vulns using owasp dependency dependency check and sonarqube   | 11:00 | 12:00 |    |
+|Security Lab 2 - Detect container vulns using StackRox in the pipeline           | 12:00 | 12:45 | -|
+|Lunch Break                                 | 12:45 | 13:30 | |
+|Security Lab 3 - Detect container vulns using StackRox to monitor the cluster <br /> Review remediated security issues  | 13:30 | 15:00 | |
+|Q&A and wrap-up                 | 15:00 | 15:30 |  |
 
 ## a) Common Setup IBM Prevail 2022
 You must run all of these setup tasks in order:
