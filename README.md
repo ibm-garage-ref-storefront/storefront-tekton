@@ -27,7 +27,7 @@ The agenda for the security workstream is self-paced, with a series of video pre
 | Topic                                      | Start Time (UTC) | End Time | Link |
 | ------------------------------------------ | ---------- | -------- | ---- |
 |Recap of day 1, outlook into day 2          | 10:20 | 11:40 | [link TBC](https://ibm.box.com/s/szvr0l1yglvicnowl06wtml9h84a02iz)|
-|Security Lab 1 - Detect app vulns using owasp dependency dependency check and sonarqube   | 11:00 | 12:00 | [link TBC](https://ibm.box.com/s/szvr0l1yglvicnowl06wtml9h84a02iz) |
+|Security Lab 1 - Detect app vulns using OWASP Dependency Check and SonarQube   | 11:00 | 12:00 | [link TBC](https://ibm.box.com/s/szvr0l1yglvicnowl06wtml9h84a02iz) |
 |Security Lab 2 - Detect container vulns using StackRox in the pipeline           | 12:00 | 12:45 |[link TBC](https://ibm.box.com/s/szvr0l1yglvicnowl06wtml9h84a02iz) |
 |Lunch Break                                                                      | 12:45 | 13:30 |- |
 |Security Lab 3 - Detect container vulns using StackRox to monitor the cluster <br /> Review remediated security issues  | 13:30 | 15:00 |[link TBC](https://ibm.box.com/s/szvr0l1yglvicnowl06wtml9h84a02iz) |
