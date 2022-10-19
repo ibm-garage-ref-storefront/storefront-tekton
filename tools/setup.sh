@@ -40,13 +40,14 @@ cat banner.txt
 ./install_nexus3-v3.sh
 echo ""
 
-# Setup jmeter-performance-test - NEEDS FIX TO SCRIPT AS GRAFANA OPERATOR NOT WORKING ON OpenShift 4.10
+# Setup jmeter-performance-test - 
 # echo "###################################################################"
-# cd ${HERE}/tools/jmeter-performance-test
-# cat banner.txt
-# ./build_jmeter_image.sh  
+cd ${HERE}/tools/jmeter-performance-test
+cat banner.txt
+./build_jmeter_image.sh 
+#  NEED TO FIX SCRIPT AS GRAFANA OPERATOR NOT WORKING ON OpenShift 4.10 
 # ./install_jmeter_framework.sh
-# echo ""
+echo ""
 
 # Setup stackrox
 echo "###################################################################"
