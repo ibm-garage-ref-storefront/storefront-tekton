@@ -26,12 +26,12 @@ The agenda for the security workstream is self-paced, with a series of video pre
 
 | Topic                                      | Start Time (UTC) | End Time | Link |
 | ------------------------------------------ | ---------- | -------- | ---- |
-|Recap of day 1, outlook into day 2          | 10:20 | 11:40 | [prevail2021-sec-d2-1-intro](https://ibm.box.com/s/szvr0l1yglvicnowl06wtml9h84a02iz)|
-|Security Lab 1 - Detect app vulns using OWASP Dependency Check and SonarQube   | 11:00 | 12:00 | [prevail2021-sec-d2-2-lab1-sca-sast](https://ibm.box.com/s/szvr0l1yglvicnowl06wtml9h84a02iz) |
-|Security Lab 2 - Detect container vulns using StackRox in the pipeline           | 12:00 | 12:45 |[prevail2021-sec-d2-3-lab2-scan](https://ibm.box.com/s/szvr0l1yglvicnowl06wtml9h84a02iz) |
+|Recap of day 1, outlook into day 2          | 10:20 | 11:40 | [prevail2021-sec-d2-1-intro](https://ibm.biz/sec-prevail-box2)|
+|Security Lab 1 - Detect app vulns using OWASP Dependency Check and SonarQube   | 11:00 | 12:00 | [prevail2021-sec-d2-2-lab1-sca-sast](https://ibm.biz/sec-prevail-box2) |
+|Security Lab 2 - Detect container vulns using StackRox in the pipeline           | 12:00 | 12:45 |[prevail2021-sec-d2-3-lab2-scan](https://ibm.biz/sec-prevail-box2) |
 |Lunch Break                                                                      | 12:45 | 13:30 |- |
-|Security Lab 3 - Detect container vulns using StackRox to monitor the cluster <br /> Review remediated security issues  | 13:30 | 15:00 |[prevail2021-sec-d2-4-lab3-runtime](https://ibm.box.com/s/szvr0l1yglvicnowl06wtml9h84a02iz) |
-|Wrap-up                                                                  | 15:00 | 15:30 | [prevail2021-sec-d2-6-close](https://ibm.box.com/s/szvr0l1yglvicnowl06wtml9h84a02iz) |
+|Security Lab 3 - Detect container vulns using StackRox to monitor the cluster <br /> Review remediated security issues  | 13:30 | 15:00 |[prevail2021-sec-d2-4-lab3-runtime](https://ibm.biz/sec-prevail-box2) |
+|Wrap-up                                                                  | 15:00 | 15:30 | [prevail2021-sec-d2-6-close](https://ibm.biz/sec-prevail-box2) |
 
 ## a) Common Setup IBM Prevail 2022
 You must run all of these setup tasks in order:
